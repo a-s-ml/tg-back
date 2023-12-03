@@ -5,28 +5,23 @@ import { DbService } from 'src/db/db.service';
 @Injectable()
 export class UserService {
 
-  constructor(private readonly dbService: DbService) { }
+  constructor(private readonly dbService: DbService) {}
 
   async create(createUserDto: Prisma.userCreateInput) {
     return this.dbService.user.create({ data: createUserDto })
   }
 
   async findAll() {
-    return JSON.stringify(
-      this.dbService.user.findMany({}),
-      (key, value) => (typeof value === 'bigint' ? value.toString() : value) // return everything else unchanged
-    )
+    return this.dbService.user.findMany({})
   }
 
   async findOne(id: number) {
-    return JSON.stringify(this.dbService.user.findUnique({
+    return this.dbService.user.findUnique({
       where: {
         id,
       }
-    }),
-    (key, value) => (typeof value === 'bigint' ? value.toString() : value) // return everything else unchanged
-  )
-}
+    })
+  }
 
   async update(id: number, updateUserDto: Prisma.userUpdateInput) {
     return this.dbService.user.update({
