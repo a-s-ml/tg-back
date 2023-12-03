@@ -1,0 +1,196 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model admin_bot {
+  id      Int    @id @default(autoincrement())
+  bot     Int
+  chat_id BigInt
+}
+
+model alert_q {
+  id          Int      @id @default(autoincrement())
+  chat_id     BigInt
+  question_id Int
+  dateadd     DateTime @default(now()) @db.Timestamp(0)
+}
+
+model answer {
+  id         Int      @id @default(autoincrement())
+  chat_id    BigInt   @default(0)
+  questionid Int
+  group_id   BigInt   @default(0)
+  choice     Int
+  reward     Float
+  dateadd    DateTime @default(now()) @db.Timestamp(0)
+}
+
+model category {
+  id   Int    @id @default(autoincrement()) @db.UnsignedInt
+  name String @db.VarChar(255)
+
+  @@index([name], map: "name")
+}
+
+model chat_act {
+  id      Int      @id @default(autoincrement())
+  chat    BigInt
+  res     Int
+  dateadd DateTime @default(now()) @db.Timestamp(0)
+}
+
+model chat_cat {
+  id      Int      @unique(map: "id") @default(autoincrement())
+  chat_id BigInt
+  cat_id  Int
+  dateadd DateTime @default(now()) @db.Timestamp(0)
+}
+
+model chat_data {
+  id            Int      @id @default(autoincrement())
+  to_group      BigInt
+  group_id      BigInt
+  thread        Int      @default(0)
+  group_type    String   @db.VarChar(255)
+  result        Int
+  message_id    BigInt
+  date          Int
+  date_add      DateTime @default(now()) @db.Timestamp(0)
+  question_id   Int
+  question_type String   @default("0") @db.VarChar(155)
+  poll_id       BigInt   @default(0)
+  subscribers   Int      @default(0)
+}
+
+model like_q {
+  id          Int      @id @default(autoincrement())
+  chat_id     BigInt
+  question_id Int
+  dateadd     DateTime @default(now()) @db.Timestamp(0)
+}
+
+model menuAccount {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(45)
+  text String @db.VarChar(45)
+  row  Int
+  sort Int
+  icon String @db.VarChar(45)
+}
+
+model menuMain {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(45)
+  text String @db.VarChar(45)
+  sort Int
+  icon String @db.VarChar(45)
+}
+
+model notice {
+  id      Int      @id @default(autoincrement())
+  type    String   @db.VarChar(255)
+  chat_id BigInt
+  dateadd DateTime @default(now()) @db.Timestamp(0)
+  text    String   @db.VarChar(255)
+  readn   Int      @default(0)
+}
+
+model pay {
+  id          Int      @id @default(autoincrement())
+  chat_id     BigInt
+  amount      Float    @default(0)
+  type        String   @default("0") @db.VarChar(255)
+  question_id Int
+  group_id    BigInt
+  moderate    Int      @default(0)
+  dateadd     DateTime @default(now()) @db.Timestamp(0)
+}
+
+model question {
+  id          Int                  @id @default(autoincrement()) @db.UnsignedInt
+  text        String               @db.VarChar(700)
+  dateadd     DateTime             @default(now()) @db.Timestamp(0)
+  chat_id     BigInt               @default(0)
+  category    Int
+  answer1     String               @db.VarChar(255)
+  answer2     String               @db.VarChar(255)
+  answer3     String               @db.VarChar(255)
+  answer4     String               @db.VarChar(255)
+  answerright question_answerright @default(dbgenerated("1"))
+  isactual    question_isactual    @default(dbgenerated("0"))
+  mod         question_mod         @default(dbgenerated("0"))
+  img         String?              @default("0") @db.VarChar(255)
+  slog        Float                @default(50)
+  answers     Int                  @default(0)
+
+  @@index([text], map: "fulltext")
+  @@index([category], map: "id_cat")
+  @@index([chat_id], map: "tgid")
+}
+
+model time {
+  id     Int    @id @default(autoincrement())
+  name   String @db.VarChar(255)
+  period Int
+}
+
+model timeLine {
+  id     Int    @id @default(autoincrement())
+  name   String @db.VarChar(255)
+  period Int
+}
+
+model user {
+  id                  Int        @id @default(autoincrement())
+  chat_id             BigInt
+  is_bot              Boolean
+  activ               user_activ @default(dbgenerated("1"))
+  longitude           Float?     @default(0)
+  latitude            Float?     @default(0)
+  date_reg            DateTime   @default(now()) @db.Timestamp(0)
+  last_up             DateTime   @default(now()) @db.Timestamp(0)
+  cash_f_w            Float      @default(0)
+  cash_a_w            Float      @default(0)
+  cash_q_w            Float      @default(0)
+  cash_f_m            Float      @default(0)
+  cash_a_m            Float      @default(0)
+  cash_q_m            Float      @default(0)
+  cash_all            Float      @default(0)
+  luck                Float      @default(0)
+  referral            BigInt     @default(0)
+  question_img        Int        @default(1)
+  question_time       Int        @default(5)
+  question_timeLine   Int        @default(17)
+  question_slog_start Int        @default(0)
+  question_slog_end   Int        @default(100)
+  d_stst              Int        @default(1)
+  fkwallet            String     @default("0") @db.VarChar(255)
+}
+
+enum user_activ {
+  NO @map("0")
+  YES @map("1")
+}
+
+enum question_answerright {
+  ONE @map("1")
+  TWO @map("2")
+  THREE @map("3")
+  FOUR @map("4")
+  FIVE @map("5")
+}
+
+enum question_isactual {
+  NO @map("0")
+  YES @map("1")
+}
+
+enum question_mod {
+  YES @map("0")
+  NO @map("1")
+}
