@@ -20,14 +20,14 @@ let UserService = class UserService {
         return this.dbService.user.create({ data: createUserDto });
     }
     async findAll() {
-        return this.dbService.user.findMany({});
+        return JSON.stringify(this.dbService.user.findMany({}), (key, value) => (typeof value === 'bigint' ? value.toString() : value));
     }
     async findOne(id) {
-        return this.dbService.user.findUnique({
+        return JSON.stringify(this.dbService.user.findUnique({
             where: {
                 id,
             }
-        });
+        }), (key, value) => (typeof value === 'bigint' ? value.toString() : value));
     }
     async update(id, updateUserDto) {
         return this.dbService.user.update({
