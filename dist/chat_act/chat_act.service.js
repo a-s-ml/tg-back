@@ -9,45 +9,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserService = void 0;
+exports.ChatActService = void 0;
 const common_1 = require("@nestjs/common");
 const db_service_1 = require("../db/db.service");
-let UserService = class UserService {
+let ChatActService = class ChatActService {
     constructor(dbService) {
         this.dbService = dbService;
     }
-    async create(createUserDto) {
-        return this.dbService.user.create({ data: createUserDto });
+    async create(createChatActDto) {
+        return await this.dbService.chat_act.create({ data: createChatActDto });
     }
     async findAll() {
-        return JSON.stringify(await this.dbService.user.findMany({}), (key, value) => (typeof value === 'bigint' ? value.toString() : value));
+        return JSON.stringify(await this.dbService.chat_act.findMany({}), (key, value) => (typeof value === 'bigint' ? value.toString() : value));
     }
     async findOne(id) {
-        return JSON.stringify(this.dbService.user.findUnique({
+        return JSON.stringify(await this.dbService.chat_act.findUnique({
             where: {
-                id,
+                id: id
             }
         }), (key, value) => (typeof value === 'bigint' ? value.toString() : value));
     }
-    async update(id, updateUserDto) {
-        return JSON.stringify(await this.dbService.user.update({
+    async update(id, updateChatActDto) {
+        return await this.dbService.chat_act.update({
             where: {
                 id,
             },
-            data: updateUserDto
-        }), (key, value) => (typeof value === 'bigint' ? value.toString() : value));
+            data: updateChatActDto
+        });
     }
     async remove(id) {
-        return this.dbService.user.delete({
+        return await this.dbService.chat_act.delete({
             where: {
                 id,
             }
         });
     }
 };
-exports.UserService = UserService;
-exports.UserService = UserService = __decorate([
+exports.ChatActService = ChatActService;
+exports.ChatActService = ChatActService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [db_service_1.DbService])
-], UserService);
-//# sourceMappingURL=user.service.js.map
+], ChatActService);
+//# sourceMappingURL=chat_act.service.js.map

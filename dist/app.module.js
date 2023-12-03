@@ -19,12 +19,13 @@ const user_module_1 = require("./user/user.module");
 const menu_main_module_1 = require("./menu-main/menu-main.module");
 const validate_module_1 = require("./validate/validate.module");
 const schedule_1 = require("@nestjs/schedule");
+const chat_act_module_1 = require("./chat_act/chat_act.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [webhook_tg_module_1.WebhookTgModule, user_module_1.UserModule, db_module_1.DbModule, answer_module_1.AnswerModule, chat_data_module_1.ChatDataModule, question_module_1.QuestionModule, menu_main_module_1.MenuMainModule, validate_module_1.ValidateModule, schedule_1.ScheduleModule.forRoot()],
+        imports: [webhook_tg_module_1.WebhookTgModule, user_module_1.UserModule, db_module_1.DbModule, answer_module_1.AnswerModule, chat_data_module_1.ChatDataModule, question_module_1.QuestionModule, menu_main_module_1.MenuMainModule, validate_module_1.ValidateModule, schedule_1.ScheduleModule.forRoot(), chat_act_module_1.ChatActModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

@@ -31,32 +31,7 @@ export declare class UserController {
     }>;
     findAll(): Promise<string>;
     findOne(id: string): Promise<string>;
-    update(id: string, updateUserDto: Prisma.userUpdateInput): Promise<{
-        id: number;
-        chat_id: bigint;
-        is_bot: boolean;
-        activ: import(".prisma/client").$Enums.user_activ;
-        longitude: number;
-        latitude: number;
-        date_reg: Date;
-        last_up: Date;
-        cash_f_w: number;
-        cash_a_w: number;
-        cash_q_w: number;
-        cash_f_m: number;
-        cash_a_m: number;
-        cash_q_m: number;
-        cash_all: number;
-        luck: number;
-        referral: bigint;
-        question_img: number;
-        question_time: number;
-        question_timeLine: number;
-        question_slog_start: number;
-        question_slog_end: number;
-        d_stst: number;
-        fkwallet: string;
-    }>;
+    update(id: string, updateUserDto: Prisma.userUpdateInput): Promise<string>;
     remove(id: string): Promise<{
         id: number;
         chat_id: bigint;

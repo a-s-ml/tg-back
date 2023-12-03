@@ -10,9 +10,10 @@ import { UserModule } from './user/user.module';
 import { MenuMainModule } from './menu-main/menu-main.module';
 import { ValidateModule } from './validate/validate.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { ChatActModule } from './chat_act/chat_act.module';
 
 @Module({
-  imports: [WebhookTgModule, UserModule, DbModule, AnswerModule, ChatDataModule, QuestionModule, MenuMainModule, ValidateModule, ScheduleModule.forRoot()],
+  imports: [WebhookTgModule, UserModule, DbModule, AnswerModule, ChatDataModule, QuestionModule, MenuMainModule, ValidateModule, ScheduleModule.forRoot(), ChatActModule],
   controllers: [AppController],
   providers: [AppService],
 })

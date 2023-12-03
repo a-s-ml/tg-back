@@ -1,10 +1,10 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
-import { Prisma } from '@prisma/client'
+import { Prisma } from '@prisma/client';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService) {}
 
   @Post()
   create(@Body() createUserDto: Prisma.userCreateInput) {
@@ -13,10 +13,7 @@ export class UserController {
 
   @Get()
   findAll() {
-    return JSON.stringify(
-      this.userService.findAll(),
-      (key, value) => (typeof value === 'bigint' ? value.toString() : value) // return everything else unchanged
-    )
+    return this.userService.findAll();
   }
 
   @Get(':id')
