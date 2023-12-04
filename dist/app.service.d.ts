@@ -1,3 +1,6 @@
+import { AutoPostService } from './auto-post/auto-post.service';
 export declare class AppService {
-    cron(): void;
+    private readonly autoPostServise;
+    constructor(autoPostServise: AutoPostService);
+    cron(): Promise<void>;
 }
