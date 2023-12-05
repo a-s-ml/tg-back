@@ -30,6 +30,15 @@ export declare class AnswerService {
         reward: number;
         dateadd: Date;
     }, null, import("@prisma/client/runtime/library").DefaultArgs>;
+    findOneChat(chat_id: number, questionid: number, group_id: bigint): Prisma.PrismaPromise<{
+        id: number;
+        chat_id: bigint;
+        questionid: number;
+        group_id: bigint;
+        choice: number;
+        reward: number;
+        dateadd: Date;
+    }[]>;
     update(id: number, updateAnswerDto: Prisma.answerUpdateInput): Prisma.Prisma__answerClient<{
         id: number;
         chat_id: bigint;

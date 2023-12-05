@@ -29,6 +29,15 @@ let AnswerService = class AnswerService {
             }
         });
     }
+    findOneChat(chat_id, questionid, group_id) {
+        return this.dbService.answer.findMany({
+            where: {
+                chat_id,
+                questionid,
+                group_id,
+            }
+        });
+    }
     update(id, updateAnswerDto) {
         return this.dbService.answer.update({
             where: {

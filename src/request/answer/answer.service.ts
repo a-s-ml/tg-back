@@ -23,6 +23,16 @@ export class AnswerService {
     })
   }
 
+  findOneChat(chat_id: number, questionid: number, group_id: bigint) {
+    return this.dbService.answer.findMany({
+      where: {
+        chat_id,
+        questionid,
+        group_id,
+      }
+    })
+  }
+
   update(id: number, updateAnswerDto: Prisma.answerUpdateInput) {
     return this.dbService.answer.update({
       where: {
