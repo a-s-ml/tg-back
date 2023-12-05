@@ -44,6 +44,16 @@ let ChatDataService = class ChatDataService {
             }
         });
     }
+    async publishedQuestion(chatid) {
+        return await this.dbService.chat_data.findMany({
+            select: {
+                question_id: true,
+            },
+            where: {
+                group_id: chatid
+            }
+        });
+    }
 };
 exports.ChatDataService = ChatDataService;
 exports.ChatDataService = ChatDataService = __decorate([

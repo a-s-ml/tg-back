@@ -23,6 +23,8 @@ import { InlineKeyboardService } from './constructors/keyboard/inline-keyboard.s
 import { KeyboardService } from './constructors/keyboard/keyboard.service';
 import { BuildQuestionService } from './constructors/questions/build-question.service';
 import { QuestionService } from './request/question/question.service';
+import { ChatCatService } from './request/chat_cat/chat_cat.service';
+import { ChatDataService } from './request/chat_data/chat_data.service';
 
 @Module({
   imports: [
@@ -51,7 +53,7 @@ import { QuestionService } from './request/question/question.service';
     KeyboardService, 
     QuestionService, 
     BuildQuestionService, 
-    InlineKeyboardService
+    InlineKeyboardService, ChatCatService, ChatDataService
   ],
 })
 export class AppModule { }

@@ -12,7 +12,7 @@ export class ChatCatService {
   }
 
   async findAll() {
-     await this.dbService.chat_cat.findMany({})
+    await this.dbService.chat_cat.findMany({})
   }
 
   async findOne(id: number) {
@@ -36,6 +36,18 @@ export class ChatCatService {
     return await this.dbService.chat_cat.delete({
       where: {
         id,
+      }
+    })
+  }
+
+  // запрещённые категорие в группе из chat_cat
+  async forbiddenCategory(chatid: bigint) {
+    return await this.dbService.chat_cat.findMany({
+      select: {
+        cat_id: true,
+      },
+      where: {
+        chat_id: chatid
       }
     })
   }

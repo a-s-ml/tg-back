@@ -32,6 +32,8 @@ const inline_keyboard_service_1 = require("./constructors/keyboard/inline-keyboa
 const keyboard_service_1 = require("./constructors/keyboard/keyboard.service");
 const build_question_service_1 = require("./constructors/questions/build-question.service");
 const question_service_1 = require("./request/question/question.service");
+const chat_cat_service_1 = require("./request/chat_cat/chat_cat.service");
+const chat_data_service_1 = require("./request/chat_data/chat_data.service");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -63,7 +65,7 @@ exports.AppModule = AppModule = __decorate([
             keyboard_service_1.KeyboardService,
             question_service_1.QuestionService,
             build_question_service_1.BuildQuestionService,
-            inline_keyboard_service_1.InlineKeyboardService
+            inline_keyboard_service_1.InlineKeyboardService, chat_cat_service_1.ChatCatService, chat_data_service_1.ChatDataService
         ],
     })
 ], AppModule);

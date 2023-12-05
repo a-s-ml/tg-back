@@ -44,6 +44,16 @@ let ChatCatService = class ChatCatService {
             }
         });
     }
+    async forbiddenCategory(chatid) {
+        return await this.dbService.chat_cat.findMany({
+            select: {
+                cat_id: true,
+            },
+            where: {
+                chat_id: chatid
+            }
+        });
+    }
 };
 exports.ChatCatService = ChatCatService;
 exports.ChatCatService = ChatCatService = __decorate([

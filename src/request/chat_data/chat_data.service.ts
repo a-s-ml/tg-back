@@ -4,7 +4,7 @@ import { DbService } from 'src/db/db.service';
 
 @Injectable()
 export class ChatDataService {
-  
+
   constructor(private readonly dbService: DbService) { }
 
   async create(createChatDatumDto: Prisma.chat_dataCreateInput) {
@@ -19,7 +19,7 @@ export class ChatDataService {
   }
 
   async findOne(id: number) {
-    return  JSON.stringify(
+    return JSON.stringify(
       await this.dbService.chat_data.findUnique({
         where: {
           id: id
@@ -42,6 +42,18 @@ export class ChatDataService {
     return await this.dbService.chat_data.delete({
       where: {
         id,
+      }
+    })
+  }
+
+  // опубликованные вопросы из chat_data
+  async publishedQuestion(chatid: bigint) {
+    return await this.dbService.chat_data.findMany({
+      select: {
+        question_id: true,
+      },
+      where: {
+        group_id: chatid
       }
     })
   }

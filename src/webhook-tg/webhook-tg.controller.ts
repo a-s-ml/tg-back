@@ -9,6 +9,15 @@ export class WebhookTgController {
 
     @Post()
     update(@Body() UpdateDto: UpdateDto) {
+        if (UpdateDto.callback_query) {
+
+        }
+        if (UpdateDto.message) {
+
+        }
+        if (UpdateDto.my_chat_member) {
+
+        }
         console.log(UpdateDto)
         return this.webhookTg.update(UpdateDto);
     }

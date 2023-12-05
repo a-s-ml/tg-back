@@ -12,81 +12,39 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SelectQuestion = void 0;
 const common_1 = require("@nestjs/common");
 const db_service_1 = require("../db/db.service");
+const chat_cat_service_1 = require("../request/chat_cat/chat_cat.service");
+const chat_data_service_1 = require("../request/chat_data/chat_data.service");
 let SelectQuestion = class SelectQuestion {
-    constructor(dbService) {
+    constructor(dbService, chatCatService, chatDataService) {
         this.dbService = dbService;
-    }
-    async publishedQuestion(chatid) {
-        const arrIdPublishedQuestion = await this.dbService.chat_data.findMany({
-            select: {
-                question_id: true,
-            },
-            where: {
-                group_id: chatid
-            }
-        });
-        let publishedQuestion = [];
-        arrIdPublishedQuestion.map(item => {
-            publishedQuestion.push(item.question_id);
-        });
-        return publishedQuestion;
-    }
-    async forbiddenCategory(chatid) {
-        const arrIdForbiddenCategory = await this.dbService.chat_cat.findMany({
-            select: {
-                cat_id: true,
-            },
-            where: {
-                chat_id: chatid
-            }
-        });
-        let forbiddenCategory = [];
-        arrIdForbiddenCategory.map(item => {
-            forbiddenCategory.push(item.cat_id);
-        });
-        return forbiddenCategory;
-    }
-    async countAvailableQuestion(chatid) {
-        const forbiddenCategory = await this.forbiddenCategory(chatid);
-        const publishedQuestion = await this.publishedQuestion(chatid);
-        return await this.dbService.question.count({
-            where: {
-                category: {
-                    notIn: forbiddenCategory
-                },
-                id: {
-                    notIn: publishedQuestion
-                }
-            }
-        });
+        this.chatCatService = chatCatService;
+        this.chatDataService = chatDataService;
     }
     async availableQuestion(chatid) {
-        const forbiddenCategory = await this.forbiddenCategory(chatid);
-        const publishedQuestion = await this.publishedQuestion(chatid);
-        const itemCount = await this.countAvailableQuestion(chatid);
-        const randomNumber = (min, max) => {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        };
-        return await this.dbService.question.findMany({
-            take: 1,
-            skip: randomNumber(0, itemCount - 1),
+        const forbiddenCategory = await this.chatCatService.forbiddenCategory(chatid);
+        const publishedQuestion = await this.chatDataService.publishedQuestion(chatid);
+        const questions = await this.dbService.question.findMany({
             select: {
                 id: true,
             },
             where: {
                 category: {
-                    notIn: forbiddenCategory
+                    notIn: forbiddenCategory.map(item => item.cat_id)
                 },
                 id: {
-                    notIn: publishedQuestion
+                    notIn: publishedQuestion.map(item => item.question_id)
                 }
             }
         });
+        const randomIndex = Math.floor(Math.random() * (questions.length - 1));
+        return questions[randomIndex];
     }
 };
 exports.SelectQuestion = SelectQuestion;
 exports.SelectQuestion = SelectQuestion = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [db_service_1.DbService])
+    __metadata("design:paramtypes", [db_service_1.DbService,
+        chat_cat_service_1.ChatCatService,
+        chat_data_service_1.ChatDataService])
 ], SelectQuestion);
 //# sourceMappingURL=select-questions.service.js.map

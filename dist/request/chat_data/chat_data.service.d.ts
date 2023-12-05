@@ -50,4 +50,7 @@ export declare class ChatDataService {
         poll_id: bigint;
         subscribers: number;
     }>;
+    publishedQuestion(chatid: bigint): Promise<{
+        question_id: number;
+    }[]>;
 }

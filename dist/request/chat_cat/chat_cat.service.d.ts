@@ -28,4 +28,7 @@ export declare class ChatCatService {
         cat_id: number;
         dateadd: Date;
     }>;
+    forbiddenCategory(chatid: bigint): Promise<{
+        cat_id: number;
+    }[]>;
 }
