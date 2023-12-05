@@ -11,7 +11,7 @@ export class AppService {
     private readonly buildQuestionService: BuildQuestionService,
   ) { }
 
-  @Cron(CronExpression.EVERY_MINUTE)
+  @Cron(CronExpression.EVERY_DAY_AT_9PM)
   async cron() {
     const tt0 = performance.now();
     await this.autoPostServise.publicationInActiveGroup();
