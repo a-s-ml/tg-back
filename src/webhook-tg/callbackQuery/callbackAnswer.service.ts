@@ -13,8 +13,8 @@ export class CallbackAnswerService {
 
     async answer(callbackQuery: CallbackDto) {
         const data = callbackQuery.data.split('_')
-        const reward = await this.questionService.findOne(data[1] as unknown as number)
-        const answer = await this.answerService.create({chat_id: callbackQuery.from.id, questionid: data[1] as unknown as number, group_id: callbackQuery.message.chat.id, choice: data[2] as unknown as number, reward: reward.slog})
+        const reward = await this.questionService.findOne(+data[1])
+        const answer = await this.answerService.create({chat_id: callbackQuery.from.id, questionid: +data[1], group_id: callbackQuery.message.chat.id, choice: +data[2], reward: reward.slog})
     }
 }
 
