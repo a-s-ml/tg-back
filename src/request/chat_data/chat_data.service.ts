@@ -46,7 +46,7 @@ export class ChatDataService {
     })
   }
 
-  // опубликованные вопросы из chat_data
+  // опубликованные вопросы в группе
   async publishedQuestion(chatid: bigint) {
     return await this.dbService.chat_data.findMany({
       select: {

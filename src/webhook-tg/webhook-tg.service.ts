@@ -1,9 +1,24 @@
 import { Injectable } from '@nestjs/common';
+import { UpdateDto } from './dto/update.dto';
+import { CallbackQueryService } from './callbackQuery.service';
 
 @Injectable()
 export class WebhookTgService {
-    update(update: {}) {
-        console.log(update)
+
+    constructor(
+        private callbackQueryService: CallbackQueryService
+    ) {}
+
+    update(updateDto: UpdateDto) {
+        if (updateDto.callback_query) {
+            return this.callbackQueryService.update(updateDto.callback_query);
+        }
+        if (updateDto.message) {
+
+        }
+        if (updateDto.my_chat_member) {
+
+        }
     }
 }
 

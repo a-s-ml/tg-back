@@ -20,15 +20,8 @@ let WebhookTgController = class WebhookTgController {
     constructor(webhookTg) {
         this.webhookTg = webhookTg;
     }
-    update(UpdateDto) {
-        if (UpdateDto.callback_query) {
-        }
-        if (UpdateDto.message) {
-        }
-        if (UpdateDto.my_chat_member) {
-        }
-        console.log(UpdateDto);
-        return this.webhookTg.update(UpdateDto);
+    update(updateDto) {
+        return this.webhookTg.update(updateDto);
     }
 };
 exports.WebhookTgController = WebhookTgController;

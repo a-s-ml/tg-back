@@ -16,21 +16,21 @@ let QuestionService = class QuestionService {
     constructor(dbService) {
         this.dbService = dbService;
     }
-    create(createQuestionDto) {
-        return this.dbService.question.create({ data: createQuestionDto });
+    async create(createQuestionDto) {
+        return await this.dbService.question.create({ data: createQuestionDto });
     }
-    findAll() {
-        return this.dbService.question.findMany({});
+    async findAll() {
+        return await this.dbService.question.findMany({});
     }
-    findOne(id) {
-        return this.dbService.question.findUnique({
+    async findOne(id) {
+        return await this.dbService.question.findUnique({
             where: {
                 id,
             }
         });
     }
-    findOneAnswers(id) {
-        return this.dbService.question.findUnique({
+    async findOneAnswers(id) {
+        return await this.dbService.question.findUnique({
             select: {
                 answer1: true,
                 answer2: true,
@@ -42,16 +42,16 @@ let QuestionService = class QuestionService {
             }
         });
     }
-    update(id, updateQuestionDto) {
-        return this.dbService.question.update({
+    async update(id, updateQuestionDto) {
+        return await this.dbService.question.update({
             where: {
                 id,
             },
             data: updateQuestionDto
         });
     }
-    remove(id) {
-        return this.dbService.question.delete({
+    async remove(id) {
+        return await this.dbService.question.delete({
             where: {
                 id,
             }

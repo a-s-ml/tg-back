@@ -3,7 +3,7 @@ import { DbService } from 'src/db/db.service';
 export declare class QuestionService {
     private readonly dbService;
     constructor(dbService: DbService);
-    create(createQuestionDto: Prisma.questionCreateInput): Prisma.Prisma__questionClient<{
+    create(createQuestionDto: Prisma.questionCreateInput): Promise<{
         id: number;
         text: string;
         dateadd: Date;
@@ -19,8 +19,8 @@ export declare class QuestionService {
         img: string;
         slog: number;
         answers: number;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    findAll(): Prisma.PrismaPromise<{
+    }>;
+    findAll(): Promise<{
         id: number;
         text: string;
         dateadd: Date;
@@ -37,7 +37,7 @@ export declare class QuestionService {
         slog: number;
         answers: number;
     }[]>;
-    findOne(id: number): Prisma.Prisma__questionClient<{
+    findOne(id: number): Promise<{
         id: number;
         text: string;
         dateadd: Date;
@@ -53,14 +53,14 @@ export declare class QuestionService {
         img: string;
         slog: number;
         answers: number;
-    }, null, import("@prisma/client/runtime/library").DefaultArgs>;
-    findOneAnswers(id: number): Prisma.Prisma__questionClient<{
+    }>;
+    findOneAnswers(id: number): Promise<{
         answer1: string;
         answer2: string;
         answer3: string;
         answer4: string;
-    }, null, import("@prisma/client/runtime/library").DefaultArgs>;
-    update(id: number, updateQuestionDto: Prisma.questionUpdateInput): Prisma.Prisma__questionClient<{
+    }>;
+    update(id: number, updateQuestionDto: Prisma.questionUpdateInput): Promise<{
         id: number;
         text: string;
         dateadd: Date;
@@ -76,8 +76,8 @@ export declare class QuestionService {
         img: string;
         slog: number;
         answers: number;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    remove(id: number): Prisma.Prisma__questionClient<{
+    }>;
+    remove(id: number): Promise<{
         id: number;
         text: string;
         dateadd: Date;
@@ -93,5 +93,5 @@ export declare class QuestionService {
         img: string;
         slog: number;
         answers: number;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    }>;
 }

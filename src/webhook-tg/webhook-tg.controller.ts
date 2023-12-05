@@ -5,20 +5,12 @@ import { UpdateDto } from './dto/update.dto';
 @Controller('webhook-tg')
 export class WebhookTgController {
 
-    constructor(private readonly webhookTg: WebhookTgService) { }
+    constructor(
+        private webhookTg: WebhookTgService
+    ) {}
 
     @Post()
-    update(@Body() UpdateDto: UpdateDto) {
-        if (UpdateDto.callback_query) {
-
-        }
-        if (UpdateDto.message) {
-
-        }
-        if (UpdateDto.my_chat_member) {
-
-        }
-        console.log(UpdateDto)
-        return this.webhookTg.update(UpdateDto);
+    update(@Body() updateDto: UpdateDto) {
+        return this.webhookTg.update(updateDto);
     }
 }

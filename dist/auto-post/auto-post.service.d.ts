@@ -1,11 +1,11 @@
-import { SelectQuestion } from './select-questions.service';
-import { SelectActivChat } from './select-activ-chat.cervice';
+import { SelectQuestionService } from './select-questions.service';
+import { SelectActivChatService } from './select-activ-chat.service';
 import { BuildQuestionService } from 'src/constructors/questions/build-question.service';
 import 'dotenv/config';
 export declare class AutoPostService {
-    private selectQuestion;
-    private selectActivChat;
+    private selectQuestionService;
+    private selectActivChatService;
     private buildQuestionService;
-    constructor(selectQuestion: SelectQuestion, selectActivChat: SelectActivChat, buildQuestionService: BuildQuestionService);
+    constructor(selectQuestionService: SelectQuestionService, selectActivChatService: SelectActivChatService, buildQuestionService: BuildQuestionService);
     publicationInActiveGroup(): Promise<void>;
 }

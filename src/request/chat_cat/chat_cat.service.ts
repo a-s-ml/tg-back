@@ -40,7 +40,7 @@ export class ChatCatService {
     })
   }
 
-  // запрещённые категорие в группе из chat_cat
+  // запрещённые категорие в группе
   async forbiddenCategory(chatid: bigint) {
     return await this.dbService.chat_cat.findMany({
       select: {

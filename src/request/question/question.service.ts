@@ -7,24 +7,24 @@ export class QuestionService {
 
   constructor(private readonly dbService: DbService) { }
 
-  create(createQuestionDto: Prisma.questionCreateInput) {
-    return this.dbService.question.create({ data: createQuestionDto })
+  async create(createQuestionDto: Prisma.questionCreateInput) {
+    return await this.dbService.question.create({ data: createQuestionDto })
   }
 
-  findAll() {
-    return this.dbService.question.findMany({})
+  async findAll() {
+    return await this.dbService.question.findMany({})
   }
 
-  findOne(id: number) {
-    return this.dbService.question.findUnique({
+  async findOne(id: number) {
+    return await this.dbService.question.findUnique({
       where: {
         id,
       }
     })
   }
 
-  findOneAnswers(id: number) {
-    return this.dbService.question.findUnique({
+  async findOneAnswers(id: number) {
+    return await this.dbService.question.findUnique({
       select: {
         answer1: true,
         answer2: true,
@@ -37,8 +37,8 @@ export class QuestionService {
     })
   }
 
-  update(id: number, updateQuestionDto: Prisma.questionUpdateInput) {
-    return this.dbService.question.update({
+  async update(id: number, updateQuestionDto: Prisma.questionUpdateInput) {
+    return await this.dbService.question.update({
       where: {
         id,
       },
@@ -46,8 +46,8 @@ export class QuestionService {
     })
   }
 
-  remove(id: number) {
-    return this.dbService.question.delete({
+  async remove(id: number) {
+    return await this.dbService.question.delete({
       where: {
         id,
       }

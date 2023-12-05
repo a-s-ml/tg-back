@@ -9,10 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SelectActivChat = void 0;
+exports.SelectActivChatService = void 0;
 const common_1 = require("@nestjs/common");
 const db_service_1 = require("../db/db.service");
-let SelectActivChat = class SelectActivChat {
+let SelectActivChatService = class SelectActivChatService {
     constructor(dbService) {
         this.dbService = dbService;
     }
@@ -20,9 +20,9 @@ let SelectActivChat = class SelectActivChat {
         return await this.dbService.chat_act.findMany();
     }
 };
-exports.SelectActivChat = SelectActivChat;
-exports.SelectActivChat = SelectActivChat = __decorate([
+exports.SelectActivChatService = SelectActivChatService;
+exports.SelectActivChatService = SelectActivChatService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [db_service_1.DbService])
-], SelectActivChat);
-//# sourceMappingURL=select-activ-chat.cervice.js.map
+], SelectActivChatService);
+//# sourceMappingURL=select-activ-chat.service.js.map

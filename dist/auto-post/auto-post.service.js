@@ -12,20 +12,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutoPostService = void 0;
 const common_1 = require("@nestjs/common");
 const select_questions_service_1 = require("./select-questions.service");
-const select_activ_chat_cervice_1 = require("./select-activ-chat.cervice");
+const select_activ_chat_service_1 = require("./select-activ-chat.service");
 const build_question_service_1 = require("../constructors/questions/build-question.service");
 require("dotenv/config");
 let AutoPostService = class AutoPostService {
-    constructor(selectQuestion, selectActivChat, buildQuestionService) {
-        this.selectQuestion = selectQuestion;
-        this.selectActivChat = selectActivChat;
+    constructor(selectQuestionService, selectActivChatService, buildQuestionService) {
+        this.selectQuestionService = selectQuestionService;
+        this.selectActivChatService = selectActivChatService;
         this.buildQuestionService = buildQuestionService;
     }
     async publicationInActiveGroup() {
-        const chatact = await this.selectActivChat.activChat();
+        const chatact = await this.selectActivChatService.activChat();
         for (var key in chatact) {
             const t0 = performance.now();
-            const question = await this.selectQuestion.availableQuestion(chatact[key].chat);
+            const question = await this.selectQuestionService.availableQuestion(chatact[key].chat);
             const url = await this.buildQuestionService.questionText(question.id);
             const url2 = `${process.env.SEND_MESSAGE}chat_id=${url.chat_id}&text=${encodeURI(url.text)}&reply_markup=${JSON.stringify(url.reply_markup)}`;
             console.log(url2);
@@ -38,8 +38,8 @@ let AutoPostService = class AutoPostService {
 exports.AutoPostService = AutoPostService;
 exports.AutoPostService = AutoPostService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [select_questions_service_1.SelectQuestion,
-        select_activ_chat_cervice_1.SelectActivChat,
+    __metadata("design:paramtypes", [select_questions_service_1.SelectQuestionService,
+        select_activ_chat_service_1.SelectActivChatService,
         build_question_service_1.BuildQuestionService])
 ], AutoPostService);
 //# sourceMappingURL=auto-post.service.js.map

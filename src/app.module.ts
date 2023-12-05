@@ -16,8 +16,8 @@ import { ChatCatModule } from './request/chat_cat/chat_cat.module';
 import { TimeModule } from './request/time/time.module';
 import { AutoPostService } from './auto-post/auto-post.service';
 import { AutoPostModule } from './auto-post/auto-post.module';
-import { SelectQuestion } from './auto-post/select-questions.service';
-import { SelectActivChat } from './auto-post/select-activ-chat.cervice';
+import { SelectQuestionService } from './auto-post/select-questions.service';
+import { SelectActivChatService } from './auto-post/select-activ-chat.service';
 import { BuildQuestionModule } from './constructors/questions/build-question.module';
 import { InlineKeyboardService } from './constructors/keyboard/inline-keyboard.service';
 import { KeyboardService } from './constructors/keyboard/keyboard.service';
@@ -25,6 +25,9 @@ import { BuildQuestionService } from './constructors/questions/build-question.se
 import { QuestionService } from './request/question/question.service';
 import { ChatCatService } from './request/chat_cat/chat_cat.service';
 import { ChatDataService } from './request/chat_data/chat_data.service';
+import { CallbackQueryService } from './webhook-tg/callbackQuery.service';
+import { CallbackAnswerService } from './webhook-tg/callbackQuery/callbackAnswer.service';
+import { AnswerService } from './request/answer/answer.service';
 
 @Module({
   imports: [
@@ -48,12 +51,19 @@ import { ChatDataService } from './request/chat_data/chat_data.service';
   providers: [
     AppService,
     AutoPostService,
-    SelectActivChat,
-    SelectQuestion,
+    SelectActivChatService,
+    SelectQuestionService,
     KeyboardService, 
     QuestionService, 
     BuildQuestionService, 
-    InlineKeyboardService, ChatCatService, ChatDataService
+    InlineKeyboardService, 
+    ChatCatService, 
+    ChatDataService,
+    CallbackQueryService,
+    CallbackQueryService,
+    CallbackAnswerService,
+    AnswerService,
+    QuestionService
   ],
 })
 export class AppModule { }

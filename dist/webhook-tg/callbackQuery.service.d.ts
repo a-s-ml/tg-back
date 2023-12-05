@@ -1,6 +1,7 @@
-import { DbService } from 'src/db/db.service';
-export declare class callbackQuery {
-    private readonly dbService;
-    constructor(dbService: DbService);
-    update(update: {}): void;
+import { CallbackDto } from './dto/callback.dto';
+import { CallbackAnswerService } from './callbackQuery/callbackAnswer.service';
+export declare class CallbackQueryService {
+    private callbackAnswers;
+    constructor(callbackAnswers: CallbackAnswerService);
+    update(callbackQuery: CallbackDto): Promise<void>;
 }

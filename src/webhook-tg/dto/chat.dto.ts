@@ -2,7 +2,7 @@ import { LocationDto } from "./location.dto"
 import { MessageDto } from "./message.dto"
 
 export class ChatDto {
-    id: number
+    id: bigint
     type: string
     title?: string
     username?: string

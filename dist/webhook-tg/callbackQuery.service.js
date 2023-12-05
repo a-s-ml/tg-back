@@ -9,20 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.callbackQuery = void 0;
+exports.CallbackQueryService = void 0;
 const common_1 = require("@nestjs/common");
-const db_service_1 = require("../db/db.service");
-let callbackQuery = class callbackQuery {
-    constructor(dbService) {
-        this.dbService = dbService;
+const callbackAnswer_service_1 = require("./callbackQuery/callbackAnswer.service");
+let CallbackQueryService = class CallbackQueryService {
+    constructor(callbackAnswers) {
+        this.callbackAnswers = callbackAnswers;
     }
-    update(update) {
-        console.log(update);
+    update(callbackQuery) {
+        const data = callbackQuery.data.split('_');
+        switch (data[0]) {
+            case 'answer':
+                return this.callbackAnswers.answer(callbackQuery);
+            default:
+                break;
+        }
     }
 };
-exports.callbackQuery = callbackQuery;
-exports.callbackQuery = callbackQuery = __decorate([
+exports.CallbackQueryService = CallbackQueryService;
+exports.CallbackQueryService = CallbackQueryService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [db_service_1.DbService])
-], callbackQuery);
+    __metadata("design:paramtypes", [callbackAnswer_service_1.CallbackAnswerService])
+], CallbackQueryService);
 //# sourceMappingURL=callbackQuery.service.js.map

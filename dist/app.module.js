@@ -26,7 +26,7 @@ const time_module_1 = require("./request/time/time.module");
 const auto_post_service_1 = require("./auto-post/auto-post.service");
 const auto_post_module_1 = require("./auto-post/auto-post.module");
 const select_questions_service_1 = require("./auto-post/select-questions.service");
-const select_activ_chat_cervice_1 = require("./auto-post/select-activ-chat.cervice");
+const select_activ_chat_service_1 = require("./auto-post/select-activ-chat.service");
 const build_question_module_1 = require("./constructors/questions/build-question.module");
 const inline_keyboard_service_1 = require("./constructors/keyboard/inline-keyboard.service");
 const keyboard_service_1 = require("./constructors/keyboard/keyboard.service");
@@ -34,6 +34,9 @@ const build_question_service_1 = require("./constructors/questions/build-questio
 const question_service_1 = require("./request/question/question.service");
 const chat_cat_service_1 = require("./request/chat_cat/chat_cat.service");
 const chat_data_service_1 = require("./request/chat_data/chat_data.service");
+const callbackQuery_service_1 = require("./webhook-tg/callbackQuery.service");
+const callbackAnswer_service_1 = require("./webhook-tg/callbackQuery/callbackAnswer.service");
+const answer_service_1 = require("./request/answer/answer.service");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -60,12 +63,19 @@ exports.AppModule = AppModule = __decorate([
         providers: [
             app_service_1.AppService,
             auto_post_service_1.AutoPostService,
-            select_activ_chat_cervice_1.SelectActivChat,
-            select_questions_service_1.SelectQuestion,
+            select_activ_chat_service_1.SelectActivChatService,
+            select_questions_service_1.SelectQuestionService,
             keyboard_service_1.KeyboardService,
             question_service_1.QuestionService,
             build_question_service_1.BuildQuestionService,
-            inline_keyboard_service_1.InlineKeyboardService, chat_cat_service_1.ChatCatService, chat_data_service_1.ChatDataService
+            inline_keyboard_service_1.InlineKeyboardService,
+            chat_cat_service_1.ChatCatService,
+            chat_data_service_1.ChatDataService,
+            callbackQuery_service_1.CallbackQueryService,
+            callbackQuery_service_1.CallbackQueryService,
+            callbackAnswer_service_1.CallbackAnswerService,
+            answer_service_1.AnswerService,
+            question_service_1.QuestionService
         ],
     })
 ], AppModule);

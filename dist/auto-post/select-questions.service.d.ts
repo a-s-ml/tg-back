@@ -1,7 +1,7 @@
 import { DbService } from 'src/db/db.service';
 import { ChatCatService } from 'src/request/chat_cat/chat_cat.service';
 import { ChatDataService } from 'src/request/chat_data/chat_data.service';
-export declare class SelectQuestion {
+export declare class SelectQuestionService {
     private dbService;
     private chatCatService;
     private chatDataService;

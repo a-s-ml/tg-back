@@ -4,7 +4,7 @@ import { ChatCatService } from 'src/request/chat_cat/chat_cat.service';
 import { ChatDataService } from 'src/request/chat_data/chat_data.service';
 
 @Injectable()
-export class SelectQuestion { 
+export class SelectQuestionService { 
 
     constructor(
         private dbService: DbService,
@@ -12,7 +12,6 @@ export class SelectQuestion {
         private chatDataService: ChatDataService
     ) { }
 
-    // выборка случайного вопроса из списка всех возможных вопросов
     async availableQuestion(chatid: bigint) {
         const forbiddenCategory = await this.chatCatService.forbiddenCategory(chatid)
         const publishedQuestion = await this.chatDataService.publishedQuestion(chatid)

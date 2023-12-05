@@ -3,7 +3,7 @@ import { Prisma } from '@prisma/client';
 export declare class QuestionController {
     private readonly questionService;
     constructor(questionService: QuestionService);
-    create(createQuestionDto: Prisma.questionCreateInput): Prisma.Prisma__questionClient<{
+    create(createQuestionDto: Prisma.questionCreateInput): Promise<{
         id: number;
         text: string;
         dateadd: Date;
@@ -19,8 +19,8 @@ export declare class QuestionController {
         img: string;
         slog: number;
         answers: number;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    findAll(): Prisma.PrismaPromise<{
+    }>;
+    findAll(): Promise<{
         id: number;
         text: string;
         dateadd: Date;
@@ -37,7 +37,7 @@ export declare class QuestionController {
         slog: number;
         answers: number;
     }[]>;
-    findOne(id: string): Prisma.Prisma__questionClient<{
+    findOne(id: string): Promise<{
         id: number;
         text: string;
         dateadd: Date;
@@ -53,8 +53,8 @@ export declare class QuestionController {
         img: string;
         slog: number;
         answers: number;
-    }, null, import("@prisma/client/runtime/library").DefaultArgs>;
-    update(id: string, updateQuestionDto: Prisma.questionUpdateInput): Prisma.Prisma__questionClient<{
+    }>;
+    update(id: string, updateQuestionDto: Prisma.questionUpdateInput): Promise<{
         id: number;
         text: string;
         dateadd: Date;
@@ -70,8 +70,8 @@ export declare class QuestionController {
         img: string;
         slog: number;
         answers: number;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    remove(id: string): Prisma.Prisma__questionClient<{
+    }>;
+    remove(id: string): Promise<{
         id: number;
         text: string;
         dateadd: Date;
@@ -87,5 +87,5 @@ export declare class QuestionController {
         img: string;
         slog: number;
         answers: number;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    }>;
 }

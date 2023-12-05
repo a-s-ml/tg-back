@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { DbService } from 'src/db/db.service';
 
 @Injectable()
-export class SelectActivChat {
+export class SelectActivChatService {
 
     constructor(
         private readonly dbService: DbService

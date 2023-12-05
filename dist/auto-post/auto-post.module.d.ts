@@ -1,12 +1,12 @@
 import { AutoPostService } from './auto-post.service';
-import { SelectQuestion } from './select-questions.service';
-import { SelectActivChat } from './select-activ-chat.cervice';
+import { SelectQuestionService } from './select-questions.service';
+import { SelectActivChatService } from './select-activ-chat.service';
 import { BuildQuestionService } from 'src/constructors/questions/build-question.service';
 export declare class AutoPostModule {
     providers: [
         AutoPostService,
-        SelectActivChat,
-        SelectQuestion,
+        SelectActivChatService,
+        SelectQuestionService,
         BuildQuestionService,
         AutoPostService
     ];

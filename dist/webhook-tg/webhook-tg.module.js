@@ -10,13 +10,23 @@ exports.WebhookTgModule = void 0;
 const common_1 = require("@nestjs/common");
 const webhook_tg_controller_1 = require("./webhook-tg.controller");
 const webhook_tg_service_1 = require("./webhook-tg.service");
+const callbackQuery_service_1 = require("./callbackQuery.service");
+const callbackAnswer_service_1 = require("./callbackQuery/callbackAnswer.service");
+const answer_service_1 = require("../request/answer/answer.service");
+const question_service_1 = require("../request/question/question.service");
 let WebhookTgModule = class WebhookTgModule {
 };
 exports.WebhookTgModule = WebhookTgModule;
 exports.WebhookTgModule = WebhookTgModule = __decorate([
     (0, common_1.Module)({
         controllers: [webhook_tg_controller_1.WebhookTgController],
-        providers: [webhook_tg_service_1.WebhookTgService]
+        providers: [
+            webhook_tg_service_1.WebhookTgService,
+            callbackQuery_service_1.CallbackQueryService,
+            callbackAnswer_service_1.CallbackAnswerService,
+            answer_service_1.AnswerService,
+            question_service_1.QuestionService
+        ]
     })
 ], WebhookTgModule);
 //# sourceMappingURL=webhook-tg.module.js.map

@@ -9,12 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SelectQuestion = void 0;
+exports.SelectQuestionService = void 0;
 const common_1 = require("@nestjs/common");
 const db_service_1 = require("../db/db.service");
 const chat_cat_service_1 = require("../request/chat_cat/chat_cat.service");
 const chat_data_service_1 = require("../request/chat_data/chat_data.service");
-let SelectQuestion = class SelectQuestion {
+let SelectQuestionService = class SelectQuestionService {
     constructor(dbService, chatCatService, chatDataService) {
         this.dbService = dbService;
         this.chatCatService = chatCatService;
@@ -40,11 +40,11 @@ let SelectQuestion = class SelectQuestion {
         return questions[randomIndex];
     }
 };
-exports.SelectQuestion = SelectQuestion;
-exports.SelectQuestion = SelectQuestion = __decorate([
+exports.SelectQuestionService = SelectQuestionService;
+exports.SelectQuestionService = SelectQuestionService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [db_service_1.DbService,
         chat_cat_service_1.ChatCatService,
         chat_data_service_1.ChatDataService])
-], SelectQuestion);
+], SelectQuestionService);
 //# sourceMappingURL=select-questions.service.js.map
