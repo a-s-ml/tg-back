@@ -1,26 +1,42 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAnswerDto } from './dto/create-answer.dto';
-import { UpdateAnswerDto } from './dto/update-answer.dto';
+import { Prisma } from '@prisma/client'
+import { DbService } from 'src/db/db.service';
 
 @Injectable()
 export class AnswerService {
-  create(createAnswerDto: CreateAnswerDto) {
-    return 'This action adds a new answer';
+
+  constructor(private readonly dbService: DbService) { }
+
+  create(createAnswerDto: Prisma.answerCreateInput) {
+    return this.dbService.answer.create({ data: createAnswerDto })
   }
 
   findAll() {
-    return `This action returns all answer`;
+    return this.dbService.answer.findMany({})
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} answer`;
+    return this.dbService.answer.findUnique({
+      where: {
+        id,
+      }
+    })
   }
 
-  update(id: number, updateAnswerDto: UpdateAnswerDto) {
-    return `This action updates a #${id} answer`;
+  update(id: number, updateAnswerDto: Prisma.answerUpdateInput) {
+    return this.dbService.answer.update({
+      where: {
+        id,
+      },
+      data: updateAnswerDto
+    })
   }
 
   remove(id: number) {
-    return `This action removes a #${id} answer`;
+    return this.dbService.answer.delete({
+      where: {
+        id,
+      }
+    })
   }
 }

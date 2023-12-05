@@ -25,8 +25,13 @@ const chat_cat_module_1 = require("./request/chat_cat/chat_cat.module");
 const time_module_1 = require("./request/time/time.module");
 const auto_post_service_1 = require("./auto-post/auto-post.service");
 const auto_post_module_1 = require("./auto-post/auto-post.module");
-const selectQuestions_service_1 = require("./auto-post/selectQuestions.service");
-const selectActivChat_cervice_1 = require("./auto-post/selectActivChat.cervice");
+const select_questions_service_1 = require("./auto-post/select-questions.service");
+const select_activ_chat_cervice_1 = require("./auto-post/select-activ-chat.cervice");
+const build_question_module_1 = require("./constructors/questions/build-question.module");
+const inline_keyboard_service_1 = require("./constructors/keyboard/inline-keyboard.service");
+const keyboard_service_1 = require("./constructors/keyboard/keyboard.service");
+const build_question_service_1 = require("./constructors/questions/build-question.service");
+const question_service_1 = require("./request/question/question.service");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -46,14 +51,19 @@ exports.AppModule = AppModule = __decorate([
             category_module_1.CategoryModule,
             chat_cat_module_1.ChatCatModule,
             time_module_1.TimeModule,
-            auto_post_module_1.AutoPostModule
+            auto_post_module_1.AutoPostModule,
+            build_question_module_1.BuildQuestionModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [
             app_service_1.AppService,
             auto_post_service_1.AutoPostService,
-            selectActivChat_cervice_1.SelectActivChat,
-            selectQuestions_service_1.SelectQuestion
+            select_activ_chat_cervice_1.SelectActivChat,
+            select_questions_service_1.SelectQuestion,
+            keyboard_service_1.KeyboardService,
+            question_service_1.QuestionService,
+            build_question_service_1.BuildQuestionService,
+            inline_keyboard_service_1.InlineKeyboardService
         ],
     })
 ], AppModule);

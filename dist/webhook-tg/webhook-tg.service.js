@@ -10,7 +10,7 @@ exports.WebhookTgService = void 0;
 const common_1 = require("@nestjs/common");
 let WebhookTgService = class WebhookTgService {
     update(update) {
-        return update;
+        console.log(update);
     }
 };
 exports.WebhookTgService = WebhookTgService;

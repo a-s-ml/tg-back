@@ -1,3 +1,3 @@
 export declare class WebhookTgService {
-    update(update: {}): {};
+    update(update: {}): void;
 }

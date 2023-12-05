@@ -16,8 +16,13 @@ import { ChatCatModule } from './request/chat_cat/chat_cat.module';
 import { TimeModule } from './request/time/time.module';
 import { AutoPostService } from './auto-post/auto-post.service';
 import { AutoPostModule } from './auto-post/auto-post.module';
-import { SelectQuestion } from './auto-post/selectQuestions.service';
-import { SelectActivChat } from './auto-post/selectActivChat.cervice';
+import { SelectQuestion } from './auto-post/select-questions.service';
+import { SelectActivChat } from './auto-post/select-activ-chat.cervice';
+import { BuildQuestionModule } from './constructors/questions/build-question.module';
+import { InlineKeyboardService } from './constructors/keyboard/inline-keyboard.service';
+import { KeyboardService } from './constructors/keyboard/keyboard.service';
+import { BuildQuestionService } from './constructors/questions/build-question.service';
+import { QuestionService } from './request/question/question.service';
 
 @Module({
   imports: [
@@ -34,14 +39,19 @@ import { SelectActivChat } from './auto-post/selectActivChat.cervice';
     CategoryModule,
     ChatCatModule,
     TimeModule,
-    AutoPostModule
+    AutoPostModule,
+    BuildQuestionModule
   ],
   controllers: [AppController],
   providers: [
     AppService,
     AutoPostService,
     SelectActivChat,
-    SelectQuestion
+    SelectQuestion,
+    KeyboardService, 
+    QuestionService, 
+    BuildQuestionService, 
+    InlineKeyboardService
   ],
 })
 export class AppModule { }

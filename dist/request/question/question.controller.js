@@ -15,8 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.QuestionController = void 0;
 const common_1 = require("@nestjs/common");
 const question_service_1 = require("./question.service");
-const create_question_dto_1 = require("./dto/create-question.dto");
-const update_question_dto_1 = require("./dto/update-question.dto");
+const client_1 = require("@prisma/client");
 let QuestionController = class QuestionController {
     constructor(questionService) {
         this.questionService = questionService;
@@ -42,7 +41,7 @@ __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_question_dto_1.CreateQuestionDto]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], QuestionController.prototype, "create", null);
 __decorate([
@@ -63,7 +62,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_question_dto_1.UpdateQuestionDto]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], QuestionController.prototype, "update", null);
 __decorate([

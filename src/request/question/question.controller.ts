@@ -1,14 +1,13 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { QuestionService } from './question.service';
-import { CreateQuestionDto } from './dto/create-question.dto';
-import { UpdateQuestionDto } from './dto/update-question.dto';
+import { Prisma } from '@prisma/client';
 
 @Controller('question')
 export class QuestionController {
   constructor(private readonly questionService: QuestionService) {}
 
   @Post()
-  create(@Body() createQuestionDto: CreateQuestionDto) {
+  create(@Body() createQuestionDto: Prisma.questionCreateInput) {
     return this.questionService.create(createQuestionDto);
   }
 
@@ -23,7 +22,7 @@ export class QuestionController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateQuestionDto: UpdateQuestionDto) {
+  update(@Param('id') id: string, @Body() updateQuestionDto: Prisma.questionUpdateInput) {
     return this.questionService.update(+id, updateQuestionDto);
   }
 

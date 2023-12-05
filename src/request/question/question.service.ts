@@ -1,26 +1,56 @@
 import { Injectable } from '@nestjs/common';
-import { CreateQuestionDto } from './dto/create-question.dto';
-import { UpdateQuestionDto } from './dto/update-question.dto';
+import { Prisma } from '@prisma/client';
+import { DbService } from 'src/db/db.service';
 
 @Injectable()
 export class QuestionService {
-  create(createQuestionDto: CreateQuestionDto) {
-    return 'This action adds a new question';
+
+  constructor(private readonly dbService: DbService) { }
+
+  create(createQuestionDto: Prisma.questionCreateInput) {
+    return this.dbService.question.create({ data: createQuestionDto })
   }
 
   findAll() {
-    return `This action returns all question`;
+    return this.dbService.question.findMany({})
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} question`;
+    return this.dbService.question.findUnique({
+      where: {
+        id,
+      }
+    })
   }
 
-  update(id: number, updateQuestionDto: UpdateQuestionDto) {
-    return `This action updates a #${id} question`;
+  findOneAnswers(id: number) {
+    return this.dbService.question.findUnique({
+      select: {
+        answer1: true,
+        answer2: true,
+        answer3: true,
+        answer4: true,
+    },
+      where: {
+        id,
+      }
+    })
+  }
+
+  update(id: number, updateQuestionDto: Prisma.questionUpdateInput) {
+    return this.dbService.question.update({
+      where: {
+        id,
+      },
+      data: updateQuestionDto
+    })
   }
 
   remove(id: number) {
-    return `This action removes a #${id} question`;
+    return this.dbService.question.delete({
+      where: {
+        id,
+      }
+    })
   }
 }

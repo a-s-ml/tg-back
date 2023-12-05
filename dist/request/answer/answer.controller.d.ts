@@ -1,12 +1,51 @@
 import { AnswerService } from './answer.service';
-import { CreateAnswerDto } from './dto/create-answer.dto';
-import { UpdateAnswerDto } from './dto/update-answer.dto';
+import { Prisma } from '@prisma/client';
 export declare class AnswerController {
     private readonly answerService;
     constructor(answerService: AnswerService);
-    create(createAnswerDto: CreateAnswerDto): string;
-    findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updateAnswerDto: UpdateAnswerDto): string;
-    remove(id: string): string;
+    create(createAnswerDto: Prisma.answerCreateInput): Prisma.Prisma__answerClient<{
+        id: number;
+        chat_id: bigint;
+        questionid: number;
+        group_id: bigint;
+        choice: number;
+        reward: number;
+        dateadd: Date;
+    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    findAll(): Prisma.PrismaPromise<{
+        id: number;
+        chat_id: bigint;
+        questionid: number;
+        group_id: bigint;
+        choice: number;
+        reward: number;
+        dateadd: Date;
+    }[]>;
+    findOne(id: string): Prisma.Prisma__answerClient<{
+        id: number;
+        chat_id: bigint;
+        questionid: number;
+        group_id: bigint;
+        choice: number;
+        reward: number;
+        dateadd: Date;
+    }, null, import("@prisma/client/runtime/library").DefaultArgs>;
+    update(id: string, updateAnswerDto: Prisma.answerUpdateInput): Prisma.Prisma__answerClient<{
+        id: number;
+        chat_id: bigint;
+        questionid: number;
+        group_id: bigint;
+        choice: number;
+        reward: number;
+        dateadd: Date;
+    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    remove(id: string): Prisma.Prisma__answerClient<{
+        id: number;
+        chat_id: bigint;
+        questionid: number;
+        group_id: bigint;
+        choice: number;
+        reward: number;
+        dateadd: Date;
+    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
 }
