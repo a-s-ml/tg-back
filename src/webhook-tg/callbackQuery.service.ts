@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CallbackDto } from './dto/callback.dto';
+import { CallbackQueryDto } from './dto/callbackQuery.dto';
 import { CallbackAnswerService } from './callbackQuery/callbackAnswer.service';
 
 @Injectable()
@@ -9,7 +9,7 @@ export class CallbackQueryService {
         private callbackAnswers: CallbackAnswerService
     ) { }
 
-    update(callbackQuery: CallbackDto) {
+    update(callbackQuery: CallbackQueryDto) {
         const data = callbackQuery.data.split('_')
         switch (data[0]) {
             case 'answer':

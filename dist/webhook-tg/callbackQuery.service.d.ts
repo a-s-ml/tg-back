@@ -1,7 +1,7 @@
-import { CallbackDto } from './dto/callback.dto';
+import { CallbackQueryDto } from './dto/callbackQuery.dto';
 import { CallbackAnswerService } from './callbackQuery/callbackAnswer.service';
 export declare class CallbackQueryService {
     private callbackAnswers;
     constructor(callbackAnswers: CallbackAnswerService);
-    update(callbackQuery: CallbackDto): Promise<void>;
+    update(callbackQuery: CallbackQueryDto): Promise<void>;
 }

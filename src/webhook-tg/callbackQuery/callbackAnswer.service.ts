@@ -1,35 +1,41 @@
 import { Injectable } from '@nestjs/common';
 import { AnswerService } from 'src/request/answer/answer.service';
-import { CallbackDto } from '../dto/callback.dto';
+import { CallbackQueryDto } from '../dto/callbackQuery.dto';
 import { QuestionService } from 'src/request/question/question.service';
+import { ResponsesService } from 'src/responses/responses.service';
 
 @Injectable()
 export class CallbackAnswerService {
 
     constructor(
         private answerService: AnswerService,
-        private questionService: QuestionService
+        private questionService: QuestionService,
+        private responsesService: ResponsesService
     ) { }
 
-    async answer(callbackQuery: CallbackDto) {
+    async answer(callbackQuery: CallbackQueryDto) {
         const data = callbackQuery.data.split('_')
         const checkAnswer = await this.answerService.findOneChat(callbackQuery.from.id, +data[1], callbackQuery.message.chat.id)
-        console.log(checkAnswer)
-        console.log(checkAnswer.length)
-        console.log(data[2])
+
         if (checkAnswer.length == 0) {
             const question = await this.questionService.findOne(+data[1])
-            console.log(question.answerright)
-
+            let text: string;
             let reward: number;
             if (data[2] as unknown as number == question.answerright) {
                 console.log(data[2] + ' = ' + question.answerright)
                 reward = question.slog
+                text = 'Правильный ответ'
             } else {
                 console.log(data[2] + ' != ' + question.answerright)
                 reward = -question.slog
+                text = 'Неправильный ответ'
             }
             const answer = await this.answerService.create({ chat_id: callbackQuery.from.id, questionid: +data[1], group_id: callbackQuery.message.chat.id, choice: +data[2], reward: reward })
+            const res = {
+                callback_query_id: callbackQuery.id,
+                text: text
+            }
+            await this.responsesService.answerCallbackQuery(res)
         }
     }
 }

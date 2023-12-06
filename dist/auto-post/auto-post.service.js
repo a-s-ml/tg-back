@@ -10,28 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutoPostService = void 0;
+require("dotenv/config");
 const common_1 = require("@nestjs/common");
 const select_questions_service_1 = require("./select-questions.service");
 const select_activ_chat_service_1 = require("./select-activ-chat.service");
 const build_question_service_1 = require("../constructors/questions/build-question.service");
-require("dotenv/config");
+const responses_service_1 = require("../responses/responses.service");
 let AutoPostService = class AutoPostService {
-    constructor(selectQuestionService, selectActivChatService, buildQuestionService) {
+    constructor(selectQuestionService, selectActivChatService, buildQuestionService, responsesService) {
         this.selectQuestionService = selectQuestionService;
         this.selectActivChatService = selectActivChatService;
         this.buildQuestionService = buildQuestionService;
+        this.responsesService = responsesService;
     }
     async publicationInActiveGroup() {
         const chatact = await this.selectActivChatService.activChat();
         for (var key in chatact) {
-            const t0 = performance.now();
             const question = await this.selectQuestionService.availableQuestion(chatact[key].chat);
             const url = await this.buildQuestionService.questionText(question.id);
-            const url2 = `${process.env.SEND_MESSAGE}chat_id=${url.chat_id}&text=${encodeURI(url.text)}&reply_markup=${JSON.stringify(url.reply_markup)}`;
-            console.log(url2);
-            fetch(url2);
-            const t1 = performance.now();
-            console.log(t1 - t0, 'milliseconds');
+            await this.responsesService.sendMessage(url);
         }
     }
 };
@@ -40,6 +37,7 @@ exports.AutoPostService = AutoPostService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [select_questions_service_1.SelectQuestionService,
         select_activ_chat_service_1.SelectActivChatService,
-        build_question_service_1.BuildQuestionService])
+        build_question_service_1.BuildQuestionService,
+        responses_service_1.ResponsesService])
 ], AutoPostService);
 //# sourceMappingURL=auto-post.service.js.map

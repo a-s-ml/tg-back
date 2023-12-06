@@ -6,8 +6,8 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { AutoPostModule } from './auto-post/auto-post.module';
 import { KeyboardService } from './constructors/keyboard/keyboard.service';
 import { UserModule } from './request/user/user.module';
-import { MenuMainModule } from './request/menu-main/menu-main.module';
 import { CategoryModule } from './request/category/category.module';
+import { ResponsesModule } from './responses/responses.module';
 
 @Module({
   imports: [
@@ -15,8 +15,8 @@ import { CategoryModule } from './request/category/category.module';
     DbModule,
     AutoPostModule,
     UserModule,
-    MenuMainModule,
-    CategoryModule
+    CategoryModule,
+    ResponsesModule
   ],
   controllers: [AppController],
   providers: [

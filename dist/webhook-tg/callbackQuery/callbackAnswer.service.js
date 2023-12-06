@@ -13,30 +13,36 @@ exports.CallbackAnswerService = void 0;
 const common_1 = require("@nestjs/common");
 const answer_service_1 = require("../../request/answer/answer.service");
 const question_service_1 = require("../../request/question/question.service");
+const responses_service_1 = require("../../responses/responses.service");
 let CallbackAnswerService = class CallbackAnswerService {
-    constructor(answerService, questionService) {
+    constructor(answerService, questionService, responsesService) {
         this.answerService = answerService;
         this.questionService = questionService;
+        this.responsesService = responsesService;
     }
     async answer(callbackQuery) {
         const data = callbackQuery.data.split('_');
         const checkAnswer = await this.answerService.findOneChat(callbackQuery.from.id, +data[1], callbackQuery.message.chat.id);
-        console.log(checkAnswer);
-        console.log(checkAnswer.length);
-        console.log(data[2]);
         if (checkAnswer.length == 0) {
             const question = await this.questionService.findOne(+data[1]);
-            console.log(question.answerright);
+            let text;
             let reward;
             if (data[2] == question.answerright) {
                 console.log(data[2] + ' = ' + question.answerright);
                 reward = question.slog;
+                text = 'Правильный ответ';
             }
             else {
                 console.log(data[2] + ' != ' + question.answerright);
                 reward = -question.slog;
+                text = 'Неправильный ответ';
             }
             const answer = await this.answerService.create({ chat_id: callbackQuery.from.id, questionid: +data[1], group_id: callbackQuery.message.chat.id, choice: +data[2], reward: reward });
+            const res = {
+                callback_query_id: callbackQuery.id,
+                text: text
+            };
+            await this.responsesService.answerCallbackQuery(res);
         }
     }
 };
@@ -44,6 +50,7 @@ exports.CallbackAnswerService = CallbackAnswerService;
 exports.CallbackAnswerService = CallbackAnswerService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [answer_service_1.AnswerService,
-        question_service_1.QuestionService])
+        question_service_1.QuestionService,
+        responses_service_1.ResponsesService])
 ], CallbackAnswerService);
 //# sourceMappingURL=callbackAnswer.service.js.map

@@ -15,6 +15,8 @@ const question_module_1 = require("../request/question/question.module");
 const chat_data_module_1 = require("../request/chat_data/chat_data.module");
 const chat_cat_module_1 = require("../request/chat_cat/chat_cat.module");
 const build_question_module_1 = require("../constructors/questions/build-question.module");
+const responses_module_1 = require("../responses/responses.module");
+const responses_service_1 = require("../responses/responses.service");
 let AutoPostModule = class AutoPostModule {
 };
 exports.AutoPostModule = AutoPostModule;
@@ -24,12 +26,14 @@ exports.AutoPostModule = AutoPostModule = __decorate([
             question_module_1.QuestionModule,
             chat_data_module_1.ChatDataModule,
             chat_cat_module_1.ChatCatModule,
-            build_question_module_1.BuildQuestionModule
+            build_question_module_1.BuildQuestionModule,
+            responses_module_1.ResponsesModule
         ],
         providers: [
             auto_post_service_1.AutoPostService,
             select_activ_chat_service_1.SelectActivChatService,
-            select_questions_service_1.SelectQuestionService
+            select_questions_service_1.SelectQuestionService,
+            responses_service_1.ResponsesService
         ],
         exports: [
             auto_post_service_1.AutoPostService,

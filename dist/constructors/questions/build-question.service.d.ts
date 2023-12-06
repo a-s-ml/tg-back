@@ -7,7 +7,7 @@ export declare class BuildQuestionService {
     questionText(id: number): Promise<{
         chat_id: number;
         text: string;
-        reply_markup: import("../keyboard/dto/inline-keyboard-button.dto").ReplyMarkup;
+        reply_markup: import("../keyboard/dto/inline-keyboard-button.dto").ReplyMarkupDto;
         disable_web_page_preview: boolean;
         parse_mode: string;
     }>;

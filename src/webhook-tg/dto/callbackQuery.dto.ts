@@ -1,8 +1,8 @@
 import { MessageDto } from "./message.dto"
 import { UserDto } from "./user.dto"
 
-export class CallbackDto {
-    id: number | bigint
+export class CallbackQueryDto {
+    id: string
     from: UserDto
     message?: MessageDto
     inline_message_id?: string

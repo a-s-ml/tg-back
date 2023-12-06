@@ -1,4 +1,4 @@
-import { CallbackDto } from "./callback.dto"
+import { CallbackQueryDto } from "./callbackQuery.dto"
 import { InlineDto } from "./inline.dto"
 import { MessageDto } from "./message.dto"
 import { PollAnswerDto } from "./pollAnswer.dto"
@@ -11,7 +11,7 @@ export class UpdateDto {
     edited_channel_post: MessageDto
     inline_query: InlineDto
     chosen_inline_result: object
-    callback_query: CallbackDto
+    callback_query: CallbackQueryDto
     shipping_query: object
     pre_checkout_query: object
     poll: object

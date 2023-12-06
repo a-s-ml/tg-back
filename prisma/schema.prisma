@@ -96,23 +96,6 @@ model like_q {
   @@index([question_id], map: "like_question_id_idx")
 }
 
-model menuAccount {
-  id   Int    @id @default(autoincrement())
-  name String @db.VarChar(45)
-  text String @db.VarChar(45)
-  row  Int
-  sort Int
-  icon String @db.VarChar(45)
-}
-
-model menuMain {
-  id   Int    @id @default(autoincrement())
-  name String @db.VarChar(45)
-  text String @db.VarChar(45)
-  sort Int
-  icon String @db.VarChar(45)
-}
-
 model notice {
   id      Int      @default(autoincrement())
   type    String   @db.VarChar(255)
@@ -197,4 +180,13 @@ model user {
   fkwallet            String   @default("0") @db.VarChar(255)
 
   @@id([id, chat_id, referral])
+}
+
+model menu {
+  id         Int    @id @default(autoincrement())
+  parrent_id Int
+  name       String @db.VarChar(45)
+  text       String @db.VarChar(45)
+  sort       Int
+  icon       String @db.VarChar(45)
 }

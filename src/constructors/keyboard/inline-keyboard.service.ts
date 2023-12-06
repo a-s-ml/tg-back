@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { QuestionService } from 'src/request/question/question.service';
-import { ReplyMarkup } from './dto/inline-keyboard-button.dto';
+import { ReplyMarkupDto } from './dto/inline-keyboard-button.dto';
 
 @Injectable()
 export class InlineKeyboardService {
@@ -11,7 +11,7 @@ export class InlineKeyboardService {
 
     async questionInlineKeboard(id: number) {
         const answers = await this.questionService.findOneAnswers(id)
-        const replyMarkup: ReplyMarkup =
+        const replyMarkup: ReplyMarkupDto =
         {
             resize_keyboard: true,
             inline_keyboard: [
