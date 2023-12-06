@@ -10,6 +10,7 @@ import { CategoryModule } from './request/category/category.module';
 import { ResponsesModule } from './responses/responses.module';
 import { WebhookTgModule } from './webhook-tg/webhook-tg.module';
 import { CallbackAnswerModule } from './webhook-tg/callbackQuery/callbackAnswer.module';
+import { UserService } from './request/user/user.service';
 
 @Module({
   imports: [

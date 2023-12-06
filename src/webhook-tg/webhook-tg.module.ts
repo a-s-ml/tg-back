@@ -6,11 +6,13 @@ import { CallbackAnswerService } from './callbackQuery/callbackAnswer.service';
 import { QuestionModule } from 'src/request/question/question.module';
 import { AnswerModule } from 'src/request/answer/answer.module';
 import { ResponsesService } from 'src/responses/responses.service';
+import { UserModule } from 'src/request/user/user.module';
 
 @Module({
     imports: [
         QuestionModule,
-        AnswerModule
+        AnswerModule,
+        UserModule
     ],
     controllers: [
         WebhookTgController
