@@ -22,7 +22,7 @@ export class CallbackAnswerService {
             console.log(question.answerright)
 
             let reward: number;
-            if (data[2] == question.answerright) {
+            if (data[2] as unknown as number == question.answerright) {
                 console.log(data[2] + ' = ' + question.answerright)
                 reward = question.slog
             } else {

@@ -6,8 +6,8 @@ export declare class UserService {
     create(createUserDto: Prisma.userCreateInput): Promise<{
         id: number;
         chat_id: bigint;
-        is_bot: boolean;
-        activ: import(".prisma/client").$Enums.user_activ;
+        is_bot: number;
+        activ: number;
         longitude: number;
         latitude: number;
         date_reg: Date;
@@ -35,8 +35,8 @@ export declare class UserService {
     remove(id: number): Promise<{
         id: number;
         chat_id: bigint;
-        is_bot: boolean;
-        activ: import(".prisma/client").$Enums.user_activ;
+        is_bot: number;
+        activ: number;
         longitude: number;
         latitude: number;
         date_reg: Date;
