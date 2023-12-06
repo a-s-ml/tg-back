@@ -24,6 +24,8 @@ let CallbackAnswerService = class CallbackAnswerService {
         console.log(checkAnswer);
         if (!checkAnswer) {
             const question = await this.questionService.findOne(+data[1]);
+            console.log(question.answerright);
+            console.log(data[2]);
             let reward;
             if (data[2] == question.answerright) {
                 console.log(data[2] + ' = ' + question.answerright);
