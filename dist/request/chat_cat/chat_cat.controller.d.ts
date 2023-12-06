@@ -1,7 +1,7 @@
 import { ChatCatService } from './chat_cat.service';
 import { Prisma } from '@prisma/client';
 export declare class ChatCatController {
-    private readonly chatCatService;
+    private chatCatService;
     constructor(chatCatService: ChatCatService);
     create(createChatCatDto: Prisma.chat_catCreateInput): Promise<{
         id: number;

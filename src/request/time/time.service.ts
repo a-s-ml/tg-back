@@ -5,7 +5,7 @@ import { DbService } from 'src/db/db.service';
 @Injectable()
 export class TimeService {
 
-  constructor(private readonly dbService: DbService) { }
+  constructor(private dbService: DbService) { }
 
   async create(createTimeDto: Prisma.timeCreateInput) {
     return await this.dbService.time.create({ data: createTimeDto })

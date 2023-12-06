@@ -4,7 +4,7 @@ import { Prisma } from '@prisma/client';
 
 @Controller('chat-data')
 export class ChatDataController {
-  constructor(private readonly chatDataService: ChatDataService) {}
+  constructor(private chatDataService: ChatDataService) {}
 
   @Post()
   create(@Body() createChatDatumDto: Prisma.chat_dataCreateInput) {

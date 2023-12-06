@@ -4,7 +4,7 @@ import { Prisma } from '@prisma/client';
 
 @Controller('question')
 export class QuestionController {
-  constructor(private readonly questionService: QuestionService) {}
+  constructor(private questionService: QuestionService) {}
 
   @Post()
   create(@Body() createQuestionDto: Prisma.questionCreateInput) {

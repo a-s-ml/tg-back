@@ -5,7 +5,7 @@ import { DbService } from 'src/db/db.service';
 @Injectable()
 export class AnswerService {
 
-  constructor(private readonly dbService: DbService) { }
+  constructor(private dbService: DbService) { }
 
   create(createAnswerDto: Prisma.answerCreateInput) {
     return this.dbService.answer.create({ data: createAnswerDto })

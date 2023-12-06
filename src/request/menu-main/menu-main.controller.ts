@@ -4,7 +4,7 @@ import { Prisma } from '@prisma/client'
 
 @Controller('menu-main')
 export class MenuMainController {
-  constructor(private readonly menuMainService: MenuMainService) {}
+  constructor(private menuMainService: MenuMainService) {}
 
   @Post()
   create(@Body() createMenuMainDto: Prisma.menuMainCreateInput) {

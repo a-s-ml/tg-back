@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client';
 import { DbService } from 'src/db/db.service';
 export declare class AnswerService {
-    private readonly dbService;
+    private dbService;
     constructor(dbService: DbService);
     create(createAnswerDto: Prisma.answerCreateInput): Prisma.Prisma__answerClient<{
         id: number;

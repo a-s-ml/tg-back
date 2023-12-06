@@ -4,7 +4,7 @@ import { Prisma } from '@prisma/client';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private userService: UserService) {}
 
   @Post()
   create(@Body() createUserDto: Prisma.userCreateInput) {

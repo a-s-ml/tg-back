@@ -1,7 +1,7 @@
 import { AnswerService } from './answer.service';
 import { Prisma } from '@prisma/client';
 export declare class AnswerController {
-    private readonly answerService;
+    private answerService;
     constructor(answerService: AnswerService);
     create(createAnswerDto: Prisma.answerCreateInput): Prisma.Prisma__answerClient<{
         id: number;

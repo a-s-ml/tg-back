@@ -5,7 +5,7 @@ import { DbService } from 'src/db/db.service';
 @Injectable()
 export class MenuMainService {
 
-  constructor(private readonly dbService: DbService) { }
+  constructor(private dbService: DbService) { }
 
   async create(createMenuMainDto: Prisma.menuMainCreateInput) {
     return this.dbService.menuMain.create({ data: createMenuMainDto })

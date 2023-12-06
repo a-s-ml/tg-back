@@ -5,7 +5,7 @@ import { DbService } from 'src/db/db.service';
 @Injectable()
 export class CategoryService {
   
-  constructor(private readonly dbService: DbService) { }
+  constructor(private dbService: DbService) { }
 
   async create(createCategoryDto: Prisma.categoryCreateInput) {
     return await this.dbService.category.create({ data: createCategoryDto })

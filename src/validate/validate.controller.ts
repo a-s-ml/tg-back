@@ -5,7 +5,7 @@ import { ValidateService } from './validate.service';
 @Controller('validate')
 export class ValidateController {
 
-    constructor(private readonly validateService: ValidateService) { }
+    constructor(private validateService: ValidateService) { }
 
     @Post()
     validate(@Body() validateString: validateDto): object {

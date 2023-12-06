@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client';
 import { DbService } from 'src/db/db.service';
 export declare class CategoryService {
-    private readonly dbService;
+    private dbService;
     constructor(dbService: DbService);
     create(createCategoryDto: Prisma.categoryCreateInput): Promise<{
         id: number;

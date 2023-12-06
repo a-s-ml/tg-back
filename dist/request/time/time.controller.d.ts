@@ -1,7 +1,7 @@
 import { TimeService } from './time.service';
 import { Prisma } from '@prisma/client';
 export declare class TimeController {
-    private readonly timeService;
+    private timeService;
     constructor(timeService: TimeService);
     create(createTimeDto: Prisma.timeCreateInput): Promise<{
         id: number;

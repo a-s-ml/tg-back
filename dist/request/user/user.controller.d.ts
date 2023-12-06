@@ -1,7 +1,7 @@
 import { UserService } from './user.service';
 import { Prisma } from '@prisma/client';
 export declare class UserController {
-    private readonly userService;
+    private userService;
     constructor(userService: UserService);
     create(createUserDto: Prisma.userCreateInput): Promise<{
         id: number;

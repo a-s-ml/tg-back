@@ -1,7 +1,7 @@
 import { QuestionService } from './question.service';
 import { Prisma } from '@prisma/client';
 export declare class QuestionController {
-    private readonly questionService;
+    private questionService;
     constructor(questionService: QuestionService);
     create(createQuestionDto: Prisma.questionCreateInput): Promise<{
         id: number;

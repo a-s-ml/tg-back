@@ -5,7 +5,7 @@ import { DbService } from 'src/db/db.service';
 @Injectable()
 export class ChatCatService {
 
-  constructor(private readonly dbService: DbService) { }
+  constructor(private dbService: DbService) { }
 
   async create(createChatCatDto: Prisma.chat_catCreateManyInput) {
     return await this.dbService.chat_cat.create({ data: createChatCatDto })

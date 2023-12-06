@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { AutoPostService } from './auto-post/auto-post.service'
-import { BuildQuestionService } from './constructors/questions/build-question.service';
 
 @Injectable()
 export class AppService {

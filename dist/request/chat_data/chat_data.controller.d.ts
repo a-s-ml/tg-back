@@ -1,7 +1,7 @@
 import { ChatDataService } from './chat_data.service';
 import { Prisma } from '@prisma/client';
 export declare class ChatDataController {
-    private readonly chatDataService;
+    private chatDataService;
     constructor(chatDataService: ChatDataService);
     create(createChatDatumDto: Prisma.chat_dataCreateInput): Promise<{
         id: number;

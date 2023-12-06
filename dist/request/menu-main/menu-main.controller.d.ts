@@ -1,7 +1,7 @@
 import { MenuMainService } from './menu-main.service';
 import { Prisma } from '@prisma/client';
 export declare class MenuMainController {
-    private readonly menuMainService;
+    private menuMainService;
     constructor(menuMainService: MenuMainService);
     create(createMenuMainDto: Prisma.menuMainCreateInput): Promise<{
         id: number;

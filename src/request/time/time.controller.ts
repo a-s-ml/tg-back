@@ -4,7 +4,7 @@ import { Prisma } from '@prisma/client';
 
 @Controller('time')
 export class TimeController {
-  constructor(private readonly timeService: TimeService) {}
+  constructor(private timeService: TimeService) {}
 
   @Post()
   create(@Body() createTimeDto: Prisma.timeCreateInput) {

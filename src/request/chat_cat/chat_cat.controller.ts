@@ -4,7 +4,7 @@ import { Prisma } from '@prisma/client';
 
 @Controller('chat-cat')
 export class ChatCatController {
-  constructor(private readonly chatCatService: ChatCatService) {}
+  constructor(private chatCatService: ChatCatService) {}
 
   @Post()
   create(@Body() createChatCatDto: Prisma.chat_catCreateInput) {
