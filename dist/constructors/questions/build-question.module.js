@@ -9,17 +9,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BuildQuestionModule = void 0;
 const common_1 = require("@nestjs/common");
 const build_question_service_1 = require("./build-question.service");
-const question_service_1 = require("../../request/question/question.service");
 const inline_keyboard_service_1 = require("../keyboard/inline-keyboard.service");
+const question_module_1 = require("../../request/question/question.module");
 let BuildQuestionModule = class BuildQuestionModule {
 };
 exports.BuildQuestionModule = BuildQuestionModule;
 exports.BuildQuestionModule = BuildQuestionModule = __decorate([
     (0, common_1.Module)({
+        imports: [
+            question_module_1.QuestionModule
+        ],
         providers: [
             build_question_service_1.BuildQuestionService,
-            inline_keyboard_service_1.InlineKeyboardService,
-            question_service_1.QuestionService
+            inline_keyboard_service_1.InlineKeyboardService
+        ],
+        exports: [
+            build_question_service_1.BuildQuestionService,
+            inline_keyboard_service_1.InlineKeyboardService
         ]
     })
 ], BuildQuestionModule);

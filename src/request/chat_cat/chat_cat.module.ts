@@ -5,5 +5,6 @@ import { ChatCatController } from './chat_cat.controller';
 @Module({
   controllers: [ChatCatController],
   providers: [ChatCatService],
+  exports: [ChatCatService]
 })
 export class ChatCatModule {}

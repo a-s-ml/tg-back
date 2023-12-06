@@ -8,10 +8,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutoPostModule = void 0;
 const common_1 = require("@nestjs/common");
+const auto_post_service_1 = require("./auto-post.service");
+const select_questions_service_1 = require("./select-questions.service");
+const select_activ_chat_service_1 = require("./select-activ-chat.service");
+const question_module_1 = require("../request/question/question.module");
+const chat_data_module_1 = require("../request/chat_data/chat_data.module");
+const chat_cat_module_1 = require("../request/chat_cat/chat_cat.module");
+const build_question_module_1 = require("../constructors/questions/build-question.module");
 let AutoPostModule = class AutoPostModule {
 };
 exports.AutoPostModule = AutoPostModule;
 exports.AutoPostModule = AutoPostModule = __decorate([
-    (0, common_1.Module)({})
+    (0, common_1.Module)({
+        imports: [
+            question_module_1.QuestionModule,
+            chat_data_module_1.ChatDataModule,
+            chat_cat_module_1.ChatCatModule,
+            build_question_module_1.BuildQuestionModule
+        ],
+        providers: [
+            auto_post_service_1.AutoPostService,
+            select_activ_chat_service_1.SelectActivChatService,
+            select_questions_service_1.SelectQuestionService
+        ],
+        exports: [
+            auto_post_service_1.AutoPostService,
+            select_activ_chat_service_1.SelectActivChatService,
+            select_questions_service_1.SelectQuestionService
+        ]
+    })
 ], AutoPostModule);
 //# sourceMappingURL=auto-post.module.js.map

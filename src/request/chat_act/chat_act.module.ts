@@ -5,5 +5,6 @@ import { ChatActController } from './chat_act.controller';
 @Module({
   controllers: [ChatActController],
   providers: [ChatActService],
+  exports: [ChatActService]
 })
 export class ChatActModule {}

@@ -3,17 +3,19 @@ import { WebhookTgController } from './webhook-tg.controller';
 import { WebhookTgService } from './webhook-tg.service';
 import { CallbackQueryService } from './callbackQuery.service';
 import { CallbackAnswerService } from './callbackQuery/callbackAnswer.service';
-import { AnswerService } from 'src/request/answer/answer.service';
-import { QuestionService } from 'src/request/question/question.service';
+import { QuestionModule } from 'src/request/question/question.module';
+import { AnswerModule } from 'src/request/answer/answer.module';
 
 @Module({
+    imports: [
+        QuestionModule,
+        AnswerModule
+    ],
     controllers: [WebhookTgController],
     providers: [
         WebhookTgService, 
         CallbackQueryService,
         CallbackAnswerService,
-        AnswerService,
-        QuestionService
     ]
 })
 export class WebhookTgModule {}

@@ -7,8 +7,7 @@ import { BuildQuestionService } from './constructors/questions/build-question.se
 export class AppService {
 
   constructor(
-    private readonly autoPostServise: AutoPostService,
-    private readonly buildQuestionService: BuildQuestionService,
+    private readonly autoPostServise: AutoPostService
   ) { }
 
   @Cron(CronExpression.EVERY_DAY_AT_9PM)

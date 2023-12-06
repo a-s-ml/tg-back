@@ -17,6 +17,7 @@ exports.AnswerModule = AnswerModule = __decorate([
     (0, common_1.Module)({
         controllers: [answer_controller_1.AnswerController],
         providers: [answer_service_1.AnswerService],
+        exports: [answer_service_1.AnswerService]
     })
 ], AnswerModule);
 //# sourceMappingURL=answer.module.js.map

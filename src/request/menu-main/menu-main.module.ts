@@ -5,5 +5,6 @@ import { MenuMainController } from './menu-main.controller';
 @Module({
   controllers: [MenuMainController],
   providers: [MenuMainService],
+  exports: [MenuMainService]
 })
 export class MenuMainModule {}

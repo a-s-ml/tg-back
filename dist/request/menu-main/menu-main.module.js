@@ -17,6 +17,7 @@ exports.MenuMainModule = MenuMainModule = __decorate([
     (0, common_1.Module)({
         controllers: [menu_main_controller_1.MenuMainController],
         providers: [menu_main_service_1.MenuMainService],
+        exports: [menu_main_service_1.MenuMainService]
     })
 ], MenuMainModule);
 //# sourceMappingURL=menu-main.module.js.map

@@ -17,6 +17,7 @@ exports.ChatCatModule = ChatCatModule = __decorate([
     (0, common_1.Module)({
         controllers: [chat_cat_controller_1.ChatCatController],
         providers: [chat_cat_service_1.ChatCatService],
+        exports: [chat_cat_service_1.ChatCatService]
     })
 ], ChatCatModule);
 //# sourceMappingURL=chat_cat.module.js.map

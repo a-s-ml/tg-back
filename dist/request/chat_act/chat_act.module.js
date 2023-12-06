@@ -17,6 +17,7 @@ exports.ChatActModule = ChatActModule = __decorate([
     (0, common_1.Module)({
         controllers: [chat_act_controller_1.ChatActController],
         providers: [chat_act_service_1.ChatActService],
+        exports: [chat_act_service_1.ChatActService]
     })
 ], ChatActModule);
 //# sourceMappingURL=chat_act.module.js.map
