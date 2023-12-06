@@ -33,9 +33,9 @@ model answer {
   dateadd    DateTime @default(now()) @db.Timestamp(0)
 
   @@id([id, chat_id, questionid, group_id])
+  @@index([group_id])
   @@index([questionid], map: "answer_question_id_idx")
   @@index([chat_id], map: "chat_id_idx")
-  @@index([group_id])
 }
 
 model category {
@@ -94,6 +94,15 @@ model like_q {
   @@id([id, chat_id, question_id])
   @@index([chat_id], map: "like_chat_id_idx")
   @@index([question_id], map: "like_question_id_idx")
+}
+
+model menu {
+  id         Int    @id @default(autoincrement())
+  parrent_id Int
+  name       String @db.VarChar(45)
+  text       String @db.VarChar(45)
+  sort       Int
+  icon       String @db.VarChar(45)
 }
 
 model notice {
@@ -180,13 +189,4 @@ model user {
   fkwallet            String   @default("0") @db.VarChar(255)
 
   @@id([id, chat_id, referral])
-}
-
-model menu {
-  id         Int    @id @default(autoincrement())
-  parrent_id Int
-  name       String @db.VarChar(45)
-  text       String @db.VarChar(45)
-  sort       Int
-  icon       String @db.VarChar(45)
 }
