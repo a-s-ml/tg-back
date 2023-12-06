@@ -12,15 +12,15 @@ export class QuestionService {
   }
 
   async findAll() {
-    return await this.dbService.question.findMany({})
+      return await this.dbService.question.findMany({})
   }
 
   async findOne(id: number) {
-    return await this.dbService.question.findUnique({
-      where: {
-        id,
-      }
-    })
+      return await this.dbService.question.findUnique({ 
+        where: {
+          id,
+        }
+      })
   }
 
   async findOneAnswers(id: number) {
@@ -30,7 +30,7 @@ export class QuestionService {
         answer2: true,
         answer3: true,
         answer4: true,
-    },
+      },
       where: {
         id,
       }

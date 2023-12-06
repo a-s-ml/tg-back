@@ -14,6 +14,9 @@ const db_module_1 = require("./db/db.module");
 const schedule_1 = require("@nestjs/schedule");
 const auto_post_module_1 = require("./auto-post/auto-post.module");
 const keyboard_service_1 = require("./constructors/keyboard/keyboard.service");
+const user_module_1 = require("./request/user/user.module");
+const menu_main_module_1 = require("./request/menu-main/menu-main.module");
+const category_module_1 = require("./request/category/category.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -22,7 +25,10 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             schedule_1.ScheduleModule.forRoot(),
             db_module_1.DbModule,
-            auto_post_module_1.AutoPostModule
+            auto_post_module_1.AutoPostModule,
+            user_module_1.UserModule,
+            menu_main_module_1.MenuMainModule,
+            category_module_1.CategoryModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [
