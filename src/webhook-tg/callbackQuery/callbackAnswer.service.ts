@@ -16,17 +16,18 @@ export class CallbackAnswerService {
         const checkAnswer = await this.answerService.findOneChat(callbackQuery.from.id, +data[1], callbackQuery.message.chat.id)
         console.log(checkAnswer)
         console.log(checkAnswer.length)
+        console.log(data[2])
         if (checkAnswer.length == 0) {
             const question = await this.questionService.findOne(+data[1])
             console.log(question.answerright)
-            console.log(data[2])
+
             let reward: number;
             if (data[2] == question.answerright) {
-                console.log(data[2]+' = '+question.answerright)
+                console.log(data[2] + ' = ' + question.answerright)
                 reward = question.slog
             } else {
-                console.log(data[2]+' != '+question.answerright)
-                reward = -question.slog   
+                console.log(data[2] + ' != ' + question.answerright)
+                reward = -question.slog
             }
             const answer = await this.answerService.create({ chat_id: callbackQuery.from.id, questionid: +data[1], group_id: callbackQuery.message.chat.id, choice: +data[2], reward: reward })
         }
