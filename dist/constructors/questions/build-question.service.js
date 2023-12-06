@@ -22,7 +22,7 @@ let BuildQuestionService = class BuildQuestionService {
         const question = await this.questionService.findOne(id);
         const reply_markup = await this.inlineKeyboardService.questionInlineKeboard(question.id);
         const url = {
-            chat_id: 521884639,
+            chat_id: 5949135498,
             text: question.text,
             reply_markup: reply_markup,
             disable_web_page_preview: true,

@@ -9,7 +9,7 @@ export class AppService {
     private readonly autoPostServise: AutoPostService
   ) { }
 
-  @Cron(CronExpression.EVERY_DAY_AT_8AM)
+  @Cron(CronExpression.EVERY_MINUTE)
   async cron() {
     const tt0 = performance.now();
     await this.autoPostServise.publicationInActiveGroup();
