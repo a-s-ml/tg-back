@@ -14,7 +14,8 @@ export class CallbackAnswerService {
     async answer(callbackQuery: CallbackDto) {
         const data = callbackQuery.data.split('_')
         const checkAnswer = await this.answerService.findOneChat(callbackQuery.from.id, +data[1], callbackQuery.message.chat.id)
-        if (!checkAnswer[0].id) {
+        console.log(checkAnswer)
+        if (!checkAnswer) {
             const question = await this.questionService.findOne(+data[1])
             let reward: number;
             if (data[2] == question.answerright) {
