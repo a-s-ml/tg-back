@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutoPostService = void 0;
-require("dotenv/config");
 const common_1 = require("@nestjs/common");
 const select_questions_service_1 = require("./select-questions.service");
 const select_activ_chat_service_1 = require("./select-activ-chat.service");
@@ -27,8 +26,8 @@ let AutoPostService = class AutoPostService {
         const chatact = await this.selectActivChatService.activChat();
         for (var key in chatact) {
             const question = await this.selectQuestionService.availableQuestion(chatact[key].chat);
-            const url = await this.buildQuestionService.questionText(question.id);
-            await this.responsesService.sendMessage(url);
+            const data = await this.buildQuestionService.questionText(question.id);
+            await this.responsesService.sendMessage(data);
         }
     }
 };

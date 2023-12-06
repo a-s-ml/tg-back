@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import { SelectQuestionService } from './select-questions.service';
 import { SelectActivChatService } from './select-activ-chat.service';
 import { BuildQuestionService } from 'src/constructors/questions/build-question.service';

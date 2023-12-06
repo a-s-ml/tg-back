@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResponsesService = void 0;
+require("dotenv/config");
 const axios_1 = require("axios");
 const common_1 = require("@nestjs/common");
 let ResponsesService = class ResponsesService {
@@ -20,9 +21,11 @@ let ResponsesService = class ResponsesService {
     }
     async answerCallbackQuery(answerCallbackQuery) {
         try {
+            console.log(answerCallbackQuery);
             return await axios_1.default.get(`${process.env.SEND_ANSWER_CALLBACKQUERY}callback_query_id=${answerCallbackQuery.callback_query_id}&text=${encodeURI(answerCallbackQuery.text)}&parse_mode=HTML`);
         }
         catch (error) {
+            console.log(error);
             return error;
         }
     }

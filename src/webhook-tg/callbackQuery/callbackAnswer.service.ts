@@ -19,22 +19,28 @@ export class CallbackAnswerService {
 
         if (checkAnswer.length == 0) {
             const question = await this.questionService.findOne(+data[1])
+            console.log(checkAnswer)
+            console.log(checkAnswer.length)
+            console.log(data[2])
             let text: string;
             let reward: number;
             if (data[2] as unknown as number == question.answerright) {
                 console.log(data[2] + ' = ' + question.answerright)
                 reward = question.slog
-                text = 'Правильный ответ'
+                console.log(reward)
+                text = `Правильный ответ, добавлено "${reward}" очков`
             } else {
                 console.log(data[2] + ' != ' + question.answerright)
                 reward = -question.slog
-                text = 'Неправильный ответ'
+                console.log(reward)
+                text = `Неправильный ответ, добавлено "${reward}" очков`
             }
-            const answer = await this.answerService.create({ chat_id: callbackQuery.from.id, questionid: +data[1], group_id: callbackQuery.message.chat.id, choice: +data[2], reward: reward })
+            await this.answerService.create({ chat_id: callbackQuery.from.id, questionid: +data[1], group_id: callbackQuery.message.chat.id, choice: +data[2], reward: reward })
             const res = {
                 callback_query_id: callbackQuery.id,
                 text: text
             }
+            console.log(res)
             await this.responsesService.answerCallbackQuery(res)
         }
     }
