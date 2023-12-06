@@ -21,8 +21,11 @@ let CallbackAnswerService = class CallbackAnswerService {
         this.responsesService = responsesService;
     }
     async answer(callbackQuery) {
+        console.log(callbackQuery + 'callbackQuery');
         const data = callbackQuery.data.split('_');
         const checkAnswer = await this.answerService.findOneChat(callbackQuery.from.id, +data[1], callbackQuery.message.chat.id);
+        console.log(data + 'data');
+        console.log(checkAnswer + 'checkAnswer');
         if (checkAnswer.length == 0) {
             const question = await this.questionService.findOne(+data[1]);
             console.log(checkAnswer);

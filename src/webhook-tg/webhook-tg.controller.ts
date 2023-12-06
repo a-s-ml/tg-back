@@ -11,6 +11,7 @@ export class WebhookTgController {
 
     @Post()
     update(@Body() updateDto: UpdateDto) {
+        console.log(updateDto+'updateDto')
         return this.webhookTg.update(updateDto);
     }
 }

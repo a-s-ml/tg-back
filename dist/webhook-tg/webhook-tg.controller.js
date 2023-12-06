@@ -21,6 +21,7 @@ let WebhookTgController = class WebhookTgController {
         this.webhookTg = webhookTg;
     }
     update(updateDto) {
+        console.log(updateDto + 'updateDto');
         return this.webhookTg.update(updateDto);
     }
 };
