@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model admin_bot {
@@ -14,34 +15,43 @@ model admin_bot {
 }
 
 model alert_q {
-  id          Int      @id @default(autoincrement())
+  id          Int      @default(autoincrement())
   chat_id     BigInt
   question_id Int
   dateadd     DateTime @default(now()) @db.Timestamp(0)
+
+  @@id([id, chat_id, question_id])
 }
 
 model answer {
-  id         Int      @id @default(autoincrement())
-  chat_id    BigInt   @default(0)
+  id         Int      @unique(map: "id_UNIQUE") @default(autoincrement())
+  chat_id    BigInt
   questionid Int
-  group_id   BigInt   @default(0)
+  group_id   BigInt
   choice     Int
   reward     Float
   dateadd    DateTime @default(now()) @db.Timestamp(0)
+
+  @@id([id, chat_id, questionid, group_id])
+  @@index([questionid], map: "answer_question_id_idx")
+  @@index([chat_id], map: "chat_id_idx")
+  @@index([group_id])
 }
 
 model category {
-  id   Int    @id @default(autoincrement()) @db.UnsignedInt
-  name String @db.VarChar(255)
+  id   Int    @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  name String @unique(map: "name_UNIQUE") @db.VarChar(255)
 
   @@index([name], map: "name")
 }
 
 model chat_act {
-  id      Int      @id @default(autoincrement())
-  chat    BigInt
+  id      Int      @unique(map: "id_UNIQUE") @default(autoincrement())
+  chat    BigInt   @unique(map: "chat_UNIQUE")
   res     Int
   dateadd DateTime @default(now()) @db.Timestamp(0)
+
+  @@id([id, chat])
 }
 
 model chat_cat {
@@ -49,10 +59,14 @@ model chat_cat {
   chat_id BigInt
   cat_id  Int
   dateadd DateTime @default(now()) @db.Timestamp(0)
+
+  @@id([id, chat_id, cat_id])
+  @@index([cat_id], map: "chat_cat_cat_idx")
+  @@index([chat_id], map: "chat_idcat_user_id_idx")
 }
 
 model chat_data {
-  id            Int      @id @default(autoincrement())
+  id            Int      @unique(map: "id_UNIQUE") @default(autoincrement())
   to_group      BigInt
   group_id      BigInt
   thread        Int      @default(0)
@@ -65,13 +79,21 @@ model chat_data {
   question_type String   @default("0") @db.VarChar(155)
   poll_id       BigInt   @default(0)
   subscribers   Int      @default(0)
+
+  @@id([id, group_id, question_id])
+  @@index([group_id], map: "groip_id_user_idx")
+  @@index([question_id], map: "question_id_questionid_idx")
 }
 
 model like_q {
-  id          Int      @id @default(autoincrement())
+  id          Int      @unique(map: "id_UNIQUE") @default(autoincrement())
   chat_id     BigInt
   question_id Int
   dateadd     DateTime @default(now()) @db.Timestamp(0)
+
+  @@id([id, chat_id, question_id])
+  @@index([chat_id], map: "like_chat_id_idx")
+  @@index([question_id], map: "like_question_id_idx")
 }
 
 model menuAccount {
@@ -92,12 +114,14 @@ model menuMain {
 }
 
 model notice {
-  id      Int      @id @default(autoincrement())
+  id      Int      @default(autoincrement())
   type    String   @db.VarChar(255)
   chat_id BigInt
   dateadd DateTime @default(now()) @db.Timestamp(0)
   text    String   @db.VarChar(255)
   readn   Int      @default(0)
+
+  @@id([id, chat_id])
 }
 
 model pay {
@@ -112,7 +136,7 @@ model pay {
 }
 
 model question {
-  id          Int      @id @default(autoincrement()) @db.UnsignedInt
+  id          Int      @unique(map: "id_UNIQUE") @default(autoincrement())
   text        String   @db.VarChar(700)
   dateadd     DateTime @default(now()) @db.Timestamp(0)
   chat_id     BigInt   @default(0)
@@ -128,6 +152,7 @@ model question {
   slog        Float    @default(50)
   answers     Int      @default(0)
 
+  @@id([id, chat_id, category])
   @@index([text], map: "fulltext")
   @@index([category], map: "id_cat")
   @@index([chat_id], map: "tgid")
@@ -146,8 +171,8 @@ model timeLine {
 }
 
 model user {
-  id                  Int      @id @default(autoincrement())
-  chat_id             BigInt
+  id                  Int      @unique(map: "id_UNIQUE") @default(autoincrement())
+  chat_id             BigInt   @unique(map: "chat_id_UNIQUE")
   is_bot              Int
   activ               Int      @default(1)
   longitude           Float?   @default(0)
@@ -170,4 +195,6 @@ model user {
   question_slog_end   Int      @default(100)
   d_stst              Int      @default(1)
   fkwallet            String   @default("0") @db.VarChar(255)
+
+  @@id([id, chat_id, referral])
 }
