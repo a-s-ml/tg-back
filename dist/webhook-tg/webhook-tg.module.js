@@ -14,6 +14,7 @@ const callbackQuery_service_1 = require("./callbackQuery.service");
 const callbackAnswer_service_1 = require("./callbackQuery/callbackAnswer.service");
 const question_module_1 = require("../request/question/question.module");
 const answer_module_1 = require("../request/answer/answer.module");
+const responses_service_1 = require("../responses/responses.service");
 let WebhookTgModule = class WebhookTgModule {
 };
 exports.WebhookTgModule = WebhookTgModule;
@@ -28,6 +29,7 @@ exports.WebhookTgModule = WebhookTgModule = __decorate([
             webhook_tg_service_1.WebhookTgService,
             callbackQuery_service_1.CallbackQueryService,
             callbackAnswer_service_1.CallbackAnswerService,
+            responses_service_1.ResponsesService
         ]
     })
 ], WebhookTgModule);

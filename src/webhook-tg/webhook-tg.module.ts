@@ -5,6 +5,7 @@ import { CallbackQueryService } from './callbackQuery.service';
 import { CallbackAnswerService } from './callbackQuery/callbackAnswer.service';
 import { QuestionModule } from 'src/request/question/question.module';
 import { AnswerModule } from 'src/request/answer/answer.module';
+import { ResponsesService } from 'src/responses/responses.service';
 
 @Module({
     imports: [
@@ -16,6 +17,7 @@ import { AnswerModule } from 'src/request/answer/answer.module';
         WebhookTgService, 
         CallbackQueryService,
         CallbackAnswerService,
+        ResponsesService
     ]
 })
 export class WebhookTgModule {}

@@ -8,6 +8,8 @@ import { KeyboardService } from './constructors/keyboard/keyboard.service';
 import { UserModule } from './request/user/user.module';
 import { CategoryModule } from './request/category/category.module';
 import { ResponsesModule } from './responses/responses.module';
+import { WebhookTgModule } from './webhook-tg/webhook-tg.module';
+import { CallbackAnswerModule } from './webhook-tg/callbackQuery/callbackAnswer.module';
 
 @Module({
   imports: [
@@ -16,12 +18,13 @@ import { ResponsesModule } from './responses/responses.module';
     AutoPostModule,
     UserModule,
     CategoryModule,
-    ResponsesModule
+    ResponsesModule,
+    WebhookTgModule,
+    CallbackAnswerModule
   ],
   controllers: [AppController],
   providers: [
-    AppService,
-    KeyboardService
-  ],
+    AppService
+  ]
 })
 export class AppModule { }
