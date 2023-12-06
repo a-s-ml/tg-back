@@ -11,7 +11,6 @@ export class WebhookTgService {
 
     update(updateDto: UpdateDto) {
         if (updateDto.callback_query) {
-            console.log(updateDto.callback_query+'updateDto.callback_query')
             return this.callbackQueryService.update(updateDto.callback_query);
         }
         if (updateDto.message) {

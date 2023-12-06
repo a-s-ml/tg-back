@@ -156,7 +156,7 @@ model timeLine {
 model user {
   id                  Int      @unique(map: "id_UNIQUE") @default(autoincrement())
   chat_id             BigInt   @unique(map: "chat_id_UNIQUE")
-  is_bot              Int
+  is_bot              Int      @default(0) @db.TinyInt
   activ               Int      @default(1)
   longitude           Float?   @default(0)
   latitude            Float?   @default(0)

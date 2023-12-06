@@ -24,7 +24,9 @@ exports.WebhookTgModule = WebhookTgModule = __decorate([
             question_module_1.QuestionModule,
             answer_module_1.AnswerModule
         ],
-        controllers: [webhook_tg_controller_1.WebhookTgController],
+        controllers: [
+            webhook_tg_controller_1.WebhookTgController
+        ],
         providers: [
             webhook_tg_service_1.WebhookTgService,
             callbackQuery_service_1.CallbackQueryService,

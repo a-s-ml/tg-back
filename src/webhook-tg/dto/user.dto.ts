@@ -1,4 +1,4 @@
-export class UserDto {
+export class UserDto { 
     id: number
     is_bot: boolean
     first_name: string

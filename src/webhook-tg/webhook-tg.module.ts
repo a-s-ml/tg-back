@@ -12,12 +12,14 @@ import { ResponsesService } from 'src/responses/responses.service';
         QuestionModule,
         AnswerModule
     ],
-    controllers: [WebhookTgController],
+    controllers: [
+        WebhookTgController
+    ],
     providers: [
-        WebhookTgService, 
+        WebhookTgService,
         CallbackQueryService,
         CallbackAnswerService,
         ResponsesService
     ]
 })
-export class WebhookTgModule {}
+export class WebhookTgModule { }

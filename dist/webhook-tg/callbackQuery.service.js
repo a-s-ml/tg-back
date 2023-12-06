@@ -17,12 +17,9 @@ let CallbackQueryService = class CallbackQueryService {
         this.callbackAnswers = callbackAnswers;
     }
     update(callbackQuery) {
-        console.log(callbackQuery + 'callbackQuery');
         const data = callbackQuery.data.split('_');
-        console.log(data[0] + 'data[0]');
         switch (data[0]) {
             case 'answer':
-                console.log(data[0] + 'answer');
                 return this.callbackAnswers.answer(callbackQuery);
             default:
                 break;
