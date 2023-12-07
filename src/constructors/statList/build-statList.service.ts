@@ -18,11 +18,9 @@ export class BuildStatListService {
         const answers = await this.answerService.getStatChat(id)
         let text: string = 'Рейтинг участников викторины за текущий месяц:\n\n';
         let id_userstat: number=1;
-        let name: any;
 
         answers.length > 0 && answers?.map(async item => {
-            name = await this.getTgService.tgGetChat(item.chat_id)
-            text = text + `${id_userstat}. ${name.result} \u2013 ${item._sum.reward.toFixed(2)}очк. (${item._count.id} отв.)\n`
+            text = text + `${id_userstat}. ${item.chat_id} \u2013 ${item._sum.reward.toFixed(2)}очк. (${item._count.id} отв.)\n`
             id_userstat++
         })
         const reply_markup = await this.buildKeyboardService.statInlineKeboard()
