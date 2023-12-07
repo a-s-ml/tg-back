@@ -20,7 +20,7 @@ export class BuildStatListService {
         let id_userstat: number=1;
         let name: any;
 
-        answers.map(async item => {
+        answers.length > 0 && answers?.map(async item => {
             name = await this.getTgService.tgGetChat(item.chat_id)
             text = text + `${id_userstat}. ${name.result} \u2013 ${item._sum.reward.toFixed(2)}очк. (${item._count.id} отв.)\n`
             id_userstat++
