@@ -3,7 +3,7 @@ import { Prisma } from '@prisma/client';
 export declare class AnswerController {
     private answerService;
     constructor(answerService: AnswerService);
-    create(createAnswerDto: Prisma.answerCreateInput): Prisma.Prisma__answerClient<{
+    create(createAnswerDto: Prisma.answerCreateInput): Promise<{
         id: number;
         chat_id: bigint;
         questionid: number;
@@ -11,8 +11,8 @@ export declare class AnswerController {
         choice: number;
         reward: number;
         dateadd: Date;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    findAll(): Prisma.PrismaPromise<{
+    }>;
+    findAll(): Promise<{
         id: number;
         chat_id: bigint;
         questionid: number;
@@ -21,7 +21,7 @@ export declare class AnswerController {
         reward: number;
         dateadd: Date;
     }[]>;
-    findOne(id: string): Prisma.Prisma__answerClient<{
+    findOne(id: string): Promise<{
         id: number;
         chat_id: bigint;
         questionid: number;
@@ -29,8 +29,8 @@ export declare class AnswerController {
         choice: number;
         reward: number;
         dateadd: Date;
-    }, null, import("@prisma/client/runtime/library").DefaultArgs>;
-    update(id: string, updateAnswerDto: Prisma.answerUpdateInput): Prisma.Prisma__answerClient<{
+    }>;
+    update(id: string, updateAnswerDto: Prisma.answerUpdateInput): Promise<{
         id: number;
         chat_id: bigint;
         questionid: number;
@@ -38,8 +38,8 @@ export declare class AnswerController {
         choice: number;
         reward: number;
         dateadd: Date;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    remove(id: string): Prisma.Prisma__answerClient<{
+    }>;
+    remove(id: string): Promise<{
         id: number;
         chat_id: bigint;
         questionid: number;
@@ -47,5 +47,13 @@ export declare class AnswerController {
         choice: number;
         reward: number;
         dateadd: Date;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    }>;
+    getStatChat(id: bigint): Promise<(Prisma.PickEnumerable<Prisma.AnswerGroupByOutputType, "chat_id"[]> & {
+        _sum: {
+            reward: number;
+        };
+        _count: {
+            id: number;
+        };
+    })[]>;
 }

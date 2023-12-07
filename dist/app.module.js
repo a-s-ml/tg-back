@@ -8,14 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
+const app_controller_1 = require("./app.controller");
 const db_module_1 = require("./db/db.module");
+const responses_module_1 = require("./responses/responses.module");
 const schedule_1 = require("@nestjs/schedule");
 const auto_post_module_1 = require("./auto-post/auto-post.module");
 const user_module_1 = require("./request/user/user.module");
 const category_module_1 = require("./request/category/category.module");
-const responses_module_1 = require("./responses/responses.module");
 const webhook_tg_module_1 = require("./webhook-tg/webhook-tg.module");
 const callbackAnswer_module_1 = require("./webhook-tg/callbackQuery/callbackAnswer.module");
 let AppModule = class AppModule {
@@ -26,10 +26,10 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             schedule_1.ScheduleModule.forRoot(),
             db_module_1.DbModule,
+            responses_module_1.ResponsesModule,
             auto_post_module_1.AutoPostModule,
             user_module_1.UserModule,
             category_module_1.CategoryModule,
-            responses_module_1.ResponsesModule,
             webhook_tg_module_1.WebhookTgModule,
             callbackAnswer_module_1.CallbackAnswerModule
         ],

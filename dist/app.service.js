@@ -13,15 +13,18 @@ exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
 const schedule_1 = require("@nestjs/schedule");
 const auto_post_service_1 = require("./auto-post/auto-post.service");
+const responses_service_1 = require("./responses/responses.service");
 let AppService = class AppService {
-    constructor(autoPostServise) {
+    constructor(autoPostServise, responsesService) {
         this.autoPostServise = autoPostServise;
+        this.responsesService = responsesService;
     }
     async cron() {
         const tt0 = performance.now();
-        await this.autoPostServise.publicationInActiveGroup();
+        const stat = await this.autoPostServise.publicationInActiveGroupStat();
         const tt1 = performance.now();
-        console.log(tt1 - tt0, 'milliseconds ALL');
+        const tt = tt1 - tt0;
+        await this.responsesService.sendLogToAdmin(`Cron stat = ${tt} milliseconds`);
     }
 };
 exports.AppService = AppService;
@@ -33,6 +36,7 @@ __decorate([
 ], AppService.prototype, "cron", null);
 exports.AppService = AppService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [auto_post_service_1.AutoPostService])
+    __metadata("design:paramtypes", [auto_post_service_1.AutoPostService,
+        responses_service_1.ResponsesService])
 ], AppService);
 //# sourceMappingURL=app.service.js.map

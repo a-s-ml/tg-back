@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { QuestionService } from 'src/request/question/question.service';
-import { InlineKeyboardService } from '../keyboard/build-keyboard.service';
+import { BuildKeyboardService } from '../keyboard/build-keyboard.service';
 import { SendMessageDto } from 'src/webhook-tg/dto/sendMessage,dto';
 import { SendPollDto } from 'src/webhook-tg/dto/sendPoll.dto';
 import { SendPhotoDto } from 'src/webhook-tg/dto/sendPhoto.dto';
@@ -10,12 +10,12 @@ export class BuildQuestionService {
 
     constructor(
         private questionService: QuestionService,
-        private inlineKeyboardService: InlineKeyboardService
+        private buildKeyboardService: BuildKeyboardService
     ) { }
 
     async questionText(id: number) {
         const question = await this.questionService.findOne(id)
-        const reply_markup = await this.inlineKeyboardService.questionInlineKeboard(question.id)
+        const reply_markup = await this.buildKeyboardService.questionInlineKeboard(question.id)
         const url: SendMessageDto = {
             chat_id: 521884639,
             text: encodeURI(question.text),
@@ -37,7 +37,7 @@ export class BuildQuestionService {
     }
     async questionImg(id: number) {
         const question = await this.questionService.findOne(id)
-        const reply_markup = await this.inlineKeyboardService.questionInlineKeboard(question.id)
+        const reply_markup = await this.buildKeyboardService.questionInlineKeboard(question.id)
         const url: SendPhotoDto = {
             chat_id: 521884639,
             caption: encodeURI(question.text),

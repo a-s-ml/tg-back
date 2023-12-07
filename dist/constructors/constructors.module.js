@@ -10,7 +10,9 @@ exports.ConstructorsModule = void 0;
 const common_1 = require("@nestjs/common");
 const build_question_service_1 = require("./questions/build-question.service");
 const build_keyboard_service_1 = require("./keyboard/build-keyboard.service");
+const build_statList_service_1 = require("./statList/build-statList.service");
 const question_module_1 = require("../request/question/question.module");
+const answer_service_1 = require("../request/answer/answer.service");
 let ConstructorsModule = class ConstructorsModule {
 };
 exports.ConstructorsModule = ConstructorsModule;
@@ -21,11 +23,14 @@ exports.ConstructorsModule = ConstructorsModule = __decorate([
         ],
         providers: [
             build_question_service_1.BuildQuestionService,
-            build_keyboard_service_1.InlineKeyboardService
+            build_keyboard_service_1.BuildKeyboardService,
+            build_statList_service_1.BuildStatListService,
+            answer_service_1.AnswerService
         ],
         exports: [
             build_question_service_1.BuildQuestionService,
-            build_keyboard_service_1.InlineKeyboardService
+            build_statList_service_1.BuildStatListService,
+            build_keyboard_service_1.BuildKeyboardService
         ]
     })
 ], ConstructorsModule);

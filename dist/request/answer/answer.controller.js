@@ -35,6 +35,9 @@ let AnswerController = class AnswerController {
     remove(id) {
         return this.answerService.remove(+id);
     }
+    getStatChat(id) {
+        return this.answerService.getStatChat(id);
+    }
 };
 exports.AnswerController = AnswerController;
 __decorate([
@@ -72,6 +75,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], AnswerController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Get)('getStatChat/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [BigInt]),
+    __metadata("design:returntype", void 0)
+], AnswerController.prototype, "getStatChat", null);
 exports.AnswerController = AnswerController = __decorate([
     (0, common_1.Controller)('answer'),
     __metadata("design:paramtypes", [answer_service_1.AnswerService])

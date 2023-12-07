@@ -16,21 +16,21 @@ let AnswerService = class AnswerService {
     constructor(dbService) {
         this.dbService = dbService;
     }
-    create(createAnswerDto) {
-        return this.dbService.answer.create({ data: createAnswerDto });
+    async create(createAnswerDto) {
+        return await this.dbService.answer.create({ data: createAnswerDto });
     }
-    findAll() {
-        return this.dbService.answer.findMany({});
+    async findAll() {
+        return await this.dbService.answer.findMany({});
     }
-    findOne(id) {
-        return this.dbService.answer.findUnique({
+    async findOne(id) {
+        return await this.dbService.answer.findUnique({
             where: {
                 id,
             }
         });
     }
-    findOneChat(chat_id, questionid, group_id) {
-        return this.dbService.answer.findMany({
+    async findOneChat(chat_id, questionid, group_id) {
+        return await this.dbService.answer.findMany({
             where: {
                 chat_id,
                 questionid,
@@ -38,16 +38,42 @@ let AnswerService = class AnswerService {
             }
         });
     }
-    update(id, updateAnswerDto) {
-        return this.dbService.answer.update({
+    async getStatChat(group_id) {
+        const date = new Date();
+        const gte = date.setFullYear(new Date().getFullYear(), new Date().getMonth(), 1);
+        return await this.dbService.answer.groupBy({
+            by: ['chat_id'],
+            where: {
+                group_id: group_id,
+                dateadd: {
+                    gte: new Date(gte),
+                    lte: new Date(),
+                },
+            },
+            _sum: {
+                reward: true
+            },
+            _count: {
+                id: true
+            },
+            orderBy: {
+                _sum: {
+                    reward: 'desc'
+                }
+            },
+            take: 15,
+        });
+    }
+    async update(id, updateAnswerDto) {
+        return await this.dbService.answer.update({
             where: {
                 id,
             },
             data: updateAnswerDto
         });
     }
-    remove(id) {
-        return this.dbService.answer.delete({
+    async remove(id) {
+        return await this.dbService.answer.delete({
             where: {
                 id,
             }

@@ -4,6 +4,7 @@ import { SelectActivChatService } from './select-activ-chat.service';
 import { BuildQuestionService } from 'src/constructors/questions/build-question.service';
 import { ResponsesService } from 'src/responses/responses.service';
 import { UserService } from 'src/request/user/user.service';
+import { BuildStatListService } from 'src/constructors/statList/build-statList.service';
 
 @Injectable()
 export class AutoPostService {
@@ -12,6 +13,7 @@ export class AutoPostService {
         private selectQuestionService: SelectQuestionService,
         private selectActivChatService: SelectActivChatService,
         private buildQuestionService: BuildQuestionService,
+        private buildStatListService: BuildStatListService,
         private responsesService: ResponsesService,
         private userService: UserService
     ) { }
@@ -21,7 +23,6 @@ export class AutoPostService {
         for (var key in chatact) {
             const chat = await this.userService.findByChatId(chatact[key].chat)
             const question = await this.selectQuestionService.availableQuestion(chatact[key].chat)
-            console.log(chat.question_img)
             switch (chat.question_img) {
                 case 0:
                     const questionTest = await this.buildQuestionService.questionText(question.id)
@@ -40,4 +41,12 @@ export class AutoPostService {
             }
         }
     }
+    async publicationInActiveGroupStat() {
+        const chatact = await this.selectActivChatService.activChat()
+        for (var key in chatact) {
+            const stat = await this.buildStatListService.statStandart(chatact[key].chat)
+            await this.responsesService.sendMessage(stat)
+        }
+    }
 }
+

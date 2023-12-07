@@ -16,11 +16,13 @@ const select_activ_chat_service_1 = require("./select-activ-chat.service");
 const build_question_service_1 = require("../constructors/questions/build-question.service");
 const responses_service_1 = require("../responses/responses.service");
 const user_service_1 = require("../request/user/user.service");
+const build_statList_service_1 = require("../constructors/statList/build-statList.service");
 let AutoPostService = class AutoPostService {
-    constructor(selectQuestionService, selectActivChatService, buildQuestionService, responsesService, userService) {
+    constructor(selectQuestionService, selectActivChatService, buildQuestionService, buildStatListService, responsesService, userService) {
         this.selectQuestionService = selectQuestionService;
         this.selectActivChatService = selectActivChatService;
         this.buildQuestionService = buildQuestionService;
+        this.buildStatListService = buildStatListService;
         this.responsesService = responsesService;
         this.userService = userService;
     }
@@ -29,7 +31,6 @@ let AutoPostService = class AutoPostService {
         for (var key in chatact) {
             const chat = await this.userService.findByChatId(chatact[key].chat);
             const question = await this.selectQuestionService.availableQuestion(chatact[key].chat);
-            console.log(chat.question_img);
             switch (chat.question_img) {
                 case 0:
                     const questionTest = await this.buildQuestionService.questionText(question.id);
@@ -48,6 +49,13 @@ let AutoPostService = class AutoPostService {
             }
         }
     }
+    async publicationInActiveGroupStat() {
+        const chatact = await this.selectActivChatService.activChat();
+        for (var key in chatact) {
+            const stat = await this.buildStatListService.statStandart(chatact[key].chat);
+            await this.responsesService.sendMessage(stat);
+        }
+    }
 };
 exports.AutoPostService = AutoPostService;
 exports.AutoPostService = AutoPostService = __decorate([
@@ -55,6 +63,7 @@ exports.AutoPostService = AutoPostService = __decorate([
     __metadata("design:paramtypes", [select_questions_service_1.SelectQuestionService,
         select_activ_chat_service_1.SelectActivChatService,
         build_question_service_1.BuildQuestionService,
+        build_statList_service_1.BuildStatListService,
         responses_service_1.ResponsesService,
         user_service_1.UserService])
 ], AutoPostService);

@@ -19,9 +19,25 @@ let ResponsesService = class ResponsesService {
             return error;
         }
     }
+    async editMessageText(message) {
+        try {
+            return await axios_1.default.get(`${process.env.SEND_MESSAGE}message_id=${message.message_id}&text=${message.text}&reply_markup=${JSON.stringify(message.reply_markup)}`);
+        }
+        catch (error) {
+            return error;
+        }
+    }
     async sendPoll(message) {
         try {
             return await axios_1.default.get(`${process.env.SEND_POLL}chat_id=${message.chat_id}&question=${message.question}&options=${JSON.stringify(message.options)}&correct_option_id=${message.correct_option_id}`);
+        }
+        catch (error) {
+            return error;
+        }
+    }
+    async editMessageCaption(message) {
+        try {
+            return await axios_1.default.get(`${process.env.SEND_POLL}message_id=${message.message_id}&caption=${message.caption}&reply_markup=${JSON.stringify(message.reply_markup)}`);
         }
         catch (error) {
             return error;
@@ -35,9 +51,25 @@ let ResponsesService = class ResponsesService {
             return error;
         }
     }
+    async editMessageReplyMarkup(message) {
+        try {
+            return await axios_1.default.get(`${process.env.SEND_PHOTO}message_id=${message.message_id}&reply_markup=${JSON.stringify(message.reply_markup)}`);
+        }
+        catch (error) {
+            return error;
+        }
+    }
     async answerCallbackQuery(answerCallbackQuery) {
         try {
             return await axios_1.default.get(`${process.env.SEND_ANSWER_CALLBACKQUERY}callback_query_id=${answerCallbackQuery.callback_query_id}&text=${answerCallbackQuery.text}&show_alert=true`);
+        }
+        catch (error) {
+            return error;
+        }
+    }
+    async sendLogToAdmin(data) {
+        try {
+            return await axios_1.default.get(`${process.env.SEND_ANSWER_CALLBACKQUERY}chat_id=-1001524297397&text=${data}`);
         }
         catch (error) {
             return error;

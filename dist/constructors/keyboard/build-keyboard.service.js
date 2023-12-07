@@ -9,12 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.InlineKeyboardService = void 0;
+exports.BuildKeyboardService = void 0;
 const common_1 = require("@nestjs/common");
 const question_service_1 = require("../../request/question/question.service");
-let InlineKeyboardService = class InlineKeyboardService {
+let BuildKeyboardService = class BuildKeyboardService {
     constructor(questionService) {
         this.questionService = questionService;
+    }
+    async statInlineKeboard() {
+        const replyMarkup = {
+            resize_keyboard: true,
+            inline_keyboard: [
+                [
+                    {
+                        text: 'Больше вопросов',
+                        url: `https://t.me/+cI0Ubxv51wJhMTFi`
+                    }
+                ]
+            ]
+        };
+        return replyMarkup;
     }
     async questionInlineKeboard(id) {
         const answers = await this.questionService.findOneAnswers(id);
@@ -50,9 +64,9 @@ let InlineKeyboardService = class InlineKeyboardService {
         return replyMarkup;
     }
 };
-exports.InlineKeyboardService = InlineKeyboardService;
-exports.InlineKeyboardService = InlineKeyboardService = __decorate([
+exports.BuildKeyboardService = BuildKeyboardService;
+exports.BuildKeyboardService = BuildKeyboardService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [question_service_1.QuestionService])
-], InlineKeyboardService);
+], BuildKeyboardService);
 //# sourceMappingURL=build-keyboard.service.js.map

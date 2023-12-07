@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { AnswerService } from './answer.service';
 import { Prisma } from '@prisma/client';
+import { DateDto } from '../dto/date.dto';
 
 @Controller('answer')
 export class AnswerController {
@@ -29,5 +30,10 @@ export class AnswerController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.answerService.remove(+id);
+  }
+
+  @Get('getStatChat/:id')
+  getStatChat(@Param('id') id: bigint) {
+    return this.answerService.getStatChat(id);
   }
 }

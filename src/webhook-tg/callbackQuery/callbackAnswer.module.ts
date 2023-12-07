@@ -1,23 +1,25 @@
 import { Module } from '@nestjs/common';
+
 import { CallbackAnswerService } from './callbackAnswer.service';
+
 import { WebhookTgModule } from '../webhook-tg.module';
-import { QuestionService } from 'src/request/question/question.service';
-import { AnswerService } from 'src/request/answer/answer.service';
-import { ResponsesService } from 'src/responses/responses.service';
 import { UserModule } from 'src/request/user/user.module';
-import { UserService } from 'src/request/user/user.service';
+import { QuestionModule } from 'src/request/question/question.module';
+import { AnswerModule } from 'src/request/answer/answer.module';
 
 @Module({
     imports: [
         WebhookTgModule,
-        UserModule
+        UserModule,
+        QuestionModule,
+        UserModule,
+        AnswerModule
     ],
     providers: [
-        CallbackAnswerService,
-        QuestionService,
-        AnswerService,
-        ResponsesService,
-        UserService
+        CallbackAnswerService
+    ],
+    exports: [
+        CallbackAnswerService
     ]
 })
 export class CallbackAnswerModule { }

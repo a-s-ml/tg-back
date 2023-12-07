@@ -1,25 +1,35 @@
 import { Injectable } from '@nestjs/common';
-import { InlineKeyboardService } from '../keyboard/build-keyboard.service';
+import { BuildKeyboardService } from '../keyboard/build-keyboard.service';
 import { SendMessageDto } from 'src/webhook-tg/dto/sendMessage,dto';
 import { AnswerService } from 'src/request/answer/answer.service';
+import { GetTgService } from 'src/responses/getTG.service';
+import { UserDto } from 'src/webhook-tg/dto/user.dto';
 
 @Injectable()
 export class BuildStatListService {
 
     constructor(
+        private buildKeyboardService: BuildKeyboardService,
         private answerService: AnswerService,
-        private inlineKeyboardService: InlineKeyboardService
+        private getTgService: GetTgService
     ) { }
 
-    async questionText(id: number) {
-        const answers = await this.answerService.findOne(id)
-        let ids: number;
-        const reply_markup = await this.inlineKeyboardService.questionInlineKeboard(ids)
-        let text: string;
+    async statStandart(id: bigint) {
+        const answers = await this.answerService.getStatChat(id)
+        let text: string = 'Рейтинг участников викторины за текущий месяц:\n\n';
+        let id_userstat: number=1;
+        let name: any;
+
+        answers.map(async item => {
+            name = await this.getTgService.tgGetChat(item.chat_id)
+            text = text + `${id_userstat}. ${name.result} \u2013 ${item._sum.reward.toFixed(2)}очк. (${item._count.id} отв.)\n`
+            id_userstat++
+        })
+        const reply_markup = await this.buildKeyboardService.statInlineKeboard()
         const url: SendMessageDto = {
             chat_id: 521884639,
-            text: text,
-            reply_markup: reply_markup,
+            text: encodeURI(text),
+            reply_markup,
             disable_web_page_preview: true,
             parse_mode: 'HTML'
         }

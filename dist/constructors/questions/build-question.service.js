@@ -14,13 +14,13 @@ const common_1 = require("@nestjs/common");
 const question_service_1 = require("../../request/question/question.service");
 const build_keyboard_service_1 = require("../keyboard/build-keyboard.service");
 let BuildQuestionService = class BuildQuestionService {
-    constructor(questionService, inlineKeyboardService) {
+    constructor(questionService, buildKeyboardService) {
         this.questionService = questionService;
-        this.inlineKeyboardService = inlineKeyboardService;
+        this.buildKeyboardService = buildKeyboardService;
     }
     async questionText(id) {
         const question = await this.questionService.findOne(id);
-        const reply_markup = await this.inlineKeyboardService.questionInlineKeboard(question.id);
+        const reply_markup = await this.buildKeyboardService.questionInlineKeboard(question.id);
         const url = {
             chat_id: 521884639,
             text: encodeURI(question.text),
@@ -42,7 +42,7 @@ let BuildQuestionService = class BuildQuestionService {
     }
     async questionImg(id) {
         const question = await this.questionService.findOne(id);
-        const reply_markup = await this.inlineKeyboardService.questionInlineKeboard(question.id);
+        const reply_markup = await this.buildKeyboardService.questionInlineKeboard(question.id);
         const url = {
             chat_id: 521884639,
             caption: encodeURI(question.text),
@@ -56,6 +56,6 @@ exports.BuildQuestionService = BuildQuestionService;
 exports.BuildQuestionService = BuildQuestionService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [question_service_1.QuestionService,
-        build_keyboard_service_1.InlineKeyboardService])
+        build_keyboard_service_1.BuildKeyboardService])
 ], BuildQuestionService);
 //# sourceMappingURL=build-question.service.js.map
