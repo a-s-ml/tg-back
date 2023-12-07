@@ -31,7 +31,7 @@ export class ResponsesService {
   }
   async answerCallbackQuery(answerCallbackQuery: AnswerCallbackQueryDto) {
     try {
-      return await axios.get(`${process.env.SEND_ANSWER_CALLBACKQUERY}${(answerCallbackQuery)}`)
+      return await axios.get(`${process.env.SEND_ANSWER_CALLBACKQUERY}callback_query_id=${answerCallbackQuery.callback_query_id}&text=${answerCallbackQuery.text}&show_alert=true`)
     } catch (error) {
       return error;
     }
