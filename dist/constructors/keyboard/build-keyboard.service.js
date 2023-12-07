@@ -55,4 +55,4 @@ exports.InlineKeyboardService = InlineKeyboardService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [question_service_1.QuestionService])
 ], InlineKeyboardService);
-//# sourceMappingURL=inline-keyboard.service.js.map
+//# sourceMappingURL=build-keyboard.service.js.map

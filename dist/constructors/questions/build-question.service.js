@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BuildQuestionService = void 0;
 const common_1 = require("@nestjs/common");
 const question_service_1 = require("../../request/question/question.service");
-const inline_keyboard_service_1 = require("../keyboard/inline-keyboard.service");
+const build_keyboard_service_1 = require("../keyboard/build-keyboard.service");
 let BuildQuestionService = class BuildQuestionService {
     constructor(questionService, inlineKeyboardService) {
         this.questionService = questionService;
@@ -22,11 +22,32 @@ let BuildQuestionService = class BuildQuestionService {
         const question = await this.questionService.findOne(id);
         const reply_markup = await this.inlineKeyboardService.questionInlineKeboard(question.id);
         const url = {
-            chat_id: 5949135498,
-            text: question.text,
+            chat_id: 521884639,
+            text: encodeURI(question.text),
             reply_markup: reply_markup,
             disable_web_page_preview: true,
             parse_mode: 'HTML'
+        };
+        return url;
+    }
+    async questionPoll(id) {
+        const question = await this.questionService.findOne(id);
+        const url = {
+            chat_id: 521884639,
+            question: encodeURI(question.text),
+            options: [question.answer1, question.answer2, question.answer3, question.answer4],
+            correct_option_id: question.answerright
+        };
+        return url;
+    }
+    async questionImg(id) {
+        const question = await this.questionService.findOne(id);
+        const reply_markup = await this.inlineKeyboardService.questionInlineKeboard(question.id);
+        const url = {
+            chat_id: 521884639,
+            caption: encodeURI(question.text),
+            photo: question.img,
+            reply_markup: reply_markup
         };
         return url;
     }
@@ -35,6 +56,6 @@ exports.BuildQuestionService = BuildQuestionService;
 exports.BuildQuestionService = BuildQuestionService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [question_service_1.QuestionService,
-        inline_keyboard_service_1.InlineKeyboardService])
+        build_keyboard_service_1.InlineKeyboardService])
 ], BuildQuestionService);
 //# sourceMappingURL=build-question.service.js.map

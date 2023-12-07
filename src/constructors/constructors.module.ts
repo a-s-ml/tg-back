@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { BuildQuestionService } from './build-question.service';
-import { InlineKeyboardService } from '../keyboard/inline-keyboard.service';
+import { BuildQuestionService } from './questions/build-question.service';
+import { InlineKeyboardService } from './keyboard/build-keyboard.service';
 import { QuestionModule } from 'src/request/question/question.module';
 
 @Module({
@@ -16,4 +16,4 @@ import { QuestionModule } from 'src/request/question/question.module';
     InlineKeyboardService
   ]
 })
-export class BuildQuestionModule { }
+export class ConstructorsModule { }

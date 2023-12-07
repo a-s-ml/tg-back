@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { QuestionService } from 'src/request/question/question.service';
-import { ReplyMarkupDto } from './dto/inline-keyboard-button.dto';
+import { ReplyMarkupDto } from './dto/keyboard.dto';
 
 @Injectable()
 export class InlineKeyboardService {

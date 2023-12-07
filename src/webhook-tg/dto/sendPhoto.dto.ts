@@ -1,12 +1,13 @@
 import { ReplyMarkupDto } from "src/constructors/keyboard/dto/keyboard.dto"
 
-export class SendMessageDto {
+export class SendPhotoDto {
     chat_id: number
     message_thread_id?: number
-    text: string
+    photo: string
+    caption?: string
     parse_mode?: string
-    entities?: object
-    disable_web_page_preview?: boolean
+    caption_entities?: object
+    has_spoiler?: boolean
     disable_notification?: boolean
     protect_content?: boolean
     reply_to_message_id?: number

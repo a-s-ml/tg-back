@@ -30,6 +30,32 @@ export declare class UserService {
         fkwallet: string;
     }>;
     findAll(): Promise<string>;
+    findByChatId(chat_id: bigint): Promise<{
+        id: number;
+        chat_id: bigint;
+        is_bot: number;
+        activ: number;
+        longitude: number;
+        latitude: number;
+        date_reg: Date;
+        last_up: Date;
+        cash_f_w: number;
+        cash_a_w: number;
+        cash_q_w: number;
+        cash_f_m: number;
+        cash_a_m: number;
+        cash_q_m: number;
+        cash_all: number;
+        luck: number;
+        referral: bigint;
+        question_img: number;
+        question_time: number;
+        question_timeLine: number;
+        question_slog_start: number;
+        question_slog_end: number;
+        d_stst: number;
+        fkwallet: string;
+    }>;
     findOne(id: number): Promise<string>;
     update(id: number, updateUserDto: Prisma.userUpdateInput): Promise<string>;
     remove(id: number): Promise<{

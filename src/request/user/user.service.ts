@@ -18,6 +18,14 @@ export class UserService {
     )
   }
 
+  async findByChatId(chat_id: bigint) {
+    return await this.dbService.user.findUnique({
+      where: {
+        chat_id,
+      }
+    })
+  }
+
   async findOne(id: number) {
     return JSON.stringify(
       await this.dbService.user.findUnique({
@@ -39,7 +47,7 @@ export class UserService {
       }),
       (key, value) => (typeof value === 'bigint' ? value.toString() : value) // return everything else unchanged
     )
-     
+
   }
 
   async remove(id: number) {

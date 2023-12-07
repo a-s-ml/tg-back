@@ -13,7 +13,23 @@ const common_1 = require("@nestjs/common");
 let ResponsesService = class ResponsesService {
     async sendMessage(message) {
         try {
-            return await axios_1.default.get(`${process.env.SEND_MESSAGE}chat_id=${message.chat_id}&text=${encodeURI(message.text)}&reply_markup=${JSON.stringify(message.reply_markup)}&disable_web_page_preview=${message.disable_web_page_preview}&parse_mode=${message.parse_mode}`);
+            return await axios_1.default.get(`${process.env.SEND_MESSAGE}chat_id=${message.chat_id}&text=${message.text}&reply_markup=${JSON.stringify(message.reply_markup)}`);
+        }
+        catch (error) {
+            return error;
+        }
+    }
+    async sendPoll(message) {
+        try {
+            return await axios_1.default.get(`${process.env.SEND_POLL}chat_id=${message.chat_id}&question=${message.question}&options=${JSON.stringify(message.options)}&correct_option_id=${message.correct_option_id}`);
+        }
+        catch (error) {
+            return error;
+        }
+    }
+    async sendPhoto(message) {
+        try {
+            return await axios_1.default.get(`${process.env.SEND_PHOTO}chat_id=${message.chat_id}&caption=${message.caption}&photo=${message.photo}&reply_markup=${JSON.stringify(message.reply_markup)}`);
         }
         catch (error) {
             return error;
@@ -21,7 +37,7 @@ let ResponsesService = class ResponsesService {
     }
     async answerCallbackQuery(answerCallbackQuery) {
         try {
-            return await axios_1.default.get(`${process.env.SEND_ANSWER_CALLBACKQUERY}callback_query_id=${answerCallbackQuery.callback_query_id}&text=${encodeURI(answerCallbackQuery.text)}&parse_mode=HTML`);
+            return await axios_1.default.get(`${process.env.SEND_ANSWER_CALLBACKQUERY}${(answerCallbackQuery)}`);
         }
         catch (error) {
             return error;

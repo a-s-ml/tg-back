@@ -6,27 +6,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BuildQuestionModule = void 0;
+exports.ConstructorsModule = void 0;
 const common_1 = require("@nestjs/common");
-const build_question_service_1 = require("./build-question.service");
-const inline_keyboard_service_1 = require("../keyboard/inline-keyboard.service");
-const question_module_1 = require("../../request/question/question.module");
-let BuildQuestionModule = class BuildQuestionModule {
+const build_question_service_1 = require("./questions/build-question.service");
+const build_keyboard_service_1 = require("./keyboard/build-keyboard.service");
+const question_module_1 = require("../request/question/question.module");
+let ConstructorsModule = class ConstructorsModule {
 };
-exports.BuildQuestionModule = BuildQuestionModule;
-exports.BuildQuestionModule = BuildQuestionModule = __decorate([
+exports.ConstructorsModule = ConstructorsModule;
+exports.ConstructorsModule = ConstructorsModule = __decorate([
     (0, common_1.Module)({
         imports: [
             question_module_1.QuestionModule
         ],
         providers: [
             build_question_service_1.BuildQuestionService,
-            inline_keyboard_service_1.InlineKeyboardService
+            build_keyboard_service_1.InlineKeyboardService
         ],
         exports: [
             build_question_service_1.BuildQuestionService,
-            inline_keyboard_service_1.InlineKeyboardService
+            build_keyboard_service_1.InlineKeyboardService
         ]
     })
-], BuildQuestionModule);
-//# sourceMappingURL=build-question.module.js.map
+], ConstructorsModule);
+//# sourceMappingURL=constructors.module.js.map

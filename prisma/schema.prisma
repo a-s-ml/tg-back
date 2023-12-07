@@ -33,9 +33,6 @@ model answer {
   dateadd    DateTime @default(now()) @db.Timestamp(0)
 
   @@id([id, chat_id, questionid, group_id])
-  @@index([group_id])
-  @@index([questionid], map: "answer_question_id_idx")
-  @@index([chat_id], map: "chat_id_idx")
 }
 
 model category {
@@ -47,7 +44,7 @@ model category {
 
 model chat_act {
   id      Int      @unique(map: "id_UNIQUE") @default(autoincrement())
-  chat    BigInt   @unique(map: "chat_UNIQUE")
+  chat    BigInt
   res     Int
   dateadd DateTime @default(now()) @db.Timestamp(0)
 
@@ -61,8 +58,6 @@ model chat_cat {
   dateadd DateTime @default(now()) @db.Timestamp(0)
 
   @@id([id, chat_id, cat_id])
-  @@index([cat_id], map: "chat_cat_cat_idx")
-  @@index([chat_id], map: "chat_idcat_user_id_idx")
 }
 
 model chat_data {
@@ -81,8 +76,6 @@ model chat_data {
   subscribers   Int      @default(0)
 
   @@id([id, group_id, question_id])
-  @@index([group_id], map: "groip_id_user_idx")
-  @@index([question_id], map: "question_id_questionid_idx")
 }
 
 model like_q {
@@ -92,8 +85,6 @@ model like_q {
   dateadd     DateTime @default(now()) @db.Timestamp(0)
 
   @@id([id, chat_id, question_id])
-  @@index([chat_id], map: "like_chat_id_idx")
-  @@index([question_id], map: "like_question_id_idx")
 }
 
 model menu {

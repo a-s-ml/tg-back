@@ -22,6 +22,13 @@ let UserService = class UserService {
     async findAll() {
         return JSON.stringify(await this.dbService.user.findMany({}), (key, value) => (typeof value === 'bigint' ? value.toString() : value));
     }
+    async findByChatId(chat_id) {
+        return await this.dbService.user.findUnique({
+            where: {
+                chat_id,
+            }
+        });
+    }
     async findOne(id) {
         return JSON.stringify(await this.dbService.user.findUnique({
             where: {
