@@ -13,17 +13,31 @@ exports.BuildQuestionService = void 0;
 const common_1 = require("@nestjs/common");
 const question_service_1 = require("../../request/question/question.service");
 const build_keyboard_service_1 = require("../keyboard/build-keyboard.service");
+const category_service_1 = require("../../request/category/category.service");
 let BuildQuestionService = class BuildQuestionService {
-    constructor(questionService, buildKeyboardService) {
+    constructor(questionService, buildKeyboardService, categoryService) {
         this.questionService = questionService;
         this.buildKeyboardService = buildKeyboardService;
+        this.categoryService = categoryService;
+    }
+    async questionBody(question) {
+        const category = await this.categoryService.findOne(question.category);
+        const header = `<b>Вопрос:</b> №${question.id}\n<b>Категория</b>: ${category.name}\n<b>Сложность:</b> ${question.slog}\n\n`;
+        const footer = '| <b><a href="https://t.me/more_bio_bot/more_bio">Статистика</a></b> | <b><a href="https://t.me/more_bio_bot/more_bio">Ошибка</a></b> |';
+        let body;
+        return body = {
+            header: encodeURI(header),
+            text: encodeURI(question.text + '\n\n'),
+            footer: encodeURI(footer)
+        };
     }
     async questionText(id) {
         const question = await this.questionService.findOne(id);
         const reply_markup = await this.buildKeyboardService.questionInlineKeboard(question.id);
+        const body = await this.questionBody(question);
         const url = {
             chat_id: 521884639,
-            text: encodeURI(question.text),
+            text: body.header + body.text + body.footer,
             reply_markup: reply_markup,
             disable_web_page_preview: true,
             parse_mode: 'HTML'
@@ -43,9 +57,10 @@ let BuildQuestionService = class BuildQuestionService {
     async questionImg(id) {
         const question = await this.questionService.findOne(id);
         const reply_markup = await this.buildKeyboardService.questionInlineKeboard(question.id);
+        const body = await this.questionBody(question);
         const url = {
             chat_id: 521884639,
-            caption: encodeURI(question.text),
+            caption: body.header + body.footer,
             photo: question.img,
             reply_markup: reply_markup
         };
@@ -56,6 +71,7 @@ exports.BuildQuestionService = BuildQuestionService;
 exports.BuildQuestionService = BuildQuestionService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [question_service_1.QuestionService,
-        build_keyboard_service_1.BuildKeyboardService])
+        build_keyboard_service_1.BuildKeyboardService,
+        category_service_1.CategoryService])
 ], BuildQuestionService);
 //# sourceMappingURL=build-question.service.js.map

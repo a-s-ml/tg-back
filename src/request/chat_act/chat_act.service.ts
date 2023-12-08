@@ -12,21 +12,15 @@ export class ChatActService {
   }
 
   async findAll() {
-    return JSON.stringify(
-      await this.dbService.chat_act.findMany({}),
-      (key, value) => (typeof value === 'bigint' ? value.toString() : value)
-    )
+    return await this.dbService.chat_act.findMany()
   }
 
   async findOne(id: number) {
-    return  JSON.stringify(
-      await this.dbService.chat_act.findUnique({
-        where: {
-          id: id
-        }
-      }),
-      (key, value) => (typeof value === 'bigint' ? value.toString() : value)
-    )
+    return await this.dbService.chat_act.findUnique({
+      where: {
+        id: id
+      }
+    })
   }
 
   async update(id: number, updateChatActDto: Prisma.chat_actUpdateInput) {

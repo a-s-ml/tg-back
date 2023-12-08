@@ -13,7 +13,8 @@ const common_1 = require("@nestjs/common");
 let ResponsesService = class ResponsesService {
     async sendMessage(message) {
         try {
-            return await axios_1.default.get(`${process.env.SEND_MESSAGE}chat_id=${message.chat_id}&text=${message.text}&reply_markup=${JSON.stringify(message.reply_markup)}`);
+            const response = await axios_1.default.get(`${process.env.SEND_MESSAGE}chat_id=${message.chat_id}&text=${message.text}&reply_markup=${JSON.stringify(message.reply_markup)}&disable_web_page_preview=true&parse_mode=HTML`);
+            return response.data;
         }
         catch (error) {
             return error;
@@ -21,7 +22,8 @@ let ResponsesService = class ResponsesService {
     }
     async editMessageText(message) {
         try {
-            return await axios_1.default.get(`${process.env.SEND_MESSAGE}message_id=${message.message_id}&text=${message.text}&reply_markup=${JSON.stringify(message.reply_markup)}`);
+            const response = await axios_1.default.get(`${process.env.SEND_MESSAGE}message_id=${message.message_id}&text=${message.text}&reply_markup=${JSON.stringify(message.reply_markup)}&disable_web_page_preview=true&parse_mode=HTML`);
+            return response.data;
         }
         catch (error) {
             return error;
@@ -29,7 +31,8 @@ let ResponsesService = class ResponsesService {
     }
     async sendPoll(message) {
         try {
-            return await axios_1.default.get(`${process.env.SEND_POLL}chat_id=${message.chat_id}&question=${message.question}&options=${JSON.stringify(message.options)}&correct_option_id=${message.correct_option_id}`);
+            const response = await axios_1.default.get(`${process.env.SEND_POLL}chat_id=${message.chat_id}&question=${message.question}&options=${JSON.stringify(message.options)}&correct_option_id=${message.correct_option_id}&disable_web_page_preview=true&parse_mode=HTML`);
+            return response.data;
         }
         catch (error) {
             return error;
@@ -37,7 +40,8 @@ let ResponsesService = class ResponsesService {
     }
     async editMessageCaption(message) {
         try {
-            return await axios_1.default.get(`${process.env.SEND_POLL}message_id=${message.message_id}&caption=${message.caption}&reply_markup=${JSON.stringify(message.reply_markup)}`);
+            const response = await axios_1.default.get(`${process.env.SEND_POLL}message_id=${message.message_id}&caption=${message.caption}&reply_markup=${JSON.stringify(message.reply_markup)}&disable_web_page_preview=true&parse_mode=HTML`);
+            return response.data;
         }
         catch (error) {
             return error;
@@ -45,7 +49,8 @@ let ResponsesService = class ResponsesService {
     }
     async sendPhoto(message) {
         try {
-            return await axios_1.default.get(`${process.env.SEND_PHOTO}chat_id=${message.chat_id}&caption=${message.caption}&photo=${message.photo}&reply_markup=${JSON.stringify(message.reply_markup)}`);
+            const response = await axios_1.default.get(`${process.env.SEND_PHOTO}chat_id=${message.chat_id}&caption=${message.caption}&photo=${message.photo}&reply_markup=${JSON.stringify(message.reply_markup)}&disable_web_page_preview=true&parse_mode=HTML`);
+            return response.data;
         }
         catch (error) {
             return error;
@@ -53,7 +58,8 @@ let ResponsesService = class ResponsesService {
     }
     async editMessageReplyMarkup(message) {
         try {
-            return await axios_1.default.get(`${process.env.SEND_PHOTO}message_id=${message.message_id}&reply_markup=${JSON.stringify(message.reply_markup)}`);
+            const response = await axios_1.default.get(`${process.env.SEND_PHOTO}message_id=${message.message_id}&reply_markup=${JSON.stringify(message.reply_markup)}&disable_web_page_preview=true&parse_mode=HTML`);
+            return response.data;
         }
         catch (error) {
             return error;
@@ -61,7 +67,8 @@ let ResponsesService = class ResponsesService {
     }
     async answerCallbackQuery(answerCallbackQuery) {
         try {
-            return await axios_1.default.get(`${process.env.SEND_ANSWER_CALLBACKQUERY}callback_query_id=${answerCallbackQuery.callback_query_id}&text=${answerCallbackQuery.text}&show_alert=true`);
+            const response = await axios_1.default.get(`${process.env.SEND_ANSWER_CALLBACKQUERY}callback_query_id=${answerCallbackQuery.callback_query_id}&text=${answerCallbackQuery.text}&show_alert=true`);
+            return response.data;
         }
         catch (error) {
             return error;
@@ -69,7 +76,8 @@ let ResponsesService = class ResponsesService {
     }
     async sendLogToAdmin(data) {
         try {
-            return await axios_1.default.get(`${process.env.SEND_ANSWER_CALLBACKQUERY}chat_id=-1001524297397&text=${data}`);
+            const response = await axios_1.default.get(`${process.env.SEND_ANSWER_CALLBACKQUERY}chat_id=-1001524297397&text=${data}`);
+            return response.data;
         }
         catch (error) {
             return error;

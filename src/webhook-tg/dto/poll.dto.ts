@@ -1,4 +1,4 @@
-import { MessageEntityDto } from "./messageEntity.dto"
+import { MessageEntityDto } from "./MessageEntity.dto"
 import { PoolOptionsDto } from "./pollOptions.dto"
 
 export class PollDto {

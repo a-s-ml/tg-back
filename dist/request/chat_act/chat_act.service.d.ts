@@ -9,8 +9,18 @@ export declare class ChatActService {
         res: number;
         dateadd: Date;
     }>;
-    findAll(): Promise<string>;
-    findOne(id: number): Promise<string>;
+    findAll(): Promise<{
+        id: number;
+        chat: bigint;
+        res: number;
+        dateadd: Date;
+    }[]>;
+    findOne(id: number): Promise<{
+        id: number;
+        chat: bigint;
+        res: number;
+        dateadd: Date;
+    }>;
     update(id: number, updateChatActDto: Prisma.chat_actUpdateInput): Promise<{
         id: number;
         chat: bigint;

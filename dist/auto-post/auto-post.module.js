@@ -16,6 +16,10 @@ const chat_data_module_1 = require("../request/chat_data/chat_data.module");
 const chat_cat_module_1 = require("../request/chat_cat/chat_cat.module");
 const constructors_module_1 = require("../constructors/constructors.module");
 const user_module_1 = require("../request/user/user.module");
+const chat_act_service_1 = require("../request/chat_act/chat_act.service");
+const chat_data_service_1 = require("../request/chat_data/chat_data.service");
+const time_service_1 = require("../request/time/time.service");
+const user_service_1 = require("../request/user/user.service");
 let AutoPostModule = class AutoPostModule {
 };
 exports.AutoPostModule = AutoPostModule;
@@ -31,7 +35,11 @@ exports.AutoPostModule = AutoPostModule = __decorate([
         providers: [
             auto_post_service_1.AutoPostService,
             select_activ_chat_service_1.SelectActivChatService,
-            select_questions_service_1.SelectQuestionService
+            select_questions_service_1.SelectQuestionService,
+            chat_act_service_1.ChatActService,
+            chat_data_service_1.ChatDataService,
+            user_service_1.UserService,
+            time_service_1.TimeService
         ],
         exports: [
             auto_post_service_1.AutoPostService,

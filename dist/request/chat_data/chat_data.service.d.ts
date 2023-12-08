@@ -53,4 +53,19 @@ export declare class ChatDataService {
     publishedQuestion(chatid: bigint): Promise<{
         question_id: number;
     }[]>;
+    getLastPost(group_id: bigint): Promise<{
+        id: number;
+        to_group: bigint;
+        group_id: bigint;
+        thread: number;
+        group_type: string;
+        result: number;
+        message_id: bigint;
+        date: number;
+        date_add: Date;
+        question_id: number;
+        question_type: string;
+        poll_id: bigint;
+        subscribers: number;
+    }[]>;
 }

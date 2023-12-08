@@ -20,14 +20,14 @@ let ChatActService = class ChatActService {
         return await this.dbService.chat_act.create({ data: createChatActDto });
     }
     async findAll() {
-        return JSON.stringify(await this.dbService.chat_act.findMany({}), (key, value) => (typeof value === 'bigint' ? value.toString() : value));
+        return await this.dbService.chat_act.findMany();
     }
     async findOne(id) {
-        return JSON.stringify(await this.dbService.chat_act.findUnique({
+        return await this.dbService.chat_act.findUnique({
             where: {
                 id: id
             }
-        }), (key, value) => (typeof value === 'bigint' ? value.toString() : value));
+        });
     }
     async update(id, updateChatActDto) {
         return await this.dbService.chat_act.update({

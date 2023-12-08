@@ -54,6 +54,17 @@ let ChatDataService = class ChatDataService {
             }
         });
     }
+    async getLastPost(group_id) {
+        return await this.dbService.chat_data.findMany({
+            where: {
+                group_id: group_id,
+            },
+            orderBy: {
+                id: 'desc'
+            },
+            take: 1,
+        });
+    }
 };
 exports.ChatDataService = ChatDataService;
 exports.ChatDataService = ChatDataService = __decorate([

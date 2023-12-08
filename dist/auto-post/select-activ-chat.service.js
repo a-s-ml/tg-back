@@ -11,18 +11,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SelectActivChatService = void 0;
 const common_1 = require("@nestjs/common");
-const db_service_1 = require("../db/db.service");
+const chat_act_service_1 = require("../request/chat_act/chat_act.service");
+const chat_data_service_1 = require("../request/chat_data/chat_data.service");
+const time_service_1 = require("../request/time/time.service");
+const user_service_1 = require("../request/user/user.service");
 let SelectActivChatService = class SelectActivChatService {
-    constructor(dbService) {
-        this.dbService = dbService;
+    constructor(chatActService, chatDataService, userService, timeService) {
+        this.chatActService = chatActService;
+        this.chatDataService = chatDataService;
+        this.userService = userService;
+        this.timeService = timeService;
     }
     async activChat() {
-        return await this.dbService.chat_act.findMany();
+        const chatact = await this.chatActService.findAll();
+        let actiality = [];
+        for (var key in chatact) {
+            const lastPost = await this.chatDataService.getLastPost(chatact[key].chat);
+            const chat = await this.userService.findByChatId(chatact[key].chat);
+            const period = await this.timeService.findOne(chat.question_time);
+            const timeToLast = Math.floor(new Date().getTime()) - (lastPost[0].date * 1000);
+            if (timeToLast <= period.period) {
+                actiality.push(chatact[key]);
+            }
+        }
+        return actiality;
     }
 };
 exports.SelectActivChatService = SelectActivChatService;
 exports.SelectActivChatService = SelectActivChatService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [db_service_1.DbService])
+    __metadata("design:paramtypes", [chat_act_service_1.ChatActService,
+        chat_data_service_1.ChatDataService,
+        user_service_1.UserService,
+        time_service_1.TimeService])
 ], SelectActivChatService);
 //# sourceMappingURL=select-activ-chat.service.js.map

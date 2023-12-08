@@ -20,16 +20,12 @@ let AppService = class AppService {
         this.responsesService = responsesService;
     }
     async cron() {
-        const tt0 = performance.now();
-        const stat = await this.autoPostServise.publicationInActiveGroupStat();
-        const tt1 = performance.now();
-        const tt = tt1 - tt0;
-        await this.responsesService.sendLogToAdmin(`Cron stat = ${tt} milliseconds`);
+        await this.autoPostServise.publicationInActiveGroup();
     }
 };
 exports.AppService = AppService;
 __decorate([
-    (0, schedule_1.Cron)(schedule_1.CronExpression.EVERY_MINUTE),
+    (0, schedule_1.Cron)(schedule_1.CronExpression.EVERY_10_SECONDS),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

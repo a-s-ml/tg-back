@@ -17,35 +17,66 @@ const build_question_service_1 = require("../constructors/questions/build-questi
 const responses_service_1 = require("../responses/responses.service");
 const user_service_1 = require("../request/user/user.service");
 const build_statList_service_1 = require("../constructors/statList/build-statList.service");
+const chat_data_service_1 = require("../request/chat_data/chat_data.service");
 let AutoPostService = class AutoPostService {
-    constructor(selectQuestionService, selectActivChatService, buildQuestionService, buildStatListService, responsesService, userService) {
+    constructor(selectQuestionService, selectActivChatService, buildQuestionService, buildStatListService, responsesService, chatDataService, userService) {
         this.selectQuestionService = selectQuestionService;
         this.selectActivChatService = selectActivChatService;
         this.buildQuestionService = buildQuestionService;
         this.buildStatListService = buildStatListService;
         this.responsesService = responsesService;
+        this.chatDataService = chatDataService;
         this.userService = userService;
     }
     async publicationInActiveGroup() {
         const chatact = await this.selectActivChatService.activChat();
-        for (var key in chatact) {
-            const chat = await this.userService.findByChatId(chatact[key].chat);
-            const question = await this.selectQuestionService.availableQuestion(chatact[key].chat);
-            switch (chat.question_img) {
-                case 0:
+        if (chatact.length > 0) {
+            for (var key in chatact) {
+                const chat = await this.userService.findByChatId(chatact[key].chat);
+                const question = await this.selectQuestionService.availableQuestion(chatact[key].chat);
+                if (chat.question_img === 0) {
                     const questionTest = await this.buildQuestionService.questionText(question.id);
-                    await this.responsesService.sendMessage(questionTest);
-                    break;
-                case 1:
+                    const response = await this.responsesService.sendMessage(questionTest);
+                    await this.chatDataService.create({
+                        to_group: chat.chat_id,
+                        group_id: response?.result.chat.id,
+                        group_type: 'js',
+                        message_id: response?.result.message_id,
+                        result: 1,
+                        date: response?.result.date,
+                        question_id: question.id,
+                        question_type: '_' + chat.question_img
+                    });
+                }
+                if (chat.question_img === 1) {
                     const questionImg = await this.buildQuestionService.questionImg(question.id);
-                    await this.responsesService.sendPhoto(questionImg);
-                    break;
-                case 2:
+                    const response = await this.responsesService.sendPhoto(questionImg);
+                    await this.chatDataService.create({
+                        to_group: chat.chat_id,
+                        group_id: response?.result.chat.id,
+                        group_type: 'js',
+                        message_id: response?.result.message_id,
+                        result: 1,
+                        date: response?.result.date,
+                        question_id: question.id,
+                        question_type: '_' + chat.question_img
+                    });
+                }
+                if (chat.question_img === 2) {
                     const questionPoll = await this.buildQuestionService.questionPoll(question.id);
-                    await this.responsesService.sendPoll(questionPoll);
-                    break;
-                default:
-                    break;
+                    const response = await this.responsesService.sendPoll(questionPoll);
+                    await this.chatDataService.create({
+                        to_group: chat.chat_id,
+                        group_id: response?.result.chat.id,
+                        group_type: 'js',
+                        message_id: response?.result.message_id,
+                        result: 1,
+                        date: response?.result.date,
+                        question_id: question.id,
+                        poll_id: response?.result.poll.id,
+                        question_type: '_' + chat.question_img
+                    });
+                }
             }
         }
     }
@@ -65,6 +96,7 @@ exports.AutoPostService = AutoPostService = __decorate([
         build_question_service_1.BuildQuestionService,
         build_statList_service_1.BuildStatListService,
         responses_service_1.ResponsesService,
+        chat_data_service_1.ChatDataService,
         user_service_1.UserService])
 ], AutoPostService);
 //# sourceMappingURL=auto-post.service.js.map

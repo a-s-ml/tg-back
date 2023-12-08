@@ -9,8 +9,18 @@ export declare class ChatActController {
         res: number;
         dateadd: Date;
     }>;
-    findAll(): Promise<string>;
-    findOne(id: string): Promise<string>;
+    findAll(): Promise<{
+        id: number;
+        chat: bigint;
+        res: number;
+        dateadd: Date;
+    }[]>;
+    findOne(id: string): Promise<{
+        id: number;
+        chat: bigint;
+        res: number;
+        dateadd: Date;
+    }>;
     update(id: string, updateChatActDto: Prisma.chat_actUpdateInput): Promise<{
         id: number;
         chat: bigint;

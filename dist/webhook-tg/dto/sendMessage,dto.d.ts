@@ -1,17 +1,19 @@
 import { ReplyMarkupDto } from "src/constructors/keyboard/dto/keyboard.dto";
-export declare class SendMessageDto {
+import { MessageEntityDto } from "./MessageEntity.dto";
+export type SendMessageDto = {
     chat_id: number;
     message_thread_id?: number;
     text: string;
     parse_mode?: string;
-    entities?: object;
+    entities?: MessageEntityDto;
     disable_web_page_preview?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;
     reply_to_message_id?: number;
     allow_sending_without_reply?: boolean;
     reply_markup?: ReplyMarkupDto;
-}
+    [key: string]: number | string | boolean | object;
+};
 export declare class EditMessageTextDto {
     chat_id?: number;
     message_id: number;

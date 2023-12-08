@@ -13,7 +13,6 @@ exports.ResponsesController = void 0;
 const common_1 = require("@nestjs/common");
 const responses_service_1 = require("./responses.service");
 const answerCallbackQuery_dto_1 = require("../webhook-tg/dto/answerCallbackQuery.dto");
-const sendMessage_dto_1 = require("../webhook-tg/dto/sendMessage,dto");
 let ResponsesController = class ResponsesController {
     constructor(responsesService) {
         this.responsesService = responsesService;
@@ -29,7 +28,7 @@ exports.ResponsesController = ResponsesController;
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [sendMessage_dto_1.SendMessageDto]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], ResponsesController.prototype, "sendMessage", null);
 __decorate([

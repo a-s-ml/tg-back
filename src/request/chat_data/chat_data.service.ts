@@ -57,4 +57,16 @@ export class ChatDataService {
       }
     })
   }
+
+  async getLastPost(group_id: bigint) {
+    return await this.dbService.chat_data.findMany({
+      where: {
+        group_id: group_id,
+      },
+      orderBy: {
+        id: 'desc'
+      },
+      take: 1,
+    })
+  }
 }
