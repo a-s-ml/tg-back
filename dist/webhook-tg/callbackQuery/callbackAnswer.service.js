@@ -23,6 +23,7 @@ let CallbackAnswerService = class CallbackAnswerService {
         this.userService = userService;
     }
     async answer(callbackQuery) {
+        console.log(callbackQuery);
         const data = callbackQuery.data.split('_');
         const checkUser = await this.userService.findOne(callbackQuery.from.id);
         if (checkUser.length == 0) {
@@ -31,11 +32,13 @@ let CallbackAnswerService = class CallbackAnswerService {
                 is_bot: callbackQuery.from.is_bot ? 1 : 0
             };
             await this.userService.create(createUser);
+            await this.responsesService.sendLogToAdmin(`new_user answer:\n${callbackQuery.from.id}\n${callbackQuery.from.first_name} ${callbackQuery.from.username}`);
         }
         const checkAnswer = await this.answerService.findOneChat(callbackQuery.from.id, +data[1], callbackQuery.message.chat.id);
         let text;
         let reward;
         if (checkAnswer.length == 0) {
+            await this.responsesService.sendLogToAdmin(`new_answer answer:\n${callbackQuery.from.id}\n${callbackQuery.from.first_name} ${callbackQuery.from.username}`);
             const question = await this.questionService.findOne(+data[1]);
             if (data[2] == question.answerright) {
                 reward = question.slog;

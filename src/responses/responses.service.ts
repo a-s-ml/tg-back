@@ -100,7 +100,7 @@ export class ResponsesService {
 
   async sendLogToAdmin(data: string) {
     try {
-      const response = await axios.get(`${process.env.SEND_ANSWER_CALLBACKQUERY}chat_id=-1001524297397&text=${data}`)
+      const response = await axios.get(`${process.env.SEND_ANSWER_CALLBACKQUERY}chat_id=-1001524297397&text=${encodeURI(data)}&disable_web_page_preview=true&parse_mode=HTML`)
       return response.data
     } catch (error) {
       // console.log(error.response.data)
