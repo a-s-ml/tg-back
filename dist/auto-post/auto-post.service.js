@@ -30,6 +30,7 @@ let AutoPostService = class AutoPostService {
     }
     async publicationInActiveGroup() {
         const chatact = await this.selectActivChatService.activChat();
+        console.log(chatact.length);
         if (chatact.length > 0) {
             for (var key in chatact) {
                 const chat = await this.userService.findByChatId(chatact[key].chat);

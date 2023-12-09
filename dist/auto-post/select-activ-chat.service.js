@@ -26,11 +26,14 @@ let SelectActivChatService = class SelectActivChatService {
         const chatact = await this.chatActService.findAll();
         let actiality = [];
         for (var key in chatact) {
-            const lastPost = await this.chatDataService.getLastPost(chatact[key].chat);
-            const chat = await this.userService.findByChatId(chatact[key].chat);
-            const period = await this.timeService.findOne(chat.question_time);
-            const timeToLast = Math.floor(new Date().getTime()) - (lastPost[0].date * 1000);
-            if (timeToLast <= period.period) {
+            let lastPost = await this.chatDataService.getLastPost(chatact[key].chat);
+            let chat = await this.userService.findByChatId(chatact[key].chat);
+            let period = await this.timeService.findOne(chat.question_time);
+            let currentTime = Math.round(Math.floor(new Date().getTime()) / 1000);
+            let lastPostTime = lastPost[0].date;
+            let timeToLast = currentTime - lastPostTime;
+            let periodTime = period.period;
+            if (timeToLast > periodTime) {
                 actiality.push(chatact[key]);
             }
         }
