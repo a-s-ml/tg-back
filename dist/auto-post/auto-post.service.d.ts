@@ -5,6 +5,7 @@ import { ResponsesService } from 'src/responses/responses.service';
 import { BuildStatListService } from 'src/constructors/statList/build-statList.service';
 import { ChatService } from 'src/request/chat/chat.service';
 import { ChatDataService } from 'src/request/chat-data/chat-data.service';
+import { ChatActiveService } from 'src/request/chat-active/chat-active.service';
 export declare class AutoPostService {
     private selectQuestionService;
     private selectActivChatService;
@@ -13,7 +14,8 @@ export declare class AutoPostService {
     private responsesService;
     private chatDataService;
     private chatService;
-    constructor(selectQuestionService: SelectQuestionService, selectActivChatService: SelectActivChatService, buildQuestionService: BuildQuestionService, buildStatListService: BuildStatListService, responsesService: ResponsesService, chatDataService: ChatDataService, chatService: ChatService);
+    private chatActiveService;
+    constructor(selectQuestionService: SelectQuestionService, selectActivChatService: SelectActivChatService, buildQuestionService: BuildQuestionService, buildStatListService: BuildStatListService, responsesService: ResponsesService, chatDataService: ChatDataService, chatService: ChatService, chatActiveService: ChatActiveService);
     publicationInActiveGroup(): Promise<void>;
     publicationInActiveGroupStat(): Promise<void>;
 }

@@ -6,6 +6,7 @@ import { ResponsesService } from 'src/responses/responses.service';
 import { BuildStatListService } from 'src/constructors/statList/build-statList.service';
 import { ChatService } from 'src/request/chat/chat.service';
 import { ChatDataService } from 'src/request/chat-data/chat-data.service';
+import { ChatActiveService } from 'src/request/chat-active/chat-active.service';
 
 @Injectable()
 export class AutoPostService {
@@ -17,7 +18,8 @@ export class AutoPostService {
         private buildStatListService: BuildStatListService,
         private responsesService: ResponsesService,
         private chatDataService: ChatDataService,
-        private chatService: ChatService
+        private chatService: ChatService,        
+        private chatActiveService: ChatActiveService
     ) { }
 
     async publicationInActiveGroup() {
@@ -30,42 +32,54 @@ export class AutoPostService {
                 if (chat.question_type === 3) {
                     const questionTest = await this.buildQuestionService.questionText(question.id, chatact[key].chat)
                     const response = await this.responsesService.sendMessage(questionTest)
-                    await this.chatDataService.create({
-                        group: response?.result.chat.id,
-                        group_type: 'js',
-                        message_id: response?.result.message_id,
-                        result: 1,
-                        date: response?.result.date,
-                        question_id: question.id,
-                        question_type: '_' + chat.question_type
-                    })
+                    if (response) {
+                        await this.chatDataService.create({
+                            group: response.result.chat.id,
+                            group_type: 'js',
+                            message_id: response.result.message_id,
+                            result: 1,
+                            date: response.result.date,
+                            question_id: question.id,
+                            question_type: '_' + chat.question_type
+                        })
+                    } else {
+                        await this.chatActiveService.remove(chatact[key].chat)
+                    }
                 }
                 if (chat.question_type === 1) {
                     const questionImg = await this.buildQuestionService.questionImg(question.id, chatact[key].chat)
                     const response = await this.responsesService.sendPhoto(questionImg)
-                    await this.chatDataService.create({
-                        group: response?.result.chat.id,
-                        group_type: 'js',
-                        message_id: response?.result.message_id,
-                        result: 1,
-                        date: response?.result.date,
-                        question_id: question.id,
-                        question_type: '_' + chat.question_type
-                    })
+                    if (response) {
+                        await this.chatDataService.create({
+                            group: response.result.chat.id,
+                            group_type: 'js',
+                            message_id: response.result.message_id,
+                            result: 1,
+                            date: response.result.date,
+                            question_id: question.id,
+                            question_type: '_' + chat.question_type
+                        })
+                    } else {
+                        await this.chatActiveService.remove(chatact[key].chat)
+                    }
                 }
                 if (chat.question_type === 2) {
                     const questionPoll = await this.buildQuestionService.questionPoll(question.id, chatact[key].chat)
                     const response = await this.responsesService.sendPoll(questionPoll)
-                    await this.chatDataService.create({
-                        group: response?.result.chat.id,
-                        group_type: 'js',
-                        message_id: response?.result.message_id,
-                        result: 1,
-                        date: response?.result.date,
-                        question_id: question.id,
-                        poll_id: response?.result.poll.id,
-                        question_type: '_' + chat.question_type
-                    })
+                    if (response) {
+                        await this.chatDataService.create({
+                            group: response.result.chat.id,
+                            group_type: 'js',
+                            message_id: response.result.message_id,
+                            result: 1,
+                            date: response.result.date,
+                            question_id: question.id,
+                            poll_id: response.result.poll.id,
+                            question_type: '_' + chat.question_type
+                        })
+                    } else {
+                        await this.chatActiveService.remove(chatact[key].chat)
+                    }
                 }
             }
         }

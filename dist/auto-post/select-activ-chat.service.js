@@ -38,7 +38,7 @@ let SelectActivChatService = class SelectActivChatService {
             }
         }
         console.log(actiality);
-        return [];
+        return actiality;
     }
 };
 exports.SelectActivChatService = SelectActivChatService;
