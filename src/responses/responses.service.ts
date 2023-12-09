@@ -38,7 +38,7 @@ export class ResponsesService {
 
   async sendPoll(message: SendPollDto) {
     try {
-      const response = await axios.get(`${process.env.SEND_POLL}chat_id=${message.chat_id}&question=${message.question}&options=${JSON.stringify(message.options)}&correct_option_id=${message.correct_option_id}&disable_web_page_preview=true&parse_mode=HTML`)
+      const response = await axios.get(`${process.env.SEND_POLL}chat_id=${message.chat_id}&question=${message.question}&options=${JSON.stringify(message.options)}&correct_option_id=${message.correct_option_id}&is_anonymous=false&disable_web_page_preview=true&parse_mode=HTML`)
       return response.data
     } catch (error) {
       // console.log(error.response.data)

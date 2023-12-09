@@ -31,6 +31,7 @@ export class SelectActivChatService {
                 actiality.push(chatact[key])
             }
         }
+        console.log(actiality)
         return actiality
     }
 
