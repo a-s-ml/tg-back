@@ -16,6 +16,7 @@ export class CallbackAnswerService {
     ) { }
 
     async answer(callbackQuery: CallbackQueryDto) {
+        console.log(callbackQuery)
         const data = callbackQuery.data.split('_')
         const checkUser = await this.userService.findOne(callbackQuery.from.id)
         if (checkUser.length == 0) {
