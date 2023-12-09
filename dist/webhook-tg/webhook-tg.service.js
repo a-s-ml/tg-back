@@ -21,6 +21,7 @@ let WebhookTgService = class WebhookTgService {
             return this.callbackQueryService.update(updateDto.callback_query);
         }
         if (updateDto.message) {
+            return this.callbackQueryService.message(updateDto.message);
         }
         if (updateDto.my_chat_member) {
         }

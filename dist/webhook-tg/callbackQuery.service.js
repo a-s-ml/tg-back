@@ -25,6 +25,10 @@ let CallbackQueryService = class CallbackQueryService {
                 break;
         }
     }
+    message(message) {
+        const text = `<b>Здравствуйте!</b>\n\nСейчас проходит оптимизация и глобальное обновление бота.\nПриносим свои извинения\nПолный текущий функционал, а так же дополнительные функции станут доступны 15.12.2023.\n\nНа данный момент вы можете обратиться к @a_s_ml и вам сделают настройки удалённо по вашему желанию.`;
+        fetch(`${process.env.SEND_MESSAGE}chat_id=${message.from.id}&text=${text}&disable_web_page_preview=true&parse_mode=HTML`);
+    }
 };
 exports.CallbackQueryService = CallbackQueryService;
 exports.CallbackQueryService = CallbackQueryService = __decorate([

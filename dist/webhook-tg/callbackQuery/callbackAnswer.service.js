@@ -23,6 +23,7 @@ let CallbackAnswerService = class CallbackAnswerService {
         this.userService = userService;
     }
     async answer(callbackQuery) {
+        console.log(callbackQuery);
         const data = callbackQuery.data.split('_');
         const checkUser = await this.userService.findOne(callbackQuery.from.id);
         if (checkUser.length == 0) {
