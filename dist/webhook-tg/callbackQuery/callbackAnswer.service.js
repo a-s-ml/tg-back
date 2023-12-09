@@ -23,7 +23,6 @@ let CallbackAnswerService = class CallbackAnswerService {
         this.userService = userService;
     }
     async answer(callbackQuery) {
-        console.log(callbackQuery);
         const data = callbackQuery.data.split('_');
         const checkUser = await this.userService.findOne(callbackQuery.from.id);
         if (checkUser.length == 0) {
@@ -40,11 +39,11 @@ let CallbackAnswerService = class CallbackAnswerService {
             const question = await this.questionService.findOne(+data[1]);
             if (data[2] == question.answerright) {
                 reward = question.slog;
-                text = `Верно! \n\nдобавлено "${reward}" очков`;
+                text = `Верно! \n\nДобавлено "${question.slog}" очков`;
             }
             else {
                 reward = -question.slog;
-                text = `Не верно! \n\nвычтено "${-reward}" очков`;
+                text = `Не верно! \n\nВычтено "${question.slog}" очков`;
             }
             await this.answerService.create({ chat_id: callbackQuery.from.id, questionid: +data[1], group_id: callbackQuery.message.chat.id, choice: +data[2], reward: reward });
         }
@@ -53,7 +52,7 @@ let CallbackAnswerService = class CallbackAnswerService {
         }
         const res = {
             callback_query_id: callbackQuery.id,
-            text: text
+            text: encodeURI(text)
         };
         await this.responsesService.answerCallbackQuery(res);
     }
