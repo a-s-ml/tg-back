@@ -84,9 +84,12 @@ let QuestionService = class QuestionService {
         console.log(id);
         const question = await this.findAll();
         for (var key in question) {
-            const count = await this.countReward(question[key].id);
+            let count = await this.countReward(question[key].id);
+            if (!Number.isInteger(count)) {
+                count = 100;
+            }
             await this.update(question[key].id, { reward: count });
-            console.log(question[key].id + '-' + count);
+            console.log(question[key].id + ' - ' + count);
         }
     }
 };
