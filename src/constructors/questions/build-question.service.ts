@@ -29,12 +29,12 @@ export class BuildQuestionService {
         }
     }
 
-    async questionText(id: number) {
+    async questionText(id: number, chat: number | bigint) {
         const question = await this.questionService.findOne(id)
         const reply_markup = await this.buildKeyboardService.questionInlineKeboard(question.id)
         const body = await this.questionBody(question)
         const url: SendMessageDto = {
-            chat_id: 521884639,
+            chat_id: chat,
             text: body.header + body.text + body.footer,
             reply_markup: reply_markup,
             disable_web_page_preview: true,
@@ -42,22 +42,22 @@ export class BuildQuestionService {
         }
         return url
     }
-    async questionPoll(id: number) {
+    async questionPoll(id: number, chat: number | bigint) {
         const question = await this.questionService.findOne(id)
         const url: SendPollDto = {
-            chat_id: 521884639,
+            chat_id: chat,
             question: encodeURI(question.text),
             options: [question.answer1, question.answer2, question.answer3, question.answer4],
             correct_option_id: question.answerright
         }
         return url
     }
-    async questionImg(id: number) {
+    async questionImg(id: number, chat: number | bigint) {
         const question = await this.questionService.findOne(id)
         const reply_markup = await this.buildKeyboardService.questionInlineKeboard(question.id)
         const body = await this.questionBody(question)
         const url: SendPhotoDto = {
-            chat_id: 521884639,
+            chat_id: chat,
             caption: body.header + body.footer,
             photo: question.img,
             reply_markup: reply_markup

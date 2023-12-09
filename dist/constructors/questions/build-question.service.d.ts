@@ -15,7 +15,7 @@ export declare class BuildQuestionService {
         text: string;
         footer: string;
     }>;
-    questionText(id: number): Promise<SendMessageDto>;
-    questionPoll(id: number): Promise<SendPollDto>;
-    questionImg(id: number): Promise<SendPhotoDto>;
+    questionText(id: number, chat: number | bigint): Promise<SendMessageDto>;
+    questionPoll(id: number, chat: number | bigint): Promise<SendPollDto>;
+    questionImg(id: number, chat: number | bigint): Promise<SendPhotoDto>;
 }

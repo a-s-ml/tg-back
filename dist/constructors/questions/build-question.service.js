@@ -31,12 +31,12 @@ let BuildQuestionService = class BuildQuestionService {
             footer: encodeURI(footer)
         };
     }
-    async questionText(id) {
+    async questionText(id, chat) {
         const question = await this.questionService.findOne(id);
         const reply_markup = await this.buildKeyboardService.questionInlineKeboard(question.id);
         const body = await this.questionBody(question);
         const url = {
-            chat_id: 521884639,
+            chat_id: chat,
             text: body.header + body.text + body.footer,
             reply_markup: reply_markup,
             disable_web_page_preview: true,
@@ -44,22 +44,22 @@ let BuildQuestionService = class BuildQuestionService {
         };
         return url;
     }
-    async questionPoll(id) {
+    async questionPoll(id, chat) {
         const question = await this.questionService.findOne(id);
         const url = {
-            chat_id: 521884639,
+            chat_id: chat,
             question: encodeURI(question.text),
             options: [question.answer1, question.answer2, question.answer3, question.answer4],
             correct_option_id: question.answerright
         };
         return url;
     }
-    async questionImg(id) {
+    async questionImg(id, chat) {
         const question = await this.questionService.findOne(id);
         const reply_markup = await this.buildKeyboardService.questionInlineKeboard(question.id);
         const body = await this.questionBody(question);
         const url = {
-            chat_id: 521884639,
+            chat_id: chat,
             caption: body.header + body.footer,
             photo: question.img,
             reply_markup: reply_markup

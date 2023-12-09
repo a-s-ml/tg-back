@@ -2,7 +2,7 @@ import { ReplyMarkupDto } from "src/constructors/keyboard/dto/keyboard.dto"
 import { MessageEntityDto } from "./MessageEntity.dto"
 
 export type SendMessageDto = {
-    chat_id: number
+    chat_id: number | bigint
     message_thread_id?: number
     text: string
     parse_mode?: string
@@ -13,7 +13,7 @@ export type SendMessageDto = {
     reply_to_message_id?: number
     allow_sending_without_reply?: boolean
     reply_markup?: ReplyMarkupDto
-    [key: string]: number | string | boolean | object;
+    [key: string]: number | string | boolean | object | bigint;
 }
 
 export class EditMessageTextDto {

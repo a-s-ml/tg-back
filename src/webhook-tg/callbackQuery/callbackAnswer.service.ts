@@ -33,14 +33,14 @@ export class CallbackAnswerService {
             const question = await this.questionService.findOne(+data[1])
             if (data[2] as unknown as number == question.answerright) {
                 reward = question.slog
-                text = `Верно\n\nдобавлено "${reward}" очков`
+                text = `Верно! \n\nдобавлено "${reward}" очков`
             } else {
                 reward = -question.slog
-                text = `Не верно\n\nвычтено "${-reward}" очков`
+                text = `Не верно! \n\nвычтено "${-reward}" очков`
             }
             await this.answerService.create({ chat_id: callbackQuery.from.id, questionid: +data[1], group_id: callbackQuery.message.chat.id, choice: +data[2], reward: reward })
         } else {
-            text = `Вы уже двали ответ на этот вопрос`
+            text = `Вы уже двали ответ на этот вопрос!`
         }
         const res = {
             callback_query_id: callbackQuery.id,

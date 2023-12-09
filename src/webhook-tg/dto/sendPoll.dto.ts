@@ -1,7 +1,7 @@
 import { ReplyMarkupDto } from "src/constructors/keyboard/dto/keyboard.dto"
 
 export class SendPollDto {
-    chat_id: number
+    chat_id: number | bigint
     message_thread_id?: number
     question: string
     options: string[]

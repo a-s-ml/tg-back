@@ -27,7 +27,7 @@ export class AutoPostService {
                 const chat = await this.userService.findByChatId(chatact[key].chat)
                 const question = await this.selectQuestionService.availableQuestion(chatact[key].chat)
                 if (chat.question_img === 0) {
-                    const questionTest = await this.buildQuestionService.questionText(question.id)
+                    const questionTest = await this.buildQuestionService.questionText(question.id, chatact[key].chat)
                     const response = await this.responsesService.sendMessage(questionTest)
                     await this.chatDataService.create({
                         to_group: chat.chat_id,
@@ -41,7 +41,7 @@ export class AutoPostService {
                     })
                 }
                 if (chat.question_img === 1) {
-                    const questionImg = await this.buildQuestionService.questionImg(question.id)
+                    const questionImg = await this.buildQuestionService.questionImg(question.id, chatact[key].chat)
                     const response = await this.responsesService.sendPhoto(questionImg)
                     await this.chatDataService.create({
                         to_group: chat.chat_id,
@@ -55,7 +55,7 @@ export class AutoPostService {
                     })
                 }
                 if (chat.question_img === 2) {
-                    const questionPoll = await this.buildQuestionService.questionPoll(question.id)
+                    const questionPoll = await this.buildQuestionService.questionPoll(question.id, chatact[key].chat)
                     const response = await this.responsesService.sendPoll(questionPoll)
                     await this.chatDataService.create({
                         to_group: chat.chat_id,
