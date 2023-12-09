@@ -15,13 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TimeController = void 0;
 const common_1 = require("@nestjs/common");
 const time_service_1 = require("./time.service");
-const client_1 = require("@prisma/client");
 let TimeController = class TimeController {
     constructor(timeService) {
         this.timeService = timeService;
-    }
-    create(createTimeDto) {
-        return this.timeService.create(createTimeDto);
     }
     findAll() {
         return this.timeService.findAll();
@@ -29,21 +25,8 @@ let TimeController = class TimeController {
     findOne(id) {
         return this.timeService.findOne(+id);
     }
-    update(id, updateTimeDto) {
-        return this.timeService.update(+id, updateTimeDto);
-    }
-    remove(id) {
-        return this.timeService.remove(+id);
-    }
 };
 exports.TimeController = TimeController;
-__decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], TimeController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
@@ -57,21 +40,6 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], TimeController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
-    __metadata("design:returntype", void 0)
-], TimeController.prototype, "update", null);
-__decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], TimeController.prototype, "remove", null);
 exports.TimeController = TimeController = __decorate([
     (0, common_1.Controller)('time'),
     __metadata("design:paramtypes", [time_service_1.TimeService])

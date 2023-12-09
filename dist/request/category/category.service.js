@@ -29,21 +29,6 @@ let CategoryService = class CategoryService {
             }
         });
     }
-    async update(id, updateCategoryDto) {
-        return await this.dbService.category.update({
-            where: {
-                id,
-            },
-            data: updateCategoryDto
-        });
-    }
-    async remove(id) {
-        return await this.dbService.category.delete({
-            where: {
-                id,
-            }
-        });
-    }
 };
 exports.CategoryService = CategoryService;
 exports.CategoryService = CategoryService = __decorate([

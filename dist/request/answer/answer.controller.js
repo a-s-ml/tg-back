@@ -26,9 +26,6 @@ let AnswerController = class AnswerController {
     findAll() {
         return this.answerService.findAll();
     }
-    findOne(id) {
-        return this.answerService.findOne(+id);
-    }
     update(id, updateAnswerDto) {
         return this.answerService.update(+id, updateAnswerDto);
     }
@@ -53,13 +50,6 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AnswerController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], AnswerController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),

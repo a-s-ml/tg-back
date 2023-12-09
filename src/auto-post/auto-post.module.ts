@@ -5,30 +5,30 @@ import { SelectQuestionService } from './select-questions.service';
 import { SelectActivChatService } from './select-activ-chat.service';
 
 import { QuestionModule } from 'src/request/question/question.module';
-import { ChatDataModule } from 'src/request/chat_data/chat_data.module';
-import { ChatCatModule } from 'src/request/chat_cat/chat_cat.module';
 import { ConstructorsModule } from 'src/constructors/constructors.module';
-import { UserModule } from 'src/request/user/user.module';
-import { ChatActService } from 'src/request/chat_act/chat_act.service';
-import { ChatDataService } from 'src/request/chat_data/chat_data.service';
 import { TimeService } from 'src/request/time/time.service';
-import { UserService } from 'src/request/user/user.service';
+import { ChatModule } from 'src/request/chat/chat.module';
+import { ChatService } from 'src/request/chat/chat.service';
+import { ChatDataModule } from 'src/request/chat-data/chat-data.module';
+import { ChatDataService } from 'src/request/chat-data/chat-data.service';
+import { ChatCategoryModule } from 'src/request/chat-category/chat-category.module';
+import { ChatActiveService } from 'src/request/chat-active/chat-active.service';
 
 @Module({
     imports: [
         QuestionModule,
         ChatDataModule,
-        ChatCatModule,
+        ChatCategoryModule,
         ConstructorsModule,
-        UserModule
+        ChatModule
     ],
     providers: [
         AutoPostService,
         SelectActivChatService,
         SelectQuestionService,
-        ChatActService,
+        ChatActiveService,
         ChatDataService,
-        UserService,
+        ChatService,
         TimeService
     ],
     exports: [

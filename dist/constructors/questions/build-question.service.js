@@ -22,7 +22,7 @@ let BuildQuestionService = class BuildQuestionService {
     }
     async questionBody(question) {
         const category = await this.categoryService.findOne(question.category);
-        const header = `<b>Вопрос:</b> №${question.id}\n<b>Категория</b>: ${category.name}\n<b>Сложность:</b> ${question.slog}\n\n`;
+        const header = `<b>Вопрос:</b> №${question.id}\n<b>Категория</b>: ${category.name}\n<b>Сложность:</b> ${question.reward}\n\n`;
         const footer = '| <b><a href="https://t.me/more_bio_bot/more_bio">Статистика</a></b> | <b><a href="https://t.me/more_bio_bot/more_bio">Ошибка</a></b> |';
         let body;
         return body = {

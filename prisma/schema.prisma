@@ -8,121 +8,23 @@ datasource db {
   relationMode = "prisma"
 }
 
-model admin_bot {
-  id      Int    @id @default(autoincrement())
-  bot     Int
-  chat_id BigInt
-}
-
-model alert_q {
-  id          Int      @default(autoincrement())
-  chat_id     BigInt
-  question_id Int
-  dateadd     DateTime @default(now()) @db.Timestamp(0)
-
-  @@id([id, chat_id, question_id])
-}
-
 model answer {
-  id         Int      @unique(map: "id_UNIQUE") @default(autoincrement())
-  chat_id    BigInt
-  questionid Int
-  group_id   BigInt
-  choice     Int
-  reward     Float
-  dateadd    DateTime @default(now()) @db.Timestamp(0)
+  id       Int      @unique(map: "id_UNIQUE") @default(autoincrement())
+  chat     BigInt
+  question Int
+  group    BigInt
+  choice   Int
+  reward   Float
+  date     DateTime @default(now()) @db.Timestamp(0)
 
-  @@id([id, chat_id, questionid, group_id])
-}
-
-model category {
-  id   Int    @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  name String @unique(map: "name_UNIQUE") @db.VarChar(255)
-
-  @@index([name], map: "name")
-}
-
-model chat_act {
-  id      Int      @unique(map: "id_UNIQUE") @default(autoincrement())
-  chat    BigInt
-  res     Int
-  dateadd DateTime @default(now()) @db.Timestamp(0)
-
-  @@id([id, chat])
-}
-
-model chat_cat {
-  id      Int      @unique(map: "id") @default(autoincrement())
-  chat_id BigInt
-  cat_id  Int
-  dateadd DateTime @default(now()) @db.Timestamp(0)
-
-  @@id([id, chat_id, cat_id])
-}
-
-model chat_data {
-  id            Int      @unique(map: "id_UNIQUE") @default(autoincrement())
-  to_group      BigInt
-  group_id      BigInt
-  thread        Int      @default(0)
-  group_type    String   @db.VarChar(255)
-  result        Int
-  message_id    BigInt
-  date          Int
-  date_add      DateTime @default(now()) @db.Timestamp(0)
-  question_id   Int
-  question_type String   @default("0") @db.VarChar(155)
-  poll_id       BigInt   @default(0)
-  subscribers   Int      @default(0)
-
-  @@id([id, group_id, question_id])
-}
-
-model like_q {
-  id          Int      @unique(map: "id_UNIQUE") @default(autoincrement())
-  chat_id     BigInt
-  question_id Int
-  dateadd     DateTime @default(now()) @db.Timestamp(0)
-
-  @@id([id, chat_id, question_id])
-}
-
-model menu {
-  id         Int    @id @default(autoincrement())
-  parrent_id Int
-  name       String @db.VarChar(45)
-  text       String @db.VarChar(45)
-  sort       Int
-  icon       String @db.VarChar(45)
-}
-
-model notice {
-  id      Int      @default(autoincrement())
-  type    String   @db.VarChar(255)
-  chat_id BigInt
-  dateadd DateTime @default(now()) @db.Timestamp(0)
-  text    String   @db.VarChar(255)
-  readn   Int      @default(0)
-
-  @@id([id, chat_id])
-}
-
-model pay {
-  id          Int      @id @default(autoincrement())
-  chat_id     BigInt
-  amount      Float    @default(0)
-  type        String   @default("0") @db.VarChar(255)
-  question_id Int
-  group_id    BigInt
-  moderate    Int      @default(0)
-  dateadd     DateTime @default(now()) @db.Timestamp(0)
+  @@id([id, chat, question, group])
 }
 
 model question {
   id          Int      @unique(map: "id_UNIQUE") @default(autoincrement())
   text        String   @db.VarChar(700)
-  dateadd     DateTime @default(now()) @db.Timestamp(0)
-  chat_id     BigInt   @default(0)
+  date        DateTime @default(now()) @db.Timestamp(0)
+  chat        BigInt   @default(0)
   category    Int
   answer1     String   @db.VarChar(255)
   answer2     String   @db.VarChar(255)
@@ -132,13 +34,12 @@ model question {
   isactual    Int      @default(0)
   mod         Int      @default(0)
   img         String?  @default("0") @db.VarChar(255)
-  slog        Float    @default(50)
-  answers     Int      @default(0)
+  reward      Int?     @default(50)
 
-  @@id([id, chat_id, category])
+  @@id([id, chat, category])
   @@index([text], map: "fulltext")
   @@index([category], map: "id_cat")
-  @@index([chat_id], map: "tgid")
+  @@index([chat], map: "tgid")
 }
 
 model time {
@@ -147,37 +48,64 @@ model time {
   period Int
 }
 
-model timeLine {
-  id     Int    @id @default(autoincrement())
-  name   String @db.VarChar(255)
-  period Int
+model chat {
+  id            Int      @unique(map: "id_UNIQUE") @default(autoincrement())
+  chat          BigInt   @unique(map: "chat_id_UNIQUE")
+  type          String   @default("1") @db.VarChar(45)
+  bot           Int      @default(0)
+  date          DateTime @default(now()) @db.Timestamp(0)
+  referral      BigInt   @default(0)
+  question_type Int      @default(1)
+  time          Int      @default(5)
+
+  @@id([id, chat, referral])
 }
 
-model user {
-  id                  Int      @unique(map: "id_UNIQUE") @default(autoincrement())
-  chat_id             BigInt   @unique(map: "chat_id_UNIQUE")
-  is_bot              Int      @default(0) @db.TinyInt
-  activ               Int      @default(1)
-  longitude           Float?   @default(0)
-  latitude            Float?   @default(0)
-  date_reg            DateTime @default(now()) @db.Timestamp(0)
-  last_up             DateTime @default(now()) @db.Timestamp(0)
-  cash_f_w            Float    @default(0)
-  cash_a_w            Float    @default(0)
-  cash_q_w            Float    @default(0)
-  cash_f_m            Float    @default(0)
-  cash_a_m            Float    @default(0)
-  cash_q_m            Float    @default(0)
-  cash_all            Float    @default(0)
-  luck                Float    @default(0)
-  referral            BigInt   @default(0)
-  question_img        Int      @default(1)
-  question_time       Int      @default(5)
-  question_timeLine   Int      @default(17)
-  question_slog_start Int      @default(0)
-  question_slog_end   Int      @default(100)
-  d_stst              Int      @default(1)
-  fkwallet            String   @default("0") @db.VarChar(255)
+model category {
+  id   Int    @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  name String @unique(map: "name_UNIQUE") @db.VarChar(255)
 
-  @@id([id, chat_id, referral])
+  @@index([name], map: "name")
+}
+
+model chatActive {
+  id   Int    @unique(map: "id_UNIQUE") @default(autoincrement())
+  chat BigInt @unique(map: "chat_UNIQUE")
+
+  @@id([id, chat])
+}
+
+model chatCategory {
+  id       Int    @unique(map: "id") @default(autoincrement())
+  chat     BigInt
+  category Int
+
+  @@id([id, chat, category])
+}
+
+model chatData {
+  id            Int    @unique(map: "id_UNIQUE") @default(autoincrement())
+  group         BigInt
+  thread        Int    @default(0)
+  group_type    String @db.VarChar(255)
+  result        Int
+  message_id    BigInt
+  date          Int
+  question_id   Int
+  question_type String @default("0") @db.VarChar(155)
+  poll_id       BigInt @default(0)
+
+  @@id([id, group, question_id, question_type, message_id, result])
+}
+
+model chatType {
+  id   Int    @unique(map: "id_UNIQUE") @default(autoincrement())
+  name String @unique(map: "name_UNIQUE") @db.VarChar(45)
+
+  @@id([id, name])
+}
+
+model questionType {
+  id   Int    @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  name String @unique(map: "name_UNIQUE") @db.VarChar(45)
 }

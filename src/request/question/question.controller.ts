@@ -26,8 +26,24 @@ export class QuestionController {
     return this.questionService.update(+id, updateQuestionDto);
   }
 
+  @Get('countReward/:id')
+  countReward(@Param('id') id: string) {
+    return this.questionService.countReward(+id);
+  }
+
+  @Get('count/:id')
+  count(@Param('id') id: string) {
+    return this.questionService.count(+id);
+  }
+
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.questionService.remove(+id);
+  }
+
+  @Get('generate/:id')
+  generate(@Param('id') id: string) {
+    console.log('generate '+id)
+    return this.questionService.generate(+id);
   }
 }

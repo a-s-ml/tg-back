@@ -15,12 +15,4 @@ export declare class CategoryService {
         id: number;
         name: string;
     }>;
-    update(id: number, updateCategoryDto: Prisma.categoryUpdateInput): Promise<{
-        id: number;
-        name: string;
-    }>;
-    remove(id: number): Promise<{
-        id: number;
-        name: string;
-    }>;
 }

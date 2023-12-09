@@ -3,5 +3,5 @@ import { UpdateDto } from './dto/update.dto';
 export declare class WebhookTgController {
     private webhookTg;
     constructor(webhookTg: WebhookTgService);
-    update(updateDto: UpdateDto): void | Promise<void>;
+    update(updateDto: UpdateDto): Promise<void>;
 }

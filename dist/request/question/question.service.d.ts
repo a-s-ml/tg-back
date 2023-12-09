@@ -6,8 +6,8 @@ export declare class QuestionService {
     create(createQuestionDto: Prisma.questionCreateInput): Promise<{
         id: number;
         text: string;
-        dateadd: Date;
-        chat_id: bigint;
+        date: Date;
+        chat: bigint;
         category: number;
         answer1: string;
         answer2: string;
@@ -17,14 +17,13 @@ export declare class QuestionService {
         isactual: number;
         mod: number;
         img: string;
-        slog: number;
-        answers: number;
+        reward: number;
     }>;
     findAll(): Promise<{
         id: number;
         text: string;
-        dateadd: Date;
-        chat_id: bigint;
+        date: Date;
+        chat: bigint;
         category: number;
         answer1: string;
         answer2: string;
@@ -34,14 +33,13 @@ export declare class QuestionService {
         isactual: number;
         mod: number;
         img: string;
-        slog: number;
-        answers: number;
+        reward: number;
     }[]>;
     findOne(id: number): Promise<{
         id: number;
         text: string;
-        dateadd: Date;
-        chat_id: bigint;
+        date: Date;
+        chat: bigint;
         category: number;
         answer1: string;
         answer2: string;
@@ -51,8 +49,7 @@ export declare class QuestionService {
         isactual: number;
         mod: number;
         img: string;
-        slog: number;
-        answers: number;
+        reward: number;
     }>;
     findOneAnswers(id: number): Promise<{
         answer1: string;
@@ -63,8 +60,8 @@ export declare class QuestionService {
     update(id: number, updateQuestionDto: Prisma.questionUpdateInput): Promise<{
         id: number;
         text: string;
-        dateadd: Date;
-        chat_id: bigint;
+        date: Date;
+        chat: bigint;
         category: number;
         answer1: string;
         answer2: string;
@@ -74,14 +71,13 @@ export declare class QuestionService {
         isactual: number;
         mod: number;
         img: string;
-        slog: number;
-        answers: number;
+        reward: number;
     }>;
     remove(id: number): Promise<{
         id: number;
         text: string;
-        dateadd: Date;
-        chat_id: bigint;
+        date: Date;
+        chat: bigint;
         category: number;
         answer1: string;
         answer2: string;
@@ -91,7 +87,9 @@ export declare class QuestionService {
         isactual: number;
         mod: number;
         img: string;
-        slog: number;
-        answers: number;
+        reward: number;
     }>;
+    countReward(question: number): Promise<number>;
+    count(question: number): Promise<number>;
+    generate(id: number): Promise<void>;
 }

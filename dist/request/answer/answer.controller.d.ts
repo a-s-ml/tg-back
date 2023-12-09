@@ -5,50 +5,41 @@ export declare class AnswerController {
     constructor(answerService: AnswerService);
     create(createAnswerDto: Prisma.answerCreateInput): Promise<{
         id: number;
-        chat_id: bigint;
-        questionid: number;
-        group_id: bigint;
+        chat: bigint;
+        question: number;
+        group: bigint;
         choice: number;
         reward: number;
-        dateadd: Date;
+        date: Date;
     }>;
     findAll(): Promise<{
         id: number;
-        chat_id: bigint;
-        questionid: number;
-        group_id: bigint;
+        chat: bigint;
+        question: number;
+        group: bigint;
         choice: number;
         reward: number;
-        dateadd: Date;
+        date: Date;
     }[]>;
-    findOne(id: string): Promise<{
-        id: number;
-        chat_id: bigint;
-        questionid: number;
-        group_id: bigint;
-        choice: number;
-        reward: number;
-        dateadd: Date;
-    }>;
     update(id: string, updateAnswerDto: Prisma.answerUpdateInput): Promise<{
         id: number;
-        chat_id: bigint;
-        questionid: number;
-        group_id: bigint;
+        chat: bigint;
+        question: number;
+        group: bigint;
         choice: number;
         reward: number;
-        dateadd: Date;
+        date: Date;
     }>;
     remove(id: string): Promise<{
         id: number;
-        chat_id: bigint;
-        questionid: number;
-        group_id: bigint;
+        chat: bigint;
+        question: number;
+        group: bigint;
         choice: number;
         reward: number;
-        dateadd: Date;
+        date: Date;
     }>;
-    getStatChat(id: bigint): Promise<(Prisma.PickEnumerable<Prisma.AnswerGroupByOutputType, "chat_id"[]> & {
+    getStatChat(id: bigint): Promise<(Prisma.PickEnumerable<Prisma.AnswerGroupByOutputType, "chat"[]> & {
         _sum: {
             reward: number;
         };

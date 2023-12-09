@@ -1,28 +1,27 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
-import { ChatActService } from 'src/request/chat_act/chat_act.service';
-import { ChatDataService } from 'src/request/chat_data/chat_data.service';
 import { TimeService } from 'src/request/time/time.service';
-import { UserService } from 'src/request/user/user.service';
 import { ActualityDto } from './dto/actuality.dto';
+import { ChatActiveService } from 'src/request/chat-active/chat-active.service';
+import { ChatDataService } from 'src/request/chat-data/chat-data.service';
+import { ChatService } from 'src/request/chat/chat.service';
 
 @Injectable()
 export class SelectActivChatService {
 
     constructor(
-        private readonly chatActService: ChatActService,
+        private readonly chatActiveService: ChatActiveService,
         private readonly chatDataService: ChatDataService,
-        private readonly userService: UserService,
+        private readonly chatService: ChatService,
         private readonly timeService: TimeService
     ) { }
 
     async activChat() {
-        const chatact = await this.chatActService.findAll()
+        const chatact = await this.chatActiveService.findAll()
         let actiality: Array<ActualityDto> =[]
         for (var key in chatact) {
-            let lastPost = await this.chatDataService.getLastPost(chatact[key].chat)
-            let chat = await this.userService.findByChatId(chatact[key].chat)
-            let period = await this.timeService.findOne(chat.question_time)
+            let lastPost = await this.chatDataService.findLastChat(chatact[key].chat)
+            let chat = await this.chatService.findByChatId(chatact[key].chat)
+            let period = await this.timeService.findOne(chat.time)
             let currentTime = Math.round(Math.floor(new Date().getTime())/1000)
             let lastPostTime = lastPost[0].date
             let timeToLast = currentTime - lastPostTime
@@ -32,7 +31,7 @@ export class SelectActivChatService {
             }
         }
         console.log(actiality)
-        return actiality
+        return []
     }
 
 }

@@ -6,8 +6,8 @@ export declare class QuestionController {
     create(createQuestionDto: Prisma.questionCreateInput): Promise<{
         id: number;
         text: string;
-        dateadd: Date;
-        chat_id: bigint;
+        date: Date;
+        chat: bigint;
         category: number;
         answer1: string;
         answer2: string;
@@ -17,14 +17,13 @@ export declare class QuestionController {
         isactual: number;
         mod: number;
         img: string;
-        slog: number;
-        answers: number;
+        reward: number;
     }>;
     findAll(): Promise<{
         id: number;
         text: string;
-        dateadd: Date;
-        chat_id: bigint;
+        date: Date;
+        chat: bigint;
         category: number;
         answer1: string;
         answer2: string;
@@ -34,14 +33,13 @@ export declare class QuestionController {
         isactual: number;
         mod: number;
         img: string;
-        slog: number;
-        answers: number;
+        reward: number;
     }[]>;
     findOne(id: string): Promise<{
         id: number;
         text: string;
-        dateadd: Date;
-        chat_id: bigint;
+        date: Date;
+        chat: bigint;
         category: number;
         answer1: string;
         answer2: string;
@@ -51,14 +49,13 @@ export declare class QuestionController {
         isactual: number;
         mod: number;
         img: string;
-        slog: number;
-        answers: number;
+        reward: number;
     }>;
     update(id: string, updateQuestionDto: Prisma.questionUpdateInput): Promise<{
         id: number;
         text: string;
-        dateadd: Date;
-        chat_id: bigint;
+        date: Date;
+        chat: bigint;
         category: number;
         answer1: string;
         answer2: string;
@@ -68,14 +65,15 @@ export declare class QuestionController {
         isactual: number;
         mod: number;
         img: string;
-        slog: number;
-        answers: number;
+        reward: number;
     }>;
+    countReward(id: string): Promise<number>;
+    count(id: string): Promise<number>;
     remove(id: string): Promise<{
         id: number;
         text: string;
-        dateadd: Date;
-        chat_id: bigint;
+        date: Date;
+        chat: bigint;
         category: number;
         answer1: string;
         answer2: string;
@@ -85,7 +83,7 @@ export declare class QuestionController {
         isactual: number;
         mod: number;
         img: string;
-        slog: number;
-        answers: number;
+        reward: number;
     }>;
+    generate(id: string): Promise<void>;
 }

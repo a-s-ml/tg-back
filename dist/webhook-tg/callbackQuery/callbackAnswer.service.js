@@ -14,41 +14,33 @@ const common_1 = require("@nestjs/common");
 const answer_service_1 = require("../../request/answer/answer.service");
 const question_service_1 = require("../../request/question/question.service");
 const responses_service_1 = require("../../responses/responses.service");
-const user_service_1 = require("../../request/user/user.service");
+const chat_service_1 = require("../../request/chat/chat.service");
 let CallbackAnswerService = class CallbackAnswerService {
-    constructor(answerService, questionService, responsesService, userService) {
+    constructor(answerService, questionService, responsesService, chatService) {
         this.answerService = answerService;
         this.questionService = questionService;
         this.responsesService = responsesService;
-        this.userService = userService;
+        this.chatService = chatService;
     }
     async answer(callbackQuery) {
         console.log(callbackQuery);
         const data = callbackQuery.data.split('_');
-        const checkUser = await this.userService.findOne(callbackQuery.from.id);
-        if (checkUser.length == 0) {
-            const createUser = {
-                chat_id: callbackQuery.from.id,
-                is_bot: callbackQuery.from.is_bot ? 1 : 0
-            };
-            await this.userService.create(createUser);
-            await this.responsesService.sendLogToAdmin(`new_user answer:\n${callbackQuery.from.id}\n${callbackQuery.from.first_name} ${callbackQuery.from.username}`);
-        }
-        const checkAnswer = await this.answerService.findOneChat(callbackQuery.from.id, +data[1], callbackQuery.message.chat.id);
+        await this.chatService.verificationExistence(callbackQuery.from);
+        const checkAnswer = await this.answerService.findByChat(callbackQuery.from.id, +data[1], callbackQuery.message.chat.id);
         let text;
         let reward;
         if (checkAnswer.length == 0) {
             await this.responsesService.sendLogToAdmin(`new_answer answer:\n${callbackQuery.from.id}\n${callbackQuery.from.first_name} ${callbackQuery.from.username}`);
             const question = await this.questionService.findOne(+data[1]);
             if (data[2] == question.answerright) {
-                reward = question.slog;
-                text = `Верно! \n\nДобавлено "${question.slog}" очков`;
+                reward = question.reward;
+                text = `Верно! \n\nДобавлено "${question.reward}" очков`;
             }
             else {
-                reward = -question.slog;
-                text = `Не верно! \n\nВычтено "${question.slog}" очков`;
+                reward = -question.reward;
+                text = `Не верно! \n\nВычтено "${question.reward}" очков`;
             }
-            await this.answerService.create({ chat_id: callbackQuery.from.id, questionid: +data[1], group_id: callbackQuery.message.chat.id, choice: +data[2], reward: reward });
+            await this.answerService.create({ chat: callbackQuery.from.id, question: +data[1], group: callbackQuery.message.chat.id, choice: +data[2], reward: reward });
         }
         else {
             text = `Вы уже двали ответ на этот вопрос!`;
@@ -66,6 +58,6 @@ exports.CallbackAnswerService = CallbackAnswerService = __decorate([
     __metadata("design:paramtypes", [answer_service_1.AnswerService,
         question_service_1.QuestionService,
         responses_service_1.ResponsesService,
-        user_service_1.UserService])
+        chat_service_1.ChatService])
 ], CallbackAnswerService);
 //# sourceMappingURL=callbackAnswer.service.js.map

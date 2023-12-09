@@ -15,67 +15,64 @@ const select_questions_service_1 = require("./select-questions.service");
 const select_activ_chat_service_1 = require("./select-activ-chat.service");
 const build_question_service_1 = require("../constructors/questions/build-question.service");
 const responses_service_1 = require("../responses/responses.service");
-const user_service_1 = require("../request/user/user.service");
 const build_statList_service_1 = require("../constructors/statList/build-statList.service");
-const chat_data_service_1 = require("../request/chat_data/chat_data.service");
+const chat_service_1 = require("../request/chat/chat.service");
+const chat_data_service_1 = require("../request/chat-data/chat-data.service");
 let AutoPostService = class AutoPostService {
-    constructor(selectQuestionService, selectActivChatService, buildQuestionService, buildStatListService, responsesService, chatDataService, userService) {
+    constructor(selectQuestionService, selectActivChatService, buildQuestionService, buildStatListService, responsesService, chatDataService, chatService) {
         this.selectQuestionService = selectQuestionService;
         this.selectActivChatService = selectActivChatService;
         this.buildQuestionService = buildQuestionService;
         this.buildStatListService = buildStatListService;
         this.responsesService = responsesService;
         this.chatDataService = chatDataService;
-        this.userService = userService;
+        this.chatService = chatService;
     }
     async publicationInActiveGroup() {
         const chatact = await this.selectActivChatService.activChat();
         console.log(chatact.length);
         if (chatact.length > 0) {
             for (var key in chatact) {
-                const chat = await this.userService.findByChatId(chatact[key].chat);
+                const chat = await this.chatService.findByChatId(chatact[key].chat);
                 const question = await this.selectQuestionService.availableQuestion(chatact[key].chat);
-                if (chat.question_img === 0) {
+                if (chat.question_type === 3) {
                     const questionTest = await this.buildQuestionService.questionText(question.id, chatact[key].chat);
                     const response = await this.responsesService.sendMessage(questionTest);
                     await this.chatDataService.create({
-                        to_group: chat.chat_id,
-                        group_id: response?.result.chat.id,
+                        group: response?.result.chat.id,
                         group_type: 'js',
                         message_id: response?.result.message_id,
                         result: 1,
                         date: response?.result.date,
                         question_id: question.id,
-                        question_type: '_' + chat.question_img
+                        question_type: '_' + chat.question_type
                     });
                 }
-                if (chat.question_img === 1) {
+                if (chat.question_type === 1) {
                     const questionImg = await this.buildQuestionService.questionImg(question.id, chatact[key].chat);
                     const response = await this.responsesService.sendPhoto(questionImg);
                     await this.chatDataService.create({
-                        to_group: chat.chat_id,
-                        group_id: response?.result.chat.id,
+                        group: response?.result.chat.id,
                         group_type: 'js',
                         message_id: response?.result.message_id,
                         result: 1,
                         date: response?.result.date,
                         question_id: question.id,
-                        question_type: '_' + chat.question_img
+                        question_type: '_' + chat.question_type
                     });
                 }
-                if (chat.question_img === 2) {
+                if (chat.question_type === 2) {
                     const questionPoll = await this.buildQuestionService.questionPoll(question.id, chatact[key].chat);
                     const response = await this.responsesService.sendPoll(questionPoll);
                     await this.chatDataService.create({
-                        to_group: chat.chat_id,
-                        group_id: response?.result.chat.id,
+                        group: response?.result.chat.id,
                         group_type: 'js',
                         message_id: response?.result.message_id,
                         result: 1,
                         date: response?.result.date,
                         question_id: question.id,
                         poll_id: response?.result.poll.id,
-                        question_type: '_' + chat.question_img
+                        question_type: '_' + chat.question_type
                     });
                 }
             }
@@ -98,6 +95,6 @@ exports.AutoPostService = AutoPostService = __decorate([
         build_statList_service_1.BuildStatListService,
         responses_service_1.ResponsesService,
         chat_data_service_1.ChatDataService,
-        user_service_1.UserService])
+        chat_service_1.ChatService])
 ], AutoPostService);
 //# sourceMappingURL=auto-post.service.js.map

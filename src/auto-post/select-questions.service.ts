@@ -1,27 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { DbService } from 'src/db/db.service';
-import { ChatCatService } from 'src/request/chat_cat/chat_cat.service';
-import { ChatDataService } from 'src/request/chat_data/chat_data.service';
+import { ChatCategoryService } from 'src/request/chat-category/chat-category.service';
+import { ChatDataService } from 'src/request/chat-data/chat-data.service';
 
 @Injectable()
 export class SelectQuestionService { 
 
     constructor(
         private dbService: DbService,
-        private chatCatService: ChatCatService,
+        private chatCategoryService: ChatCategoryService,
         private chatDataService: ChatDataService
     ) { }
 
     async availableQuestion(chatid: bigint) {
-        const forbiddenCategory = await this.chatCatService.forbiddenCategory(chatid)
-        const publishedQuestion = await this.chatDataService.publishedQuestion(chatid)
+        const forbiddenCategory = await this.chatCategoryService.findChat(chatid)
+        const publishedQuestion = await this.chatDataService.findAllChat(chatid)
         const questions = await this.dbService.question.findMany({
             select: {
                 id: true,
             },
             where: {
                 category: {
-                    notIn: forbiddenCategory.map(item => item.cat_id)
+                    notIn: forbiddenCategory.map(item => item.category)
                 },
                 id: {
                     notIn: publishedQuestion.map(item => item.question_id)

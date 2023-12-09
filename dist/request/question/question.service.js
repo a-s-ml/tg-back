@@ -57,6 +57,38 @@ let QuestionService = class QuestionService {
             }
         });
     }
+    async countReward(question) {
+        const count = await this.dbService.answer.count({
+            where: {
+                question,
+            }
+        });
+        const inc = await this.dbService.answer.count({
+            where: {
+                question,
+                reward: {
+                    gt: 0
+                }
+            }
+        });
+        return 100 - Math.round(inc / count * 100);
+    }
+    async count(question) {
+        return await this.dbService.answer.count({
+            where: {
+                question,
+            }
+        });
+    }
+    async generate(id) {
+        console.log(id);
+        const question = await this.findAll();
+        for (var key in question) {
+            const count = await this.countReward(question[key].id);
+            await this.update(question[key].id, { reward: count });
+            console.log(question[key].id + '-' + count);
+        }
+    }
 };
 exports.QuestionService = QuestionService;
 exports.QuestionService = QuestionService = __decorate([

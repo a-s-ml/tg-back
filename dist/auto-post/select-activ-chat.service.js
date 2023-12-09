@@ -11,24 +11,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SelectActivChatService = void 0;
 const common_1 = require("@nestjs/common");
-const chat_act_service_1 = require("../request/chat_act/chat_act.service");
-const chat_data_service_1 = require("../request/chat_data/chat_data.service");
 const time_service_1 = require("../request/time/time.service");
-const user_service_1 = require("../request/user/user.service");
+const chat_active_service_1 = require("../request/chat-active/chat-active.service");
+const chat_data_service_1 = require("../request/chat-data/chat-data.service");
+const chat_service_1 = require("../request/chat/chat.service");
 let SelectActivChatService = class SelectActivChatService {
-    constructor(chatActService, chatDataService, userService, timeService) {
-        this.chatActService = chatActService;
+    constructor(chatActiveService, chatDataService, chatService, timeService) {
+        this.chatActiveService = chatActiveService;
         this.chatDataService = chatDataService;
-        this.userService = userService;
+        this.chatService = chatService;
         this.timeService = timeService;
     }
     async activChat() {
-        const chatact = await this.chatActService.findAll();
+        const chatact = await this.chatActiveService.findAll();
         let actiality = [];
         for (var key in chatact) {
-            let lastPost = await this.chatDataService.getLastPost(chatact[key].chat);
-            let chat = await this.userService.findByChatId(chatact[key].chat);
-            let period = await this.timeService.findOne(chat.question_time);
+            let lastPost = await this.chatDataService.findLastChat(chatact[key].chat);
+            let chat = await this.chatService.findByChatId(chatact[key].chat);
+            let period = await this.timeService.findOne(chat.time);
             let currentTime = Math.round(Math.floor(new Date().getTime()) / 1000);
             let lastPostTime = lastPost[0].date;
             let timeToLast = currentTime - lastPostTime;
@@ -38,15 +38,15 @@ let SelectActivChatService = class SelectActivChatService {
             }
         }
         console.log(actiality);
-        return actiality;
+        return [];
     }
 };
 exports.SelectActivChatService = SelectActivChatService;
 exports.SelectActivChatService = SelectActivChatService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [chat_act_service_1.ChatActService,
+    __metadata("design:paramtypes", [chat_active_service_1.ChatActiveService,
         chat_data_service_1.ChatDataService,
-        user_service_1.UserService,
+        chat_service_1.ChatService,
         time_service_1.TimeService])
 ], SelectActivChatService);
 //# sourceMappingURL=select-activ-chat.service.js.map

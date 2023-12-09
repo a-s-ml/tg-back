@@ -22,30 +22,23 @@ let AnswerService = class AnswerService {
     async findAll() {
         return await this.dbService.answer.findMany({});
     }
-    async findOne(id) {
-        return await this.dbService.answer.findUnique({
-            where: {
-                id,
-            }
-        });
-    }
-    async findOneChat(chat_id, questionid, group_id) {
+    async findByChat(chat, question, group) {
         return await this.dbService.answer.findMany({
             where: {
-                chat_id,
-                questionid,
-                group_id,
+                chat,
+                question,
+                group,
             }
         });
     }
-    async getStatChat(group_id) {
+    async getStatChat(group) {
         const date = new Date();
         const gte = date.setFullYear(new Date().getFullYear(), new Date().getMonth(), 1);
         return await this.dbService.answer.groupBy({
-            by: ['chat_id'],
+            by: ['chat'],
             where: {
-                group_id: group_id,
-                dateadd: {
+                group,
+                date: {
                     gte: new Date(gte),
                     lte: new Date(),
                 },

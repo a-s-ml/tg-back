@@ -8,10 +8,16 @@ import { DbModule } from './db/db.module';
 import { ResponsesModule } from './responses/responses.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { AutoPostModule } from './auto-post/auto-post.module';
-import { UserModule } from './request/user/user.module';
 import { CategoryModule } from './request/category/category.module';
 import { WebhookTgModule } from './webhook-tg/webhook-tg.module';
 import { CallbackAnswerModule } from './webhook-tg/callbackQuery/callbackAnswer.module';
+import { ChatModule } from './request/chat/chat.module';
+import { ChatDataModule } from './request/chat-data/chat-data.module';
+import { ChatActiveModule } from './request/chat-active/chat-active.module';
+import { ChatCategoryModule } from './request/chat-category/chat-category.module';
+import { TimeModule } from './request/time/time.module';
+import { ChatTypeModule } from './request/chat-type/chat-type.module';
+import { QuestionTypeModule } from './request/question-type/question-type.module';
 
 @Module({
   imports: [
@@ -19,10 +25,16 @@ import { CallbackAnswerModule } from './webhook-tg/callbackQuery/callbackAnswer.
     DbModule,
     ResponsesModule,
     AutoPostModule,
-    UserModule,
     CategoryModule,
     WebhookTgModule,
-    CallbackAnswerModule
+    CallbackAnswerModule,
+    ChatModule,
+    ChatDataModule,
+    ChatActiveModule,
+    ChatCategoryModule,
+    TimeModule,
+    ChatTypeModule,
+    QuestionTypeModule
   ],
   controllers: [AppController],
   providers: [

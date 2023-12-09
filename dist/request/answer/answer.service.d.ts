@@ -5,41 +5,32 @@ export declare class AnswerService {
     constructor(dbService: DbService);
     create(createAnswerDto: Prisma.answerCreateInput): Promise<{
         id: number;
-        chat_id: bigint;
-        questionid: number;
-        group_id: bigint;
+        chat: bigint;
+        question: number;
+        group: bigint;
         choice: number;
         reward: number;
-        dateadd: Date;
+        date: Date;
     }>;
     findAll(): Promise<{
         id: number;
-        chat_id: bigint;
-        questionid: number;
-        group_id: bigint;
+        chat: bigint;
+        question: number;
+        group: bigint;
         choice: number;
         reward: number;
-        dateadd: Date;
+        date: Date;
     }[]>;
-    findOne(id: number): Promise<{
+    findByChat(chat: bigint, question: number, group: bigint): Promise<{
         id: number;
-        chat_id: bigint;
-        questionid: number;
-        group_id: bigint;
+        chat: bigint;
+        question: number;
+        group: bigint;
         choice: number;
         reward: number;
-        dateadd: Date;
-    }>;
-    findOneChat(chat_id: number, questionid: number, group_id: bigint): Promise<{
-        id: number;
-        chat_id: bigint;
-        questionid: number;
-        group_id: bigint;
-        choice: number;
-        reward: number;
-        dateadd: Date;
+        date: Date;
     }[]>;
-    getStatChat(group_id: bigint): Promise<(Prisma.PickEnumerable<Prisma.AnswerGroupByOutputType, "chat_id"[]> & {
+    getStatChat(group: bigint): Promise<(Prisma.PickEnumerable<Prisma.AnswerGroupByOutputType, "chat"[]> & {
         _sum: {
             reward: number;
         };
@@ -49,20 +40,20 @@ export declare class AnswerService {
     })[]>;
     update(id: number, updateAnswerDto: Prisma.answerUpdateInput): Promise<{
         id: number;
-        chat_id: bigint;
-        questionid: number;
-        group_id: bigint;
+        chat: bigint;
+        question: number;
+        group: bigint;
         choice: number;
         reward: number;
-        dateadd: Date;
+        date: Date;
     }>;
     remove(id: number): Promise<{
         id: number;
-        chat_id: bigint;
-        questionid: number;
-        group_id: bigint;
+        chat: bigint;
+        question: number;
+        group: bigint;
         choice: number;
         reward: number;
-        dateadd: Date;
+        date: Date;
     }>;
 }

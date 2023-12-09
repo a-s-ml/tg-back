@@ -13,19 +13,17 @@ exports.BuildStatListService = void 0;
 const common_1 = require("@nestjs/common");
 const build_keyboard_service_1 = require("../keyboard/build-keyboard.service");
 const answer_service_1 = require("../../request/answer/answer.service");
-const getTG_service_1 = require("../../responses/getTG.service");
 let BuildStatListService = class BuildStatListService {
-    constructor(buildKeyboardService, answerService, getTgService) {
+    constructor(buildKeyboardService, answerService) {
         this.buildKeyboardService = buildKeyboardService;
         this.answerService = answerService;
-        this.getTgService = getTgService;
     }
     async statStandart(id) {
         const answers = await this.answerService.getStatChat(id);
         let text = 'Рейтинг участников викторины за текущий месяц:\n\n';
         let id_userstat = 1;
         answers.length > 0 && answers?.map(async (item) => {
-            text = text + `${id_userstat}. ${item.chat_id} \u2013 ${item._sum.reward.toFixed(2)}очк. (${item._count.id} отв.)\n`;
+            text = text + `${id_userstat}. ${item.chat} \u2013 ${item._sum.reward.toFixed(2)}очк. (${item._count.id} отв.)\n`;
             id_userstat++;
         });
         const reply_markup = await this.buildKeyboardService.statInlineKeboard();
@@ -43,7 +41,6 @@ exports.BuildStatListService = BuildStatListService;
 exports.BuildStatListService = BuildStatListService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [build_keyboard_service_1.BuildKeyboardService,
-        answer_service_1.AnswerService,
-        getTG_service_1.GetTgService])
+        answer_service_1.AnswerService])
 ], BuildStatListService);
 //# sourceMappingURL=build-statList.service.js.map

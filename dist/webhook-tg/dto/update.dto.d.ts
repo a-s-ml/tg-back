@@ -1,6 +1,9 @@
+import { ChatMemberDto } from "./ChatMember.dto";
+import { ChatMemberUpdatedDto } from "./ChatMemberUpdated.dto";
 import { CallbackQueryDto } from "./callbackQuery.dto";
 import { InlineDto } from "./inline.dto";
 import { MessageDto } from "./message.dto";
+import { PollDto } from "./poll.dto";
 import { PollAnswerDto } from "./pollAnswer.dto";
 export declare class UpdateDto {
     update_id: number;
@@ -13,9 +16,9 @@ export declare class UpdateDto {
     callback_query: CallbackQueryDto;
     shipping_query: object;
     pre_checkout_query: object;
-    poll: object;
+    poll: PollDto;
     poll_answer: PollAnswerDto;
-    my_chat_member: object;
-    chat_member: object;
+    my_chat_member: ChatMemberUpdatedDto;
+    chat_member: ChatMemberDto;
     chat_join_request: object;
 }

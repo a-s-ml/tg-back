@@ -2,16 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { BuildKeyboardService } from '../keyboard/build-keyboard.service';
 import { SendMessageDto } from 'src/webhook-tg/dto/sendMessage,dto';
 import { AnswerService } from 'src/request/answer/answer.service';
-import { GetTgService } from 'src/responses/getTG.service';
-import { UserDto } from 'src/webhook-tg/dto/user.dto';
 
 @Injectable()
 export class BuildStatListService {
 
     constructor(
         private buildKeyboardService: BuildKeyboardService,
-        private answerService: AnswerService,
-        private getTgService: GetTgService
+        private answerService: AnswerService
     ) { }
 
     async statStandart(id: bigint) {
@@ -20,7 +17,7 @@ export class BuildStatListService {
         let id_userstat: number=1;
 
         answers.length > 0 && answers?.map(async item => {
-            text = text + `${id_userstat}. ${item.chat_id} \u2013 ${item._sum.reward.toFixed(2)}очк. (${item._count.id} отв.)\n`
+            text = text + `${id_userstat}. ${item.chat} \u2013 ${item._sum.reward.toFixed(2)}очк. (${item._count.id} отв.)\n`
             id_userstat++
         })
         const reply_markup = await this.buildKeyboardService.statInlineKeboard()

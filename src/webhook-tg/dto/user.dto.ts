@@ -1,5 +1,5 @@
 export class UserDto { 
-    id: number
+    id: bigint
     is_bot: boolean
     first_name: string
     last_name?: string

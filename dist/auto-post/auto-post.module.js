@@ -12,14 +12,14 @@ const auto_post_service_1 = require("./auto-post.service");
 const select_questions_service_1 = require("./select-questions.service");
 const select_activ_chat_service_1 = require("./select-activ-chat.service");
 const question_module_1 = require("../request/question/question.module");
-const chat_data_module_1 = require("../request/chat_data/chat_data.module");
-const chat_cat_module_1 = require("../request/chat_cat/chat_cat.module");
 const constructors_module_1 = require("../constructors/constructors.module");
-const user_module_1 = require("../request/user/user.module");
-const chat_act_service_1 = require("../request/chat_act/chat_act.service");
-const chat_data_service_1 = require("../request/chat_data/chat_data.service");
 const time_service_1 = require("../request/time/time.service");
-const user_service_1 = require("../request/user/user.service");
+const chat_module_1 = require("../request/chat/chat.module");
+const chat_service_1 = require("../request/chat/chat.service");
+const chat_data_module_1 = require("../request/chat-data/chat-data.module");
+const chat_data_service_1 = require("../request/chat-data/chat-data.service");
+const chat_category_module_1 = require("../request/chat-category/chat-category.module");
+const chat_active_service_1 = require("../request/chat-active/chat-active.service");
 let AutoPostModule = class AutoPostModule {
 };
 exports.AutoPostModule = AutoPostModule;
@@ -28,17 +28,17 @@ exports.AutoPostModule = AutoPostModule = __decorate([
         imports: [
             question_module_1.QuestionModule,
             chat_data_module_1.ChatDataModule,
-            chat_cat_module_1.ChatCatModule,
+            chat_category_module_1.ChatCategoryModule,
             constructors_module_1.ConstructorsModule,
-            user_module_1.UserModule
+            chat_module_1.ChatModule
         ],
         providers: [
             auto_post_service_1.AutoPostService,
             select_activ_chat_service_1.SelectActivChatService,
             select_questions_service_1.SelectQuestionService,
-            chat_act_service_1.ChatActService,
+            chat_active_service_1.ChatActiveService,
             chat_data_service_1.ChatDataService,
-            user_service_1.UserService,
+            chat_service_1.ChatService,
             time_service_1.TimeService
         ],
         exports: [

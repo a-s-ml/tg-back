@@ -22,21 +22,4 @@ export class CategoryService {
       }
     })
   }
-
-  async update(id: number, updateCategoryDto: Prisma.categoryUpdateInput) {
-    return await this.dbService.category.update({
-      where: {
-        id,
-      },
-      data: updateCategoryDto
-    })
-  }
-
-  async remove(id: number) {
-    return await this.dbService.category.delete({
-      where: {
-        id,
-      }
-    })
-  }
 }

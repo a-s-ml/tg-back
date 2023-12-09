@@ -16,29 +16,11 @@ let TimeService = class TimeService {
     constructor(dbService) {
         this.dbService = dbService;
     }
-    async create(createTimeDto) {
-        return await this.dbService.time.create({ data: createTimeDto });
-    }
     async findAll() {
-        return await this.dbService.time.findMany({});
+        return await this.dbService.time.findMany();
     }
     async findOne(id) {
         return await this.dbService.time.findUnique({
-            where: {
-                id: id
-            }
-        });
-    }
-    async update(id, updateTimeDto) {
-        return await this.dbService.time.update({
-            where: {
-                id,
-            },
-            data: updateTimeDto
-        });
-    }
-    async remove(id) {
-        return await this.dbService.time.delete({
             where: {
                 id,
             }
