@@ -63,7 +63,7 @@ export class AutoPostService {
 							group: response.chat.id,
 							group_type: response.chat.type,
 							message_id: response.message_id,
-							date: response?.date,
+							date: response.date,
 							question_id: question.id,
 							question_type: "photo"
 						})
