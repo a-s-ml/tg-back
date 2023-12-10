@@ -16,7 +16,7 @@ exports.QuestionTypeModule = QuestionTypeModule;
 exports.QuestionTypeModule = QuestionTypeModule = __decorate([
     (0, common_1.Module)({
         controllers: [question_type_controller_1.QuestionTypeController],
-        providers: [question_type_service_1.QuestionTypeService],
+        providers: [question_type_service_1.QuestionTypeService]
     })
 ], QuestionTypeModule);
 //# sourceMappingURL=question-type.module.js.map

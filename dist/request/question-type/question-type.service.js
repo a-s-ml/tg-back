@@ -22,7 +22,7 @@ let QuestionTypeService = class QuestionTypeService {
     async findOne(id) {
         return await this.dbService.questionType.findUnique({
             where: {
-                id,
+                id
             }
         });
     }

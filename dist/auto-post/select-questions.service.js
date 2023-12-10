@@ -25,7 +25,7 @@ let SelectQuestionService = class SelectQuestionService {
         const publishedQuestion = await this.chatDataService.findAllChat(chatid);
         const questions = await this.dbService.question.findMany({
             select: {
-                id: true,
+                id: true
             },
             where: {
                 category: {

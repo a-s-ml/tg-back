@@ -19,20 +19,14 @@ let ConstructorsModule = class ConstructorsModule {
 exports.ConstructorsModule = ConstructorsModule;
 exports.ConstructorsModule = ConstructorsModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            question_module_1.QuestionModule, category_module_1.CategoryModule
-        ],
+        imports: [question_module_1.QuestionModule, category_module_1.CategoryModule],
         providers: [
             build_question_service_1.BuildQuestionService,
             build_keyboard_service_1.BuildKeyboardService,
             build_statList_service_1.BuildStatListService,
             answer_service_1.AnswerService
         ],
-        exports: [
-            build_question_service_1.BuildQuestionService,
-            build_statList_service_1.BuildStatListService,
-            build_keyboard_service_1.BuildKeyboardService
-        ]
+        exports: [build_question_service_1.BuildQuestionService, build_statList_service_1.BuildStatListService, build_keyboard_service_1.BuildKeyboardService]
     })
 ], ConstructorsModule);
 //# sourceMappingURL=constructors.module.js.map

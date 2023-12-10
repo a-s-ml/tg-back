@@ -1,6 +1,6 @@
-import { DbService } from 'src/db/db.service';
-import { ChatCategoryService } from 'src/request/chat-category/chat-category.service';
-import { ChatDataService } from 'src/request/chat-data/chat-data.service';
+import { DbService } from "src/db/db.service";
+import { ChatCategoryService } from "src/request/chat-category/chat-category.service";
+import { ChatDataService } from "src/request/chat-data/chat-data.service";
 export declare class SelectQuestionService {
     private dbService;
     private chatCategoryService;

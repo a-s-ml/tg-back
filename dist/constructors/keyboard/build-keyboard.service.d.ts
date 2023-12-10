@@ -1,5 +1,5 @@
-import { QuestionService } from 'src/request/question/question.service';
-import { ReplyMarkupDto } from './dto/keyboard.dto';
+import { QuestionService } from "src/request/question/question.service";
+import { ReplyMarkupDto } from "./dto/keyboard.dto";
 export declare class BuildKeyboardService {
     private questionService;
     constructor(questionService: QuestionService);

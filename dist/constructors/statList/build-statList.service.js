@@ -20,19 +20,22 @@ let BuildStatListService = class BuildStatListService {
     }
     async statStandart(id) {
         const answers = await this.answerService.getStatChat(id);
-        let text = 'Рейтинг участников викторины за текущий месяц:\n\n';
+        let text = "Рейтинг участников викторины за текущий месяц:\n\n";
         let id_userstat = 1;
-        answers.length > 0 && answers?.map(async (item) => {
-            text = text + `${id_userstat}. ${item.chat} \u2013 ${item._sum.reward.toFixed(2)}очк. (${item._count.id} отв.)\n`;
-            id_userstat++;
-        });
+        answers.length > 0 &&
+            answers?.map(async (item) => {
+                text =
+                    text +
+                        `${id_userstat}. ${item.chat} \u2013 ${item._sum.reward.toFixed(2)}очк. (${item._count.id} отв.)\n`;
+                id_userstat++;
+            });
         const reply_markup = await this.buildKeyboardService.statInlineKeboard();
         const url = {
             chat_id: 521884639,
             text: encodeURI(text),
             reply_markup,
             disable_web_page_preview: true,
-            parse_mode: 'HTML'
+            parse_mode: "HTML"
         };
         return url;
     }

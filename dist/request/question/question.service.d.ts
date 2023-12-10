@@ -1,5 +1,5 @@
-import { Prisma } from '@prisma/client';
-import { DbService } from 'src/db/db.service';
+import { Prisma } from "@prisma/client";
+import { DbService } from "src/db/db.service";
 export declare class QuestionService {
     private dbService;
     constructor(dbService: DbService);

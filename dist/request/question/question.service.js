@@ -25,7 +25,7 @@ let QuestionService = class QuestionService {
     async findOne(id) {
         return await this.dbService.question.findUnique({
             where: {
-                id,
+                id
             }
         });
     }
@@ -35,17 +35,17 @@ let QuestionService = class QuestionService {
                 answer1: true,
                 answer2: true,
                 answer3: true,
-                answer4: true,
+                answer4: true
             },
             where: {
-                id,
+                id
             }
         });
     }
     async update(id, updateQuestionDto) {
         return await this.dbService.question.update({
             where: {
-                id,
+                id
             },
             data: updateQuestionDto
         });
@@ -53,14 +53,14 @@ let QuestionService = class QuestionService {
     async remove(id) {
         return await this.dbService.question.delete({
             where: {
-                id,
+                id
             }
         });
     }
     async countReward(question) {
         const count = await this.dbService.answer.count({
             where: {
-                question,
+                question
             }
         });
         const inc = await this.dbService.answer.count({
@@ -71,12 +71,12 @@ let QuestionService = class QuestionService {
                 }
             }
         });
-        return 100 - Math.round(inc / count * 100);
+        return 100 - Math.round((inc / count) * 100);
     }
     async count(question) {
         return await this.dbService.answer.count({
             where: {
-                question,
+                question
             }
         });
     }
@@ -89,7 +89,7 @@ let QuestionService = class QuestionService {
                 count = 100;
             }
             await this.update(question[key].id, { reward: count });
-            console.log(question[key].id + ' - ' + count);
+            console.log(question[key].id + " - " + count);
         }
     }
 };

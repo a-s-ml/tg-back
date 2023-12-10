@@ -22,7 +22,7 @@ let TimeService = class TimeService {
     async findOne(id) {
         return await this.dbService.time.findUnique({
             where: {
-                id,
+                id
             }
         });
     }

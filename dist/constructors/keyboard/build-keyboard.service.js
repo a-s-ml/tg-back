@@ -22,7 +22,7 @@ let BuildKeyboardService = class BuildKeyboardService {
             inline_keyboard: [
                 [
                     {
-                        text: 'Больше вопросов',
+                        text: "Больше вопросов",
                         url: `https://t.me/+cI0Ubxv51wJhMTFi`
                     }
                 ]

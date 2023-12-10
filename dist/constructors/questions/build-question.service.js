@@ -25,11 +25,11 @@ let BuildQuestionService = class BuildQuestionService {
         const header = `<b>Вопрос:</b> №${question.id}\n<b>Категория</b>: ${category.name}\n<b>Сложность:</b> ${question.reward}\n\n`;
         const footer = '| <b><a href="https://t.me/more_bio_bot/more_bio">Статистика</a></b> | <b><a href="https://t.me/more_bio_bot/more_bio">Ошибка</a></b> |';
         let body;
-        return body = {
+        return (body = {
             header: encodeURI(header),
-            text: encodeURI(question.text + '\n\n'),
+            text: encodeURI(question.text + "\n\n"),
             footer: encodeURI(footer)
-        };
+        });
     }
     async questionText(id, chat) {
         const question = await this.questionService.findOne(id);
@@ -40,7 +40,7 @@ let BuildQuestionService = class BuildQuestionService {
             text: body.header + body.text + body.footer,
             reply_markup: reply_markup,
             disable_web_page_preview: true,
-            parse_mode: 'HTML'
+            parse_mode: "HTML"
         };
         return url;
     }
@@ -49,7 +49,12 @@ let BuildQuestionService = class BuildQuestionService {
         const url = {
             chat_id: chat,
             question: encodeURI(question.text),
-            options: [question.answer1, question.answer2, question.answer3, question.answer4],
+            options: [
+                question.answer1,
+                question.answer2,
+                question.answer3,
+                question.answer4
+            ],
             correct_option_id: question.answerright
         };
         return url;
