@@ -140,7 +140,17 @@ export class ResponsesService {
 	async sendLogToAdmin(data: string) {
 		try {
 			const adminChannel: bigint = -1001524297397n;
-			const response = await this.sendMessage({chat_id: adminChannel, text: encodeURI(data)})
+			const text: string = encodeURI(data) 
+			const response = await axios.get(
+				`
+				${process.env.SEND_MESSAGE}
+				chat_id=${adminChannel}
+				&text=${text}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`
+			)
+			console.log(response)
 			return response.data.result
 		} catch (error) {
 			return error

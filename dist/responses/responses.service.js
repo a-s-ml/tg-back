@@ -126,7 +126,15 @@ let ResponsesService = class ResponsesService {
     async sendLogToAdmin(data) {
         try {
             const adminChannel = -1001524297397n;
-            const response = await this.sendMessage({ chat_id: adminChannel, text: encodeURI(data) });
+            const text = encodeURI(data);
+            const response = await axios_1.default.get(`
+				${process.env.SEND_MESSAGE}
+				chat_id=${adminChannel}
+				&text=${text}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`);
+            console.log(response);
             return response.data.result;
         }
         catch (error) {
