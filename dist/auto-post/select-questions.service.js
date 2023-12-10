@@ -23,10 +23,10 @@ let SelectQuestionService = class SelectQuestionService {
     async availableQuestion(chatid) {
         const forbiddenCategory = await this.chatCategoryService.findChat(chatid);
         const publishedQuestion = await this.chatDataService.findAllChat(chatid);
-        if (forbiddenCategory.length < 1) {
+        if (!forbiddenCategory?.length) {
             forbiddenCategory.push({ category: 1001 });
         }
-        if (publishedQuestion.length < 1) {
+        if (!publishedQuestion?.length) {
             publishedQuestion.push({ question_id: 1 });
         }
         const questions = await this.dbService.question.findMany({

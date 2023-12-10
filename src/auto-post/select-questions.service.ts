@@ -15,10 +15,10 @@ export class SelectQuestionService {
 		const forbiddenCategory = await this.chatCategoryService.findChat(chatid)
 		const publishedQuestion = await this.chatDataService.findAllChat(chatid)
 // КОСТЫЛЬ
-		if (forbiddenCategory.length < 1) {
+		if (!forbiddenCategory?.length) {
 			forbiddenCategory.push({ category: 1001 })
 		}
-		if (publishedQuestion.length < 1) {
+		if (!publishedQuestion?.length) {
 			publishedQuestion.push({ question_id: 1 })
 		}
 // КОСТЫЛЬ

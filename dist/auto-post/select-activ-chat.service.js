@@ -27,10 +27,10 @@ let SelectActivChatService = class SelectActivChatService {
         let actiality = [];
         for (var key in chatact) {
             let lastPost = await this.chatDataService.findLastChat(chatact[key].chat);
-            if (lastPost.length < 1) {
+            if (!lastPost?.length) {
                 actiality.push(chatact[key]);
             }
-            if (lastPost.length > 0) {
+            if (lastPost?.length) {
                 let chat = await this.chatService.findByChatId(chatact[key].chat);
                 let period = await this.timeService.findOne(chat.time);
                 let currentTime = Math.round(Math.floor(new Date().getTime()) / 1000);
@@ -45,7 +45,8 @@ let SelectActivChatService = class SelectActivChatService {
         console.log(actiality);
         return [
             { id: 2, chat: -1001635376490n },
-            { id: 3, chat: -4005887144n }
+            { id: 3, chat: -4005887144n },
+            { id: 5, chat: -4046236628n }
         ];
     }
 };
