@@ -8,5 +8,8 @@ export declare class SelectActivChatService {
     private readonly chatService;
     private readonly timeService;
     constructor(chatActiveService: ChatActiveService, chatDataService: ChatDataService, chatService: ChatService, timeService: TimeService);
-    activChat(): Promise<any[]>;
+    activChat(): Promise<{
+        id: number;
+        chat: bigint;
+    }[]>;
 }

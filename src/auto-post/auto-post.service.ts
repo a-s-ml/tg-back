@@ -42,9 +42,10 @@ export class AutoPostService {
 					const response =
 						await this.responsesService.sendMessage(questionTest)
 					if (response) {
+						console.log(response)
 						await this.chatDataService.create({
 							group: response.result.chat.id,
-							group_type: "js",
+							group_type: response.result.chat.type,
 							message_id: response.result.message_id,
 							result: 1,
 							date: response.result.date,
@@ -64,9 +65,10 @@ export class AutoPostService {
 					const response =
 						await this.responsesService.sendPhoto(questionImg)
 					if (response) {
+						console.log(response)
 						await this.chatDataService.create({
 							group: response.result.chat.id,
-							group_type: "js",
+							group_type: response.result.chat.type,
 							message_id: response.result.message_id,
 							result: 1,
 							date: response?.result.date,
@@ -86,9 +88,10 @@ export class AutoPostService {
 					const response =
 						await this.responsesService.sendPoll(questionPoll)
 					if (response) {
+						console.log(response)
 						await this.chatDataService.create({
 							group: response.result.chat.id,
-							group_type: "js",
+							group_type: response.result.chat.type,
 							message_id: response.result.message_id,
 							result: 1,
 							date: response.result.date,
