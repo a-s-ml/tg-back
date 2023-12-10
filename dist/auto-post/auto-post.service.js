@@ -72,7 +72,7 @@ let AutoPostService = class AutoPostService {
                     }
                 }
                 if (chat.question_type === 2) {
-                    const questionPoll = await this.buildQuestionService.questionPoll(question.id, chatact[key].chat, chat.type);
+                    const questionPoll = await this.buildQuestionService.questionPoll(question.id, chat.chat, chat.type);
                     const response = await this.responsesService.sendPoll(questionPoll);
                     if (response) {
                         await this.chatDataService.create({

@@ -18,7 +18,9 @@ export class SelectActivChatService {
 		const chatact = await this.chatActiveService.findAll()
 		let actiality: Array<ActualityDto> = []
 		for (var key in chatact) {
-			let lastPost = await this.chatDataService.findLastChat(chatact[key].chat)
+			let lastPost = await this.chatDataService.findLastChat(
+				chatact[key].chat
+			)
 			if (!lastPost?.length) {
 				actiality.push(chatact[key])
 			}
@@ -41,8 +43,9 @@ export class SelectActivChatService {
 		console.log(actiality)
 		return [
 			{ id: 2, chat: -1001635376490n },
-			// { id: 3, chat: -4005887144n },
-			// { id: 5, chat: -4046236628n }
+			{ id: 3, chat: -4005887144n },
+			{ id: 5, chat: -4046236628n },
+			{ id: 100, chat: -1001992366832n }
 		]
 	}
 }
