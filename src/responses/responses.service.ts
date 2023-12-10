@@ -25,7 +25,7 @@ export class ResponsesService {
 			)
 			return response.data.result
 		} catch (error) {
-			return error
+			return this.sendLogToAdmin(error)
 		}
 	}
 
@@ -43,7 +43,7 @@ export class ResponsesService {
 			)
 			return response.data
 		} catch (error) {
-			return error
+			return this.sendLogToAdmin(error)
 		}
 	}
 
@@ -64,7 +64,7 @@ export class ResponsesService {
 			)
 			return response.data.result
 		} catch (error) {
-			return error
+			return this.sendLogToAdmin(error)
 		}
 	}
 
@@ -82,7 +82,7 @@ export class ResponsesService {
 			)
 			return response.data
 		} catch (error) {
-			return error
+			return this.sendLogToAdmin(error)
 		}
 	}
 
@@ -101,7 +101,7 @@ export class ResponsesService {
 			)
 			return response.data.result
 		} catch (error) {
-			return error
+			return this.sendLogToAdmin(error)
 		}
 	}
 
@@ -117,7 +117,7 @@ export class ResponsesService {
 			)
 			return response.data.result
 		} catch (error) {
-			return error
+			return this.sendLogToAdmin(error)
 		}
 	}
 
@@ -133,7 +133,7 @@ export class ResponsesService {
 			)
 			return response.data
 		} catch (error) {
-			return error
+			return this.sendLogToAdmin(error)
 		}
 	}
 
