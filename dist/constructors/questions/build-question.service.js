@@ -45,7 +45,12 @@ let BuildQuestionService = class BuildQuestionService {
         console.log(url);
         return url;
     }
-    async questionPoll(id, chat) {
+    async questionPoll(id, chat, type) {
+        let is_anonymous;
+        is_anonymous = false;
+        if (type === 'channel') {
+            is_anonymous = true;
+        }
         const question = await this.questionService.findOne(id);
         const url = {
             chat_id: chat,
@@ -56,7 +61,8 @@ let BuildQuestionService = class BuildQuestionService {
                 question.answer3,
                 question.answer4
             ],
-            correct_option_id: question.answerright
+            correct_option_id: question.answerright,
+            is_anonymous: is_anonymous
         };
         console.log(url);
         return url;

@@ -38,7 +38,7 @@ let AutoPostService = class AutoPostService {
                 const chat = await this.chatService.findByChatId(chatact[key].chat);
                 const question = await this.selectQuestionService.availableQuestion(chatact[key].chat);
                 if (chat.question_type === 3) {
-                    const questionTest = await this.buildQuestionService.questionText(question.id, chatact[key].chat);
+                    const questionTest = await this.buildQuestionService.questionText(question.id, chat.chat);
                     const response = await this.responsesService.sendMessage(questionTest);
                     if (response) {
                         await this.chatDataService.create({
@@ -47,7 +47,7 @@ let AutoPostService = class AutoPostService {
                             message_id: response.message_id,
                             date: response.date,
                             question_id: question.id,
-                            question_type: "" + chat.question_type
+                            question_type: "text"
                         });
                     }
                     else {
@@ -55,7 +55,7 @@ let AutoPostService = class AutoPostService {
                     }
                 }
                 if (chat.question_type === 1) {
-                    const questionImg = await this.buildQuestionService.questionImg(question.id, chatact[key].chat);
+                    const questionImg = await this.buildQuestionService.questionImg(question.id, chat.chat);
                     const response = await this.responsesService.sendPhoto(questionImg);
                     if (response) {
                         await this.chatDataService.create({
@@ -64,7 +64,7 @@ let AutoPostService = class AutoPostService {
                             message_id: response.message_id,
                             date: response?.date,
                             question_id: question.id,
-                            question_type: "" + chat.question_type
+                            question_type: "photo"
                         });
                     }
                     else {
@@ -72,7 +72,7 @@ let AutoPostService = class AutoPostService {
                     }
                 }
                 if (chat.question_type === 2) {
-                    const questionPoll = await this.buildQuestionService.questionPoll(question.id, chatact[key].chat);
+                    const questionPoll = await this.buildQuestionService.questionPoll(question.id, chatact[key].chat, chat.type);
                     const response = await this.responsesService.sendPoll(questionPoll);
                     if (response) {
                         await this.chatDataService.create({
@@ -82,7 +82,7 @@ let AutoPostService = class AutoPostService {
                             date: response.date,
                             question_id: question.id,
                             poll_id: response.poll.id,
-                            question_type: "" + chat.question_type
+                            question_type: "poll"
                         });
                     }
                     else {

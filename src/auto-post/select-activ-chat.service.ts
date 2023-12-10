@@ -41,8 +41,8 @@ export class SelectActivChatService {
 		console.log(actiality)
 		return [
 			{ id: 2, chat: -1001635376490n },
-			{ id: 3, chat: -4005887144n },
-			{ id: 5, chat: -4046236628n }
+			// { id: 3, chat: -4005887144n },
+			// { id: 5, chat: -4046236628n }
 		]
 	}
 }

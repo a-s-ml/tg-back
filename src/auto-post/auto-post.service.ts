@@ -36,7 +36,7 @@ export class AutoPostService {
 				if (chat.question_type === 3) {
 					const questionTest = await this.buildQuestionService.questionText(
 						question.id,
-						chatact[key].chat
+						chat.chat
 					)
 					const response: ResponceSendTextDto = await this.responsesService.sendMessage(questionTest)
 					if (response) {
@@ -46,7 +46,7 @@ export class AutoPostService {
 							message_id: response.message_id,
 							date: response.date,
 							question_id: question.id,
-							question_type: "" + chat.question_type
+							question_type: "text"
 						})
 					} else {
 						await this.chatActiveService.remove(chatact[key].chat)
@@ -55,7 +55,7 @@ export class AutoPostService {
 				if (chat.question_type === 1) {
 					const questionImg = await this.buildQuestionService.questionImg(
 						question.id,
-						chatact[key].chat
+						chat.chat
 					)
 					const response: ResponceSendPhotoDto = await this.responsesService.sendPhoto(questionImg)
 					if (response) {
@@ -65,7 +65,7 @@ export class AutoPostService {
 							message_id: response.message_id,
 							date: response?.date,
 							question_id: question.id,
-							question_type: "" + chat.question_type
+							question_type: "photo"
 						})
 					} else {
 						await this.chatActiveService.remove(chatact[key].chat)
@@ -74,7 +74,8 @@ export class AutoPostService {
 				if (chat.question_type === 2) {
 					const questionPoll = await this.buildQuestionService.questionPoll(
 						question.id,
-						chatact[key].chat
+						chatact[key].chat,
+						chat.type
 					)
 					const response: ResponseSendPollDto = await this.responsesService.sendPoll(questionPoll)
 					if (response) {
@@ -85,7 +86,7 @@ export class AutoPostService {
 							date: response.date,
 							question_id: question.id,
 							poll_id: response.poll.id,
-							question_type: "" + chat.question_type
+							question_type: "poll"
 						})
 					} else {
 						await this.chatActiveService.remove(chatact[key].chat)

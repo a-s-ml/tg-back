@@ -49,7 +49,7 @@ let ChatService = class ChatService {
     async verificationExistenceChat(chat, from) {
         const checkChat = await this.findByChatId(chat.id);
         if (!checkChat) {
-            await this.create({ chat: chat.id, referral: from.id, bot: chat.type ? 1 : 0 });
+            await this.create({ chat: chat.id, type: chat.type, referral: from.id, bot: chat.type ? 1 : 0 });
             await this.responsesService.sendLogToAdmin(`new_chat:\n${chat.id}\n${chat.type}`);
         }
     }

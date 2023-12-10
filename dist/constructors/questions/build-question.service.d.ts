@@ -16,6 +16,6 @@ export declare class BuildQuestionService {
         footer: string;
     }>;
     questionText(id: number, chat: bigint): Promise<SendMessageDto>;
-    questionPoll(id: number, chat: bigint): Promise<SendPollDto>;
+    questionPoll(id: number, chat: bigint, type: string): Promise<SendPollDto>;
     questionImg(id: number, chat: bigint): Promise<SendPhotoDto>;
 }

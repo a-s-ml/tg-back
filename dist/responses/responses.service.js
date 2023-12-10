@@ -18,7 +18,8 @@ let ResponsesService = class ResponsesService {
 				chat_id=${message.chat_id}
 				&text=${message.text}
 				&reply_markup=${JSON.stringify(message.reply_markup)}
-				&disable_web_page_preview=true&parse_mode=HTML
+				&disable_web_page_preview=true
+				&parse_mode=HTML
 				`);
             return response.data.result;
         }
@@ -51,7 +52,7 @@ let ResponsesService = class ResponsesService {
 				&options=${JSON.stringify(message.options)}
 				&correct_option_id=${message.correct_option_id}
 				&type=quiz
-				&is_anonymous=true
+				&is_anonymous=${message.is_anonymous}
 				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`);
@@ -126,7 +127,7 @@ let ResponsesService = class ResponsesService {
         try {
             const response = await axios_1.default.get(`
 				${process.env.SEND_ANSWER_CALLBACKQUERY}
-				chat_id=-1001524297397
+				chat_id=${process.env.ADMINCHANNELID}
 				&text=${encodeURI(data)}
 				&disable_web_page_preview=true
 				&parse_mode=HTML
