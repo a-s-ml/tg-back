@@ -1,9 +1,11 @@
 import "dotenv/config";
 import { AnswerCallbackQueryDto } from "src/webhook-tg/dto/answerCallbackQuery.dto";
-import { EditMessageTextDto, SendMessageDto } from "src/webhook-tg/dto/sendMessage,dto";
-import { EditMessageCaptionDto, SendPollDto } from "src/webhook-tg/dto/sendPoll.dto";
+import { SendMessageDto } from "src/webhook-tg/dto/sendMessage,dto";
+import { SendPollDto } from "src/webhook-tg/dto/sendPoll.dto";
 import { EditMessageReplyMarkupDto } from "src/constructors/keyboard/dto/keyboard.dto";
 import { SendPhotoDto } from "src/webhook-tg/dto/sendPhoto.dto";
+import { EditMessageTextDto } from "src/webhook-tg/dto/EditMessageText.dto";
+import { EditMessageCaptionDto } from "src/webhook-tg/dto/EditMessageCaption.dto";
 export declare class ResponsesService {
     sendMessage(message: SendMessageDto): Promise<any>;
     editMessageText(message: EditMessageTextDto): Promise<any>;

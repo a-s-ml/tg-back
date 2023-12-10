@@ -19,19 +19,29 @@ export class SelectActivChatService {
 		let actiality: Array<ActualityDto> = []
 		for (var key in chatact) {
 			let lastPost = await this.chatDataService.findLastChat(chatact[key].chat)
-			let chat = await this.chatService.findByChatId(chatact[key].chat)
-			let period = await this.timeService.findOne(chat.time)
-			let currentTime = Math.round(Math.floor(new Date().getTime()) / 1000)
-			let lastPostTime = lastPost[0].date
-			let timeToLast = currentTime - lastPostTime
-			let periodTime = period.period
-			if (timeToLast > periodTime) {
+			if (lastPost.length < 1) {
 				actiality.push(chatact[key])
+			}
+			if (lastPost.length > 0) {
+				let chat = await this.chatService.findByChatId(
+					chatact[key].chat
+				)
+				let period = await this.timeService.findOne(chat.time)
+				let currentTime = Math.round(
+					Math.floor(new Date().getTime()) / 1000
+				)
+				let lastPostTime = lastPost[0].date
+				let timeToLast = currentTime - lastPostTime
+				let periodTime = period.period
+				if (timeToLast > periodTime) {
+					actiality.push(chatact[key])
+				}
 			}
 		}
 		console.log(actiality)
 		return [
-			{ id: 2, chat: -1001635376490n }
+			{ id: 2, chat: -1001635376490n },
+			{ id: 3, chat: -4005887144n }
 		]
 	}
 }

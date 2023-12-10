@@ -3,7 +3,7 @@ import { InputFileDto } from "src/webhook-tg/dto/InputFile.dto"
 import { MessageEntityDto } from "src/webhook-tg/dto/MessageEntity.dto"
 import { ChatDto } from "src/webhook-tg/dto/Chat.dto"
 
-export class  ResponceSendImgDto {
+export class  ResponceSendPhotoDto {
 	message_id: number
 	author_signature: string
 	sender_chat: ChatDto

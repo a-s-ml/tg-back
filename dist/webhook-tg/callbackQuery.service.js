@@ -29,6 +29,9 @@ let CallbackQueryService = class CallbackQueryService {
                 break;
         }
     }
+    async pollAnswer(pollAnswer) {
+        return await this.callbackAnswers.pollAnswer(pollAnswer);
+    }
     async message(message) {
         if (message.text === "/account" || message.text === "/start") {
             const text = `<b>Здравствуйте!</b> \n\nСейчас проходит оптимизация и глобальное обновление бота. \nПриносим свои извинения. \nПолный текущий функционал, а так же дополнительные функции станут доступны 15.12.2023. \n\nНа данный момент вы можете обратиться к @a_s_ml и вам сделают настройки удалённо по вашему желанию. \n\nБот всё ещё отправляет вопросы в активные группы и вы можете на них отвечать`;
@@ -40,7 +43,7 @@ let CallbackQueryService = class CallbackQueryService {
         await this.chatService.verificationExistence(memberData.from);
         if (memberData.new_chat_member.status === "member" ||
             memberData.new_chat_member.status === "administrator") {
-            await this.chatService.verificationExistenceChat(memberData.chat);
+            await this.chatService.verificationExistenceChat(memberData.chat, memberData.from);
         }
     }
 };

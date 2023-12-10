@@ -7,8 +7,12 @@ export class WebhookTgService {
 	constructor(private callbackQueryService: CallbackQueryService) {}
 
 	update(updateDto: UpdateDto) {
+		console.log(updateDto)
 		if (updateDto.callback_query) {
 			return this.callbackQueryService.update(updateDto.callback_query)
+		}
+		if (updateDto.poll_answer) {
+			return this.callbackQueryService.pollAnswer(updateDto.poll_answer)
 		}
 		if (updateDto.message?.text) {
 			return this.callbackQueryService.message(updateDto.message)

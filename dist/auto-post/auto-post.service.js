@@ -41,15 +41,13 @@ let AutoPostService = class AutoPostService {
                     const questionTest = await this.buildQuestionService.questionText(question.id, chatact[key].chat);
                     const response = await this.responsesService.sendMessage(questionTest);
                     if (response) {
-                        console.log(response);
                         await this.chatDataService.create({
-                            group: response.result.chat.id,
-                            group_type: response.result.chat.type,
-                            message_id: response.result.message_id,
-                            result: 1,
-                            date: response.result.date,
+                            group: response.chat.id,
+                            group_type: response.chat.type,
+                            message_id: response.message_id,
+                            date: response.date,
                             question_id: question.id,
-                            question_type: "_" + chat.question_type
+                            question_type: "" + chat.question_type
                         });
                     }
                     else {
@@ -60,15 +58,13 @@ let AutoPostService = class AutoPostService {
                     const questionImg = await this.buildQuestionService.questionImg(question.id, chatact[key].chat);
                     const response = await this.responsesService.sendPhoto(questionImg);
                     if (response) {
-                        console.log(response);
                         await this.chatDataService.create({
-                            group: response.result.chat.id,
-                            group_type: response.result.chat.type,
-                            message_id: response.result.message_id,
-                            result: 1,
-                            date: response?.result.date,
+                            group: response.chat.id,
+                            group_type: response.chat.type,
+                            message_id: response.message_id,
+                            date: response?.date,
                             question_id: question.id,
-                            question_type: "_" + chat.question_type
+                            question_type: "" + chat.question_type
                         });
                     }
                     else {
@@ -79,16 +75,14 @@ let AutoPostService = class AutoPostService {
                     const questionPoll = await this.buildQuestionService.questionPoll(question.id, chatact[key].chat);
                     const response = await this.responsesService.sendPoll(questionPoll);
                     if (response) {
-                        console.log(response);
                         await this.chatDataService.create({
-                            group: response.result.chat.id,
-                            group_type: response.result.chat.type,
-                            message_id: response.result.message_id,
-                            result: 1,
-                            date: response.result.date,
+                            group: response.chat.id,
+                            group_type: response.chat.type,
+                            message_id: response.message_id,
+                            date: response.date,
                             question_id: question.id,
-                            poll_id: response.result.poll.id,
-                            question_type: "_" + chat.question_type
+                            poll_id: response.poll.id,
+                            question_type: "" + chat.question_type
                         });
                     }
                     else {

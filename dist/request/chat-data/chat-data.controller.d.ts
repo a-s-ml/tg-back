@@ -8,24 +8,22 @@ export declare class ChatDataController {
         group: bigint;
         thread: number;
         group_type: string;
-        result: number;
         message_id: bigint;
         date: number;
         question_id: number;
         question_type: string;
-        poll_id: bigint;
+        poll_id: string;
     }>;
     findLastChat(group: string): Promise<{
         id: number;
         group: bigint;
         thread: number;
         group_type: string;
-        result: number;
         message_id: bigint;
         date: number;
         question_id: number;
         question_type: string;
-        poll_id: bigint;
+        poll_id: string;
     }[]>;
     findAllChat(group: string): Promise<{
         question_id: number;

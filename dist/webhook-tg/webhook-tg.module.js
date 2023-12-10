@@ -15,14 +15,21 @@ const webhook_tg_controller_1 = require("./webhook-tg.controller");
 const webhook_tg_service_1 = require("./webhook-tg.service");
 const callbackQuery_service_1 = require("./callbackQuery.service");
 const callbackAnswer_service_1 = require("./callbackQuery/callbackAnswer.service");
+const chat_data_module_1 = require("../request/chat-data/chat-data.module");
+const chat_data_service_1 = require("../request/chat-data/chat-data.service");
 let WebhookTgModule = class WebhookTgModule {
 };
 exports.WebhookTgModule = WebhookTgModule;
 exports.WebhookTgModule = WebhookTgModule = __decorate([
     (0, common_1.Module)({
-        imports: [question_module_1.QuestionModule, answer_module_1.AnswerModule, chat_module_1.ChatModule],
+        imports: [question_module_1.QuestionModule, answer_module_1.AnswerModule, chat_module_1.ChatModule, chat_data_module_1.ChatDataModule],
         controllers: [webhook_tg_controller_1.WebhookTgController],
-        providers: [webhook_tg_service_1.WebhookTgService, callbackQuery_service_1.CallbackQueryService, callbackAnswer_service_1.CallbackAnswerService],
+        providers: [
+            webhook_tg_service_1.WebhookTgService,
+            callbackQuery_service_1.CallbackQueryService,
+            callbackAnswer_service_1.CallbackAnswerService,
+            chat_data_service_1.ChatDataService
+        ],
         exports: [webhook_tg_service_1.WebhookTgService, callbackAnswer_service_1.CallbackAnswerService]
     })
 ], WebhookTgModule);

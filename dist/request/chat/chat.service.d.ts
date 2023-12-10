@@ -30,5 +30,5 @@ export declare class ChatService {
     update(chat: bigint, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
     remove(id: number): string;
     verificationExistence(from: UserDto): Promise<void>;
-    verificationExistenceChat(from: ChatDto): Promise<void>;
+    verificationExistenceChat(chat: ChatDto, from: UserDto): Promise<void>;
 }

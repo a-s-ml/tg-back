@@ -1,1 +1,1 @@
-{"version":3,"file":"sendPoll.dto.js","sourceRoot":"","sources":["../../../src/webhook-tg/dto/sendPoll.dto.ts"],"names":[],"mappings":";;;AAEA,MAAa,WAAW;CAoBvB;AApBD,kCAoBC;AAED,MAAa,qBAAqB;CAQjC;AARD,sDAQC"}
+{"version":3,"file":"sendPoll.dto.js","sourceRoot":"","sources":["../../../src/webhook-tg/dto/sendPoll.dto.ts"],"names":[],"mappings":";;;AAEA,MAAa,WAAW;CAoBvB;AApBD,kCAoBC"}

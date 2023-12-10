@@ -13,7 +13,7 @@ export class ChatService {
 	) {}
 
 	async create(createChatDto: Prisma.chatCreateInput) {
-		return this.dbService.chat.create({ data: createChatDto })
+		return await this.dbService.chat.create({ data: createChatDto })
 	}
 
 	async findByChatId(chat: bigint) {
@@ -47,12 +47,12 @@ export class ChatService {
 		}
 	}
 
-	async verificationExistenceChat(from: ChatDto) {
-		const checkChat = await this.findByChatId(from.id)
+	async verificationExistenceChat(chat: ChatDto, from: UserDto) {
+		const checkChat = await this.findByChatId(chat.id)
 		if (!checkChat) {
-			await this.create({ chat: from.id, bot: from.type ? 1 : 0 })
+			await this.create({ chat: chat.id, referral: from.id, bot: chat.type ? 1 : 0 })
 			await this.responsesService.sendLogToAdmin(
-				`new_chat:\n${from.id}\n${from.type}`
+				`new_chat:\n${chat.id}\n${chat.type}`
 			) //лог
 		}
 	}

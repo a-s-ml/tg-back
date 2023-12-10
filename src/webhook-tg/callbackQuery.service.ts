@@ -5,6 +5,7 @@ import { MessageDto } from "./dto/Message.dto"
 import { ChatMemberUpdatedDto } from "./dto/ChatMemberUpdated.dto"
 import { ResponsesService } from "src/responses/responses.service"
 import { ChatService } from "src/request/chat/chat.service"
+import { PollAnswerDto } from "./dto/pollAnswer.dto"
 
 @Injectable()
 export class CallbackQueryService {
@@ -22,6 +23,10 @@ export class CallbackQueryService {
 			default:
 				break
 		}
+	}
+
+	async pollAnswer(pollAnswer: PollAnswerDto) {
+		return await this.callbackAnswers.pollAnswer(pollAnswer)
 	}
 
 	async message(message: MessageDto) {
@@ -44,7 +49,7 @@ export class CallbackQueryService {
 			memberData.new_chat_member.status === "member" ||
 			memberData.new_chat_member.status === "administrator"
 		) {
-			await this.chatService.verificationExistenceChat(memberData.chat)
+			await this.chatService.verificationExistenceChat(memberData.chat, memberData.from)
 		}
 	}
 }

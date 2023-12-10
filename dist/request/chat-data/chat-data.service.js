@@ -32,6 +32,13 @@ let ChatDataService = class ChatDataService {
             take: 1
         });
     }
+    async findByPollId(poll_id) {
+        return await this.dbService.chatData.findMany({
+            where: {
+                poll_id
+            }
+        });
+    }
     async findAllChat(group) {
         return await this.dbService.chatData.findMany({
             select: {

@@ -7,6 +7,9 @@ import { BuildStatListService } from "src/constructors/statList/build-statList.s
 import { ChatService } from "src/request/chat/chat.service"
 import { ChatDataService } from "src/request/chat-data/chat-data.service"
 import { ChatActiveService } from "src/request/chat-active/chat-active.service"
+import { ResponseSendPollDto } from "src/responses/dto/ResponseSendPoll.dto"
+import { ResponceSendPhotoDto } from "src/responses/dto/ResponceSendPhoto.dto"
+import { ResponceSendTextDto } from "src/responses/dto/ResponseSendText.dto"
 
 @Injectable()
 export class AutoPostService {
@@ -35,17 +38,15 @@ export class AutoPostService {
 						question.id,
 						chatact[key].chat
 					)
-					const response = await this.responsesService.sendMessage(questionTest)
+					const response: ResponceSendTextDto = await this.responsesService.sendMessage(questionTest)
 					if (response) {
-						console.log(response)
 						await this.chatDataService.create({
-							group: response.result.chat.id,
-							group_type: response.result.chat.type,
-							message_id: response.result.message_id,
-							result: 1,
-							date: response.result.date,
+							group: response.chat.id,
+							group_type: response.chat.type,
+							message_id: response.message_id,
+							date: response.date,
 							question_id: question.id,
-							question_type: "_" + chat.question_type
+							question_type: "" + chat.question_type
 						})
 					} else {
 						await this.chatActiveService.remove(chatact[key].chat)
@@ -56,17 +57,15 @@ export class AutoPostService {
 						question.id,
 						chatact[key].chat
 					)
-					const response = await this.responsesService.sendPhoto(questionImg)
+					const response: ResponceSendPhotoDto = await this.responsesService.sendPhoto(questionImg)
 					if (response) {
-						console.log(response)
 						await this.chatDataService.create({
-							group: response.result.chat.id,
-							group_type: response.result.chat.type,
-							message_id: response.result.message_id,
-							result: 1,
-							date: response?.result.date,
+							group: response.chat.id,
+							group_type: response.chat.type,
+							message_id: response.message_id,
+							date: response?.date,
 							question_id: question.id,
-							question_type: "_" + chat.question_type
+							question_type: "" + chat.question_type
 						})
 					} else {
 						await this.chatActiveService.remove(chatact[key].chat)
@@ -77,18 +76,16 @@ export class AutoPostService {
 						question.id,
 						chatact[key].chat
 					)
-					const response = await this.responsesService.sendPoll(questionPoll)
+					const response: ResponseSendPollDto = await this.responsesService.sendPoll(questionPoll)
 					if (response) {
-						console.log(response)
 						await this.chatDataService.create({
-							group: response.result.chat.id,
-							group_type: response.result.chat.type,
-							message_id: response.result.message_id,
-							result: 1,
-							date: response.result.date,
+							group: response.chat.id,
+							group_type: response.chat.type,
+							message_id: response.message_id,
+							date: response.date,
 							question_id: question.id,
-							poll_id: response.result.poll.id,
-							question_type: "_" + chat.question_type
+							poll_id: response.poll.id,
+							question_type: "" + chat.question_type
 						})
 					} else {
 						await this.chatActiveService.remove(chatact[key].chat)

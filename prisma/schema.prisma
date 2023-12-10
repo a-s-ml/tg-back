@@ -88,14 +88,13 @@ model chatData {
   group         BigInt
   thread        Int    @default(0)
   group_type    String @db.VarChar(255)
-  result        Int
   message_id    BigInt
   date          Int
   question_id   Int
   question_type String @default("0") @db.VarChar(155)
-  poll_id       BigInt @default(0)
+  poll_id       String @default("0") @db.VarChar(255)
 
-  @@id([id, group, question_id, question_type, message_id, result])
+  @@id([id, group, question_id, question_type, message_id])
 }
 
 model chatType {

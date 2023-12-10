@@ -4,5 +4,5 @@ export declare class PollAnswerDto {
     poll_id: string;
     voter_chat?: ChatDto;
     user?: UserDto;
-    option_ids?: object;
+    option_ids?: number[];
 }

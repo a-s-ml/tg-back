@@ -24,6 +24,14 @@ export class ChatDataService {
 		})
 	}
 
+	async findByPollId(poll_id: string) {
+		return await this.dbService.chatData.findMany({
+			where: {
+				poll_id
+			}
+		})
+	}
+
 	async findAllChat(group: bigint) {
 		return await this.dbService.chatData.findMany({
 			select: {

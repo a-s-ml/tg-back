@@ -8,24 +8,33 @@ export declare class ChatDataService {
         group: bigint;
         thread: number;
         group_type: string;
-        result: number;
         message_id: bigint;
         date: number;
         question_id: number;
         question_type: string;
-        poll_id: bigint;
+        poll_id: string;
     }>;
     findLastChat(group: bigint): Promise<{
         id: number;
         group: bigint;
         thread: number;
         group_type: string;
-        result: number;
         message_id: bigint;
         date: number;
         question_id: number;
         question_type: string;
-        poll_id: bigint;
+        poll_id: string;
+    }[]>;
+    findByPollId(poll_id: string): Promise<{
+        id: number;
+        group: bigint;
+        thread: number;
+        group_type: string;
+        message_id: bigint;
+        date: number;
+        question_id: number;
+        question_type: string;
+        poll_id: string;
     }[]>;
     findAllChat(group: bigint): Promise<{
         question_id: number;

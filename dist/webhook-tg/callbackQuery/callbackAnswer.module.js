@@ -13,13 +13,14 @@ const webhook_tg_module_1 = require("../webhook-tg.module");
 const chat_module_1 = require("../../request/chat/chat.module");
 const question_module_1 = require("../../request/question/question.module");
 const answer_module_1 = require("../../request/answer/answer.module");
+const chat_data_service_1 = require("../../request/chat-data/chat-data.service");
 let CallbackAnswerModule = class CallbackAnswerModule {
 };
 exports.CallbackAnswerModule = CallbackAnswerModule;
 exports.CallbackAnswerModule = CallbackAnswerModule = __decorate([
     (0, common_1.Module)({
         imports: [webhook_tg_module_1.WebhookTgModule, chat_module_1.ChatModule, question_module_1.QuestionModule, answer_module_1.AnswerModule],
-        providers: [callbackAnswer_service_1.CallbackAnswerService],
+        providers: [callbackAnswer_service_1.CallbackAnswerService, chat_data_service_1.ChatDataService],
         exports: [callbackAnswer_service_1.CallbackAnswerService]
     })
 ], CallbackAnswerModule);

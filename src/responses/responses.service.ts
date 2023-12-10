@@ -2,23 +2,27 @@ import "dotenv/config"
 import axios from "axios"
 import { Injectable } from "@nestjs/common"
 import { AnswerCallbackQueryDto } from "src/webhook-tg/dto/answerCallbackQuery.dto"
-import { EditMessageTextDto, SendMessageDto } from "src/webhook-tg/dto/sendMessage,dto"
-import { EditMessageCaptionDto, SendPollDto } from "src/webhook-tg/dto/sendPoll.dto"
+import { SendMessageDto } from "src/webhook-tg/dto/sendMessage,dto"
+import { SendPollDto } from "src/webhook-tg/dto/sendPoll.dto"
 import { EditMessageReplyMarkupDto } from "src/constructors/keyboard/dto/keyboard.dto"
 import { SendPhotoDto } from "src/webhook-tg/dto/sendPhoto.dto"
+import { EditMessageTextDto } from "src/webhook-tg/dto/EditMessageText.dto"
+import { EditMessageCaptionDto } from "src/webhook-tg/dto/EditMessageCaption.dto"
 
 @Injectable()
 export class ResponsesService {
 	async sendMessage(message: SendMessageDto) {
 		try {
 			const response = await axios.get(
-				`${process.env.SEND_MESSAGE}chat_id=${message.chat_id}&text=${
-					message.text
-				}&reply_markup=${JSON.stringify(
-					message.reply_markup
-				)}&disable_web_page_preview=true&parse_mode=HTML`
+				`
+				${process.env.SEND_MESSAGE}
+				chat_id=${message.chat_id}
+				&text=${message.text}
+				&reply_markup=${JSON.stringify(message.reply_markup)}
+				&disable_web_page_preview=true&parse_mode=HTML
+				`
 			)
-			return response.data
+			return response.data.result
 		} catch (error) {
 			return error
 		}
@@ -26,18 +30,15 @@ export class ResponsesService {
 
 	async editMessageText(message: EditMessageTextDto) {
 		try {
-			const url = `${process.env.SEND_MESSAGE}message_id=${message.message_id}&text=${
-				message.text
-			}&reply_markup=${JSON.stringify(
-				message.reply_markup
-			)}&disable_web_page_preview=true&parse_mode=HTML`
-			console.log(url)
 			const response = await axios.get(
-				`${process.env.SEND_MESSAGE}message_id=${message.message_id}&text=${
-					message.text
-				}&reply_markup=${JSON.stringify(
-					message.reply_markup
-				)}&disable_web_page_preview=true&parse_mode=HTML`
+				`
+				${process.env.SEND_MESSAGE}
+				message_id=${message.message_id}
+				&text=${message.text}
+				&reply_markup=${JSON.stringify(message.reply_markup)}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`
 			)
 			return response.data
 		} catch (error) {
@@ -47,20 +48,20 @@ export class ResponsesService {
 
 	async sendPoll(message: SendPollDto) {
 		try {
-			const url = `${process.env.SEND_POLL}chat_id=${message.chat_id}&question=${
-			message.question
-		}&options=${JSON.stringify(message.options)}&correct_option_id=${
-			message.correct_option_id
-		}&type=quiz&is_anonymous=false&disable_web_page_preview=true&parse_mode=HTML`
-		console.log(url)
 			const response = await axios.get(
-				`${process.env.SEND_POLL}chat_id=${message.chat_id}&question=${
-					message.question
-				}&options=${JSON.stringify(message.options)}&correct_option_id=${
-					message.correct_option_id
-				}&type=quiz&is_anonymous=false&disable_web_page_preview=true&parse_mode=HTML`
+				`
+				${process.env.SEND_POLL}
+				chat_id=${message.chat_id}
+				&question=${message.question}
+				&options=${JSON.stringify(message.options)}
+				&correct_option_id=${message.correct_option_id}
+				&type=quiz
+				&is_anonymous=true
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`
 			)
-			return response.data
+			return response.data.result
 		} catch (error) {
 			return error
 		}
@@ -69,11 +70,14 @@ export class ResponsesService {
 	async editMessageCaption(message: EditMessageCaptionDto) {
 		try {
 			const response = await axios.get(
-				`${process.env.SEND_POLL}message_id=${message.message_id}&caption=${
-					message.caption
-				}&reply_markup=${JSON.stringify(
-					message.reply_markup
-				)}&disable_web_page_preview=true&parse_mode=HTML`
+				`
+				${process.env.SEND_POLL}
+				message_id=${message.message_id}
+				&caption=${message.caption}
+				&reply_markup=${JSON.stringify(message.reply_markup)}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`
 			)
 			return response.data
 		} catch (error) {
@@ -83,20 +87,18 @@ export class ResponsesService {
 
 	async sendPhoto(message: SendPhotoDto) {
 		try {
-			const url = `${process.env.SEND_PHOTO}chat_id=${message.chat_id}&caption=${
-				message.caption
-			}&photo=${message.photo}&reply_markup=${JSON.stringify(
-				message.reply_markup
-			)}&disable_web_page_preview=true&parse_mode=HTML`
-			console.log(url)
 			const response = await axios.get(
-				`${process.env.SEND_PHOTO}chat_id=${message.chat_id}&caption=${
-					message.caption
-				}&photo=${message.photo}&reply_markup=${JSON.stringify(
-					message.reply_markup
-				)}&disable_web_page_preview=true&parse_mode=HTML`
+				`
+				${process.env.SEND_PHOTO}
+				chat_id=${message.chat_id}
+				&caption=${message.caption}
+				&photo=${message.photo}
+				&reply_markup=${JSON.stringify(message.reply_markup)}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`
 			)
-			return response.data
+			return response.data.result
 		} catch (error) {
 			return error
 		}
@@ -104,20 +106,15 @@ export class ResponsesService {
 
 	async editMessageReplyMarkup(message: EditMessageReplyMarkupDto) {
 		try {
-			const url = `${process.env.SEND_PHOTO}message_id=${
-				message.message_id
-			}&reply_markup=${JSON.stringify(
-				message.reply_markup
-			)}&disable_web_page_preview=true&parse_mode=HTML`
-			console.log(url)
 			const response = await axios.get(
-				`${process.env.SEND_PHOTO}message_id=${
-					message.message_id
-				}&reply_markup=${JSON.stringify(
-					message.reply_markup
-				)}&disable_web_page_preview=true&parse_mode=HTML`
+				`
+				${process.env.SEND_PHOTO}
+				message_id=${message.message_id}
+				&reply_markup=${JSON.stringify(message.reply_markup)}
+				&disable_web_page_preview=true
+				&parse_mode=HTML`
 			)
-			return response.data
+			return response.data.result
 		} catch (error) {
 			return error
 		}
@@ -126,7 +123,12 @@ export class ResponsesService {
 	async answerCallbackQuery(answerCallbackQuery: AnswerCallbackQueryDto) {
 		try {
 			const response = await axios.get(
-				`${process.env.SEND_ANSWER_CALLBACKQUERY}callback_query_id=${answerCallbackQuery.callback_query_id}&text=${answerCallbackQuery.text}&show_alert=true`
+				`
+				${process.env.SEND_ANSWER_CALLBACKQUERY}
+				callback_query_id=${answerCallbackQuery.callback_query_id}
+				&text=${answerCallbackQuery.text}
+				&show_alert=true
+				`
 			)
 			return response.data
 		} catch (error) {
@@ -136,20 +138,16 @@ export class ResponsesService {
 
 	async sendLogToAdmin(data: string) {
 		try {
-			const url = `${
-				process.env.SEND_ANSWER_CALLBACKQUERY
-			}chat_id=-1001524297397&text=${encodeURI(
-				data
-			)}&disable_web_page_preview=true&parse_mode=HTML`
-			console.log(url)
 			const response = await axios.get(
-				`${
-					process.env.SEND_ANSWER_CALLBACKQUERY
-				}chat_id=-1001524297397&text=${encodeURI(
-					data
-				)}&disable_web_page_preview=true&parse_mode=HTML`
+				`
+				${process.env.SEND_ANSWER_CALLBACKQUERY}
+				chat_id=-1001524297397
+				&text=${encodeURI(data)}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`
 			)
-			return response.data
+			return response.data.result
 		} catch (error) {
 			return error
 		}

@@ -19,7 +19,7 @@ let ChatService = class ChatService {
         this.responsesService = responsesService;
     }
     async create(createChatDto) {
-        return this.dbService.chat.create({ data: createChatDto });
+        return await this.dbService.chat.create({ data: createChatDto });
     }
     async findByChatId(chat) {
         return await this.dbService.chat.findUnique({
@@ -46,11 +46,11 @@ let ChatService = class ChatService {
             await this.responsesService.sendLogToAdmin(`new_user:\n${from.id}\n${from.first_name} ${from.username}`);
         }
     }
-    async verificationExistenceChat(from) {
-        const checkChat = await this.findByChatId(from.id);
+    async verificationExistenceChat(chat, from) {
+        const checkChat = await this.findByChatId(chat.id);
         if (!checkChat) {
-            await this.create({ chat: from.id, bot: from.type ? 1 : 0 });
-            await this.responsesService.sendLogToAdmin(`new_chat:\n${from.id}\n${from.type}`);
+            await this.create({ chat: chat.id, referral: from.id, bot: chat.type ? 1 : 0 });
+            await this.responsesService.sendLogToAdmin(`new_chat:\n${chat.id}\n${chat.type}`);
         }
     }
 };

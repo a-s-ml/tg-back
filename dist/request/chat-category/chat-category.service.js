@@ -24,7 +24,6 @@ let ChatCategoryService = class ChatCategoryService {
     async findChat(chat) {
         return await this.dbService.chatCategory.findMany({
             select: {
-                id: true,
                 category: true
             },
             where: {

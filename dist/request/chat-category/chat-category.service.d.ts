@@ -10,7 +10,6 @@ export declare class ChatCategoryService {
     }>;
     findChat(chat: bigint): Promise<{
         category: number;
-        id: number;
     }[]>;
     remove(id: number): Promise<{
         id: number;

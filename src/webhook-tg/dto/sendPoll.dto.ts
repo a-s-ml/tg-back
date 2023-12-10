@@ -21,13 +21,3 @@ export class SendPollDto {
 	allow_sending_without_reply?: boolean
 	reply_markup?: ReplyMarkupDto
 }
-
-export class EditMessageCaptionDto {
-	chat_id?: number
-	message_id?: number
-	inline_message_id?: string
-	caption?: string
-	parse_mode?: boolean
-	caption_entities?: object
-	reply_markup?: ReplyMarkupDto
-}

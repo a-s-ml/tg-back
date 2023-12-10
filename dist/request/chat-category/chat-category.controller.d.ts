@@ -10,7 +10,6 @@ export declare class ChatCategoryController {
     }>;
     findOne(chat: string): Promise<{
         category: number;
-        id: number;
     }[]>;
     remove(id: string): Promise<{
         id: number;

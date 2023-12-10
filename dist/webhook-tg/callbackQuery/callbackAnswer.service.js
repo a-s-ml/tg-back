@@ -15,24 +15,23 @@ const answer_service_1 = require("../../request/answer/answer.service");
 const question_service_1 = require("../../request/question/question.service");
 const responses_service_1 = require("../../responses/responses.service");
 const chat_service_1 = require("../../request/chat/chat.service");
+const chat_data_service_1 = require("../../request/chat-data/chat-data.service");
 let CallbackAnswerService = class CallbackAnswerService {
-    constructor(answerService, questionService, responsesService, chatService) {
+    constructor(answerService, questionService, responsesService, chatService, chatDataService) {
         this.answerService = answerService;
         this.questionService = questionService;
         this.responsesService = responsesService;
         this.chatService = chatService;
+        this.chatDataService = chatDataService;
     }
-    async answer(callbackQuery) {
-        console.log(callbackQuery);
-        const data = callbackQuery.data.split("_");
-        await this.chatService.verificationExistence(callbackQuery.from);
-        const checkAnswer = await this.answerService.findByChat(callbackQuery.from.id, +data[1], callbackQuery.message.chat.id);
+    async answerCheck(chat, group, answer, question_id) {
+        const checkAnswer = await this.answerService.findByChat(chat.id, question_id, group);
         let text;
         let reward;
         if (checkAnswer.length == 0) {
-            await this.responsesService.sendLogToAdmin(`new_answer answer:\n${callbackQuery.from.id}\n${callbackQuery.from.first_name} ${callbackQuery.from.username}`);
-            const question = await this.questionService.findOne(+data[1]);
-            if (data[2] == question.answerright) {
+            await this.responsesService.sendLogToAdmin(`new_answer answer:\n${chat.id}\n${chat.first_name} ${chat.username}`);
+            const question = await this.questionService.findOne(question_id);
+            if ((answer) == question.answerright) {
                 reward = question.reward;
                 text = `Верно! \n\nДобавлено "${question.reward}" очков`;
             }
@@ -41,21 +40,36 @@ let CallbackAnswerService = class CallbackAnswerService {
                 text = `Не верно! \n\nВычтено "${question.reward}" очков`;
             }
             await this.answerService.create({
-                chat: callbackQuery.from.id,
-                question: +data[1],
-                group: callbackQuery.message.chat.id,
-                choice: +data[2],
+                chat: chat.id,
+                question: question_id,
+                group: group,
+                choice: answer,
                 reward: reward
             });
         }
         else {
             text = `Вы уже двали ответ на этот вопрос!`;
         }
+        return text;
+    }
+    async answer(callbackQuery) {
+        const data = callbackQuery.data.split("_");
+        await this.chatService.verificationExistence(callbackQuery.from);
+        const text = await this.answerCheck(callbackQuery.from, callbackQuery.message.chat.id, +data[2], +data[1]);
         const res = {
             callback_query_id: callbackQuery.id,
             text: encodeURI(text)
         };
         await this.responsesService.answerCallbackQuery(res);
+    }
+    async pollAnswer(pollAnswer) {
+        if (pollAnswer.user) {
+            await this.chatService.verificationExistence(pollAnswer.user);
+            const question = await this.chatDataService.findByPollId(pollAnswer.poll_id);
+            if (question) {
+                await this.answerCheck(pollAnswer.user, question[0].group, pollAnswer.option_ids[0], question[0].question_id);
+            }
+        }
     }
 };
 exports.CallbackAnswerService = CallbackAnswerService;
@@ -64,6 +78,7 @@ exports.CallbackAnswerService = CallbackAnswerService = __decorate([
     __metadata("design:paramtypes", [answer_service_1.AnswerService,
         question_service_1.QuestionService,
         responses_service_1.ResponsesService,
-        chat_service_1.ChatService])
+        chat_service_1.ChatService,
+        chat_data_service_1.ChatDataService])
 ], CallbackAnswerService);
 //# sourceMappingURL=callbackAnswer.service.js.map
