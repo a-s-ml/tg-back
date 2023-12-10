@@ -1,10 +1,10 @@
-import { Module } from '@nestjs/common';
-import { ChatCategoryService } from './chat-category.service';
-import { ChatCategoryController } from './chat-category.controller';
+import { Module } from "@nestjs/common"
+import { ChatCategoryService } from "./chat-category.service"
+import { ChatCategoryController } from "./chat-category.controller"
 
 @Module({
-  controllers: [ChatCategoryController],
-  providers: [ChatCategoryService],
-  exports: [ChatCategoryService]
+	controllers: [ChatCategoryController],
+	providers: [ChatCategoryService],
+	exports: [ChatCategoryService]
 })
 export class ChatCategoryModule {}

@@ -24,7 +24,7 @@ let CallbackAnswerService = class CallbackAnswerService {
     }
     async answer(callbackQuery) {
         console.log(callbackQuery);
-        const data = callbackQuery.data.split('_');
+        const data = callbackQuery.data.split("_");
         await this.chatService.verificationExistence(callbackQuery.from);
         const checkAnswer = await this.answerService.findByChat(callbackQuery.from.id, +data[1], callbackQuery.message.chat.id);
         let text;
@@ -40,7 +40,13 @@ let CallbackAnswerService = class CallbackAnswerService {
                 reward = -question.reward;
                 text = `Не верно! \n\nВычтено "${question.reward}" очков`;
             }
-            await this.answerService.create({ chat: callbackQuery.from.id, question: +data[1], group: callbackQuery.message.chat.id, choice: +data[2], reward: reward });
+            await this.answerService.create({
+                chat: callbackQuery.from.id,
+                question: +data[1],
+                group: callbackQuery.message.chat.id,
+                choice: +data[2],
+                reward: reward
+            });
         }
         else {
             text = `Вы уже двали ответ на этот вопрос!`;

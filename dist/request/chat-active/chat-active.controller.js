@@ -48,21 +48,21 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ChatActiveController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':chat'),
-    __param(0, (0, common_1.Param)('chat')),
+    (0, common_1.Get)(":chat"),
+    __param(0, (0, common_1.Param)("chat")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ChatActiveController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Delete)(':chat'),
-    __param(0, (0, common_1.Param)('chat')),
+    (0, common_1.Delete)(":chat"),
+    __param(0, (0, common_1.Param)("chat")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ChatActiveController.prototype, "remove", null);
 exports.ChatActiveController = ChatActiveController = __decorate([
-    (0, common_1.Controller)('chat-active'),
+    (0, common_1.Controller)("chat-active"),
     __metadata("design:paramtypes", [chat_active_service_1.ChatActiveService])
 ], ChatActiveController);
 //# sourceMappingURL=chat-active.controller.js.map

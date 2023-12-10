@@ -27,7 +27,7 @@ let AnswerService = class AnswerService {
             where: {
                 chat,
                 question,
-                group,
+                group
             }
         });
     }
@@ -35,13 +35,13 @@ let AnswerService = class AnswerService {
         const date = new Date();
         const gte = date.setFullYear(new Date().getFullYear(), new Date().getMonth(), 1);
         return await this.dbService.answer.groupBy({
-            by: ['chat'],
+            by: ["chat"],
             where: {
                 group,
                 date: {
                     gte: new Date(gte),
-                    lte: new Date(),
-                },
+                    lte: new Date()
+                }
             },
             _sum: {
                 reward: true
@@ -51,16 +51,16 @@ let AnswerService = class AnswerService {
             },
             orderBy: {
                 _sum: {
-                    reward: 'desc'
+                    reward: "desc"
                 }
             },
-            take: 15,
+            take: 15
         });
     }
     async update(id, updateAnswerDto) {
         return await this.dbService.answer.update({
             where: {
-                id,
+                id
             },
             data: updateAnswerDto
         });
@@ -68,7 +68,7 @@ let AnswerService = class AnswerService {
     async remove(id) {
         return await this.dbService.answer.delete({
             where: {
-                id,
+                id
             }
         });
     }

@@ -18,18 +18,9 @@ let CallbackAnswerModule = class CallbackAnswerModule {
 exports.CallbackAnswerModule = CallbackAnswerModule;
 exports.CallbackAnswerModule = CallbackAnswerModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            webhook_tg_module_1.WebhookTgModule,
-            chat_module_1.ChatModule,
-            question_module_1.QuestionModule,
-            answer_module_1.AnswerModule
-        ],
-        providers: [
-            callbackAnswer_service_1.CallbackAnswerService
-        ],
-        exports: [
-            callbackAnswer_service_1.CallbackAnswerService
-        ]
+        imports: [webhook_tg_module_1.WebhookTgModule, chat_module_1.ChatModule, question_module_1.QuestionModule, answer_module_1.AnswerModule],
+        providers: [callbackAnswer_service_1.CallbackAnswerService],
+        exports: [callbackAnswer_service_1.CallbackAnswerService]
     })
 ], CallbackAnswerModule);
 //# sourceMappingURL=callbackAnswer.module.js.map

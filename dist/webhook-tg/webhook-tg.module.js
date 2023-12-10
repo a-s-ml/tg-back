@@ -20,23 +20,10 @@ let WebhookTgModule = class WebhookTgModule {
 exports.WebhookTgModule = WebhookTgModule;
 exports.WebhookTgModule = WebhookTgModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            question_module_1.QuestionModule,
-            answer_module_1.AnswerModule,
-            chat_module_1.ChatModule
-        ],
-        controllers: [
-            webhook_tg_controller_1.WebhookTgController
-        ],
-        providers: [
-            webhook_tg_service_1.WebhookTgService,
-            callbackQuery_service_1.CallbackQueryService,
-            callbackAnswer_service_1.CallbackAnswerService
-        ],
-        exports: [
-            webhook_tg_service_1.WebhookTgService,
-            callbackAnswer_service_1.CallbackAnswerService
-        ]
+        imports: [question_module_1.QuestionModule, answer_module_1.AnswerModule, chat_module_1.ChatModule],
+        controllers: [webhook_tg_controller_1.WebhookTgController],
+        providers: [webhook_tg_service_1.WebhookTgService, callbackQuery_service_1.CallbackQueryService, callbackAnswer_service_1.CallbackAnswerService],
+        exports: [webhook_tg_service_1.WebhookTgService, callbackAnswer_service_1.CallbackAnswerService]
     })
 ], WebhookTgModule);
 //# sourceMappingURL=webhook-tg.module.js.map

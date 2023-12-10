@@ -18,14 +18,8 @@ exports.ResponsesModule = ResponsesModule = __decorate([
     (0, common_1.Global)(),
     (0, common_1.Module)({
         controllers: [responses_controller_1.ResponsesController],
-        providers: [
-            responses_service_1.ResponsesService,
-            getTG_service_1.GetTgService
-        ],
-        exports: [
-            responses_service_1.ResponsesService,
-            getTG_service_1.GetTgService
-        ]
+        providers: [responses_service_1.ResponsesService, getTG_service_1.GetTgService],
+        exports: [responses_service_1.ResponsesService, getTG_service_1.GetTgService]
     })
 ], ResponsesModule);
 //# sourceMappingURL=responses.module.js.map

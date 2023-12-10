@@ -1,16 +1,13 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { WebhookTgService } from './webhook-tg.service';
-import { UpdateDto } from './dto/update.dto';
+import { Body, Controller, Get, Post } from "@nestjs/common"
+import { WebhookTgService } from "./webhook-tg.service"
+import { UpdateDto } from "./dto/update.dto"
 
-@Controller('webhook-tg')
+@Controller("webhook-tg")
 export class WebhookTgController {
+	constructor(private webhookTg: WebhookTgService) {}
 
-    constructor(
-        private webhookTg: WebhookTgService
-    ) {}
-
-    @Post()
-    update(@Body() updateDto: UpdateDto) {
-        return this.webhookTg.update(updateDto);
-    }
+	@Post()
+	update(@Body() updateDto: UpdateDto) {
+		return this.webhookTg.update(updateDto)
+	}
 }

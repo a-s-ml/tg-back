@@ -38,7 +38,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ResponsesController.prototype, "answerCallbackQuery", null);
 exports.ResponsesController = ResponsesController = __decorate([
-    (0, common_1.Controller)('responses'),
+    (0, common_1.Controller)("responses"),
     __metadata("design:paramtypes", [responses_service_1.ResponsesService])
 ], ResponsesController);
 //# sourceMappingURL=responses.controller.js.map

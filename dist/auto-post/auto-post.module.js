@@ -41,11 +41,7 @@ exports.AutoPostModule = AutoPostModule = __decorate([
             chat_service_1.ChatService,
             time_service_1.TimeService
         ],
-        exports: [
-            auto_post_service_1.AutoPostService,
-            select_activ_chat_service_1.SelectActivChatService,
-            select_questions_service_1.SelectQuestionService
-        ]
+        exports: [auto_post_service_1.AutoPostService, select_activ_chat_service_1.SelectActivChatService, select_questions_service_1.SelectQuestionService]
     })
 ], AutoPostModule);
 //# sourceMappingURL=auto-post.module.js.map

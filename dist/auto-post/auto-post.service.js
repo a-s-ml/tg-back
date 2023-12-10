@@ -43,12 +43,12 @@ let AutoPostService = class AutoPostService {
                     if (response) {
                         await this.chatDataService.create({
                             group: response.result.chat.id,
-                            group_type: 'js',
+                            group_type: "js",
                             message_id: response.result.message_id,
                             result: 1,
                             date: response.result.date,
                             question_id: question.id,
-                            question_type: '_' + chat.question_type
+                            question_type: "_" + chat.question_type
                         });
                     }
                     else {
@@ -61,12 +61,12 @@ let AutoPostService = class AutoPostService {
                     if (response) {
                         await this.chatDataService.create({
                             group: response.result.chat.id,
-                            group_type: 'js',
+                            group_type: "js",
                             message_id: response.result.message_id,
                             result: 1,
-                            date: response.result.date,
+                            date: response?.result.date,
                             question_id: question.id,
-                            question_type: '_' + chat.question_type
+                            question_type: "_" + chat.question_type
                         });
                     }
                     else {
@@ -79,13 +79,13 @@ let AutoPostService = class AutoPostService {
                     if (response) {
                         await this.chatDataService.create({
                             group: response.result.chat.id,
-                            group_type: 'js',
+                            group_type: "js",
                             message_id: response.result.message_id,
                             result: 1,
                             date: response.result.date,
                             question_id: question.id,
                             poll_id: response.result.poll.id,
-                            question_type: '_' + chat.question_type
+                            question_type: "_" + chat.question_type
                         });
                     }
                     else {

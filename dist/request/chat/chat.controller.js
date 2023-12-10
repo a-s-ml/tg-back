@@ -39,22 +39,22 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ChatController.prototype, "create", null);
 __decorate([
-    (0, common_1.Patch)(':chat'),
-    __param(0, (0, common_1.Param)('chat')),
+    (0, common_1.Patch)(":chat"),
+    __param(0, (0, common_1.Param)("chat")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], ChatController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ChatController.prototype, "remove", null);
 exports.ChatController = ChatController = __decorate([
-    (0, common_1.Controller)('chat'),
+    (0, common_1.Controller)("chat"),
     __metadata("design:paramtypes", [chat_service_1.ChatService])
 ], ChatController);
 //# sourceMappingURL=chat.controller.js.map

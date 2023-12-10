@@ -39,21 +39,21 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ChatCategoryController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(':chat'),
-    __param(0, (0, common_1.Param)('chat')),
+    (0, common_1.Get)(":chat"),
+    __param(0, (0, common_1.Param)("chat")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ChatCategoryController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ChatCategoryController.prototype, "remove", null);
 exports.ChatCategoryController = ChatCategoryController = __decorate([
-    (0, common_1.Controller)('chat-category'),
+    (0, common_1.Controller)("chat-category"),
     __metadata("design:paramtypes", [chat_category_service_1.ChatCategoryService])
 ], ChatCategoryController);
 //# sourceMappingURL=chat-category.controller.js.map

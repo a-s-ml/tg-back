@@ -1,17 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { QuestionTypeService } from './question-type.service';
+import { Controller, Get, Param } from "@nestjs/common"
+import { QuestionTypeService } from "./question-type.service"
 
-@Controller('question-type')
+@Controller("question-type")
 export class QuestionTypeController {
-  constructor(private readonly questionTypeService: QuestionTypeService) {}
+	constructor(private readonly questionTypeService: QuestionTypeService) {}
 
-  @Get()
-  findAll() {
-    return this.questionTypeService.findAll();
-  }
+	@Get()
+	findAll() {
+		return this.questionTypeService.findAll()
+	}
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.questionTypeService.findOne(+id);
-  }
+	@Get(":id")
+	findOne(@Param("id") id: string) {
+		return this.questionTypeService.findOne(+id)
+	}
 }

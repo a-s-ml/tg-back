@@ -1,5 +1,5 @@
-import { QuestionService } from './question.service';
-import { Prisma } from '@prisma/client';
+import { QuestionService } from "./question.service";
+import { Prisma } from "@prisma/client";
 export declare class QuestionController {
     private questionService;
     constructor(questionService: QuestionService);

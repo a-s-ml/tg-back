@@ -16,7 +16,7 @@ exports.ChatDataModule = ChatDataModule;
 exports.ChatDataModule = ChatDataModule = __decorate([
     (0, common_1.Module)({
         controllers: [chat_data_controller_1.ChatDataController],
-        providers: [chat_data_service_1.ChatDataService],
+        providers: [chat_data_service_1.ChatDataService]
     })
 ], ChatDataModule);
 //# sourceMappingURL=chat-data.module.js.map

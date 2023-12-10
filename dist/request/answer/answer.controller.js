@@ -51,29 +51,29 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AnswerController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Patch)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], AnswerController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], AnswerController.prototype, "remove", null);
 __decorate([
-    (0, common_1.Get)('getStatChat/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)("getStatChat/:id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [BigInt]),
     __metadata("design:returntype", void 0)
 ], AnswerController.prototype, "getStatChat", null);
 exports.AnswerController = AnswerController = __decorate([
-    (0, common_1.Controller)('answer'),
+    (0, common_1.Controller)("answer"),
     __metadata("design:paramtypes", [answer_service_1.AnswerService])
 ], AnswerController);
 //# sourceMappingURL=answer.controller.js.map

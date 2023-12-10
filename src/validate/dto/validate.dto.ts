@@ -1,3 +1,3 @@
 export class validateDto {
-    initData: string
+	initData: string
 }

@@ -24,14 +24,14 @@ let ChatService = class ChatService {
     async findByChatId(chat) {
         return await this.dbService.chat.findUnique({
             where: {
-                chat,
+                chat
             }
         });
     }
     async update(chat, updateChatDto) {
         await this.dbService.chat.update({
             where: {
-                chat,
+                chat
             },
             data: updateChatDto
         });

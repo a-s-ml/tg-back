@@ -1,4 +1,4 @@
-import { DbService } from 'src/db/db.service';
+import { DbService } from "src/db/db.service";
 export declare class ChatTypeService {
     private dbService;
     constructor(dbService: DbService);

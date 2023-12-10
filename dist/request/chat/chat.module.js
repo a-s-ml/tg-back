@@ -16,9 +16,7 @@ let ChatModule = class ChatModule {
 exports.ChatModule = ChatModule;
 exports.ChatModule = ChatModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            responses_module_1.ResponsesModule
-        ],
+        imports: [responses_module_1.ResponsesModule],
         controllers: [chat_controller_1.ChatController],
         providers: [chat_service_1.ChatService],
         exports: [chat_service_1.ChatService]

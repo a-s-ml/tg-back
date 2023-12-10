@@ -1,5 +1,5 @@
-import { AnswerService } from './answer.service';
-import { Prisma } from '@prisma/client';
+import { AnswerService } from "./answer.service";
+import { Prisma } from "@prisma/client";
 export declare class AnswerController {
     private answerService;
     constructor(answerService: AnswerService);

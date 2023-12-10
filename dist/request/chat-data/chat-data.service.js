@@ -17,26 +17,28 @@ let ChatDataService = class ChatDataService {
         this.dbService = dbService;
     }
     async create(chatDataCreateInput) {
-        return await this.dbService.chatData.create({ data: chatDataCreateInput });
+        return await this.dbService.chatData.create({
+            data: chatDataCreateInput
+        });
     }
     async findLastChat(group) {
         return await this.dbService.chatData.findMany({
             where: {
-                group,
+                group
             },
             orderBy: {
-                id: 'desc'
+                id: "desc"
             },
-            take: 1,
+            take: 1
         });
     }
     async findAllChat(group) {
         return await this.dbService.chatData.findMany({
             select: {
-                question_id: true,
+                question_id: true
             },
             where: {
-                group,
+                group
             }
         });
     }

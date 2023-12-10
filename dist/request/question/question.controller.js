@@ -42,7 +42,7 @@ let QuestionController = class QuestionController {
         return this.questionService.remove(+id);
     }
     generate(id) {
-        console.log('generate ' + id);
+        console.log("generate " + id);
         return this.questionService.generate(+id);
     }
 };
@@ -61,50 +61,50 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], QuestionController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], QuestionController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Patch)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], QuestionController.prototype, "update", null);
 __decorate([
-    (0, common_1.Get)('countReward/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)("countReward/:id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], QuestionController.prototype, "countReward", null);
 __decorate([
-    (0, common_1.Get)('count/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)("count/:id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], QuestionController.prototype, "count", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], QuestionController.prototype, "remove", null);
 __decorate([
-    (0, common_1.Get)('generate/:id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)("generate/:id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], QuestionController.prototype, "generate", null);
 exports.QuestionController = QuestionController = __decorate([
-    (0, common_1.Controller)('question'),
+    (0, common_1.Controller)("question"),
     __metadata("design:paramtypes", [question_service_1.QuestionService])
 ], QuestionController);
 //# sourceMappingURL=question.controller.js.map

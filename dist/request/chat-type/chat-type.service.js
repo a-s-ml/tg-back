@@ -22,7 +22,7 @@ let ChatTypeService = class ChatTypeService {
     async findOne(id) {
         return await this.dbService.chatType.findUnique({
             where: {
-                id,
+                id
             }
         });
     }

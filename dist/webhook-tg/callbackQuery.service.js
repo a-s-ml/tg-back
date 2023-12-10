@@ -21,16 +21,16 @@ let CallbackQueryService = class CallbackQueryService {
         this.chatService = chatService;
     }
     async update(callbackQuery) {
-        const data = callbackQuery.data.split('_');
+        const data = callbackQuery.data.split("_");
         switch (data[0]) {
-            case 'answer':
+            case "answer":
                 return await this.callbackAnswers.answer(callbackQuery);
             default:
                 break;
         }
     }
     async message(message) {
-        if (message.text === '/account' || message.text === '/start') {
+        if (message.text === "/account" || message.text === "/start") {
             const text = `<b>Здравствуйте!</b> \n\nСейчас проходит оптимизация и глобальное обновление бота. \nПриносим свои извинения. \nПолный текущий функционал, а так же дополнительные функции станут доступны 15.12.2023. \n\nНа данный момент вы можете обратиться к @a_s_ml и вам сделают настройки удалённо по вашему желанию. \n\nБот всё ещё отправляет вопросы в активные группы и вы можете на них отвечать`;
             await fetch(`${process.env.SEND_MESSAGE}chat_id=${message.from.id}&text=${encodeURI(text)}&parse_mode=HTML`);
         }
@@ -38,7 +38,8 @@ let CallbackQueryService = class CallbackQueryService {
     async member(memberData) {
         await this.responsesService.sendLogToAdmin(`new_chat_member: ${memberData.new_chat_member.status}\n${memberData.chat.id}`);
         await this.chatService.verificationExistence(memberData.from);
-        if (memberData.new_chat_member.status === 'member' || memberData.new_chat_member.status === 'administrator') {
+        if (memberData.new_chat_member.status === "member" ||
+            memberData.new_chat_member.status === "administrator") {
             await this.chatService.verificationExistenceChat(memberData.chat);
         }
     }

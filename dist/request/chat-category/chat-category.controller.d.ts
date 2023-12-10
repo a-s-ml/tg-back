@@ -1,5 +1,5 @@
-import { ChatCategoryService } from './chat-category.service';
-import { Prisma } from '@prisma/client';
+import { ChatCategoryService } from "./chat-category.service";
+import { Prisma } from "@prisma/client";
 export declare class ChatCategoryController {
     private readonly chatCategoryService;
     constructor(chatCategoryService: ChatCategoryService);

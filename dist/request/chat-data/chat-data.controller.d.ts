@@ -1,5 +1,5 @@
-import { ChatDataService } from './chat-data.service';
-import { Prisma } from '@prisma/client';
+import { ChatDataService } from "./chat-data.service";
+import { Prisma } from "@prisma/client";
 export declare class ChatDataController {
     private readonly chatDataService;
     constructor(chatDataService: ChatDataService);

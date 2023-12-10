@@ -33,7 +33,7 @@ __decorate([
     __metadata("design:returntype", Object)
 ], ValidateController.prototype, "validate", null);
 exports.ValidateController = ValidateController = __decorate([
-    (0, common_1.Controller)('validate'),
+    (0, common_1.Controller)("validate"),
     __metadata("design:paramtypes", [validate_service_1.ValidateService])
 ], ValidateController);
 //# sourceMappingURL=validate.controller.js.map

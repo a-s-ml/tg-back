@@ -1,4 +1,4 @@
 export class PoolOptionsDto {
-    text: string
-    voter_count: number
+	text: string
+	voter_count: number
 }

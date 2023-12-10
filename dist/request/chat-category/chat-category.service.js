@@ -17,23 +17,25 @@ let ChatCategoryService = class ChatCategoryService {
         this.dbService = dbService;
     }
     async create(chatCategoryCreateInput) {
-        return await this.dbService.chatCategory.create({ data: chatCategoryCreateInput });
+        return await this.dbService.chatCategory.create({
+            data: chatCategoryCreateInput
+        });
     }
     async findChat(chat) {
         return await this.dbService.chatCategory.findMany({
             select: {
                 id: true,
-                category: true,
+                category: true
             },
             where: {
-                chat,
+                chat
             }
         });
     }
     async remove(id) {
         return await this.dbService.chatCategory.delete({
             where: {
-                id,
+                id
             }
         });
     }

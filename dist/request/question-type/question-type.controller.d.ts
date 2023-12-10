@@ -1,4 +1,4 @@
-import { QuestionTypeService } from './question-type.service';
+import { QuestionTypeService } from "./question-type.service";
 export declare class QuestionTypeController {
     private readonly questionTypeService;
     constructor(questionTypeService: QuestionTypeService);

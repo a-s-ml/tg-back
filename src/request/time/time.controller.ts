@@ -1,18 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { TimeService } from './time.service';
+import { Controller, Get, Param } from "@nestjs/common"
+import { TimeService } from "./time.service"
 
-@Controller('time')
+@Controller("time")
 export class TimeController {
-  constructor(private readonly timeService: TimeService) {}
+	constructor(private readonly timeService: TimeService) {}
 
-  @Get()
-  findAll() {
-    return this.timeService.findAll();
-  }
+	@Get()
+	findAll() {
+		return this.timeService.findAll()
+	}
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.timeService.findOne(+id);
-  }
-
+	@Get(":id")
+	findOne(@Param("id") id: string) {
+		return this.timeService.findOne(+id)
+	}
 }

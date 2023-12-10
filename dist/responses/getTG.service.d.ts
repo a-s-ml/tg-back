@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import "dotenv/config";
 export declare class GetTgService {
     tgGetChat(id: bigint): Promise<any>;
     tgGetChatAdministrators(id: bigint): Promise<any>;

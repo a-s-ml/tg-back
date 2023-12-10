@@ -13,21 +13,23 @@ require("dotenv/config");
 let ValidateService = class ValidateService {
     async validateUser(validateString) {
         const urlParams = new URLSearchParams(validateString.initData);
-        const hash = urlParams.get('hash');
-        urlParams.delete('hash');
+        const hash = urlParams.get("hash");
+        urlParams.delete("hash");
         urlParams.sort();
         const UserData = {
-            query_id: urlParams.get('query_id'),
-            user: JSON.parse(urlParams.get('user')),
-            auth_date: urlParams.get('auth_date'),
+            query_id: urlParams.get("query_id"),
+            user: JSON.parse(urlParams.get("user")),
+            auth_date: urlParams.get("auth_date")
         };
-        let dataCheckString = '';
+        let dataCheckString = "";
         for (const [key, value] of urlParams.entries()) {
             dataCheckString += `${key}=${value}\n`;
         }
         dataCheckString = dataCheckString.slice(0, -1);
-        const secret = (0, crypto_1.createHmac)('sha256', 'WebAppData').update(process.env.TOKEN ?? '');
-        const calculatedHash = (0, crypto_1.createHmac)('sha256', secret.digest()).update(dataCheckString).digest('hex');
+        const secret = (0, crypto_1.createHmac)("sha256", "WebAppData").update(process.env.TOKEN ?? "");
+        const calculatedHash = (0, crypto_1.createHmac)("sha256", secret.digest())
+            .update(dataCheckString)
+            .digest("hex");
         const validate = calculatedHash === hash;
         return { validate, UserData };
     }

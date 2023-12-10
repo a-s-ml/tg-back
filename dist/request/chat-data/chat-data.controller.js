@@ -39,21 +39,21 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ChatDataController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(':group'),
-    __param(0, (0, common_1.Param)('group')),
+    (0, common_1.Get)(":group"),
+    __param(0, (0, common_1.Param)("group")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ChatDataController.prototype, "findLastChat", null);
 __decorate([
-    (0, common_1.Get)(':group'),
-    __param(0, (0, common_1.Param)('group')),
+    (0, common_1.Get)(":group"),
+    __param(0, (0, common_1.Param)("group")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ChatDataController.prototype, "findAllChat", null);
 exports.ChatDataController = ChatDataController = __decorate([
-    (0, common_1.Controller)('chat-data'),
+    (0, common_1.Controller)("chat-data"),
     __metadata("design:paramtypes", [chat_data_service_1.ChatDataService])
 ], ChatDataController);
 //# sourceMappingURL=chat-data.controller.js.map

@@ -33,7 +33,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], WebhookTgController.prototype, "update", null);
 exports.WebhookTgController = WebhookTgController = __decorate([
-    (0, common_1.Controller)('webhook-tg'),
+    (0, common_1.Controller)("webhook-tg"),
     __metadata("design:paramtypes", [webhook_tg_service_1.WebhookTgService])
 ], WebhookTgController);
 //# sourceMappingURL=webhook-tg.controller.js.map

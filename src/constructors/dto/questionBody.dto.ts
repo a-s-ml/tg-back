@@ -1,5 +1,5 @@
 export class QuestionBodyText {
-    header: string
-    text: string
-    footer: string
+	header: string
+	text: string
+	footer: string
 }

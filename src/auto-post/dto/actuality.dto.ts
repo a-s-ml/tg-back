@@ -1,4 +1,4 @@
 export class ActualityDto {
-    id: number
-    chat: bigint
+	id: number
+	chat: bigint
 }

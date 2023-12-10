@@ -17,7 +17,9 @@ let ChatActiveService = class ChatActiveService {
         this.dbService = dbService;
     }
     async create(chatActiveCreateInput) {
-        return await this.dbService.chatActive.create({ data: chatActiveCreateInput });
+        return await this.dbService.chatActive.create({
+            data: chatActiveCreateInput
+        });
     }
     async findAll() {
         return await this.dbService.chatActive.findMany();
@@ -25,14 +27,14 @@ let ChatActiveService = class ChatActiveService {
     async findOne(chat) {
         return await this.dbService.chatActive.findUnique({
             where: {
-                chat,
+                chat
             }
         });
     }
     async remove(chat) {
         return await this.dbService.chatActive.delete({
             where: {
-                chat,
+                chat
             }
         });
     }
