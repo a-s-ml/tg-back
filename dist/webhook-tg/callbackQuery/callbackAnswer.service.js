@@ -29,7 +29,6 @@ let CallbackAnswerService = class CallbackAnswerService {
         let text;
         let reward;
         if (checkAnswer.length == 0) {
-            await this.responsesService.sendLogToAdmin(`new_answer answer:\n${chat.id}\n${chat.first_name} ${chat.username}`);
             const question = await this.questionService.findOne(question_id);
             if ((answer) == question.answerright) {
                 reward = question.reward;

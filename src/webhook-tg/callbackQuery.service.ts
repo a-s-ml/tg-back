@@ -51,7 +51,7 @@ export class CallbackQueryService {
 
 	async member(memberData: ChatMemberUpdatedDto) {
 		await this.responsesService.sendLogToAdmin(
-			`new_chat_member: ${memberData.new_chat_member.status}\n${memberData.chat.id}`
+			`new_chat_member: ${memberData.new_chat_member.status}\n${memberData.chat.id}\n@${memberData.chat.username}`
 		)
 		await this.chatService.verificationExistence(memberData.from)
 		if (

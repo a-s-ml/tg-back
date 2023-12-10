@@ -28,11 +28,6 @@ export class CallbackAnswerService {
 		let text: string
 		let reward: number
 		if (checkAnswer.length == 0) {
-			//лог
-			await this.responsesService.sendLogToAdmin(
-				`new_answer answer:\n${chat.id}\n${chat.first_name} ${chat.username}`
-			)
-			//
 			const question = await this.questionService.findOne(question_id)
 			if ((answer) == question.answerright) {
 				reward = question.reward

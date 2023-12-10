@@ -42,7 +42,7 @@ export class ChatService {
 		if (!checkUser) {
 			await this.create({ chat: from.id, bot: from.is_bot ? 1 : 0 })
 			await this.responsesService.sendLogToAdmin(
-				`new_user:\n${from.id}\n${from.first_name} ${from.username}`
+				`new_user:\n${from.id}\n${from.first_name} @${from.username}`
 			) //лог
 		}
 	}
