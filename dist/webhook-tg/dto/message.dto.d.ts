@@ -1,5 +1,10 @@
-import { ChatDto } from "./chat.dto";
-import { LocationDto } from "./location.dto";
+import { AnimationDto } from "./Animation.dto";
+import { AudioDto } from "./Audio.dto";
+import { ChatDto } from "./Chat.dto";
+import { DocumentDto } from "./Document.dto";
+import { LocationDto } from "./Location.dto";
+import { MessageEntityDto } from "./MessageEntity.dto";
+import { PhotoSizeDto } from "./PhotoSize.dto";
 import { UserDto } from "./user.dto";
 export declare class MessageDto {
     message_id: number;
@@ -22,11 +27,11 @@ export declare class MessageDto {
     media_group_id?: string;
     author_signature?: string;
     text?: string;
-    entities?: object;
-    animation?: object;
-    audio?: object;
-    document?: object;
-    photo?: object;
+    entities?: MessageEntityDto;
+    animation?: AnimationDto;
+    audio?: AudioDto;
+    document?: DocumentDto;
+    photo?: [PhotoSizeDto];
     sticker?: object;
     story?: object;
     video?: object;

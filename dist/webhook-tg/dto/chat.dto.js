@@ -4,4 +4,4 @@ exports.ChatDto = void 0;
 class ChatDto {
 }
 exports.ChatDto = ChatDto;
-//# sourceMappingURL=chat.dto.js.map
+//# sourceMappingURL=Chat.dto.js.map

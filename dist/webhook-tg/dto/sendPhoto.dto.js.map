@@ -1,1 +1,1 @@
-{"version":3,"file":"sendPhoto.dto.js","sourceRoot":"","sources":["../../../src/webhook-tg/dto/sendPhoto.dto.ts"],"names":[],"mappings":";;;AAEA,MAAa,YAAY;CAaxB;AAbD,oCAaC"}
+{"version":3,"file":"sendPhoto.dto.js","sourceRoot":"","sources":["../../../src/webhook-tg/dto/sendPhoto.dto.ts"],"names":[],"mappings":";;;AAIA,MAAa,YAAY;CAaxB;AAbD,oCAaC"}

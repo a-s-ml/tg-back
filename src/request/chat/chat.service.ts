@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common"
 import { Prisma } from "@prisma/client"
 import { DbService } from "src/db/db.service"
 import { ResponsesService } from "src/responses/responses.service"
-import { ChatDto } from "src/webhook-tg/dto/chat.dto"
+import { ChatDto } from "src/webhook-tg/dto/Chat.dto"
 import { UserDto } from "src/webhook-tg/dto/user.dto"
 
 @Injectable()

@@ -4,4 +4,4 @@ exports.PollDto = void 0;
 class PollDto {
 }
 exports.PollDto = PollDto;
-//# sourceMappingURL=poll.dto.js.map
+//# sourceMappingURL=Poll.dto.js.map

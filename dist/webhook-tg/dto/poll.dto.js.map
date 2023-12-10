@@ -1,1 +1,1 @@
-{"version":3,"file":"poll.dto.js","sourceRoot":"","sources":["../../../src/webhook-tg/dto/poll.dto.ts"],"names":[],"mappings":";;;AAGA,MAAa,OAAO;CAcnB;AAdD,0BAcC"}
+{"version":3,"file":"Poll.dto.js","sourceRoot":"","sources":["../../../src/webhook-tg/dto/Poll.dto.ts"],"names":[],"mappings":";;;AAGA,MAAa,OAAO;CAcnB;AAdD,0BAcC"}

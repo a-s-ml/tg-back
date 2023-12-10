@@ -29,7 +29,7 @@ export class BuildQuestionService {
 		})
 	}
 
-	async questionText(id: number, chat: number | bigint) {
+	async questionText(id: number, chat: bigint) {
 		const question = await this.questionService.findOne(id)
 		const reply_markup =
 			await this.buildKeyboardService.questionInlineKeboard(question.id)
@@ -41,9 +41,10 @@ export class BuildQuestionService {
 			disable_web_page_preview: true,
 			parse_mode: "HTML"
 		}
+		console.log(url)
 		return url
 	}
-	async questionPoll(id: number, chat: number | bigint) {
+	async questionPoll(id: number, chat: bigint) {
 		const question = await this.questionService.findOne(id)
 		const url: SendPollDto = {
 			chat_id: chat,
@@ -56,9 +57,10 @@ export class BuildQuestionService {
 			],
 			correct_option_id: question.answerright
 		}
+		console.log(url)
 		return url
 	}
-	async questionImg(id: number, chat: number | bigint) {
+	async questionImg(id: number, chat: bigint) {
 		const question = await this.questionService.findOne(id)
 		const reply_markup =
 			await this.buildKeyboardService.questionInlineKeboard(question.id)
@@ -69,6 +71,7 @@ export class BuildQuestionService {
 			photo: question.img,
 			reply_markup: reply_markup
 		}
+		console.log(url)
 		return url
 	}
 }

@@ -4,4 +4,4 @@ exports.LocationDto = void 0;
 class LocationDto {
 }
 exports.LocationDto = LocationDto;
-//# sourceMappingURL=location.dto.js.map
+//# sourceMappingURL=Location.dto.js.map

@@ -18,14 +18,10 @@ export class SelectActivChatService {
 		const chatact = await this.chatActiveService.findAll()
 		let actiality: Array<ActualityDto> = []
 		for (var key in chatact) {
-			let lastPost = await this.chatDataService.findLastChat(
-				chatact[key].chat
-			)
+			let lastPost = await this.chatDataService.findLastChat(chatact[key].chat)
 			let chat = await this.chatService.findByChatId(chatact[key].chat)
 			let period = await this.timeService.findOne(chat.time)
-			let currentTime = Math.round(
-				Math.floor(new Date().getTime()) / 1000
-			)
+			let currentTime = Math.round(Math.floor(new Date().getTime()) / 1000)
 			let lastPostTime = lastPost[0].date
 			let timeToLast = currentTime - lastPostTime
 			let periodTime = period.period
@@ -34,6 +30,8 @@ export class SelectActivChatService {
 			}
 		}
 		console.log(actiality)
-		return [{ id: 661, chat: -1001750878070n }]
+		return [
+			{ id: 2, chat: -1001635376490n }
+		]
 	}
 }

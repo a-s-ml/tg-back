@@ -42,6 +42,7 @@ let BuildQuestionService = class BuildQuestionService {
             disable_web_page_preview: true,
             parse_mode: "HTML"
         };
+        console.log(url);
         return url;
     }
     async questionPoll(id, chat) {
@@ -57,6 +58,7 @@ let BuildQuestionService = class BuildQuestionService {
             ],
             correct_option_id: question.answerright
         };
+        console.log(url);
         return url;
     }
     async questionImg(id, chat) {
@@ -69,6 +71,7 @@ let BuildQuestionService = class BuildQuestionService {
             photo: question.img,
             reply_markup: reply_markup
         };
+        console.log(url);
         return url;
     }
 };

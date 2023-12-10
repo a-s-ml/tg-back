@@ -1,5 +1,5 @@
 import { ChatMemberDto } from "./ChatMember.dto";
-import { ChatDto } from "./chat.dto";
+import { ChatDto } from "./Chat.dto";
 import { UserDto } from "./user.dto";
 export declare class ChatMemberUpdatedDto {
     chat: ChatDto;

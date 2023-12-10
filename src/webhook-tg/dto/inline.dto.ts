@@ -1,4 +1,4 @@
-import { LocationDto } from "./location.dto"
+import { LocationDto } from "./Location.dto"
 import { UserDto } from "./user.dto"
 
 export class InlineDto {

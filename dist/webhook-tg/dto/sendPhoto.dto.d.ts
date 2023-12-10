@@ -1,11 +1,13 @@
 import { ReplyMarkupDto } from "src/constructors/keyboard/dto/keyboard.dto";
+import { MessageEntityDto } from "./MessageEntity.dto";
+import { InputFileDto } from "./InputFile.dto";
 export declare class SendPhotoDto {
-    chat_id: number | bigint;
+    chat_id: bigint;
     message_thread_id?: number;
-    photo: string;
+    photo: InputFileDto | string;
     caption?: string;
     parse_mode?: string;
-    caption_entities?: object;
+    caption_entities?: MessageEntityDto;
     has_spoiler?: boolean;
     disable_notification?: boolean;
     protect_content?: boolean;

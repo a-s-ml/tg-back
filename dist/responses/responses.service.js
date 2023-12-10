@@ -22,6 +22,8 @@ let ResponsesService = class ResponsesService {
     }
     async editMessageText(message) {
         try {
+            const url = `${process.env.SEND_MESSAGE}message_id=${message.message_id}&text=${message.text}&reply_markup=${JSON.stringify(message.reply_markup)}&disable_web_page_preview=true&parse_mode=HTML`;
+            console.log(url);
             const response = await axios_1.default.get(`${process.env.SEND_MESSAGE}message_id=${message.message_id}&text=${message.text}&reply_markup=${JSON.stringify(message.reply_markup)}&disable_web_page_preview=true&parse_mode=HTML`);
             return response.data;
         }
@@ -31,6 +33,8 @@ let ResponsesService = class ResponsesService {
     }
     async sendPoll(message) {
         try {
+            const url = `${process.env.SEND_POLL}chat_id=${message.chat_id}&question=${message.question}&options=${JSON.stringify(message.options)}&correct_option_id=${message.correct_option_id}&type=quiz&is_anonymous=false&disable_web_page_preview=true&parse_mode=HTML`;
+            console.log(url);
             const response = await axios_1.default.get(`${process.env.SEND_POLL}chat_id=${message.chat_id}&question=${message.question}&options=${JSON.stringify(message.options)}&correct_option_id=${message.correct_option_id}&type=quiz&is_anonymous=false&disable_web_page_preview=true&parse_mode=HTML`);
             return response.data;
         }
@@ -49,6 +53,8 @@ let ResponsesService = class ResponsesService {
     }
     async sendPhoto(message) {
         try {
+            const url = `${process.env.SEND_PHOTO}chat_id=${message.chat_id}&caption=${message.caption}&photo=${message.photo}&reply_markup=${JSON.stringify(message.reply_markup)}&disable_web_page_preview=true&parse_mode=HTML`;
+            console.log(url);
             const response = await axios_1.default.get(`${process.env.SEND_PHOTO}chat_id=${message.chat_id}&caption=${message.caption}&photo=${message.photo}&reply_markup=${JSON.stringify(message.reply_markup)}&disable_web_page_preview=true&parse_mode=HTML`);
             return response.data;
         }
@@ -58,6 +64,8 @@ let ResponsesService = class ResponsesService {
     }
     async editMessageReplyMarkup(message) {
         try {
+            const url = `${process.env.SEND_PHOTO}message_id=${message.message_id}&reply_markup=${JSON.stringify(message.reply_markup)}&disable_web_page_preview=true&parse_mode=HTML`;
+            console.log(url);
             const response = await axios_1.default.get(`${process.env.SEND_PHOTO}message_id=${message.message_id}&reply_markup=${JSON.stringify(message.reply_markup)}&disable_web_page_preview=true&parse_mode=HTML`);
             return response.data;
         }
@@ -76,6 +84,8 @@ let ResponsesService = class ResponsesService {
     }
     async sendLogToAdmin(data) {
         try {
+            const url = `${process.env.SEND_ANSWER_CALLBACKQUERY}chat_id=-1001524297397&text=${encodeURI(data)}&disable_web_page_preview=true&parse_mode=HTML`;
+            console.log(url);
             const response = await axios_1.default.get(`${process.env.SEND_ANSWER_CALLBACKQUERY}chat_id=-1001524297397&text=${encodeURI(data)}&disable_web_page_preview=true&parse_mode=HTML`);
             return response.data;
         }

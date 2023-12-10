@@ -26,21 +26,16 @@ export class AutoPostService {
 		console.log(chatact.length)
 		if (chatact.length > 0) {
 			for (var key in chatact) {
-				const chat = await this.chatService.findByChatId(
+				const chat = await this.chatService.findByChatId(chatact[key].chat)
+				const question = await this.selectQuestionService.availableQuestion(
 					chatact[key].chat
 				)
-				const question =
-					await this.selectQuestionService.availableQuestion(
+				if (chat.question_type === 3) {
+					const questionTest = await this.buildQuestionService.questionText(
+						question.id,
 						chatact[key].chat
 					)
-				if (chat.question_type === 3) {
-					const questionTest =
-						await this.buildQuestionService.questionText(
-							question.id,
-							chatact[key].chat
-						)
-					const response =
-						await this.responsesService.sendMessage(questionTest)
+					const response = await this.responsesService.sendMessage(questionTest)
 					if (response) {
 						console.log(response)
 						await this.chatDataService.create({
@@ -57,13 +52,11 @@ export class AutoPostService {
 					}
 				}
 				if (chat.question_type === 1) {
-					const questionImg =
-						await this.buildQuestionService.questionImg(
-							question.id,
-							chatact[key].chat
-						)
-					const response =
-						await this.responsesService.sendPhoto(questionImg)
+					const questionImg = await this.buildQuestionService.questionImg(
+						question.id,
+						chatact[key].chat
+					)
+					const response = await this.responsesService.sendPhoto(questionImg)
 					if (response) {
 						console.log(response)
 						await this.chatDataService.create({
@@ -80,13 +73,11 @@ export class AutoPostService {
 					}
 				}
 				if (chat.question_type === 2) {
-					const questionPoll =
-						await this.buildQuestionService.questionPoll(
-							question.id,
-							chatact[key].chat
-						)
-					const response =
-						await this.responsesService.sendPoll(questionPoll)
+					const questionPoll = await this.buildQuestionService.questionPoll(
+						question.id,
+						chatact[key].chat
+					)
+					const response = await this.responsesService.sendPoll(questionPoll)
 					if (response) {
 						console.log(response)
 						await this.chatDataService.create({
@@ -110,9 +101,7 @@ export class AutoPostService {
 	async publicationInActiveGroupStat() {
 		const chatact = await this.selectActivChatService.activChat()
 		for (var key in chatact) {
-			const stat = await this.buildStatListService.statStandart(
-				chatact[key].chat
-			)
+			const stat = await this.buildStatListService.statStandart(chatact[key].chat)
 			await this.responsesService.sendMessage(stat)
 		}
 	}

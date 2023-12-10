@@ -1,5 +1,5 @@
-import { LocationDto } from "./location.dto";
-import { MessageDto } from "./message.dto";
+import { LocationDto } from "./Location.dto";
+import { MessageDto } from "./Message.dto";
 export declare class ChatDto {
     id: bigint;
     type: string;

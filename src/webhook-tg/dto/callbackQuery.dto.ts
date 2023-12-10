@@ -1,4 +1,4 @@
-import { MessageDto } from "./message.dto"
+import { MessageDto } from "./Message.dto"
 import { UserDto } from "./user.dto"
 
 export class CallbackQueryDto {

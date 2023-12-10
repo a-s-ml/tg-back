@@ -2,9 +2,10 @@ import { ChatMemberDto } from "./ChatMember.dto"
 import { ChatMemberUpdatedDto } from "./ChatMemberUpdated.dto"
 import { CallbackQueryDto } from "./callbackQuery.dto"
 import { InlineDto } from "./inline.dto"
-import { MessageDto } from "./message.dto"
-import { PollDto } from "./poll.dto"
+import { MessageDto } from "./Message.dto"
+import { PollDto } from "./Poll.dto"
 import { PollAnswerDto } from "./pollAnswer.dto"
+import { ChatJoinRequestDto } from "./ChatJoinRequest.dto"
 
 export class UpdateDto {
 	update_id: number
@@ -21,5 +22,5 @@ export class UpdateDto {
 	poll_answer: PollAnswerDto
 	my_chat_member: ChatMemberUpdatedDto
 	chat_member: ChatMemberDto
-	chat_join_request: object
+	chat_join_request: ChatJoinRequestDto
 }

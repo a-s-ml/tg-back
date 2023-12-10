@@ -1,1 +1,1 @@
-{"version":3,"file":"userProfilePhotos.dto.js","sourceRoot":"","sources":["../../../src/webhook-tg/dto/userProfilePhotos.dto.ts"],"names":[],"mappings":";;;AAAA,MAAa,oBAAoB;CAGhC;AAHD,oDAGC;AAED,MAAa,YAAY;CAMxB;AAND,oCAMC"}
+{"version":3,"file":"userProfilePhotos.dto.js","sourceRoot":"","sources":["../../../src/webhook-tg/dto/userProfilePhotos.dto.ts"],"names":[],"mappings":";;;AAEA,MAAa,oBAAoB;CAGhC;AAHD,oDAGC"}
