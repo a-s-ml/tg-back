@@ -25,7 +25,7 @@ let AppService = class AppService {
 };
 exports.AppService = AppService;
 __decorate([
-    (0, schedule_1.Cron)(schedule_1.CronExpression.EVERY_30_SECONDS),
+    (0, schedule_1.Cron)(schedule_1.CronExpression.EVERY_5_MINUTES),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
