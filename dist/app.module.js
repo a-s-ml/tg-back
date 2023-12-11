@@ -24,6 +24,7 @@ const chat_category_module_1 = require("./request/chat-category/chat-category.mo
 const time_module_1 = require("./request/time/time.module");
 const chat_type_module_1 = require("./request/chat-type/chat-type.module");
 const question_type_module_1 = require("./request/question-type/question-type.module");
+const validate_module_1 = require("./validate/validate.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -43,7 +44,8 @@ exports.AppModule = AppModule = __decorate([
             chat_category_module_1.ChatCategoryModule,
             time_module_1.TimeModule,
             chat_type_module_1.ChatTypeModule,
-            question_type_module_1.QuestionTypeModule
+            question_type_module_1.QuestionTypeModule,
+            validate_module_1.ValidateModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService]
