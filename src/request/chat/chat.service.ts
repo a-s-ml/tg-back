@@ -44,15 +44,7 @@ export class ChatService {
 				chat: from.id,
 				bot: from.is_bot ? 1 : 0
 			})
-			await this.responsesService.sendLogToAdmin(
-				`
-				new_user: ${from.id}\n
-				first_name: ${from.first_name}\n
-				last_name: ${from.last_name}\n
-				username @${from.username}\n
-				premium: ${from.is_premium}\n
-				`
-			) //лог
+			await this.responsesService.sendLogToAdmin(`new_user: ${from.id}\nfirst_name: ${from.first_name}\nlast_name: ${from.last_name}\nusername @${from.username}\npremium: ${from.is_premium}\n`)
 		}
 	}
 
@@ -65,17 +57,7 @@ export class ChatService {
 				referral: from.id,
 				bot: chat.type ? 1 : 0
 			})
-			await this.responsesService.sendLogToAdmin(
-				`
-				new_chat: ${chat.id}\n
-				title: ${chat.title}\n
-				username: ${chat.username}\n
-				bio: ${chat.bio}\n
-				description: ${chat.description}\n
-				type: ${chat.type}\n
-				who: ${chat.type}
-				`
-			)
+			await this.responsesService.sendLogToAdmin(`new_chat: ${chat.id}\ntitle: ${chat.title}\nusername: ${chat.username}\nbio: ${chat.bio}\ndescription: ${chat.description}\ntype: ${chat.type}\nwho: ${chat.type}`)
 		}
 	}
 }

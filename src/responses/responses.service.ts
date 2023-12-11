@@ -96,7 +96,7 @@ export class ResponsesService {
 			const response = await axios.get(url)
 			return response.data.result
 		} catch (error) {
-			return this.sendLogToAdmin('j '+error.toJSON())
+			return this.errorResponse(error)
 		}
 	}
 
@@ -112,7 +112,7 @@ export class ResponsesService {
 			const response = await axios.get(url)
 			return response.data.result
 		} catch (error) {
-			return this.sendLogToAdmin('j '+error.toJSON())
+			return this.errorResponse(error)
 		}
 	}
 
@@ -127,7 +127,7 @@ export class ResponsesService {
 			const response = await axios.get(url)
 			return response.data
 		} catch (error) {
-			return this.sendLogToAdmin('j '+error.toJSON())
+			return this.errorResponse(error)
 		}
 	}
 
@@ -146,21 +146,20 @@ export class ResponsesService {
 			)
 			return response.data.result
 		} catch (error) {
-			return error
+			return this.errorResponse(error)
 		}
 	}
 
 	async errorResponse(error: any) {
 		if (error.response) {
-			this.sendLogToAdmin(error.response.data)
-			// console.log()
-			// console.log(error.response.status)
-			// console.log(error.response.headers)
+			this.sendLogToAdmin('data' + error.response.data)
+			this.sendLogToAdmin('status' + error.response.status)
+			this.sendLogToAdmin('headers' + error.response.headers)
 		} else if (error.request) {
-			console.log(error.request)
+			this.sendLogToAdmin('request: '+error.request)
 		} else {
-			console.log("Error", error.message)
+			this.sendLogToAdmin('message: '+error.message)
 		}
-		console.log(error.config)
+		this.sendLogToAdmin('config '+error.config)
 	}
 }

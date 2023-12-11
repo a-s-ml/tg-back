@@ -20,7 +20,7 @@ export class BuildQuestionService {
 		const category = await this.categoryService.findOne(question.category)
 		const header = `<b>Вопрос:</b> №${question.id}\n<b>Категория</b>: ${category.name}\n<b>Сложность:</b> ${question.reward}\n\n`
 		const footer =
-			'| <b><a href="https://t.me/ViktorinaOnlineBot/app">Статистика</a></b> | <b><a href="https://t.me/ViktorinaOnlineBot/app">Ошибка</a></b> |'
+			'| <b><a href="">Статистика</a></b> | <b><a href="">Ошибка</a></b> |'
 		let body: QuestionBodyText
 		return (body = {
 			header: encodeURI(header),

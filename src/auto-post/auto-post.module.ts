@@ -14,6 +14,7 @@ import { ChatDataService } from "src/request/chat-data/chat-data.service"
 import { ChatCategoryModule } from "src/request/chat-category/chat-category.module"
 import { ChatActiveService } from "src/request/chat-active/chat-active.service"
 import { ResponsesModule } from "src/responses/responses.module"
+import { AutoPostController } from './auto-post.controller';
 
 @Module({
 	imports: [
@@ -33,6 +34,7 @@ import { ResponsesModule } from "src/responses/responses.module"
 		ChatService,
 		TimeService
 	],
-	exports: [AutoPostService, SelectActivChatService, SelectQuestionService]
+	exports: [AutoPostService, SelectActivChatService, SelectQuestionService],
+	controllers: [AutoPostController]
 })
 export class AutoPostModule {}
