@@ -20,8 +20,8 @@ let ValidateController = class ValidateController {
     constructor(validateService) {
         this.validateService = validateService;
     }
-    validate(validateString) {
-        return this.validateService.validateUser(validateString);
+    validate(initData) {
+        return this.validateService.validateUser(initData);
     }
 };
 exports.ValidateController = ValidateController;
@@ -29,7 +29,7 @@ __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [validate_dto_1.validateDto]),
+    __metadata("design:paramtypes", [validate_dto_1.ValidateDto]),
     __metadata("design:returntype", Object)
 ], ValidateController.prototype, "validate", null);
 exports.ValidateController = ValidateController = __decorate([

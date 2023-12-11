@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateDto = void 0;
-class validateDto {
+exports.ValidateDto = void 0;
+class ValidateDto {
 }
-exports.validateDto = validateDto;
+exports.ValidateDto = ValidateDto;
 //# sourceMappingURL=validate.dto.js.map

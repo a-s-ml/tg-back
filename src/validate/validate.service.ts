@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common"
-import { validateDto } from "./dto/validate.dto"
+import { ValidateDto } from "./dto/validate.dto"
 import { createHmac } from "crypto"
 import "dotenv/config"
 
 @Injectable()
 export class ValidateService {
-	async validateUser(validateString: validateDto) {
+	async validateUser(validateString: ValidateDto) {
 		const urlParams = new URLSearchParams(validateString.initData)
 		const hash = urlParams.get("hash")
 		urlParams.delete("hash")

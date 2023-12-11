@@ -1,3 +1,3 @@
-export class validateDto {
+export class ValidateDto {
 	initData: string
 }
