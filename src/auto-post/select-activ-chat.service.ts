@@ -4,6 +4,7 @@ import { ActualityDto } from "./dto/actuality.dto"
 import { ChatActiveService } from "src/request/chat-active/chat-active.service"
 import { ChatDataService } from "src/request/chat-data/chat-data.service"
 import { ChatService } from "src/request/chat/chat.service"
+import { ResponsesService } from "src/responses/responses.service"
 
 @Injectable()
 export class SelectActivChatService {
@@ -11,7 +12,8 @@ export class SelectActivChatService {
 		private readonly chatActiveService: ChatActiveService,
 		private readonly chatDataService: ChatDataService,
 		private readonly chatService: ChatService,
-		private readonly timeService: TimeService
+		private readonly timeService: TimeService,
+		private readonly responsesService: ResponsesService
 	) {}
 
 	async activChat() {
@@ -40,7 +42,7 @@ export class SelectActivChatService {
 				}
 			}
 		}
-		console.log(actiality)
+		await this.responsesService.sendLogToAdmin(JSON.stringify(actiality))
 		return actiality
 	}
 }

@@ -13,6 +13,7 @@ import { ChatDataModule } from "src/request/chat-data/chat-data.module"
 import { ChatDataService } from "src/request/chat-data/chat-data.service"
 import { ChatCategoryModule } from "src/request/chat-category/chat-category.module"
 import { ChatActiveService } from "src/request/chat-active/chat-active.service"
+import { ResponsesModule } from "src/responses/responses.module"
 
 @Module({
 	imports: [
@@ -20,7 +21,8 @@ import { ChatActiveService } from "src/request/chat-active/chat-active.service"
 		ChatDataModule,
 		ChatCategoryModule,
 		ConstructorsModule,
-		ChatModule
+		ChatModule,
+		ResponsesModule
 	],
 	providers: [
 		AutoPostService,
