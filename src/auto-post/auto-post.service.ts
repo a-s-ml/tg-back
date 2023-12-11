@@ -27,8 +27,7 @@ export class AutoPostService {
 
 	async publicationInActiveGroup() {
 		const chatact = await this.selectActivChatService.activChat()
-		console.log(chatact.length)
-		if (chatact.length > 0) {
+		if (chatact?.length) {
 			for (var key in chatact) {
 				const chat = await this.chatService.findByChatId(
 					chatact[key].chat
@@ -108,8 +107,6 @@ export class AutoPostService {
 				poll_id: response.poll.id,
 				question_type: "poll"
 			})
-		} else {
-			await this.chatActiveService.remove(chat.chat)
 		}
 	}
 
@@ -129,8 +126,6 @@ export class AutoPostService {
 				question_id: question,
 				question_type: "photo"
 			})
-		} else {
-			await this.chatActiveService.remove(chat.chat)
 		}
 	}
 
@@ -150,8 +145,6 @@ export class AutoPostService {
 				question_id: question,
 				question_type: "text"
 			})
-		} else {
-			await this.chatActiveService.remove(chat.chat)
 		}
 	}
 

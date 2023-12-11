@@ -32,8 +32,7 @@ let AutoPostService = class AutoPostService {
     }
     async publicationInActiveGroup() {
         const chatact = await this.selectActivChatService.activChat();
-        console.log(chatact.length);
-        if (chatact.length > 0) {
+        if (chatact?.length) {
             for (var key in chatact) {
                 const chat = await this.chatService.findByChatId(chatact[key].chat);
                 const question = await this.selectQuestionService.availableQuestion(chatact[key].chat);
@@ -90,9 +89,6 @@ let AutoPostService = class AutoPostService {
                 question_type: "poll"
             });
         }
-        else {
-            await this.chatActiveService.remove(chat.chat);
-        }
     }
     async questionTypeImg(question, chat) {
         const questionImg = await this.buildQuestionService.questionImg(question, chat.chat);
@@ -107,9 +103,6 @@ let AutoPostService = class AutoPostService {
                 question_type: "photo"
             });
         }
-        else {
-            await this.chatActiveService.remove(chat.chat);
-        }
     }
     async questionTypeText(question, chat) {
         const questionTest = await this.buildQuestionService.questionText(question, chat.chat);
@@ -123,9 +116,6 @@ let AutoPostService = class AutoPostService {
                 question_id: question,
                 question_type: "text"
             });
-        }
-        else {
-            await this.chatActiveService.remove(chat.chat);
         }
     }
     async publicationInActiveGroupStat() {

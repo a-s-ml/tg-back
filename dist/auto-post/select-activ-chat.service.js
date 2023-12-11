@@ -44,10 +44,6 @@ let SelectActivChatService = class SelectActivChatService {
                 }
             }
         }
-        if (actiality?.length) {
-            const textLog = JSON.stringify(actiality, (key, value) => (typeof value === 'bigint' ? value.toString() : value));
-            await this.responsesService.sendLogToAdmin(textLog);
-        }
         return actiality;
     }
 };
