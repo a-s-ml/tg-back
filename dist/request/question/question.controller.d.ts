@@ -85,5 +85,4 @@ export declare class QuestionController {
         img: string;
         reward: number;
     }>;
-    generate(id: string): Promise<void>;
 }

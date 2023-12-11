@@ -41,10 +41,6 @@ let QuestionController = class QuestionController {
     remove(id) {
         return this.questionService.remove(+id);
     }
-    generate(id) {
-        console.log("generate " + id);
-        return this.questionService.generate(+id);
-    }
 };
 exports.QuestionController = QuestionController;
 __decorate([
@@ -96,13 +92,6 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], QuestionController.prototype, "remove", null);
-__decorate([
-    (0, common_1.Get)("generate/:id"),
-    __param(0, (0, common_1.Param)("id")),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], QuestionController.prototype, "generate", null);
 exports.QuestionController = QuestionController = __decorate([
     (0, common_1.Controller)("question"),
     __metadata("design:paramtypes", [question_service_1.QuestionService])

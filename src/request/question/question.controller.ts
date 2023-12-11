@@ -52,9 +52,9 @@ export class QuestionController {
 		return this.questionService.remove(+id)
 	}
 
-	@Get("generate/:id")
-	generate(@Param("id") id: string) {
-		console.log("generate " + id)
-		return this.questionService.generate(+id)
-	}
+	// @Get("generate/:id")
+	// generate(@Param("id") id: string) {
+	// 	console.log("generate " + id)
+	// 	return this.questionService.generate(+id)
+	// }
 }

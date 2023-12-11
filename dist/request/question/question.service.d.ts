@@ -91,5 +91,4 @@ export declare class QuestionService {
     }>;
     countReward(question: number): Promise<number>;
     count(question: number): Promise<number>;
-    generate(id: number): Promise<void>;
 }

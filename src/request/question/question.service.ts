@@ -78,16 +78,16 @@ export class QuestionService {
 		})
 	}
 
-	async generate(id: number) {
-		console.log(id)
-		const question = await this.findAll()
-		for (var key in question) {
-			let count = await this.countReward(question[key].id)
-			if (!Number.isInteger(count)) {
-				count = 100
-			}
-			await this.update(question[key].id, { reward: count })
-			console.log(question[key].id + " - " + count)
-		}
-	}
+	// async generate(id: number) {
+	// 	console.log(id)
+	// 	const question = await this.findAll()
+	// 	for (var key in question) {
+	// 		let count = await this.countReward(question[key].id)
+	// 		if (!Number.isInteger(count)) {
+	// 			count = 100
+	// 		}
+	// 		await this.update(question[key].id, { reward: count })
+	// 		console.log(question[key].id + " - " + count)
+	// 	}
+	// }
 }
