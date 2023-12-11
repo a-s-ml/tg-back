@@ -19,7 +19,12 @@ export class CallbackAnswerService {
 		private chatDataService: ChatDataService
 	) {}
 
-	async answerCheck(chat: UserDto, group: bigint, answer: number, question_id: number) {
+	async answerCheck(
+		chat: UserDto,
+		group: bigint,
+		answer: number,
+		question_id: number
+	) {
 		const checkAnswer = await this.answerService.findByChat(
 			chat.id,
 			question_id,
@@ -29,12 +34,12 @@ export class CallbackAnswerService {
 		let reward: number
 		if (checkAnswer.length == 0) {
 			const question = await this.questionService.findOne(question_id)
-			if ((answer) == question.answerright) {
+			if (answer == question.answerright) {
 				reward = question.reward
-				text = `Верно! \n\nДобавлено "${question.reward}" очков`
+				text = `Верно! \n\nДобавлено ${question.reward} очков`
 			} else {
 				reward = -question.reward
-				text = `Не верно! \n\nВычтено "${question.reward}" очков`
+				text = `Не верно! \n\nВычтено ${question.reward} очков`
 			}
 			await this.answerService.create({
 				chat: chat.id,
@@ -49,11 +54,15 @@ export class CallbackAnswerService {
 		return text
 	}
 
-
 	async answer(callbackQuery: CallbackQueryDto) {
 		const data = callbackQuery.data.split("_")
 		await this.chatService.verificationExistence(callbackQuery.from)
-		const text = await this.answerCheck(callbackQuery.from,callbackQuery.message.chat.id, +data[2], +data[1])
+		const text = await this.answerCheck(
+			callbackQuery.from,
+			callbackQuery.message.chat.id,
+			+data[2],
+			+data[1]
+		)
 		const res = {
 			callback_query_id: callbackQuery.id,
 			text: encodeURI(text)
@@ -64,9 +73,16 @@ export class CallbackAnswerService {
 	async pollAnswer(pollAnswer: PollAnswerDto) {
 		if (pollAnswer.user) {
 			await this.chatService.verificationExistence(pollAnswer.user)
-			const question = await this.chatDataService.findByPollId(pollAnswer.poll_id)
-			if(question) {
-				await this.answerCheck(pollAnswer.user,question[0].group, pollAnswer.option_ids[0], question[0].question_id)
+			const question = await this.chatDataService.findByPollId(
+				pollAnswer.poll_id
+			)
+			if (question) {
+				await this.answerCheck(
+					pollAnswer.user,
+					question[0].group,
+					pollAnswer.option_ids[0],
+					question[0].question_id
+				)
 			}
 		}
 	}

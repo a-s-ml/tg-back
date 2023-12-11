@@ -18,12 +18,12 @@ export class ChatDataController {
 	}
 
 	@Get(":group")
-	findLastChat(@Param("group") group: string) {
-		return this.chatDataService.findLastChat(group as unknown as bigint)
+	findLastByChat(@Param("group") group: string) {
+		return this.chatDataService.findLastByChat(group as unknown as bigint)
 	}
 
 	@Get(":group")
-	findAllChat(@Param("group") group: string) {
-		return this.chatDataService.findAllChat(group as unknown as bigint)
+	findAllByChat(@Param("group") group: string) {
+		return this.chatDataService.findAllByChat(group as unknown as bigint)
 	}
 }

@@ -6,6 +6,7 @@ import { BuildStatListService } from "src/constructors/statList/build-statList.s
 import { ChatService } from "src/request/chat/chat.service";
 import { ChatDataService } from "src/request/chat-data/chat-data.service";
 import { ChatActiveService } from "src/request/chat-active/chat-active.service";
+import { ChatDbDto } from "src/request/chat/dto/ChatDb.dto";
 export declare class AutoPostService {
     private selectQuestionService;
     private selectActivChatService;
@@ -17,5 +18,8 @@ export declare class AutoPostService {
     private chatActiveService;
     constructor(selectQuestionService: SelectQuestionService, selectActivChatService: SelectActivChatService, buildQuestionService: BuildQuestionService, buildStatListService: BuildStatListService, responsesService: ResponsesService, chatDataService: ChatDataService, chatService: ChatService, chatActiveService: ChatActiveService);
     publicationInActiveGroup(): Promise<void>;
+    questionTypePoll(question: number, chat: ChatDbDto): Promise<void>;
+    questionTypeImg(question: number, chat: ChatDbDto): Promise<void>;
+    questionTypeText(question: number, chat: ChatDbDto): Promise<void>;
     publicationInActiveGroupStat(): Promise<void>;
 }

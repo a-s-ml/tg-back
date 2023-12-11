@@ -12,7 +12,7 @@ export class ChatDataService {
 		})
 	}
 
-	async findLastChat(group: bigint) {
+	async findLastByChat(group: bigint) {
 		return await this.dbService.chatData.findMany({
 			where: {
 				group
@@ -32,7 +32,7 @@ export class ChatDataService {
 		})
 	}
 
-	async findAllChat(group: bigint) {
+	async findAllByChat(group: bigint) {
 		return await this.dbService.chatData.findMany({
 			select: {
 				question_id: true
@@ -40,6 +40,18 @@ export class ChatDataService {
 			where: {
 				group
 			}
+		})
+	}
+
+	async findLastTwoByChat(group: bigint) {
+		return await this.dbService.chatData.findMany({
+			where: {
+				group
+			},
+			orderBy: {
+				id: "desc"
+			},
+			take: 2
 		})
 	}
 }

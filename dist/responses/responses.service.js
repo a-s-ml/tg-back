@@ -24,7 +24,7 @@ let ResponsesService = class ResponsesService {
             return response.data.result;
         }
         catch (error) {
-            return error;
+            return this.sendLogToAdmin(error);
         }
     }
     async editMessageText(message) {
@@ -40,23 +40,11 @@ let ResponsesService = class ResponsesService {
             return response.data;
         }
         catch (error) {
-            return error;
+            return this.sendLogToAdmin(error);
         }
     }
     async sendPoll(message) {
         try {
-            let url = `
-			${process.env.SEND_POLL}
-			chat_id=${message.chat_id}
-			&question=${message.question}
-			&options=${JSON.stringify(message.options)}
-			&correct_option_id=${message.correct_option_id}
-			&type=quiz
-			&is_anonymous=${message.is_anonymous}
-			&disable_web_page_preview=true
-			&parse_mode=HTML
-			`;
-            console.log(url);
             const response = await axios_1.default.get(`
 				${process.env.SEND_POLL}
 				chat_id=${message.chat_id}
@@ -68,11 +56,10 @@ let ResponsesService = class ResponsesService {
 				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`);
-            console.log(response);
             return response.data.result;
         }
         catch (error) {
-            return error;
+            return this.sendLogToAdmin(error);
         }
     }
     async editMessageCaption(message) {
@@ -88,7 +75,7 @@ let ResponsesService = class ResponsesService {
             return response.data;
         }
         catch (error) {
-            return error;
+            return this.sendLogToAdmin(error);
         }
     }
     async sendPhoto(message) {
@@ -105,7 +92,7 @@ let ResponsesService = class ResponsesService {
             return response.data.result;
         }
         catch (error) {
-            return error;
+            return this.sendLogToAdmin(error);
         }
     }
     async editMessageReplyMarkup(message) {
@@ -119,7 +106,7 @@ let ResponsesService = class ResponsesService {
             return response.data.result;
         }
         catch (error) {
-            return error;
+            return this.sendLogToAdmin(error);
         }
     }
     async answerCallbackQuery(answerCallbackQuery) {
@@ -133,7 +120,7 @@ let ResponsesService = class ResponsesService {
             return response.data;
         }
         catch (error) {
-            return error;
+            return this.sendLogToAdmin(error);
         }
     }
     async sendLogToAdmin(data) {

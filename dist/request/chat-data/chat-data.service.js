@@ -21,7 +21,7 @@ let ChatDataService = class ChatDataService {
             data: chatDataCreateInput
         });
     }
-    async findLastChat(group) {
+    async findLastByChat(group) {
         return await this.dbService.chatData.findMany({
             where: {
                 group
@@ -39,7 +39,7 @@ let ChatDataService = class ChatDataService {
             }
         });
     }
-    async findAllChat(group) {
+    async findAllByChat(group) {
         return await this.dbService.chatData.findMany({
             select: {
                 question_id: true
@@ -47,6 +47,17 @@ let ChatDataService = class ChatDataService {
             where: {
                 group
             }
+        });
+    }
+    async findLastTwoByChat(group) {
+        return await this.dbService.chatData.findMany({
+            where: {
+                group
+            },
+            orderBy: {
+                id: "desc"
+            },
+            take: 2
         });
     }
 };

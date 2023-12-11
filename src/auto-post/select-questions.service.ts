@@ -13,7 +13,7 @@ export class SelectQuestionService {
 
 	async availableQuestion(chatid: bigint) {
 		const forbiddenCategory = await this.chatCategoryService.findChat(chatid)
-		const publishedQuestion = await this.chatDataService.findAllChat(chatid)
+		const publishedQuestion = await this.chatDataService.findAllByChat(chatid)
 // КОСТЫЛЬ
 		if (!forbiddenCategory?.length) {
 			forbiddenCategory.push({ category: 1001 })

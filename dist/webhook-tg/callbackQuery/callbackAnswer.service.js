@@ -30,13 +30,13 @@ let CallbackAnswerService = class CallbackAnswerService {
         let reward;
         if (checkAnswer.length == 0) {
             const question = await this.questionService.findOne(question_id);
-            if ((answer) == question.answerright) {
+            if (answer == question.answerright) {
                 reward = question.reward;
-                text = `Верно! \n\nДобавлено "${question.reward}" очков`;
+                text = `Верно! \n\nДобавлено ${question.reward} очков`;
             }
             else {
                 reward = -question.reward;
-                text = `Не верно! \n\nВычтено "${question.reward}" очков`;
+                text = `Не верно! \n\nВычтено ${question.reward} очков`;
             }
             await this.answerService.create({
                 chat: chat.id,

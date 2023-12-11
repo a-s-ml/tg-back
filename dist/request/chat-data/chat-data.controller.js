@@ -23,11 +23,11 @@ let ChatDataController = class ChatDataController {
     create(createChatDatumDto) {
         return this.chatDataService.create(createChatDatumDto);
     }
-    findLastChat(group) {
-        return this.chatDataService.findLastChat(group);
+    findLastByChat(group) {
+        return this.chatDataService.findLastByChat(group);
     }
-    findAllChat(group) {
-        return this.chatDataService.findAllChat(group);
+    findAllByChat(group) {
+        return this.chatDataService.findAllByChat(group);
     }
 };
 exports.ChatDataController = ChatDataController;
@@ -44,14 +44,14 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], ChatDataController.prototype, "findLastChat", null);
+], ChatDataController.prototype, "findLastByChat", null);
 __decorate([
     (0, common_1.Get)(":group"),
     __param(0, (0, common_1.Param)("group")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], ChatDataController.prototype, "findAllChat", null);
+], ChatDataController.prototype, "findAllByChat", null);
 exports.ChatDataController = ChatDataController = __decorate([
     (0, common_1.Controller)("chat-data"),
     __metadata("design:paramtypes", [chat_data_service_1.ChatDataService])
