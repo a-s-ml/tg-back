@@ -25,7 +25,7 @@ export class ResponsesService {
 			)
 			return response.data.result
 		} catch (error) {
-			return this.sendLogToAdmin(error)
+			return this.sendLogToAdmin(JSON.stringify(error.toJSON()))
 		}
 	}
 
@@ -43,7 +43,7 @@ export class ResponsesService {
 			)
 			return response.data
 		} catch (error) {
-			return this.sendLogToAdmin(error)
+			return this.sendLogToAdmin(JSON.stringify(error.toJSON()))
 		}
 	}
 
@@ -64,7 +64,7 @@ export class ResponsesService {
 			)
 			return response.data.result
 		} catch (error) {
-			return this.sendLogToAdmin(error)
+			return this.sendLogToAdmin(JSON.stringify(error.toJSON()))
 		}
 	}
 
@@ -82,7 +82,7 @@ export class ResponsesService {
 			)
 			return response.data
 		} catch (error) {
-			return this.sendLogToAdmin(error)
+			return this.sendLogToAdmin(JSON.stringify(error.toJSON()))
 		}
 	}
 
@@ -101,7 +101,7 @@ export class ResponsesService {
 			)
 			return response.data.result
 		} catch (error) {
-			return this.sendLogToAdmin(error)
+			return this.sendLogToAdmin(JSON.stringify(error.toJSON()))
 		}
 	}
 
@@ -117,7 +117,7 @@ export class ResponsesService {
 			)
 			return response.data.result
 		} catch (error) {
-			return this.sendLogToAdmin(error)
+			return this.sendLogToAdmin(JSON.stringify(error.toJSON()))
 		}
 	}
 
@@ -133,7 +133,7 @@ export class ResponsesService {
 			)
 			return response.data
 		} catch (error) {
-			return this.sendLogToAdmin(error)
+			return this.sendLogToAdmin(JSON.stringify(error.toJSON()))
 		}
 	}
 
@@ -150,10 +150,14 @@ export class ResponsesService {
 				&parse_mode=HTML
 				`
 			)
-			console.log(response)
 			return response.data.result
 		} catch (error) {
 			return error
 		}
+	}
+
+
+	error(error: any) {
+		
 	}
 }

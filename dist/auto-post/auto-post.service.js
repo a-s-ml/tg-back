@@ -48,22 +48,28 @@ let AutoPostService = class AutoPostService {
                 }
                 if (chat.question_type === 4) {
                     const lastTwo = await this.chatDataService.findLastTwoByChat(chat.chat);
-                    if (lastTwo[0].question_type === "photo" && lastTwo[1].question_type === "poll") {
+                    if (lastTwo[0].question_type === "photo" &&
+                        lastTwo[1].question_type === "poll") {
                         await this.questionTypeText(question.id, chat);
                     }
-                    if (lastTwo[0].question_type === "photo" && lastTwo[1].question_type === "text") {
+                    if (lastTwo[0].question_type === "photo" &&
+                        lastTwo[1].question_type === "text") {
                         await this.questionTypePoll(question.id, chat);
                     }
-                    if (lastTwo[0].question_type === "text" && lastTwo[1].question_type === "photo") {
+                    if (lastTwo[0].question_type === "text" &&
+                        lastTwo[1].question_type === "photo") {
                         await this.questionTypePoll(question.id, chat);
                     }
-                    if (lastTwo[0].question_type === "text" && lastTwo[1].question_type === "poll") {
+                    if (lastTwo[0].question_type === "text" &&
+                        lastTwo[1].question_type === "poll") {
                         await this.questionTypeImg(question.id, chat);
                     }
-                    if (lastTwo[0].question_type === "poll" && lastTwo[1].question_type === "text") {
+                    if (lastTwo[0].question_type === "poll" &&
+                        lastTwo[1].question_type === "text") {
                         await this.questionTypeImg(question.id, chat);
                     }
-                    if (lastTwo[0].question_type === "poll" && lastTwo[1].question_type === "photo") {
+                    if (lastTwo[0].question_type === "poll" &&
+                        lastTwo[1].question_type === "photo") {
                         await this.questionTypeText(question.id, chat);
                     }
                 }

@@ -10,7 +10,7 @@ export class AppService {
 		private readonly responsesService: ResponsesService
 	) {}
 
-	@Cron(CronExpression.EVERY_MINUTE)
+	@Cron(CronExpression.EVERY_30_SECONDS)
 	async cron() {
 		// const t0 = performance.now();
 		await this.autoPostServise.publicationInActiveGroup()

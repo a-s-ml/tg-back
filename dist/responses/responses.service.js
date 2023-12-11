@@ -24,7 +24,7 @@ let ResponsesService = class ResponsesService {
             return response.data.result;
         }
         catch (error) {
-            return this.sendLogToAdmin(error);
+            return this.sendLogToAdmin(JSON.stringify(error.toJSON()));
         }
     }
     async editMessageText(message) {
@@ -40,7 +40,7 @@ let ResponsesService = class ResponsesService {
             return response.data;
         }
         catch (error) {
-            return this.sendLogToAdmin(error);
+            return this.sendLogToAdmin(JSON.stringify(error.toJSON()));
         }
     }
     async sendPoll(message) {
@@ -59,7 +59,7 @@ let ResponsesService = class ResponsesService {
             return response.data.result;
         }
         catch (error) {
-            return this.sendLogToAdmin(error);
+            return this.sendLogToAdmin(JSON.stringify(error.toJSON()));
         }
     }
     async editMessageCaption(message) {
@@ -75,7 +75,7 @@ let ResponsesService = class ResponsesService {
             return response.data;
         }
         catch (error) {
-            return this.sendLogToAdmin(error);
+            return this.sendLogToAdmin(JSON.stringify(error.toJSON()));
         }
     }
     async sendPhoto(message) {
@@ -92,7 +92,7 @@ let ResponsesService = class ResponsesService {
             return response.data.result;
         }
         catch (error) {
-            return this.sendLogToAdmin(error);
+            return this.sendLogToAdmin(JSON.stringify(error.toJSON()));
         }
     }
     async editMessageReplyMarkup(message) {
@@ -106,7 +106,7 @@ let ResponsesService = class ResponsesService {
             return response.data.result;
         }
         catch (error) {
-            return this.sendLogToAdmin(error);
+            return this.sendLogToAdmin(JSON.stringify(error.toJSON()));
         }
     }
     async answerCallbackQuery(answerCallbackQuery) {
@@ -120,7 +120,7 @@ let ResponsesService = class ResponsesService {
             return response.data;
         }
         catch (error) {
-            return this.sendLogToAdmin(error);
+            return this.sendLogToAdmin(JSON.stringify(error.toJSON()));
         }
     }
     async sendLogToAdmin(data) {
@@ -134,12 +134,13 @@ let ResponsesService = class ResponsesService {
 				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`);
-            console.log(response);
             return response.data.result;
         }
         catch (error) {
             return error;
         }
+    }
+    error(error) {
     }
 };
 exports.ResponsesService = ResponsesService;

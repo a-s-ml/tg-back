@@ -15,4 +15,5 @@ export declare class ResponsesService {
     editMessageReplyMarkup(message: EditMessageReplyMarkupDto): Promise<any>;
     answerCallbackQuery(answerCallbackQuery: AnswerCallbackQueryDto): Promise<any>;
     sendLogToAdmin(data: string): Promise<any>;
+    error(error: any): void;
 }
