@@ -42,7 +42,7 @@ export class SelectActivChatService {
 				}
 			}
 		}
-		await this.responsesService.sendLogToAdmin(JSON.stringify(actiality))
+		await this.responsesService.sendLogToAdmin(JSON.stringify(actiality.toString()))
 		return actiality
 	}
 }
