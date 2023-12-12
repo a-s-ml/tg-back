@@ -152,14 +152,14 @@ export class ResponsesService {
 
 	async errorResponse(error: any) {
 		if (error.response) {
-			this.sendLogToAdmin('data' + error.response.data)
-			this.sendLogToAdmin('status' + error.response.status)
-			this.sendLogToAdmin('headers' + error.response.headers)
+			this.sendLogToAdmin('data: ' + JSON.stringify(error.response.data))
+			// this.sendLogToAdmin('status: ' + error.response.status)
+			// this.sendLogToAdmin('headers ' + error.response.headers)
 		} else if (error.request) {
 			this.sendLogToAdmin('request: '+error.request)
 		} else {
 			this.sendLogToAdmin('message: '+error.message)
 		}
-		this.sendLogToAdmin('config '+error.config)
+		this.sendLogToAdmin('config: '+error.config)
 	}
 }
