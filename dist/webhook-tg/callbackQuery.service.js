@@ -56,9 +56,6 @@ let CallbackQueryService = class CallbackQueryService {
             memberData.new_chat_member.status === "administrator") {
             await this.chatService.verificationExistenceChat(memberData.chat, memberData.from);
         }
-        if (memberData.new_chat_member.status === "left") {
-            await this.responsesService.sendLogToAdmin(`left group: ${memberData.chat.id}`);
-        }
     }
 };
 exports.CallbackQueryService = CallbackQueryService;

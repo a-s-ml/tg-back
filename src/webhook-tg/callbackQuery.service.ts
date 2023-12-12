@@ -63,10 +63,5 @@ export class CallbackQueryService {
 				memberData.from
 			)
 		}
-		if (memberData.new_chat_member.status === "left") {
-			await this.responsesService.sendLogToAdmin(
-				`left group: ${memberData.chat.id}`
-			)
-		}
 	}
 }

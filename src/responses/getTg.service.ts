@@ -1,10 +1,14 @@
 import "dotenv/config"
 import axios from "axios"
 import { Injectable } from "@nestjs/common"
+import { ChatMemberInterface } from "src/interfaces/types/ChatMember.interface"
+import { UserInterface } from "src/interfaces/types/User.interface"
+import { UserProfilePhotosInterface } from "src/interfaces/types/UserProfilePhotos.interface"
+import { ChatInterface } from "src/interfaces/types/Chat.interface"
 
 @Injectable()
 export class GetTgService {
-	async tgGetChat(id: bigint) {
+	async tgGetChat(id: bigint): Promise<ChatInterface> {
 		try {
 			const getchat = await axios.get(
 				`${process.env.BASE_URL}getChat?chat_id=${id}`
@@ -16,7 +20,7 @@ export class GetTgService {
 		}
 	}
 
-	async tgGetChatAdministrators(id: bigint) {
+	async tgGetChatAdministrators(id: bigint): Promise<ChatMemberInterface> {
 		try {
 			return await axios.get(
 				`${process.env.BASE_URL}getChatAdministrators?chat_id=${id}`
@@ -26,7 +30,7 @@ export class GetTgService {
 		}
 	}
 
-	async tgGetChatMember(chat_id: bigint, user_id: bigint) {
+	async tgGetChatMember(chat_id: bigint, user_id: bigint): Promise<ChatMemberInterface> {
 		try {
 			return await axios.get(
 				`${process.env.BASE_URL}getChatMember?chat_id=${chat_id}&user_id=${user_id}`
@@ -36,7 +40,7 @@ export class GetTgService {
 		}
 	}
 
-	async tgGetChatMemberCount(id: bigint) {
+	async tgGetChatMemberCount(id: bigint): Promise<number> {
 		try {
 			return await axios.get(
 				`${process.env.BASE_URL}getChatMemberCount?chat_id=${id}`
@@ -46,7 +50,7 @@ export class GetTgService {
 		}
 	}
 
-	async tgGetUserProfilePhotos(id: bigint) {
+	async tgGetUserProfilePhotos(id: bigint): Promise<UserProfilePhotosInterface> {
 		try {
 			return await axios.get(
 				`${process.env.BASE_URL}getUserProfilePhotos?user_id=${id}&offset=0&limit=1`
@@ -56,7 +60,7 @@ export class GetTgService {
 		}
 	}
 
-	async tgGetMe() {
+	async tgGetMe(): Promise<UserInterface> {
 		try {
 			return await axios.get(`${process.env.BASE_URL}Getme`)
 		} catch (error) {

@@ -12,11 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChatService = void 0;
 const common_1 = require("@nestjs/common");
 const db_service_1 = require("../../db/db.service");
+const getTG_service_1 = require("../../responses/getTG.service");
 const responses_service_1 = require("../../responses/responses.service");
 let ChatService = class ChatService {
-    constructor(dbService, responsesService) {
+    constructor(dbService, responsesService, getTgService) {
         this.dbService = dbService;
         this.responsesService = responsesService;
+        this.getTgService = getTgService;
     }
     async createChat(createChatDto) {
         return await this.dbService.chat.create({ data: createChatDto });
@@ -58,7 +60,8 @@ let ChatService = class ChatService {
                 referral: from.id,
                 bot: chat.type ? 1 : 0
             });
-            await this.responsesService.sendLogToAdmin(`new_chat: ${chat.id}\ntitle: ${chat.title}\nusername: ${chat.username}\nbio: ${chat.bio}\ndescription: ${chat.description}\ntype: ${chat.type}\nwho: ${from.id}`);
+            const memberCount = await this.getTgService.tgGetChatMemberCount(chat.id);
+            await this.responsesService.sendLogToAdmin(`new_chat: ${chat.id}\ntitle: ${chat.title}\nusername: ${chat.username}\nbio: ${chat.bio}\ndescription: ${chat.description}\ntype: ${chat.type}\nwho: ${from.id}\nmember_count: ${memberCount}`);
         }
     }
 };
@@ -66,6 +69,7 @@ exports.ChatService = ChatService;
 exports.ChatService = ChatService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [db_service_1.DbService,
-        responses_service_1.ResponsesService])
+        responses_service_1.ResponsesService,
+        getTG_service_1.GetTgService])
 ], ChatService);
 //# sourceMappingURL=chat.service.js.map

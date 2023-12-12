@@ -3,13 +3,15 @@ import { Prisma } from "@prisma/client"
 import { DbService } from "src/db/db.service"
 import { ChatInterface } from "src/interfaces/types/Chat.interface"
 import { UserInterface } from "src/interfaces/types/User.interface"
+import { GetTgService } from "src/responses/getTG.service"
 import { ResponsesService } from "src/responses/responses.service"
 
 @Injectable()
 export class ChatService {
 	constructor(
 		private dbService: DbService,
-		private responsesService: ResponsesService
+		private responsesService: ResponsesService,		
+		private getTgService: GetTgService
 	) {}
 
 	async createChat(createChatDto: Prisma.chatCreateInput) {
@@ -57,7 +59,8 @@ export class ChatService {
 				referral: from.id,
 				bot: chat.type ? 1 : 0
 			})
-			await this.responsesService.sendLogToAdmin(`new_chat: ${chat.id}\ntitle: ${chat.title}\nusername: ${chat.username}\nbio: ${chat.bio}\ndescription: ${chat.description}\ntype: ${chat.type}\nwho: ${from.id}`)
+			const memberCount = await this.getTgService.tgGetChatMemberCount(chat.id)
+			await this.responsesService.sendLogToAdmin(`new_chat: ${chat.id}\ntitle: ${chat.title}\nusername: ${chat.username}\nbio: ${chat.bio}\ndescription: ${chat.description}\ntype: ${chat.type}\nwho: ${from.id}\nmember_count: ${memberCount}`)
 		}
 	}
 }
