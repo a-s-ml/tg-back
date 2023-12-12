@@ -4,6 +4,7 @@ import { ChatDataController } from "./chat-data.controller"
 
 @Module({
 	controllers: [ChatDataController],
-	providers: [ChatDataService]
+	providers: [ChatDataService],
+	exports: [ChatDataService]
 })
 export class ChatDataModule {}

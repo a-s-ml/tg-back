@@ -1,7 +1,7 @@
 import { WebhookTgService } from "./webhook-tg.service";
-import { UpdateDto } from "./dto/update.dto";
+import { UpdateInterface } from "src/interfaces/types/Update.dto";
 export declare class WebhookTgController {
     private webhookTg;
     constructor(webhookTg: WebhookTgService);
-    update(updateDto: UpdateDto): Promise<void>;
+    update(updateDto: UpdateInterface): Promise<void>;
 }

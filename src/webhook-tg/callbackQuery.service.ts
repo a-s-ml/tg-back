@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common"
-import { CallbackQueryDto } from "./dto/callbackQuery.dto"
 import { CallbackAnswerService } from "./callbackQuery/callbackAnswer.service"
-import { MessageDto } from "./dto/Message.dto"
-import { ChatMemberUpdatedDto } from "./dto/ChatMemberUpdated.dto"
 import { ResponsesService } from "src/responses/responses.service"
 import { ChatService } from "src/request/chat/chat.service"
-import { PollAnswerDto } from "./dto/pollAnswer.dto"
+import { CallbackQueryInterface } from "src/interfaces/types/CallbackQuery.interface"
+import { PollAnswerInterface } from "src/interfaces/types/pollAnswer.interface"
+import { MessageInterface } from "src/interfaces/types/Message.interface"
+import { ChatMemberUpdatedInterface } from "src/interfaces/types/ChatMemberUpdated.interface"
 
 @Injectable()
 export class CallbackQueryService {
@@ -15,7 +15,7 @@ export class CallbackQueryService {
 		private chatService: ChatService
 	) {}
 
-	async update(callbackQuery: CallbackQueryDto) {
+	async update(callbackQuery: CallbackQueryInterface) {
 		const data = callbackQuery.data.split("_")
 		switch (data[0]) {
 			case "answer":
@@ -25,11 +25,11 @@ export class CallbackQueryService {
 		}
 	}
 
-	async pollAnswer(pollAnswer: PollAnswerDto) {
+	async pollAnswer(pollAnswer: PollAnswerInterface) {
 		return await this.callbackAnswers.pollAnswer(pollAnswer)
 	}
 
-	async message(message: MessageDto) {
+	async message(message: MessageInterface) {
 		if (message.text === "/account" || message.text === "/start") {
 			const text = `
 			<b>Здравствуйте!</b>\n\n
@@ -49,7 +49,7 @@ export class CallbackQueryService {
 		}
 	}
 
-	async member(memberData: ChatMemberUpdatedDto) {
+	async member(memberData: ChatMemberUpdatedInterface) {
 		await this.responsesService.sendLogToAdmin(
 			`new_chat_member: ${memberData.new_chat_member.status}\n${memberData.chat.id}\n@${memberData.chat.username}`
 		)

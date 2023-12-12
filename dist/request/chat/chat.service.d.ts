@@ -1,13 +1,23 @@
 import { Prisma } from "@prisma/client";
 import { DbService } from "src/db/db.service";
+import { ChatInterface } from "src/interfaces/types/Chat.interface";
+import { UserInterface } from "src/interfaces/types/User.interface";
 import { ResponsesService } from "src/responses/responses.service";
-import { ChatDto } from "src/webhook-tg/dto/Chat.dto";
-import { UserDto } from "src/webhook-tg/dto/user.dto";
 export declare class ChatService {
     private dbService;
     private responsesService;
     constructor(dbService: DbService, responsesService: ResponsesService);
-    create(createChatDto: Prisma.chatCreateInput): Promise<{
+    createChat(createChatDto: Prisma.chatCreateInput): Promise<{
+        id: number;
+        chat: bigint;
+        type: string;
+        bot: number;
+        date: Date;
+        referral: bigint;
+        question_type: number;
+        time: number;
+    }>;
+    createGroup(createChatDto: Prisma.chatCreateInput): Promise<{
         id: number;
         chat: bigint;
         type: string;
@@ -28,7 +38,6 @@ export declare class ChatService {
         time: number;
     }>;
     update(chat: bigint, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
-    remove(id: number): string;
-    verificationExistence(from: UserDto): Promise<void>;
-    verificationExistenceChat(chat: ChatDto, from: UserDto): Promise<void>;
+    verificationExistence(from: UserInterface): Promise<void>;
+    verificationExistenceChat(chat: ChatInterface, from: UserInterface): Promise<void>;
 }

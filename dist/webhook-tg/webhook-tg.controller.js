@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WebhookTgController = void 0;
 const common_1 = require("@nestjs/common");
 const webhook_tg_service_1 = require("./webhook-tg.service");
-const update_dto_1 = require("./dto/update.dto");
+const Update_dto_1 = require("../interfaces/types/Update.dto");
 let WebhookTgController = class WebhookTgController {
     constructor(webhookTg) {
         this.webhookTg = webhookTg;
@@ -29,7 +29,7 @@ __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [update_dto_1.UpdateDto]),
+    __metadata("design:paramtypes", [Update_dto_1.UpdateInterface]),
     __metadata("design:returntype", void 0)
 ], WebhookTgController.prototype, "update", null);
 exports.WebhookTgController = WebhookTgController = __decorate([

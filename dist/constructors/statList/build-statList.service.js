@@ -31,7 +31,7 @@ let BuildStatListService = class BuildStatListService {
             });
         const reply_markup = await this.buildKeyboardService.statInlineKeboard();
         const url = {
-            chat_id: 521884639,
+            chat_id: 521884639n,
             text: encodeURI(text),
             reply_markup,
             disable_web_page_preview: true,

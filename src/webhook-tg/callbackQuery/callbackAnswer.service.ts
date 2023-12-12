@@ -1,13 +1,12 @@
 import { Injectable } from "@nestjs/common"
 import { AnswerService } from "src/request/answer/answer.service"
-import { CallbackQueryDto } from "../dto/callbackQuery.dto"
 import { QuestionService } from "src/request/question/question.service"
 import { ResponsesService } from "src/responses/responses.service"
 import { ChatService } from "src/request/chat/chat.service"
-import { PollAnswerDto } from "../dto/pollAnswer.dto"
 import { ChatDataService } from "src/request/chat-data/chat-data.service"
-import { UserDto } from "../dto/user.dto"
-import { ChatDto } from "../dto/Chat.dto"
+import { CallbackQueryInterface } from "src/interfaces/types/CallbackQuery.interface"
+import { PollAnswerInterface } from "src/interfaces/types/pollAnswer.interface"
+import { UserInterface } from "src/interfaces/types/User.interface"
 
 @Injectable()
 export class CallbackAnswerService {
@@ -20,7 +19,7 @@ export class CallbackAnswerService {
 	) {}
 
 	async answerCheck(
-		chat: UserDto,
+		chat: UserInterface,
 		group: bigint,
 		answer: number,
 		question_id: number
@@ -54,7 +53,7 @@ export class CallbackAnswerService {
 		return text
 	}
 
-	async answer(callbackQuery: CallbackQueryDto) {
+	async answer(callbackQuery: CallbackQueryInterface) {
 		const data = callbackQuery.data.split("_")
 		await this.chatService.verificationExistence(callbackQuery.from)
 		const text = await this.answerCheck(
@@ -70,7 +69,7 @@ export class CallbackAnswerService {
 		await this.responsesService.answerCallbackQuery(res)
 	}
 
-	async pollAnswer(pollAnswer: PollAnswerDto) {
+	async pollAnswer(pollAnswer: PollAnswerInterface) {
 		if (pollAnswer.user) {
 			await this.chatService.verificationExistence(pollAnswer.user)
 			const question = await this.chatDataService.findByPollId(

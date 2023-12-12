@@ -15,14 +15,12 @@ const time_service_1 = require("../request/time/time.service");
 const chat_active_service_1 = require("../request/chat-active/chat-active.service");
 const chat_data_service_1 = require("../request/chat-data/chat-data.service");
 const chat_service_1 = require("../request/chat/chat.service");
-const responses_service_1 = require("../responses/responses.service");
 let SelectActivChatService = class SelectActivChatService {
-    constructor(chatActiveService, chatDataService, chatService, timeService, responsesService) {
+    constructor(chatActiveService, chatDataService, chatService, timeService) {
         this.chatActiveService = chatActiveService;
         this.chatDataService = chatDataService;
         this.chatService = chatService;
         this.timeService = timeService;
-        this.responsesService = responsesService;
     }
     async activChat() {
         const chatact = await this.chatActiveService.findAll();
@@ -53,7 +51,6 @@ exports.SelectActivChatService = SelectActivChatService = __decorate([
     __metadata("design:paramtypes", [chat_active_service_1.ChatActiveService,
         chat_data_service_1.ChatDataService,
         chat_service_1.ChatService,
-        time_service_1.TimeService,
-        responses_service_1.ResponsesService])
+        time_service_1.TimeService])
 ], SelectActivChatService);
 //# sourceMappingURL=select-activ-chat.service.js.map

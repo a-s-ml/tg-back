@@ -16,7 +16,8 @@ exports.ChatActiveModule = ChatActiveModule;
 exports.ChatActiveModule = ChatActiveModule = __decorate([
     (0, common_1.Module)({
         controllers: [chat_active_controller_1.ChatActiveController],
-        providers: [chat_active_service_1.ChatActiveService]
+        providers: [chat_active_service_1.ChatActiveService],
+        exports: [chat_active_service_1.ChatActiveService]
     })
 ], ChatActiveModule);
 //# sourceMappingURL=chat-active.module.js.map

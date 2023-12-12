@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common"
 import { BuildKeyboardService } from "../keyboard/build-keyboard.service"
-import { SendMessageDto } from "src/webhook-tg/dto/sendMessage,dto"
 import { AnswerService } from "src/request/answer/answer.service"
+import { SendMessageMethod } from "src/interfaces/metods/sendMessage.method"
 
 @Injectable()
 export class BuildStatListService {
@@ -27,8 +27,8 @@ export class BuildStatListService {
 				id_userstat++
 			})
 		const reply_markup = await this.buildKeyboardService.statInlineKeboard()
-		const url: SendMessageDto = {
-			chat_id: 521884639,
+		const url: SendMessageMethod = {
+			chat_id: 521884639n,
 			text: encodeURI(text),
 			reply_markup,
 			disable_web_page_preview: true,

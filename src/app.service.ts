@@ -1,13 +1,11 @@
 import { Injectable } from "@nestjs/common"
 import { Cron, CronExpression } from "@nestjs/schedule"
 import { AutoPostService } from "./auto-post/auto-post.service"
-import { ResponsesService } from "./responses/responses.service"
 
 @Injectable()
 export class AppService {
 	constructor(
-		private readonly autoPostServise: AutoPostService,
-		private readonly responsesService: ResponsesService
+		private readonly autoPostServise: AutoPostService
 	) {}
 
 	@Cron(CronExpression.EVERY_30_SECONDS)

@@ -6,11 +6,8 @@ import { ResponsesService } from "src/responses/responses.service"
 import { BuildStatListService } from "src/constructors/statList/build-statList.service"
 import { ChatService } from "src/request/chat/chat.service"
 import { ChatDataService } from "src/request/chat-data/chat-data.service"
-import { ChatActiveService } from "src/request/chat-active/chat-active.service"
-import { ResponseSendPollDto } from "src/responses/dto/ResponseSendPoll.dto"
-import { ResponceSendPhotoDto } from "src/responses/dto/ResponceSendPhoto.dto"
-import { ResponceSendTextDto } from "src/responses/dto/ResponseSendText.dto"
-import { ChatDbDto } from "src/request/chat/dto/ChatDb.dto"
+import { IChat } from "src/interfaces/types/db/IChat.interface"
+import { MessageInterface } from "src/interfaces/types/Message.interface"
 
 @Injectable()
 export class AutoPostService {
@@ -21,8 +18,7 @@ export class AutoPostService {
 		private buildStatListService: BuildStatListService,
 		private responsesService: ResponsesService,
 		private chatDataService: ChatDataService,
-		private chatService: ChatService,
-		private chatActiveService: ChatActiveService
+		private chatService: ChatService
 	) {}
 
 	async publicationInActiveGroup() {
@@ -89,13 +85,13 @@ export class AutoPostService {
 		}
 	}
 
-	async questionTypePoll(question: number, chat: ChatDbDto) {
+	async questionTypePoll(question: number, chat: IChat) {
 		const questionPoll = await this.buildQuestionService.questionPoll(
 			question,
 			chat.chat,
 			chat.type
 		)
-		const response: ResponseSendPollDto =
+		const response: MessageInterface =
 			await this.responsesService.sendPoll(questionPoll)
 		if (response) {
 			await this.chatDataService.create({
@@ -110,12 +106,12 @@ export class AutoPostService {
 		}
 	}
 
-	async questionTypeImg(question: number, chat: ChatDbDto) {
+	async questionTypeImg(question: number, chat: IChat) {
 		const questionImg = await this.buildQuestionService.questionImg(
 			question,
 			chat.chat
 		)
-		const response: ResponceSendPhotoDto =
+		const response: MessageInterface =
 			await this.responsesService.sendPhoto(questionImg)
 		if (response) {
 			await this.chatDataService.create({
@@ -129,12 +125,12 @@ export class AutoPostService {
 		}
 	}
 
-	async questionTypeText(question: number, chat: ChatDbDto) {
+	async questionTypeText(question: number, chat: IChat) {
 		const questionTest = await this.buildQuestionService.questionText(
 			question,
 			chat.chat
 		)
-		const response: ResponceSendTextDto =
+		const response: MessageInterface =
 			await this.responsesService.sendMessage(questionTest)
 		if (response) {
 			await this.chatDataService.create({

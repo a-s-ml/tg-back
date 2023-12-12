@@ -18,9 +18,8 @@ const responses_service_1 = require("../responses/responses.service");
 const build_statList_service_1 = require("../constructors/statList/build-statList.service");
 const chat_service_1 = require("../request/chat/chat.service");
 const chat_data_service_1 = require("../request/chat-data/chat-data.service");
-const chat_active_service_1 = require("../request/chat-active/chat-active.service");
 let AutoPostService = class AutoPostService {
-    constructor(selectQuestionService, selectActivChatService, buildQuestionService, buildStatListService, responsesService, chatDataService, chatService, chatActiveService) {
+    constructor(selectQuestionService, selectActivChatService, buildQuestionService, buildStatListService, responsesService, chatDataService, chatService) {
         this.selectQuestionService = selectQuestionService;
         this.selectActivChatService = selectActivChatService;
         this.buildQuestionService = buildQuestionService;
@@ -28,7 +27,6 @@ let AutoPostService = class AutoPostService {
         this.responsesService = responsesService;
         this.chatDataService = chatDataService;
         this.chatService = chatService;
-        this.chatActiveService = chatActiveService;
     }
     async publicationInActiveGroup() {
         const chatact = await this.selectActivChatService.activChat();
@@ -135,7 +133,6 @@ exports.AutoPostService = AutoPostService = __decorate([
         build_statList_service_1.BuildStatListService,
         responses_service_1.ResponsesService,
         chat_data_service_1.ChatDataService,
-        chat_service_1.ChatService,
-        chat_active_service_1.ChatActiveService])
+        chat_service_1.ChatService])
 ], AutoPostService);
 //# sourceMappingURL=auto-post.service.js.map

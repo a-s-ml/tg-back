@@ -4,6 +4,7 @@ import { ChatActiveController } from "./chat-active.controller"
 
 @Module({
 	controllers: [ChatActiveController],
-	providers: [ChatActiveService]
+	providers: [ChatActiveService],
+	exports: [ChatActiveService]
 })
 export class ChatActiveModule {}

@@ -13,15 +13,13 @@ const select_questions_service_1 = require("./select-questions.service");
 const select_activ_chat_service_1 = require("./select-activ-chat.service");
 const question_module_1 = require("../request/question/question.module");
 const constructors_module_1 = require("../constructors/constructors.module");
-const time_service_1 = require("../request/time/time.service");
 const chat_module_1 = require("../request/chat/chat.module");
-const chat_service_1 = require("../request/chat/chat.service");
 const chat_data_module_1 = require("../request/chat-data/chat-data.module");
-const chat_data_service_1 = require("../request/chat-data/chat-data.service");
 const chat_category_module_1 = require("../request/chat-category/chat-category.module");
-const chat_active_service_1 = require("../request/chat-active/chat-active.service");
 const responses_module_1 = require("../responses/responses.module");
 const auto_post_controller_1 = require("./auto-post.controller");
+const chat_active_module_1 = require("../request/chat-active/chat-active.module");
+const time_module_1 = require("../request/time/time.module");
 let AutoPostModule = class AutoPostModule {
 };
 exports.AutoPostModule = AutoPostModule;
@@ -32,18 +30,12 @@ exports.AutoPostModule = AutoPostModule = __decorate([
             chat_data_module_1.ChatDataModule,
             chat_category_module_1.ChatCategoryModule,
             constructors_module_1.ConstructorsModule,
+            chat_active_module_1.ChatActiveModule,
             chat_module_1.ChatModule,
+            time_module_1.TimeModule,
             responses_module_1.ResponsesModule
         ],
-        providers: [
-            auto_post_service_1.AutoPostService,
-            select_activ_chat_service_1.SelectActivChatService,
-            select_questions_service_1.SelectQuestionService,
-            chat_active_service_1.ChatActiveService,
-            chat_data_service_1.ChatDataService,
-            chat_service_1.ChatService,
-            time_service_1.TimeService
-        ],
+        providers: [auto_post_service_1.AutoPostService, select_activ_chat_service_1.SelectActivChatService, select_questions_service_1.SelectQuestionService],
         exports: [auto_post_service_1.AutoPostService, select_activ_chat_service_1.SelectActivChatService, select_questions_service_1.SelectQuestionService],
         controllers: [auto_post_controller_1.AutoPostController]
     })

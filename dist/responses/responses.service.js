@@ -25,7 +25,7 @@ let ResponsesService = class ResponsesService {
             return response.data.result;
         }
         catch (error) {
-            return this.sendLogToAdmin('j ' + error.toJSON());
+            return this.errorResponse(error);
         }
     }
     async editMessageText(message) {
@@ -42,7 +42,7 @@ let ResponsesService = class ResponsesService {
             return response.data;
         }
         catch (error) {
-            return this.sendLogToAdmin('j ' + error.toJSON());
+            return this.errorResponse(error);
         }
     }
     async sendPoll(message) {
@@ -62,7 +62,7 @@ let ResponsesService = class ResponsesService {
             return response.data.result;
         }
         catch (error) {
-            return this.sendLogToAdmin('j ' + error.toJSON());
+            return this.errorResponse(error);
         }
     }
     async editMessageCaption(message) {
@@ -79,7 +79,7 @@ let ResponsesService = class ResponsesService {
             return response.data;
         }
         catch (error) {
-            return this.sendLogToAdmin('j ' + error.toJSON());
+            return this.errorResponse(error);
         }
     }
     async sendPhoto(message) {

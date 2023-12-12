@@ -1,10 +1,9 @@
 import { Injectable } from "@nestjs/common"
 import { TimeService } from "src/request/time/time.service"
-import { ActualityDto } from "./dto/actuality.dto"
 import { ChatActiveService } from "src/request/chat-active/chat-active.service"
 import { ChatDataService } from "src/request/chat-data/chat-data.service"
 import { ChatService } from "src/request/chat/chat.service"
-import { ResponsesService } from "src/responses/responses.service"
+import { IChatActive } from "src/interfaces/types/db/IChatActive.interface"
 
 @Injectable()
 export class SelectActivChatService {
@@ -12,13 +11,12 @@ export class SelectActivChatService {
 		private readonly chatActiveService: ChatActiveService,
 		private readonly chatDataService: ChatDataService,
 		private readonly chatService: ChatService,
-		private readonly timeService: TimeService,
-		private readonly responsesService: ResponsesService
+		private readonly timeService: TimeService
 	) {}
 
 	async activChat() {
 		const chatact = await this.chatActiveService.findAll()
-		let actiality: Array<ActualityDto> = []
+		let actiality: Array<IChatActive> = []
 		for (var key in chatact) {
 			let lastPost = await this.chatDataService.findLastByChat(
 				chatact[key].chat

@@ -5,8 +5,7 @@ import { ResponsesService } from "src/responses/responses.service";
 import { BuildStatListService } from "src/constructors/statList/build-statList.service";
 import { ChatService } from "src/request/chat/chat.service";
 import { ChatDataService } from "src/request/chat-data/chat-data.service";
-import { ChatActiveService } from "src/request/chat-active/chat-active.service";
-import { ChatDbDto } from "src/request/chat/dto/ChatDb.dto";
+import { IChat } from "src/interfaces/types/db/IChat.interface";
 export declare class AutoPostService {
     private selectQuestionService;
     private selectActivChatService;
@@ -15,11 +14,10 @@ export declare class AutoPostService {
     private responsesService;
     private chatDataService;
     private chatService;
-    private chatActiveService;
-    constructor(selectQuestionService: SelectQuestionService, selectActivChatService: SelectActivChatService, buildQuestionService: BuildQuestionService, buildStatListService: BuildStatListService, responsesService: ResponsesService, chatDataService: ChatDataService, chatService: ChatService, chatActiveService: ChatActiveService);
+    constructor(selectQuestionService: SelectQuestionService, selectActivChatService: SelectActivChatService, buildQuestionService: BuildQuestionService, buildStatListService: BuildStatListService, responsesService: ResponsesService, chatDataService: ChatDataService, chatService: ChatService);
     publicationInActiveGroup(): Promise<void>;
-    questionTypePoll(question: number, chat: ChatDbDto): Promise<void>;
-    questionTypeImg(question: number, chat: ChatDbDto): Promise<void>;
-    questionTypeText(question: number, chat: ChatDbDto): Promise<void>;
+    questionTypePoll(question: number, chat: IChat): Promise<void>;
+    questionTypeImg(question: number, chat: IChat): Promise<void>;
+    questionTypeText(question: number, chat: IChat): Promise<void>;
     publicationInActiveGroupStat(): Promise<void>;
 }

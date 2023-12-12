@@ -1,6 +1,5 @@
 import {
 	Controller,
-	Get,
 	Post,
 	Body,
 	Patch,
@@ -9,14 +8,19 @@ import {
 } from "@nestjs/common"
 import { ChatService } from "./chat.service"
 import { Prisma } from "@prisma/client"
+import { ValidateService } from "./validate.service"
+import { ValidateDto } from "./dto/validate.dto"
 
 @Controller("chat")
 export class ChatController {
-	constructor(private readonly chatService: ChatService) {}
+	constructor(
+		private readonly chatService: ChatService,
+		private readonly validateService: ValidateService,
+		) {}
 
-	@Post()
-	create(@Body() createChatDto: Prisma.chatCreateInput) {
-		return this.chatService.create(createChatDto)
+	@Post('validateUser')
+	validate(@Body() initData: ValidateDto): object {
+		return this.validateService.validateUser(initData)
 	}
 
 	@Patch(":chat")
@@ -25,10 +29,5 @@ export class ChatController {
 		@Body() updateChatDto: Prisma.chatUpdateInput
 	) {
 		return this.chatService.update(chat as unknown as bigint, updateChatDto)
-	}
-
-	@Delete(":id")
-	remove(@Param("id") id: string) {
-		return this.chatService.remove(+id)
 	}
 }

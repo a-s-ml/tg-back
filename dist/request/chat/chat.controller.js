@@ -16,28 +16,28 @@ exports.ChatController = void 0;
 const common_1 = require("@nestjs/common");
 const chat_service_1 = require("./chat.service");
 const client_1 = require("@prisma/client");
+const validate_service_1 = require("./validate.service");
+const validate_dto_1 = require("./dto/validate.dto");
 let ChatController = class ChatController {
-    constructor(chatService) {
+    constructor(chatService, validateService) {
         this.chatService = chatService;
+        this.validateService = validateService;
     }
-    create(createChatDto) {
-        return this.chatService.create(createChatDto);
+    validate(initData) {
+        return this.validateService.validateUser(initData);
     }
     update(chat, updateChatDto) {
         return this.chatService.update(chat, updateChatDto);
     }
-    remove(id) {
-        return this.chatService.remove(+id);
-    }
 };
 exports.ChatController = ChatController;
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)('validateUser'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], ChatController.prototype, "create", null);
+    __metadata("design:paramtypes", [validate_dto_1.ValidateDto]),
+    __metadata("design:returntype", Object)
+], ChatController.prototype, "validate", null);
 __decorate([
     (0, common_1.Patch)(":chat"),
     __param(0, (0, common_1.Param)("chat")),
@@ -46,15 +46,9 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], ChatController.prototype, "update", null);
-__decorate([
-    (0, common_1.Delete)(":id"),
-    __param(0, (0, common_1.Param)("id")),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], ChatController.prototype, "remove", null);
 exports.ChatController = ChatController = __decorate([
     (0, common_1.Controller)("chat"),
-    __metadata("design:paramtypes", [chat_service_1.ChatService])
+    __metadata("design:paramtypes", [chat_service_1.ChatService,
+        validate_service_1.ValidateService])
 ], ChatController);
 //# sourceMappingURL=chat.controller.js.map

@@ -1,21 +1,21 @@
 import { QuestionService } from "src/request/question/question.service";
 import { BuildKeyboardService } from "../keyboard/build-keyboard.service";
-import { SendMessageDto } from "src/webhook-tg/dto/sendMessage,dto";
-import { SendPollDto } from "src/webhook-tg/dto/sendPoll.dto";
-import { SendPhotoDto } from "src/webhook-tg/dto/sendPhoto.dto";
 import { CategoryService } from "src/request/category/category.service";
-import { Prisma } from "@prisma/client";
+import { IQuestion } from "src/interfaces/types/db/IQuestion.interface";
+import { SendMessageMethod } from "src/interfaces/metods/sendMessage.method";
+import { SendPhotoMethod } from "src/interfaces/metods/sendPhoto.method";
+import { SendPollMethod } from "src/interfaces/metods/sendPoll.method";
 export declare class BuildQuestionService {
     private questionService;
     private buildKeyboardService;
     private categoryService;
     constructor(questionService: QuestionService, buildKeyboardService: BuildKeyboardService, categoryService: CategoryService);
-    questionBody(question: Prisma.questionCreateInput): Promise<{
+    questionBody(question: IQuestion): Promise<{
         header: string;
         text: string;
         footer: string;
     }>;
-    questionText(id: number, chat: bigint): Promise<SendMessageDto>;
-    questionPoll(id: number, chat: bigint, type: string): Promise<SendPollDto>;
-    questionImg(id: number, chat: bigint): Promise<SendPhotoDto>;
+    questionText(id: number, chat: bigint): Promise<SendMessageMethod>;
+    questionPoll(id: number, chat: bigint, type: string): Promise<SendPollMethod>;
+    questionImg(id: number, chat: bigint): Promise<SendPhotoMethod>;
 }

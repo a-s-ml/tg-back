@@ -1,19 +1,19 @@
 import "dotenv/config";
-import { AnswerCallbackQueryDto } from "src/webhook-tg/dto/answerCallbackQuery.dto";
-import { SendMessageDto } from "src/webhook-tg/dto/sendMessage,dto";
-import { SendPollDto } from "src/webhook-tg/dto/sendPoll.dto";
-import { EditMessageReplyMarkupDto } from "src/constructors/keyboard/dto/keyboard.dto";
-import { SendPhotoDto } from "src/webhook-tg/dto/sendPhoto.dto";
-import { EditMessageTextDto } from "src/webhook-tg/dto/EditMessageText.dto";
-import { EditMessageCaptionDto } from "src/webhook-tg/dto/EditMessageCaption.dto";
+import { SendMessageMethod } from "src/interfaces/metods/sendMessage.method";
+import { EditMessageTextMethod } from "src/interfaces/metods/editMessageText.method";
+import { SendPollMethod } from "src/interfaces/metods/sendPoll.method";
+import { EditMessageCaptionMethod } from "src/interfaces/metods/editMessageCaption.method";
+import { SendPhotoMethod } from "src/interfaces/metods/sendPhoto.method";
+import { editMessageReplyMarkupMethod } from "src/interfaces/metods/editMessageReplyMarkup.method";
+import { AnswerCallbackQueryMethod } from "src/interfaces/metods/answerCallbackQuery.method";
 export declare class ResponsesService {
-    sendMessage(message: SendMessageDto): Promise<any>;
-    editMessageText(message: EditMessageTextDto): Promise<any>;
-    sendPoll(message: SendPollDto): Promise<any>;
-    editMessageCaption(message: EditMessageCaptionDto): Promise<any>;
-    sendPhoto(message: SendPhotoDto): Promise<any>;
-    editMessageReplyMarkup(message: EditMessageReplyMarkupDto): Promise<any>;
-    answerCallbackQuery(answerCallbackQuery: AnswerCallbackQueryDto): Promise<any>;
+    sendMessage(message: SendMessageMethod): Promise<any>;
+    editMessageText(message: EditMessageTextMethod): Promise<any>;
+    sendPoll(message: SendPollMethod): Promise<any>;
+    editMessageCaption(message: EditMessageCaptionMethod): Promise<any>;
+    sendPhoto(message: SendPhotoMethod): Promise<any>;
+    editMessageReplyMarkup(message: editMessageReplyMarkupMethod): Promise<any>;
+    answerCallbackQuery(answerCallbackQuery: AnswerCallbackQueryMethod): Promise<any>;
     sendLogToAdmin(data: string): Promise<any>;
     errorResponse(error: any): Promise<void>;
 }

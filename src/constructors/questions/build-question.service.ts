@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common"
 import { QuestionService } from "src/request/question/question.service"
 import { BuildKeyboardService } from "../keyboard/build-keyboard.service"
-import { SendMessageDto } from "src/webhook-tg/dto/sendMessage,dto"
-import { SendPollDto } from "src/webhook-tg/dto/sendPoll.dto"
-import { SendPhotoDto } from "src/webhook-tg/dto/sendPhoto.dto"
 import { CategoryService } from "src/request/category/category.service"
-import { QuestionBodyText } from "../dto/questionBody.dto"
-import { Prisma } from "@prisma/client"
+import { IQuestion } from "src/interfaces/types/db/IQuestion.interface"
+import { IQuestionTextBodyInteface } from "src/interfaces/types/others/IQuestionTextBody.interface"
+import { SendMessageMethod } from "src/interfaces/metods/sendMessage.method"
+import { SendPhotoMethod } from "src/interfaces/metods/sendPhoto.method"
+import { SendPollMethod } from "src/interfaces/metods/sendPoll.method"
 
 @Injectable()
 export class BuildQuestionService {
@@ -16,12 +16,12 @@ export class BuildQuestionService {
 		private categoryService: CategoryService
 	) {}
 
-	async questionBody(question: Prisma.questionCreateInput) {
+	async questionBody(question: IQuestion) {
 		const category = await this.categoryService.findOne(question.category)
 		const header = `<b>Вопрос:</b> №${question.id}\n<b>Категория</b>: ${category.name}\n<b>Сложность:</b> ${question.reward}\n\n`
 		const footer =
 			'| <b><a href="">Статистика</a></b> | <b><a href="">Ошибка</a></b> |'
-		let body: QuestionBodyText
+		let body: IQuestionTextBodyInteface
 		return (body = {
 			header: encodeURI(header),
 			text: encodeURI(question.text + "\n\n"),
@@ -34,7 +34,7 @@ export class BuildQuestionService {
 		const reply_markup =
 			await this.buildKeyboardService.questionInlineKeboard(question.id)
 		const body = await this.questionBody(question)
-		const url: SendMessageDto = {
+		const url: SendMessageMethod = {
 			chat_id: chat,
 			text: body.header + body.text + body.footer,
 			reply_markup: reply_markup,
@@ -51,7 +51,7 @@ export class BuildQuestionService {
 			is_anonymous = true
 		}
 		const question = await this.questionService.findOne(id)
-		const url: SendPollDto = {
+		const url: SendPollMethod = {
 			chat_id: chat,
 			question: encodeURI(question.text),
 			options: [
@@ -71,7 +71,7 @@ export class BuildQuestionService {
 		const reply_markup =
 			await this.buildKeyboardService.questionInlineKeboard(question.id)
 		const body = await this.questionBody(question)
-		const url: SendPhotoDto = {
+		const url: SendPhotoMethod = {
 			chat_id: chat,
 			caption: body.header + body.footer,
 			photo: question.img,

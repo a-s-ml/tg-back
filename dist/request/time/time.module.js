@@ -16,7 +16,8 @@ exports.TimeModule = TimeModule;
 exports.TimeModule = TimeModule = __decorate([
     (0, common_1.Module)({
         controllers: [time_controller_1.TimeController],
-        providers: [time_service_1.TimeService]
+        providers: [time_service_1.TimeService],
+        exports: [time_service_1.TimeService]
     })
 ], TimeModule);
 //# sourceMappingURL=time.module.js.map

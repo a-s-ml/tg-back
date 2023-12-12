@@ -1,13 +1,12 @@
 import { Injectable } from "@nestjs/common"
+import { InlineKeyboardMarkupInterface } from "src/interfaces/types/InlineKeyboardMarkup.interface"
 import { QuestionService } from "src/request/question/question.service"
-import { ReplyMarkupDto } from "./dto/keyboard.dto"
 
 @Injectable()
 export class BuildKeyboardService {
 	constructor(private questionService: QuestionService) {}
 	async statInlineKeboard() {
-		const replyMarkup: ReplyMarkupDto = {
-			resize_keyboard: true,
+		const replyMarkup: InlineKeyboardMarkupInterface = {
 			inline_keyboard: [
 				[
 					{
@@ -22,8 +21,7 @@ export class BuildKeyboardService {
 
 	async questionInlineKeboard(id: number) {
 		const answers = await this.questionService.findOneAnswers(id)
-		const replyMarkup: ReplyMarkupDto = {
-			resize_keyboard: true,
+		const replyMarkup: InlineKeyboardMarkupInterface = {
 			inline_keyboard: [
 				[
 					{

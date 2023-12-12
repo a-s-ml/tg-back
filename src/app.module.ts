@@ -18,7 +18,6 @@ import { ChatCategoryModule } from "./request/chat-category/chat-category.module
 import { TimeModule } from "./request/time/time.module"
 import { ChatTypeModule } from "./request/chat-type/chat-type.module"
 import { QuestionTypeModule } from "./request/question-type/question-type.module"
-import { ValidateModule } from "./validate/validate.module"
 
 @Module({
 	imports: [
@@ -28,15 +27,13 @@ import { ValidateModule } from "./validate/validate.module"
 		AutoPostModule,
 		CategoryModule,
 		WebhookTgModule,
-		CallbackAnswerModule,
+		// CallbackAnswerModule,
 		ChatModule,
 		ChatDataModule,
 		ChatActiveModule,
 		ChatCategoryModule,
 		TimeModule,
-		ChatTypeModule,
-		QuestionTypeModule,
-		ValidateModule
+		QuestionTypeModule
 	],
 	controllers: [AppController],
 	providers: [AppService]

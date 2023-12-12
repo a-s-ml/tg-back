@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common"
-import { UpdateDto } from "./dto/update.dto"
 import { CallbackQueryService } from "./callbackQuery.service"
+import { UpdateInterface } from "src/interfaces/types/Update.dto"
 
 @Injectable()
 export class WebhookTgService {
 	constructor(private callbackQueryService: CallbackQueryService) {}
 
-	update(updateDto: UpdateDto) {
+	update(updateDto: UpdateInterface) {
 		console.log(updateDto)
 		if (updateDto.callback_query) {
 			return this.callbackQueryService.update(updateDto.callback_query)
@@ -22,5 +22,3 @@ export class WebhookTgService {
 		}
 	}
 }
-
-// fetch(`https://api.telegram.org/bot6061286439:AAHQWoJJemYa4q1XuwsnXP7DB5eXwNdYty8/sendMessage?chat_id=${UpdateDto.message.from.id}&text=${UpdateDto.message.text}`)

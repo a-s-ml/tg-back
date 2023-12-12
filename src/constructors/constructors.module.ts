@@ -7,14 +7,13 @@ import { BuildQuestionService } from "./questions/build-question.service"
 import { BuildKeyboardService } from "./keyboard/build-keyboard.service"
 import { BuildStatListService } from "./statList/build-statList.service"
 
-import { AnswerService } from "src/request/answer/answer.service"
+import { AnswerModule } from "src/request/answer/answer.module"
 @Module({
-	imports: [QuestionModule, CategoryModule],
+	imports: [QuestionModule, CategoryModule, AnswerModule],
 	providers: [
 		BuildQuestionService,
 		BuildKeyboardService,
-		BuildStatListService,
-		AnswerService
+		BuildStatListService
 	],
 	exports: [BuildQuestionService, BuildStatListService, BuildKeyboardService]
 })

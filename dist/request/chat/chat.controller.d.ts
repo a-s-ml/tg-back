@@ -1,18 +1,11 @@
 import { ChatService } from "./chat.service";
 import { Prisma } from "@prisma/client";
+import { ValidateService } from "./validate.service";
+import { ValidateDto } from "./dto/validate.dto";
 export declare class ChatController {
     private readonly chatService;
-    constructor(chatService: ChatService);
-    create(createChatDto: Prisma.chatCreateInput): Promise<{
-        id: number;
-        chat: bigint;
-        type: string;
-        bot: number;
-        date: Date;
-        referral: bigint;
-        question_type: number;
-        time: number;
-    }>;
+    private readonly validateService;
+    constructor(chatService: ChatService, validateService: ValidateService);
+    validate(initData: ValidateDto): object;
     update(chat: string, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
-    remove(id: string): string;
 }

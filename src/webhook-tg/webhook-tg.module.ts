@@ -8,19 +8,16 @@ import { WebhookTgController } from "./webhook-tg.controller"
 
 import { WebhookTgService } from "./webhook-tg.service"
 import { CallbackQueryService } from "./callbackQuery.service"
-import { CallbackAnswerService } from "./callbackQuery/callbackAnswer.service"
 import { ChatDataModule } from "src/request/chat-data/chat-data.module"
-import { ChatDataService } from "src/request/chat-data/chat-data.service"
+import { CallbackAnswerModule } from "./callbackQuery/callbackAnswer.module"
 
 @Module({
-	imports: [QuestionModule, AnswerModule, ChatModule, ChatDataModule],
+	imports: [QuestionModule, AnswerModule, ChatModule, ChatDataModule, CallbackAnswerModule],
 	controllers: [WebhookTgController],
 	providers: [
 		WebhookTgService,
-		CallbackQueryService,
-		CallbackAnswerService,
-		ChatDataService
+		CallbackQueryService
 	],
-	exports: [WebhookTgService, CallbackAnswerService]
+	exports: [WebhookTgService]
 })
 export class WebhookTgModule {}

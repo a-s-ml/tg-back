@@ -18,7 +18,6 @@ let BuildKeyboardService = class BuildKeyboardService {
     }
     async statInlineKeboard() {
         const replyMarkup = {
-            resize_keyboard: true,
             inline_keyboard: [
                 [
                     {
@@ -33,7 +32,6 @@ let BuildKeyboardService = class BuildKeyboardService {
     async questionInlineKeboard(id) {
         const answers = await this.questionService.findOneAnswers(id);
         const replyMarkup = {
-            resize_keyboard: true,
             inline_keyboard: [
                 [
                     {

@@ -1,17 +1,17 @@
 import "dotenv/config"
 import axios from "axios"
 import { Injectable } from "@nestjs/common"
-import { AnswerCallbackQueryDto } from "src/webhook-tg/dto/answerCallbackQuery.dto"
-import { SendMessageDto } from "src/webhook-tg/dto/sendMessage,dto"
-import { SendPollDto } from "src/webhook-tg/dto/sendPoll.dto"
-import { EditMessageReplyMarkupDto } from "src/constructors/keyboard/dto/keyboard.dto"
-import { SendPhotoDto } from "src/webhook-tg/dto/sendPhoto.dto"
-import { EditMessageTextDto } from "src/webhook-tg/dto/EditMessageText.dto"
-import { EditMessageCaptionDto } from "src/webhook-tg/dto/EditMessageCaption.dto"
+import { SendMessageMethod } from "src/interfaces/metods/sendMessage.method"
+import { EditMessageTextMethod } from "src/interfaces/metods/editMessageText.method"
+import { SendPollMethod } from "src/interfaces/metods/sendPoll.method"
+import { EditMessageCaptionMethod } from "src/interfaces/metods/editMessageCaption.method"
+import { SendPhotoMethod } from "src/interfaces/metods/sendPhoto.method"
+import { editMessageReplyMarkupMethod } from "src/interfaces/metods/editMessageReplyMarkup.method"
+import { AnswerCallbackQueryMethod } from "src/interfaces/metods/answerCallbackQuery.method"
 
 @Injectable()
 export class ResponsesService {
-	async sendMessage(message: SendMessageDto) {
+	async sendMessage(message: SendMessageMethod) {
 		try {
 			const url = `
 			${process.env.SEND_MESSAGE}
@@ -24,11 +24,11 @@ export class ResponsesService {
 			const response = await axios.get(url)
 			return response.data.result
 		} catch (error) {
-			return this.sendLogToAdmin('j '+error.toJSON())
+			return this.errorResponse(error)
 		}
 	}
 
-	async editMessageText(message: EditMessageTextDto) {
+	async editMessageText(message: EditMessageTextMethod) {
 		try {
 			const url = `
 			${process.env.SEND_MESSAGE}
@@ -41,11 +41,11 @@ export class ResponsesService {
 			const response = await axios.get(url)
 			return response.data
 		} catch (error) {
-			return this.sendLogToAdmin('j '+error.toJSON())
+			return this.errorResponse(error)
 		}
 	}
 
-	async sendPoll(message: SendPollDto) {
+	async sendPoll(message: SendPollMethod) {
 		try {
 			const url = `
 			${process.env.SEND_POLL}
@@ -61,11 +61,11 @@ export class ResponsesService {
 			const response = await axios.get(url)
 			return response.data.result
 		} catch (error) {
-			return this.sendLogToAdmin('j '+error.toJSON())
+			return this.errorResponse(error)
 		}
 	}
 
-	async editMessageCaption(message: EditMessageCaptionDto) {
+	async editMessageCaption(message: EditMessageCaptionMethod) {
 		try {
 			const url = `
 			${process.env.SEND_POLL}
@@ -78,11 +78,11 @@ export class ResponsesService {
 			const response = await axios.get(url)
 			return response.data
 		} catch (error) {
-			return this.sendLogToAdmin('j '+error.toJSON())
+			return this.errorResponse(error)
 		}
 	}
 
-	async sendPhoto(message: SendPhotoDto) {
+	async sendPhoto(message: SendPhotoMethod) {
 		try {
 			const url = `
 			${process.env.SEND_PHOTO}
@@ -100,7 +100,7 @@ export class ResponsesService {
 		}
 	}
 
-	async editMessageReplyMarkup(message: EditMessageReplyMarkupDto) {
+	async editMessageReplyMarkup(message: editMessageReplyMarkupMethod) {
 		try {
 			const url = `
 			${process.env.SEND_PHOTO}
@@ -116,7 +116,7 @@ export class ResponsesService {
 		}
 	}
 
-	async answerCallbackQuery(answerCallbackQuery: AnswerCallbackQueryDto) {
+	async answerCallbackQuery(answerCallbackQuery: AnswerCallbackQueryMethod) {
 		try {
 			const url = `
 			${process.env.SEND_ANSWER_CALLBACKQUERY}
