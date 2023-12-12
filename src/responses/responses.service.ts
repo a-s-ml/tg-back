@@ -160,6 +160,6 @@ export class ResponsesService {
 		} else {
 			this.sendLogToAdmin('message: '+error.message)
 		}
-		this.sendLogToAdmin('config: '+error.config)
+		this.sendLogToAdmin('config: '+JSON.stringify(error.config))
 	}
 }
