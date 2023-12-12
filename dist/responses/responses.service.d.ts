@@ -15,5 +15,5 @@ export declare class ResponsesService {
     editMessageReplyMarkup(message: editMessageReplyMarkupMethod): Promise<any>;
     answerCallbackQuery(answerCallbackQuery: AnswerCallbackQueryMethod): Promise<any>;
     sendLogToAdmin(data: string): Promise<any>;
-    errorResponse(error: any): Promise<void>;
+    errorResponse(error: any, chat?: bigint): Promise<void>;
 }

@@ -24,7 +24,7 @@ export class ResponsesService {
 			const response = await axios.get(url)
 			return response.data.result
 		} catch (error) {
-			return this.errorResponse(error)
+			return this.errorResponse(error, message.chat_id)
 		}
 	}
 
@@ -61,7 +61,7 @@ export class ResponsesService {
 			const response = await axios.get(url)
 			return response.data.result
 		} catch (error) {
-			return this.errorResponse(error)
+			return this.errorResponse(error, , message.chat_id)
 		}
 	}
 
@@ -96,7 +96,7 @@ export class ResponsesService {
 			const response = await axios.get(url)
 			return response.data.result
 		} catch (error) {
-			return this.errorResponse(error)
+			return this.errorResponse(error, message.chat_id)
 		}
 	}
 
@@ -150,16 +150,16 @@ export class ResponsesService {
 		}
 	}
 
-	async errorResponse(error: any) {
+	async errorResponse(error: any, chat: bigint = 0n) {
 		if (error.response) {
-			this.sendLogToAdmin('data: ' + JSON.stringify(error.response.data))
+			this.sendLogToAdmin(`data: ${JSON.stringify(error.response.data)}\n${chat}`)
 			// this.sendLogToAdmin('status: ' + error.response.status)
 			// this.sendLogToAdmin('headers ' + error.response.headers)
 		} else if (error.request) {
-			this.sendLogToAdmin('request: '+error.request)
+			this.sendLogToAdmin(`request: ${JSON.stringify(error.request)}\n${chat}`)
 		} else {
-			this.sendLogToAdmin('message: '+error.message)
+			this.sendLogToAdmin(`message: ${JSON.stringify(error.message)}\n${chat}`)
 		}
-		this.sendLogToAdmin('config: '+JSON.stringify(error.config))
+		this.sendLogToAdmin(`config: ${JSON.stringify(error.config)}\n${chat}`)
 	}
 }

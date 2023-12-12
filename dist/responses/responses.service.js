@@ -25,7 +25,7 @@ let ResponsesService = class ResponsesService {
             return response.data.result;
         }
         catch (error) {
-            return this.errorResponse(error);
+            return this.errorResponse(error, message.chat_id);
         }
     }
     async editMessageText(message) {
@@ -62,7 +62,7 @@ let ResponsesService = class ResponsesService {
             return response.data.result;
         }
         catch (error) {
-            return this.errorResponse(error);
+            return this.errorResponse(error, message.chat_id);
         }
     }
     async editMessageCaption(message) {
@@ -97,7 +97,7 @@ let ResponsesService = class ResponsesService {
             return response.data.result;
         }
         catch (error) {
-            return this.errorResponse(error);
+            return this.errorResponse(error, message.chat_id);
         }
     }
     async editMessageReplyMarkup(message) {
@@ -148,17 +148,17 @@ let ResponsesService = class ResponsesService {
             return this.errorResponse(error);
         }
     }
-    async errorResponse(error) {
+    async errorResponse(error, chat = 0n) {
         if (error.response) {
-            this.sendLogToAdmin('data: ' + JSON.stringify(error.response.data));
+            this.sendLogToAdmin(`data: ${JSON.stringify(error.response.data)}\n${chat}`);
         }
         else if (error.request) {
-            this.sendLogToAdmin('request: ' + error.request);
+            this.sendLogToAdmin(`request: ${JSON.stringify(error.request)}\n${chat}`);
         }
         else {
-            this.sendLogToAdmin('message: ' + error.message);
+            this.sendLogToAdmin(`message: ${JSON.stringify(error.message)}\n${chat}`);
         }
-        this.sendLogToAdmin('config: ' + JSON.stringify(error.config));
+        this.sendLogToAdmin(`config: ${JSON.stringify(error.config)}\n${chat}`);
     }
 };
 exports.ResponsesService = ResponsesService;
