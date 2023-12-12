@@ -61,7 +61,7 @@ export class ResponsesService {
 			const response = await axios.get(url)
 			return response.data.result
 		} catch (error) {
-			return this.errorResponse(error, , message.chat_id)
+			return this.errorResponse(error, message.chat_id)
 		}
 	}
 
