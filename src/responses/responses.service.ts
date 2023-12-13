@@ -158,6 +158,6 @@ export class ResponsesService {
 		} else {
 			this.sendLogToAdmin(`message: ${JSON.stringify(error.message)}\n${chat}`)
 		}
-		this.sendLogToAdmin(`config: ${JSON.stringify(error.config)}\n${chat}`)
+		// this.sendLogToAdmin(`config: ${JSON.stringify(error.config)}\n${chat}`)
 	}
 }
