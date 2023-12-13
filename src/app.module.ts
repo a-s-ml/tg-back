@@ -19,6 +19,7 @@ import { TimeModule } from "./request/time/time.module"
 import { ChatTypeModule } from "./request/chat-type/chat-type.module"
 import { QuestionTypeModule } from "./request/question-type/question-type.module"
 import { EventEmitterModule } from "@nestjs/event-emitter"
+import { LogAdminService } from "./responses/logAdmin.service"
 
 @Module({
 	imports: [
@@ -38,6 +39,6 @@ import { EventEmitterModule } from "@nestjs/event-emitter"
 		QuestionTypeModule
 	],
 	controllers: [AppController],
-	providers: [AppService]
+	providers: [AppService, LogAdminService]
 })
 export class AppModule {}

@@ -20,7 +20,40 @@ let LogAdminService = class LogAdminService {
         this.adminChannel = -1001524297397n;
         this.adminChannel = adminChannel;
     }
+    async sendLogToAdminText(text) {
+        console.log('onEvent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        try {
+            const adminChannel = -1001524297397n;
+            await axios_1.default.get(`
+				${process.env.SEND_MESSAGE}
+				chat_id=${adminChannel}
+				&text=${text}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    async sendLogToAdminText2(text) {
+        console.log('onEvent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        try {
+            const adminChannel = -1001524297397n;
+            await axios_1.default.get(`
+				${process.env.SEND_MESSAGE}
+				chat_id=${adminChannel}
+				&text=${text}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
     async sendLogToAdmin(data) {
+        console.log('onEvent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         try {
             const adminChannel = -1001524297397n;
             const text = encodeURI(`
@@ -29,14 +62,13 @@ let LogAdminService = class LogAdminService {
                 group type: ${data.response.chat.type}\n
                 link: https://t.me/${data.response.chat.username}/${data.response.message_id}
                 `);
-            const response = await axios_1.default.get(`
+            await axios_1.default.get(`
 				${process.env.SEND_MESSAGE}
 				chat_id=${adminChannel}
 				&text=${text}
 				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`);
-            return response.data.result;
         }
         catch (error) {
             console.log(error);
@@ -44,6 +76,18 @@ let LogAdminService = class LogAdminService {
     }
 };
 exports.LogAdminService = LogAdminService;
+__decorate([
+    (0, event_emitter_1.OnEvent)("newChatMember.*", { async: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], LogAdminService.prototype, "sendLogToAdminText", null);
+__decorate([
+    (0, event_emitter_1.OnEvent)("newChatMember.chatMember", { async: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], LogAdminService.prototype, "sendLogToAdminText2", null);
 __decorate([
     (0, event_emitter_1.OnEvent)("successResponse.*", { async: true }),
     __metadata("design:type", Function),

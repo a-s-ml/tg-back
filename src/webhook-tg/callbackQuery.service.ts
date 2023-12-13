@@ -1,17 +1,18 @@
 import { Injectable } from "@nestjs/common"
 import { CallbackAnswerService } from "./callbackQuery/callbackAnswer.service"
-import { ResponsesService } from "src/responses/responses.service"
 import { ChatService } from "src/request/chat/chat.service"
 import { CallbackQueryInterface } from "src/interfaces/types/CallbackQuery.interface"
 import { PollAnswerInterface } from "src/interfaces/types/pollAnswer.interface"
 import { MessageInterface } from "src/interfaces/types/Message.interface"
 import { ChatMemberUpdatedInterface } from "src/interfaces/types/ChatMemberUpdated.interface"
+import { EventEmitter2 } from "@nestjs/event-emitter"
+import { MemberTgEvent } from "src/responses/interfaces/MemberTgEvent.interface"
 
 @Injectable()
 export class CallbackQueryService {
 	constructor(
 		private callbackAnswers: CallbackAnswerService,
-		private responsesService: ResponsesService,
+		private eventEmitter: EventEmitter2,
 		private chatService: ChatService
 	) {}
 
@@ -34,7 +35,7 @@ export class CallbackQueryService {
 			const text = `
 			<b>Здравствуйте!</b>\n\n
 			Сейчас проходит оптимизация и глобальное обновление бота.\n
-			Приносим свои извинения. \nПолный текущий функционал, а так же дополнительные функции станут доступны 15.12.2023.\n\n
+			Приносим свои извинения. \nПолный текущий функционал, а так же дополнительные функции станут доступны 18.12.2023.\n\n
 			На данный момент вы можете обратиться к @a_s_ml и вам сделают настройки удалённо по вашему желанию.\n\n
 			Бот всё ещё отправляет вопросы в активные группы и вы можете на них отвечать
 			`
@@ -50,9 +51,8 @@ export class CallbackQueryService {
 	}
 
 	async member(memberData: ChatMemberUpdatedInterface) {
-		// await this.responsesService.sendLogToAdmin(
-		// 	`new_chat_member: ${memberData.new_chat_member.status}\n${memberData.chat.id}\n@${memberData.chat.username}`
-		// )
+		const emitText: string = `new_chat_member: ${memberData.new_chat_member.status}\n${memberData.chat.id}\n@${memberData.chat.username}`
+		await this.eventEmitter.emitAsync("newChatMember.chatMember", emitText)
 		await this.chatService.verificationExistence(memberData.from)
 		if (
 			memberData.new_chat_member.status === "member" ||

@@ -12,12 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CallbackQueryService = void 0;
 const common_1 = require("@nestjs/common");
 const callbackAnswer_service_1 = require("./callbackQuery/callbackAnswer.service");
-const responses_service_1 = require("../responses/responses.service");
 const chat_service_1 = require("../request/chat/chat.service");
+const event_emitter_1 = require("@nestjs/event-emitter");
 let CallbackQueryService = class CallbackQueryService {
-    constructor(callbackAnswers, responsesService, chatService) {
+    constructor(callbackAnswers, eventEmitter, chatService) {
         this.callbackAnswers = callbackAnswers;
-        this.responsesService = responsesService;
+        this.eventEmitter = eventEmitter;
         this.chatService = chatService;
     }
     async update(callbackQuery) {
@@ -37,7 +37,7 @@ let CallbackQueryService = class CallbackQueryService {
             const text = `
 			<b>Здравствуйте!</b>\n\n
 			Сейчас проходит оптимизация и глобальное обновление бота.\n
-			Приносим свои извинения. \nПолный текущий функционал, а так же дополнительные функции станут доступны 15.12.2023.\n\n
+			Приносим свои извинения. \nПолный текущий функционал, а так же дополнительные функции станут доступны 18.12.2023.\n\n
 			На данный момент вы можете обратиться к @a_s_ml и вам сделают настройки удалённо по вашему желанию.\n\n
 			Бот всё ещё отправляет вопросы в активные группы и вы можете на них отвечать
 			`;
@@ -50,6 +50,8 @@ let CallbackQueryService = class CallbackQueryService {
         }
     }
     async member(memberData) {
+        const emitText = `new_chat_member: ${memberData.new_chat_member.status}\n${memberData.chat.id}\n@${memberData.chat.username}`;
+        await this.eventEmitter.emitAsync("newChatMember.chatMember", emitText);
         await this.chatService.verificationExistence(memberData.from);
         if (memberData.new_chat_member.status === "member" ||
             memberData.new_chat_member.status === "administrator") {
@@ -61,7 +63,7 @@ exports.CallbackQueryService = CallbackQueryService;
 exports.CallbackQueryService = CallbackQueryService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [callbackAnswer_service_1.CallbackAnswerService,
-        responses_service_1.ResponsesService,
+        event_emitter_1.EventEmitter2,
         chat_service_1.ChatService])
 ], CallbackQueryService);
 //# sourceMappingURL=callbackQuery.service.js.map

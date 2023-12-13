@@ -3,5 +3,7 @@ import { MessageTgEvent } from "./interfaces/MessageTgEvent.interface";
 export declare class LogAdminService {
     adminChannel: bigint;
     constructor(adminChannel: bigint);
-    sendLogToAdmin(data: MessageTgEvent): Promise<any>;
+    sendLogToAdminText(text: string): Promise<void>;
+    sendLogToAdminText2(text: string): Promise<void>;
+    sendLogToAdmin(data: MessageTgEvent): Promise<void>;
 }

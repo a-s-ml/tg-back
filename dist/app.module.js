@@ -23,6 +23,7 @@ const chat_category_module_1 = require("./request/chat-category/chat-category.mo
 const time_module_1 = require("./request/time/time.module");
 const question_type_module_1 = require("./request/question-type/question-type.module");
 const event_emitter_1 = require("@nestjs/event-emitter");
+const logAdmin_service_1 = require("./responses/logAdmin.service");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -44,7 +45,7 @@ exports.AppModule = AppModule = __decorate([
             question_type_module_1.QuestionTypeModule
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService]
+        providers: [app_service_1.AppService, logAdmin_service_1.LogAdminService]
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

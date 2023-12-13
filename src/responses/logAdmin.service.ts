@@ -12,8 +12,47 @@ export class LogAdminService {
 		this.adminChannel = adminChannel
 	}
 
+	@OnEvent("newChatMember.*", { async: true })
+    async sendLogToAdminText(text: string) {
+        console.log('onEvent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+		try {
+			const adminChannel: bigint = -1001524297397n
+			await axios.get(
+				`
+				${process.env.SEND_MESSAGE}
+				chat_id=${adminChannel}
+				&text=${text}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`
+			)
+		} catch (error) {
+			console.log(error)
+		}
+    }
+
+	@OnEvent("newChatMember.chatMember", { async: true })
+    async sendLogToAdminText2(text: string) {
+        console.log('onEvent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+		try {
+			const adminChannel: bigint = -1001524297397n
+			await axios.get(
+				`
+				${process.env.SEND_MESSAGE}
+				chat_id=${adminChannel}
+				&text=${text}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`
+			)
+		} catch (error) {
+			console.log(error)
+		}
+    }
+
 	@OnEvent("successResponse.*", { async: true })
 	async sendLogToAdmin(data: MessageTgEvent) {
+        console.log('onEvent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 		try {
 			const adminChannel: bigint = -1001524297397n
 			const text: string = encodeURI(
@@ -24,7 +63,7 @@ export class LogAdminService {
                 link: https://t.me/${data.response.chat.username}/${data.response.message_id}
                 `
                 )
-			const response = await axios.get(
+			await axios.get(
 				`
 				${process.env.SEND_MESSAGE}
 				chat_id=${adminChannel}
@@ -33,7 +72,6 @@ export class LogAdminService {
 				&parse_mode=HTML
 				`
 			)
-			return response.data.result
 		} catch (error) {
 			console.log(error)
 		}
