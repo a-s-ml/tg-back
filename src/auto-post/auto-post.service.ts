@@ -54,6 +54,7 @@ export class AutoPostService {
 		const response: MessageInterface =
 			await this.responsesService.sendPoll(questionPoll)
 		if (response) {
+			this.responsesService.sendLogToAdmin(`send poll: ${response.chat.id}\n${response.poll.id}`)
 			await this.chatDataService.create({
 				group: response.chat.id,
 				group_type: response.chat.type,
@@ -74,6 +75,7 @@ export class AutoPostService {
 		const response: MessageInterface =
 			await this.responsesService.sendPhoto(questionImg)
 		if (response) {
+			this.responsesService.sendLogToAdmin(`send img: ${response.chat.id}\n${response.message_id}`)
 			await this.chatDataService.create({
 				group: response.chat.id,
 				group_type: response.chat.type,
@@ -93,6 +95,7 @@ export class AutoPostService {
 		const response: MessageInterface =
 			await this.responsesService.sendMessage(questionTest)
 		if (response) {
+			this.responsesService.sendLogToAdmin(`send img: ${response.chat.id}\n${response.message_id}`)
 			await this.chatDataService.create({
 				group: response.chat.id,
 				group_type: response.chat.type,

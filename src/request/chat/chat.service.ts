@@ -60,7 +60,7 @@ export class ChatService {
 				bot: chat.type ? 1 : 0
 			})
 			const memberCount = await this.getTgService.tgGetChatMemberCount(chat.id)
-			await this.responsesService.sendLogToAdmin(`new_chat: ${chat.id}\ntitle: ${chat.title}\nusername: ${chat.username}\nbio: ${chat.bio}\ndescription: ${chat.description}\ntype: ${chat.type}\nwho: ${from.id}\nmember_count: ${memberCount}`)
+			await this.responsesService.sendLogToAdmin(`new_chat: ${chat.id}\ntitle: ${chat.title}\nusername: ${chat.username}\nbio: ${chat.bio}\ndescription: ${chat.description}\ntype: ${chat.type}\nwho: ${from.id}\nmember_count: ${JSON.stringify(memberCount)}`)
 		}
 	}
 }
