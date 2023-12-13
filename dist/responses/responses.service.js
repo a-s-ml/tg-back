@@ -39,7 +39,7 @@ let ResponsesService = class ResponsesService {
 			&parse_mode=HTML
 			`;
             const response = await axios_1.default.get(url);
-            return response.data;
+            return response.data.result;
         }
         catch (error) {
             return this.errorResponse(error);
@@ -74,7 +74,7 @@ let ResponsesService = class ResponsesService {
 			&parse_mode=HTML
 			`;
             const response = await axios_1.default.get(url);
-            return response.data;
+            return response.data.result;
         }
         catch (error) {
             return this.errorResponse(error);
@@ -151,7 +151,6 @@ let ResponsesService = class ResponsesService {
             this.sendLogToAdmin(`data: ${JSON.stringify(error.response.data)}\n${chat}`);
         }
         else if (error.request) {
-            this.sendLogToAdmin(`request: ${JSON.stringify(error.request)}\n${chat}`);
         }
         else {
             this.sendLogToAdmin(`message: ${JSON.stringify(error.message)}\n${chat}`);

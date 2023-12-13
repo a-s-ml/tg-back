@@ -39,7 +39,7 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			const response = await axios.get(url)
-			return response.data
+			return response.data.result
 		} catch (error) {
 			return this.errorResponse(error)
 		}
@@ -74,7 +74,7 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			const response = await axios.get(url)
-			return response.data
+			return response.data.result
 		} catch (error) {
 			return this.errorResponse(error)
 		}
@@ -154,7 +154,7 @@ export class ResponsesService {
 			// this.sendLogToAdmin('status: ' + error.response.status)
 			// this.sendLogToAdmin('headers ' + error.response.headers)
 		} else if (error.request) {
-			this.sendLogToAdmin(`request: ${JSON.stringify(error.request)}\n${chat}`)
+			// this.sendLogToAdmin(`request: ${JSON.stringify(error.request)}\n${chat}`)
 		} else {
 			this.sendLogToAdmin(`message: ${JSON.stringify(error.message)}\n${chat}`)
 		}
