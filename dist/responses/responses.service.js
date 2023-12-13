@@ -56,7 +56,6 @@ let ResponsesService = class ResponsesService {
 			&type=quiz
 			&is_anonymous=${message.is_anonymous}
 			&disable_web_page_preview=true
-			&parse_mode=HTML
 			`;
             const response = await axios_1.default.get(url);
             return response.data.result;
