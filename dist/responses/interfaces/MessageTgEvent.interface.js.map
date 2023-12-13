@@ -1,1 +1,0 @@
-{"version":3,"file":"MessageTgEvent.interface.js","sourceRoot":"","sources":["../../../src/responses/interfaces/MessageTgEvent.interface.ts"],"names":[],"mappings":";;;AAKA,MAAa,cAAc;IAKvB,YAAY,EAAC,IAAI,EAAE,OAAO,EAAE,QAAQ,EAAC;QACjC,IAAI,CAAC,IAAI,GAAG,IAAI,CAAA;QAChB,IAAI,CAAC,OAAO,GAAG,OAAO,CAAA;QACtB,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAA;IAC5B,CAAC;CACJ;AAVD,wCAUC"}

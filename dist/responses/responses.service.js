@@ -14,7 +14,6 @@ require("dotenv/config");
 const axios_1 = require("axios");
 const common_1 = require("@nestjs/common");
 const event_emitter_1 = require("@nestjs/event-emitter");
-const MessageTgEvent_interface_1 = require("./interfaces/MessageTgEvent.interface");
 let ResponsesService = class ResponsesService {
     constructor(eventEmitter) {
         this.eventEmitter = eventEmitter;
@@ -29,15 +28,15 @@ let ResponsesService = class ResponsesService {
 			&disable_web_page_preview=true
 			&parse_mode=HTML
 			`);
-            await this.eventEmitter.emitAsync("successResponse.sendMessage", new MessageTgEvent_interface_1.MessageTgEvent({
-                type: "sendMessage",
-                message: message,
-                response: response.data.result
-            }));
             return response.data.result;
         }
         catch (error) {
-            await this.eventEmitter.emitAsync("errorResponse.answerCallback", error.response.data, message);
+            const eventText = `
+			errorResponse.editMessageText\n
+			chat_id: ${message.chat_id}\n
+			error: ${JSON.stringify(error.response.data)}
+			`;
+            await this.eventEmitter.emitAsync("errorResponse.sendMessage", eventText);
         }
     }
     async editMessageText(message) {
@@ -50,15 +49,15 @@ let ResponsesService = class ResponsesService {
 			&disable_web_page_preview=true
 			&parse_mode=HTML
 			`);
-            await this.eventEmitter.emitAsync("successResponse.editMessageText", new MessageTgEvent_interface_1.MessageTgEvent({
-                type: "editMessageText",
-                message: message,
-                response: response.data.result
-            }));
             return response.data.result;
         }
         catch (error) {
-            await this.eventEmitter.emitAsync("errorResponse.answerCallback", error.response.data, message);
+            const eventText = `
+			errorResponse.editMessageText\n
+			chat_id: ${message.chat_id}\n
+			error: ${JSON.stringify(error.response.data)}
+			`;
+            await this.eventEmitter.emitAsync("errorResponse.editMessageText", eventText);
         }
     }
     async sendPoll(message) {
@@ -72,15 +71,15 @@ let ResponsesService = class ResponsesService {
 			&type=quiz
 			&is_anonymous=${message.is_anonymous}
 			`);
-            await this.eventEmitter.emitAsync("successResponse.sendPoll", new MessageTgEvent_interface_1.MessageTgEvent({
-                type: "sendPoll",
-                message: message,
-                response: response.data.result
-            }));
             return response.data.result;
         }
         catch (error) {
-            await this.eventEmitter.emitAsync("errorResponse.answerCallback", error.response.data, message);
+            const eventText = `
+			errorResponse.sendPoll\n
+			chat_id: ${message.chat_id}\n
+			error: ${JSON.stringify(error.response.data)}
+			`;
+            await this.eventEmitter.emitAsync("errorResponse.sendPoll", eventText);
         }
     }
     async editMessageCaption(message) {
@@ -93,15 +92,15 @@ let ResponsesService = class ResponsesService {
 			&disable_web_page_preview=true
 			&parse_mode=HTML
 			`);
-            await this.eventEmitter.emitAsync("successResponse.editMessageText", new MessageTgEvent_interface_1.MessageTgEvent({
-                type: "editMessageCaption",
-                message: message,
-                response: response.data.result
-            }));
             return response.data.result;
         }
         catch (error) {
-            await this.eventEmitter.emitAsync("errorResponse.answerCallback", error.response.data, message);
+            const eventText = `
+			errorResponse.editMessageCaption\n
+			chat_id: ${message.chat_id}\n
+			error: ${JSON.stringify(error.response.data)}
+			`;
+            await this.eventEmitter.emitAsync("errorResponse.editMessageCaption", eventText);
         }
     }
     async sendPhoto(message) {
@@ -115,15 +114,15 @@ let ResponsesService = class ResponsesService {
 			&disable_web_page_preview=true
 			&parse_mode=HTML
 			`);
-            await this.eventEmitter.emitAsync("successResponse.sendPhoto", new MessageTgEvent_interface_1.MessageTgEvent({
-                type: "sendPhoto",
-                message: message,
-                response: response.data.result
-            }));
             return response.data.result;
         }
         catch (error) {
-            await this.eventEmitter.emitAsync("errorResponse.answerCallback", error.response.data, message);
+            const eventText = `
+			errorResponse.sendPhoto\n
+			chat_id: ${message.chat_id}\n
+			error: ${JSON.stringify(error.response.data)}
+			`;
+            await this.eventEmitter.emitAsync("errorResponse.sendPhoto", eventText);
         }
     }
     async editMessageReplyMarkup(message) {
@@ -135,15 +134,15 @@ let ResponsesService = class ResponsesService {
 			&disable_web_page_preview=true
 			&parse_mode=HTML
 			`);
-            await this.eventEmitter.emitAsync("successResponse.editMessageReplyMarkup", new MessageTgEvent_interface_1.MessageTgEvent({
-                type: "editMessageReplyMarkup",
-                message: message,
-                response: response.data.result
-            }));
             return response.data.result;
         }
         catch (error) {
-            await this.eventEmitter.emitAsync("errorResponse.answerCallback", error.response.data, message);
+            const eventText = `
+			errorResponse.editMessageReplyMarkup\n
+			chat_id: ${message.chat_id}\n
+			error: ${JSON.stringify(error.response.data)}
+			`;
+            await this.eventEmitter.emitAsync("errorResponse.editMessageReplyMarkup", eventText);
         }
     }
     async answerCallbackQuery(answerCallbackQuery) {
@@ -154,11 +153,15 @@ let ResponsesService = class ResponsesService {
 			&text=${answerCallbackQuery.text}
 			&show_alert=true
 			`);
-            await this.eventEmitter.emitAsync("successResponse.answerCallback", response.data.result, answerCallbackQuery);
             return response.data.result;
         }
         catch (error) {
-            await this.eventEmitter.emitAsync("errorResponse.answerCallback", error.response.data, answerCallbackQuery);
+            const eventText = `
+			errorResponse.answerCallback\n
+			callback_query_id: ${answerCallbackQuery.callback_query_id}\n
+			error: ${JSON.stringify(error.response.data)}
+			`;
+            await this.eventEmitter.emitAsync("errorResponse.answerCallback", eventText);
         }
     }
 };

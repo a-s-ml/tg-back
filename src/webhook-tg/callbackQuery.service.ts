@@ -6,7 +6,6 @@ import { PollAnswerInterface } from "src/interfaces/types/pollAnswer.interface"
 import { MessageInterface } from "src/interfaces/types/Message.interface"
 import { ChatMemberUpdatedInterface } from "src/interfaces/types/ChatMemberUpdated.interface"
 import { EventEmitter2 } from "@nestjs/event-emitter"
-import { MemberTgEvent } from "src/responses/interfaces/MemberTgEvent.interface"
 
 @Injectable()
 export class CallbackQueryService {
@@ -51,7 +50,11 @@ export class CallbackQueryService {
 	}
 
 	async member(memberData: ChatMemberUpdatedInterface) {
-		const emitText: string = `new_chat_member: ${memberData.new_chat_member.status}\n${memberData.chat.id}\n@${memberData.chat.username}`
+		const emitText: string = `
+		new_chat_member: ${memberData.new_chat_member.status}\n
+		${memberData.chat.id}\n
+		@${memberData.chat.username}
+		`
 		await this.eventEmitter.emitAsync("newChatMember.chatMember", emitText)
 		await this.chatService.verificationExistence(memberData.from)
 		if (

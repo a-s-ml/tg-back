@@ -14,54 +14,13 @@ require("dotenv/config");
 const common_1 = require("@nestjs/common");
 const event_emitter_1 = require("@nestjs/event-emitter");
 const axios_1 = require("axios");
-const MessageTgEvent_interface_1 = require("./interfaces/MessageTgEvent.interface");
 let LogAdminService = class LogAdminService {
-    async sendLogToAdminText(text) {
-        console.log('onEvent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+    async sendLogToAdminGroup(text) {
         try {
-            const adminChannel = -1001524297397n;
             await axios_1.default.get(`
 				${process.env.SEND_MESSAGE}
-				chat_id=${adminChannel}
-				&text=${text}
-				&disable_web_page_preview=true
-				&parse_mode=HTML
-				`);
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
-    async sendLogToAdminText2(text) {
-        console.log('onEvent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-        try {
-            const adminChannel = -1001524297397n;
-            await axios_1.default.get(`
-				${process.env.SEND_MESSAGE}
-				chat_id=${adminChannel}
-				&text=${text}
-				&disable_web_page_preview=true
-				&parse_mode=HTML
-				`);
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
-    async sendLogToAdmin(data) {
-        console.log('onEvent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-        try {
-            const adminChannel = -1001524297397n;
-            const text = encodeURI(`
-                successResponse: ${data.type}\n
-                group: ${data.response.chat.id}\n
-                group type: ${data.response.chat.type}\n
-                link: https://t.me/${data.response.chat.username}/${data.response.message_id}
-                `);
-            await axios_1.default.get(`
-				${process.env.SEND_MESSAGE}
-				chat_id=${adminChannel}
-				&text=${text}
+				chat_id=-1001524297397
+				&text=${encodeURI(text)}
 				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`);
@@ -73,23 +32,11 @@ let LogAdminService = class LogAdminService {
 };
 exports.LogAdminService = LogAdminService;
 __decorate([
-    (0, event_emitter_1.OnEvent)("newChatMember.*", { async: true }),
+    (0, event_emitter_1.OnEvent)("**", { async: true }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], LogAdminService.prototype, "sendLogToAdminText", null);
-__decorate([
-    (0, event_emitter_1.OnEvent)("newChatMember.chatMember", { async: true }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], LogAdminService.prototype, "sendLogToAdminText2", null);
-__decorate([
-    (0, event_emitter_1.OnEvent)("successResponse.*", { async: true }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [MessageTgEvent_interface_1.MessageTgEvent]),
-    __metadata("design:returntype", Promise)
-], LogAdminService.prototype, "sendLogToAdmin", null);
+], LogAdminService.prototype, "sendLogToAdminGroup", null);
 exports.LogAdminService = LogAdminService = __decorate([
     (0, common_1.Injectable)()
 ], LogAdminService);

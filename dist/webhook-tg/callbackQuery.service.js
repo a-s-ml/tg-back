@@ -50,7 +50,11 @@ let CallbackQueryService = class CallbackQueryService {
         }
     }
     async member(memberData) {
-        const emitText = `new_chat_member: ${memberData.new_chat_member.status}\n${memberData.chat.id}\n@${memberData.chat.username}`;
+        const emitText = `
+		new_chat_member: ${memberData.new_chat_member.status}\n
+		${memberData.chat.id}\n
+		@${memberData.chat.username}
+		`;
         await this.eventEmitter.emitAsync("newChatMember.chatMember", emitText);
         await this.chatService.verificationExistence(memberData.from);
         if (memberData.new_chat_member.status === "member" ||

@@ -1,14 +1,14 @@
+import { EventEmitter2 } from "@nestjs/event-emitter";
 import { Prisma } from "@prisma/client";
 import { DbService } from "src/db/db.service";
 import { ChatInterface } from "src/interfaces/types/Chat.interface";
 import { UserInterface } from "src/interfaces/types/User.interface";
 import { GetTgService } from "src/responses/getTgAPI.service";
-import { ResponsesService } from "src/responses/responses.service";
 export declare class ChatService {
     private dbService;
-    private responsesService;
     private getTgService;
-    constructor(dbService: DbService, responsesService: ResponsesService, getTgService: GetTgService);
+    private eventEmitter;
+    constructor(dbService: DbService, getTgService: GetTgService, eventEmitter: EventEmitter2);
     createChat(createChatDto: Prisma.chatCreateInput): Promise<{
         id: number;
         chat: bigint;

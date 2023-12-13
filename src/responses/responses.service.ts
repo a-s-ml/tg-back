@@ -10,7 +10,6 @@ import { EditMessageTextMethod } from "src/interfaces/metods/editMessageText.met
 import { EditMessageCaptionMethod } from "src/interfaces/metods/editMessageCaption.method"
 import { AnswerCallbackQueryMethod } from "src/interfaces/metods/answerCallbackQuery.method"
 import { editMessageReplyMarkupMethod } from "src/interfaces/metods/editMessageReplyMarkup.method"
-import { MessageTgEvent } from "./interfaces/MessageTgEvent.interface"
 
 @Injectable()
 export class ResponsesService {
@@ -28,20 +27,16 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			)
-			await this.eventEmitter.emitAsync(
-				"successResponse.sendMessage",
-				new MessageTgEvent({
-					type: "sendMessage",
-					message: message,
-					response: response.data.result
-				})
-			)
 			return response.data.result
 		} catch (error) {
+			const eventText: string = `
+			errorResponse.editMessageText\n
+			chat_id: ${message.chat_id}\n
+			error: ${JSON.stringify(error.response.data)}
+			`
 			await this.eventEmitter.emitAsync(
-				"errorResponse.answerCallback",
-				error.response.data,
-				message
+				"errorResponse.sendMessage",
+				eventText
 			)
 		}
 	}
@@ -58,20 +53,16 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			)
-			await this.eventEmitter.emitAsync(
-				"successResponse.editMessageText",
-				new MessageTgEvent({
-					type: "editMessageText",
-					message: message,
-					response: response.data.result
-				})
-			)
 			return response.data.result
 		} catch (error) {
+			const eventText: string = `
+			errorResponse.editMessageText\n
+			chat_id: ${message.chat_id}\n
+			error: ${JSON.stringify(error.response.data)}
+			`
 			await this.eventEmitter.emitAsync(
-				"errorResponse.answerCallback",
-				error.response.data,
-				message
+				"errorResponse.editMessageText",
+				eventText
 			)
 		}
 	}
@@ -89,20 +80,16 @@ export class ResponsesService {
 			&is_anonymous=${message.is_anonymous}
 			`
 			)
-			await this.eventEmitter.emitAsync(
-				"successResponse.sendPoll",
-				new MessageTgEvent({
-					type: "sendPoll",
-					message: message,
-					response: response.data.result
-				})
-			)
 			return response.data.result
 		} catch (error) {
+			const eventText: string = `
+			errorResponse.sendPoll\n
+			chat_id: ${message.chat_id}\n
+			error: ${JSON.stringify(error.response.data)}
+			`
 			await this.eventEmitter.emitAsync(
-				"errorResponse.answerCallback",
-				error.response.data,
-				message
+				"errorResponse.sendPoll",
+				eventText
 			)
 		}
 	}
@@ -119,20 +106,16 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			)
-			await this.eventEmitter.emitAsync(
-				"successResponse.editMessageText",
-				new MessageTgEvent({
-					type: "editMessageCaption",
-					message: message,
-					response: response.data.result
-				})
-			)
 			return response.data.result
 		} catch (error) {
+			const eventText: string = `
+			errorResponse.editMessageCaption\n
+			chat_id: ${message.chat_id}\n
+			error: ${JSON.stringify(error.response.data)}
+			`
 			await this.eventEmitter.emitAsync(
-				"errorResponse.answerCallback",
-				error.response.data,
-				message
+				"errorResponse.editMessageCaption",
+				eventText
 			)
 		}
 	}
@@ -150,20 +133,16 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			)
-			await this.eventEmitter.emitAsync(
-				"successResponse.sendPhoto",
-				new MessageTgEvent({
-					type: "sendPhoto",
-					message: message,
-					response: response.data.result
-				})
-			)
 			return response.data.result
 		} catch (error) {
+			const eventText: string = `
+			errorResponse.sendPhoto\n
+			chat_id: ${message.chat_id}\n
+			error: ${JSON.stringify(error.response.data)}
+			`
 			await this.eventEmitter.emitAsync(
-				"errorResponse.answerCallback",
-				error.response.data,
-				message
+				"errorResponse.sendPhoto",
+				eventText
 			)
 		}
 	}
@@ -179,20 +158,16 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			)
-			await this.eventEmitter.emitAsync(
-				"successResponse.editMessageReplyMarkup",
-				new MessageTgEvent({
-					type: "editMessageReplyMarkup",
-					message: message,
-					response: response.data.result
-				})
-			)
 			return response.data.result
 		} catch (error) {
+			const eventText: string = `
+			errorResponse.editMessageReplyMarkup\n
+			chat_id: ${message.chat_id}\n
+			error: ${JSON.stringify(error.response.data)}
+			`
 			await this.eventEmitter.emitAsync(
-				"errorResponse.answerCallback",
-				error.response.data,
-				message
+				"errorResponse.editMessageReplyMarkup",
+				eventText
 			)
 		}
 	}
@@ -207,17 +182,16 @@ export class ResponsesService {
 			&show_alert=true
 			`
 			)
-			await this.eventEmitter.emitAsync(
-				"successResponse.answerCallback",
-				response.data.result,
-				answerCallbackQuery
-			)
 			return response.data.result
 		} catch (error) {
+			const eventText: string = `
+			errorResponse.answerCallback\n
+			callback_query_id: ${answerCallbackQuery.callback_query_id}\n
+			error: ${JSON.stringify(error.response.data)}
+			`
 			await this.eventEmitter.emitAsync(
 				"errorResponse.answerCallback",
-				error.response.data,
-				answerCallbackQuery
+				eventText
 			)
 		}
 	}

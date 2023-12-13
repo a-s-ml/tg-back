@@ -1,1 +1,0 @@
-{"version":3,"file":"MemberTgEvent.interface.js","sourceRoot":"","sources":["../../../src/responses/interfaces/MemberTgEvent.interface.ts"],"names":[],"mappings":";;;AAEA,MAAa,aAAa;IAItB,YAAY,EAAC,YAAY,EAAE,UAAU,EAAC;QAClC,IAAI,CAAC,YAAY,GAAG,YAAY,CAAA;QAChC,IAAI,CAAC,UAAU,GAAG,UAAU,CAAA;IAChC,CAAC;CACJ;AARD,sCAQC"}
