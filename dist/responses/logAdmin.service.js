@@ -16,10 +16,6 @@ const event_emitter_1 = require("@nestjs/event-emitter");
 const axios_1 = require("axios");
 const MessageTgEvent_interface_1 = require("./interfaces/MessageTgEvent.interface");
 let LogAdminService = class LogAdminService {
-    constructor(adminChannel) {
-        this.adminChannel = -1001524297397n;
-        this.adminChannel = adminChannel;
-    }
     async sendLogToAdminText(text) {
         console.log('onEvent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         try {
@@ -95,7 +91,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LogAdminService.prototype, "sendLogToAdmin", null);
 exports.LogAdminService = LogAdminService = __decorate([
-    (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [BigInt])
+    (0, common_1.Injectable)()
 ], LogAdminService);
 //# sourceMappingURL=logAdmin.service.js.map

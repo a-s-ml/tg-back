@@ -6,11 +6,6 @@ import { MessageTgEvent } from "./interfaces/MessageTgEvent.interface"
 
 @Injectable()
 export class LogAdminService {
-	adminChannel: bigint = -1001524297397n
-
-	constructor(adminChannel: bigint) {
-		this.adminChannel = adminChannel
-	}
 
 	@OnEvent("newChatMember.*", { async: true })
     async sendLogToAdminText(text: string) {
