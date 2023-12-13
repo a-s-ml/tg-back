@@ -8,7 +8,7 @@ export class SendPollMethod {
 	question: string
 	options: Array<string>
 	is_anonymous?: boolean
-	type?: PollTypeInterface
+	type?: string //PollTypeInterface
 	allows_multiple_answers?: boolean
 	correct_option_id?: number
 	explanation?: string

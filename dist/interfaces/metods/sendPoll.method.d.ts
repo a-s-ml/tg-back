@@ -1,13 +1,12 @@
 import { InlineKeyboardMarkupInterface } from "../types/InlineKeyboardMarkup.interface";
 import { MessageEntityInterface } from "../types/MessageEntity.dto";
-import { PollTypeInterface } from "../types/PollType.interface";
 export declare class SendPollMethod {
     chat_id: bigint;
     message_thread_id?: number;
     question: string;
     options: Array<string>;
     is_anonymous?: boolean;
-    type?: PollTypeInterface;
+    type?: string;
     allows_multiple_answers?: boolean;
     correct_option_id?: number;
     explanation?: string;

@@ -55,7 +55,6 @@ let ResponsesService = class ResponsesService {
 			&correct_option_id=${message.correct_option_id}
 			&type=quiz
 			&is_anonymous=${message.is_anonymous}
-			&disable_web_page_preview=true
 			`;
             const response = await axios_1.default.get(url);
             return response.data.result;
