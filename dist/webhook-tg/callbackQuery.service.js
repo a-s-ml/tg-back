@@ -50,7 +50,6 @@ let CallbackQueryService = class CallbackQueryService {
         }
     }
     async member(memberData) {
-        await this.responsesService.sendLogToAdmin(`new_chat_member: ${memberData.new_chat_member.status}\n${memberData.chat.id}\n@${memberData.chat.username}`);
         await this.chatService.verificationExistence(memberData.from);
         if (memberData.new_chat_member.status === "member" ||
             memberData.new_chat_member.status === "administrator") {

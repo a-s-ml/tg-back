@@ -8,7 +8,7 @@ export class AppService {
 		private readonly autoPostServise: AutoPostService
 	) {}
 
-	@Cron(CronExpression.EVERY_30_SECONDS)
+	@Cron(CronExpression.EVERY_10_SECONDS)
 	async cron() {
 		// const t0 = performance.now();
 		await this.autoPostServise.publicationInActiveGroup()

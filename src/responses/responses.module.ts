@@ -1,7 +1,7 @@
 import { Global, Module } from "@nestjs/common"
 import { ResponsesService } from "./responses.service"
 import { ResponsesController } from "./responses.controller"
-import { GetTgService } from "./getTG.service"
+import { GetTgService } from "./getTgAPI.service"
 
 @Global()
 @Module({

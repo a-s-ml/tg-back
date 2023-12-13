@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import { DbService } from "src/db/db.service";
 import { ChatInterface } from "src/interfaces/types/Chat.interface";
 import { UserInterface } from "src/interfaces/types/User.interface";
-import { GetTgService } from "src/responses/getTG.service";
+import { GetTgService } from "src/responses/getTgAPI.service";
 import { ResponsesService } from "src/responses/responses.service";
 export declare class ChatService {
     private dbService;

@@ -22,12 +22,14 @@ const chat_active_module_1 = require("./request/chat-active/chat-active.module")
 const chat_category_module_1 = require("./request/chat-category/chat-category.module");
 const time_module_1 = require("./request/time/time.module");
 const question_type_module_1 = require("./request/question-type/question-type.module");
+const event_emitter_1 = require("@nestjs/event-emitter");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            event_emitter_1.EventEmitterModule.forRoot(),
             schedule_1.ScheduleModule.forRoot(),
             db_module_1.DbModule,
             responses_module_1.ResponsesModule,

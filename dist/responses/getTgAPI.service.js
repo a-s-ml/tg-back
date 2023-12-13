@@ -66,4 +66,4 @@ exports.GetTgService = GetTgService;
 exports.GetTgService = GetTgService = __decorate([
     (0, common_1.Injectable)()
 ], GetTgService);
-//# sourceMappingURL=getTG.service.js.map
+//# sourceMappingURL=getTgAPI.service.js.map

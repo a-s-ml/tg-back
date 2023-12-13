@@ -18,9 +18,11 @@ import { ChatCategoryModule } from "./request/chat-category/chat-category.module
 import { TimeModule } from "./request/time/time.module"
 import { ChatTypeModule } from "./request/chat-type/chat-type.module"
 import { QuestionTypeModule } from "./request/question-type/question-type.module"
+import { EventEmitterModule } from "@nestjs/event-emitter"
 
 @Module({
 	imports: [
+		EventEmitterModule.forRoot(),
 		ScheduleModule.forRoot(),
 		DbModule,
 		ResponsesModule,
