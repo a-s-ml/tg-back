@@ -29,6 +29,21 @@ let LogAdminService = class LogAdminService {
             console.log(error);
         }
     }
+    async sendLogToAdminGroupErrorResponse2(text) {
+        try {
+            const adm = -1001524297397n;
+            await axios_1.default.get(`
+				${process.env.SEND_MESSAGE}
+				chat_id=${adm}
+				&text=${encodeURI(text)}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
 };
 exports.LogAdminService = LogAdminService;
 __decorate([
@@ -37,6 +52,12 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], LogAdminService.prototype, "sendLogToAdminGroupErrorResponse", null);
+__decorate([
+    (0, event_emitter_1.OnEvent)("errorResponse.*", { async: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], LogAdminService.prototype, "sendLogToAdminGroupErrorResponse2", null);
 exports.LogAdminService = LogAdminService = __decorate([
     (0, common_1.Injectable)()
 ], LogAdminService);

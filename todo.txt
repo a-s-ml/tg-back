@@ -1,2 +1,3 @@
 1. В таблице chat сделать поле time по умолчанию 3600 и брать время вопроса оттуда а не из таблицы time
 2. Упростить выбор типа вопросов в auto-post.service publicationInActiveGroup в случае random
+3. Надо сделать ответ на вопрос: Не верно правильный ответ question.answer[question.answerright]
