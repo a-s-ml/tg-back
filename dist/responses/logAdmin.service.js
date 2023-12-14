@@ -32,7 +32,7 @@ let LogAdminService = class LogAdminService {
 };
 exports.LogAdminService = LogAdminService;
 __decorate([
-    (0, event_emitter_1.OnEvent)("errorResponse.*", { async: true }),
+    (0, event_emitter_1.OnEvent)("**", { async: true }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)

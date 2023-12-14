@@ -6,7 +6,7 @@ import axios from "axios"
 @Injectable()
 export class LogAdminService {
 
-	@OnEvent("errorResponse.*", { async: true })
+	@OnEvent("**", { async: true })
     async sendLogToAdminGroupErrorResponse(text: string) {
 		try {
 			await axios.get(
