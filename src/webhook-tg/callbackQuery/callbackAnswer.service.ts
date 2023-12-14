@@ -79,7 +79,7 @@ export class CallbackAnswerService {
 				await this.answerCheck(
 					pollAnswer.user,
 					question[0].group,
-					pollAnswer.option_ids[0],
+					pollAnswer.option_ids[0]+1,
 					question[0].question_id
 				)
 			}

@@ -15,7 +15,7 @@ const common_1 = require("@nestjs/common");
 const event_emitter_1 = require("@nestjs/event-emitter");
 const axios_1 = require("axios");
 let LogAdminService = class LogAdminService {
-    async sendLogToAdminGroup(text) {
+    async sendLogToAdminGroupErrorResponse(text) {
         try {
             await axios_1.default.get(`
 				${process.env.SEND_MESSAGE}
@@ -32,11 +32,11 @@ let LogAdminService = class LogAdminService {
 };
 exports.LogAdminService = LogAdminService;
 __decorate([
-    (0, event_emitter_1.OnEvent)("**", { async: true }),
+    (0, event_emitter_1.OnEvent)("errorResponse.*", { async: true }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], LogAdminService.prototype, "sendLogToAdminGroup", null);
+], LogAdminService.prototype, "sendLogToAdminGroupErrorResponse", null);
 exports.LogAdminService = LogAdminService = __decorate([
     (0, common_1.Injectable)()
 ], LogAdminService);

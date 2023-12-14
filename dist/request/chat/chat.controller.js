@@ -32,7 +32,7 @@ let ChatController = class ChatController {
 };
 exports.ChatController = ChatController;
 __decorate([
-    (0, common_1.Post)('validateUser'),
+    (0, common_1.Post)("validateUser"),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [validate_dto_1.ValidateDto]),

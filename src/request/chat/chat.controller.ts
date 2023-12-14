@@ -1,11 +1,4 @@
-import {
-	Controller,
-	Post,
-	Body,
-	Patch,
-	Param,
-	Delete
-} from "@nestjs/common"
+import { Controller, Post, Body, Patch, Param } from "@nestjs/common"
 import { ChatService } from "./chat.service"
 import { Prisma } from "@prisma/client"
 import { ValidateService } from "./validate.service"
@@ -15,10 +8,10 @@ import { ValidateDto } from "./dto/validate.dto"
 export class ChatController {
 	constructor(
 		private readonly chatService: ChatService,
-		private readonly validateService: ValidateService,
-		) {}
+		private readonly validateService: ValidateService
+	) {}
 
-	@Post('validateUser')
+	@Post("validateUser")
 	validate(@Body() initData: ValidateDto): object {
 		return this.validateService.validateUser(initData)
 	}

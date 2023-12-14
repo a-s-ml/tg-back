@@ -1,4 +1,4 @@
 import "dotenv/config";
 export declare class LogAdminService {
-    sendLogToAdminGroup(text: string): Promise<void>;
+    sendLogToAdminGroupErrorResponse(text: string): Promise<void>;
 }
