@@ -16,13 +16,14 @@ const event_emitter_1 = require("@nestjs/event-emitter");
 const axios_1 = require("axios");
 let LogAdminService = class LogAdminService {
     async sendLogToAdminGroupErrorResponse(text) {
+        const adm = -1001524297397n;
         try {
             await axios_1.default.get(`
 				${process.env.SEND_MESSAGE}
-				chat_id=-1001524297397
+				chat_id=${adm}
 				&text=${encodeURI(text)}
 				&disable_web_page_preview=true
-				&parse_mode=HTML
+				&parse_mode=HTML 
 				`);
         }
         catch (error) {
@@ -30,8 +31,8 @@ let LogAdminService = class LogAdminService {
         }
     }
     async sendLogToAdminGroupErrorResponse2(text) {
+        const adm = -1001524297397n;
         try {
-            const adm = -1001524297397n;
             await axios_1.default.get(`
 				${process.env.SEND_MESSAGE}
 				chat_id=${adm}
