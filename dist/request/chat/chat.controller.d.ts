@@ -7,7 +7,7 @@ export declare class ChatController {
     private readonly validateService;
     constructor(chatService: ChatService, validateService: ValidateService);
     validate(initData: ValidateDto): object;
-    findOne(initData: ValidateDto): Promise<{
+    validateUserGet(initData: ValidateDto): Promise<{
         validate: boolean;
         UserData: {
             query_id: string;

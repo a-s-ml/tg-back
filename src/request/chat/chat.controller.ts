@@ -17,7 +17,7 @@ export class ChatController {
 	}
 
 	@Get(":validateUser")
-	findOne(@Param("initData") initData: ValidateDto) {
+	validateUserGet(@Param("initData") initData: ValidateDto) {
 		return this.validateService.validateUserGet(initData)
 	}
 
