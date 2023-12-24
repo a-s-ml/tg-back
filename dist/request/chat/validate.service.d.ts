@@ -12,12 +12,4 @@ export declare class ValidateService {
             auth_date: string;
         };
     }>;
-    validateUserGet(validateString: ValidateDto): Promise<{
-        validate: boolean;
-        UserData: {
-            query_id: string;
-            user: any;
-            auth_date: string;
-        };
-    }>;
 }
