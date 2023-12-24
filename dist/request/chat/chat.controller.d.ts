@@ -7,5 +7,13 @@ export declare class ChatController {
     private readonly validateService;
     constructor(chatService: ChatService, validateService: ValidateService);
     validate(initData: ValidateDto): object;
+    findOne(initData: ValidateDto): Promise<{
+        validate: boolean;
+        UserData: {
+            query_id: string;
+            user: any;
+            auth_date: string;
+        };
+    }>;
     update(chat: string, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
 }
