@@ -38,6 +38,23 @@ export class ChatService {
 		})
 	}
 
+	async findByReferal2(chat: bigint) {
+		let response: string[];
+		const res = await this.dbService.chat.findMany({
+			where: {
+				referral: chat
+			}
+		})
+		for (const item of res) {
+			response.push(JSON.stringify(
+				item,
+				(key, value) =>
+					typeof value === "bigint" ? value.toString() : value // return everything else unchanged
+			))
+		}
+		return response
+	}
+
 	async update(chat: bigint, updateChatDto: Prisma.chatUpdateInput) {
 		await this.dbService.chat.update({
 			where: {
