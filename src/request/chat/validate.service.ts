@@ -1,8 +1,10 @@
 import { Injectable } from "@nestjs/common"
 import { ValidateDto } from "./dto/validate.dto"
-import { createHmac } from "crypto"
-import "dotenv/config"
 import { ChatService } from "./chat.service"
+import { createHmac } from "crypto"
+import { responseUserDataInterface } from "./dto/responseUserData.interface"
+import { responseValidateInterface } from "./dto/responseValidate.interface"
+import "dotenv/config"
 
 @Injectable()
 export class ValidateService {
@@ -16,11 +18,13 @@ export class ValidateService {
 		urlParams.delete("hash")
 		urlParams.sort()
 
-		const UserData = {
+		const UserData: responseUserDataInterface = {
 			query_id: urlParams.get("query_id"),
 			user: JSON.parse(urlParams.get("user")),
 			auth_date: urlParams.get("auth_date")
 		}
+
+		const group = await this.chatService.findByReferal(UserData.user.id)
 
 		let dataCheckString = ""
 		for (const [key, value] of urlParams.entries()) {
@@ -37,6 +41,8 @@ export class ValidateService {
 
 		const validate = calculatedHash === hash
 
-		return { validate, UserData }
+		let response: responseValidateInterface;
+
+		return response = { validate, UserData, group }
 	}
 }

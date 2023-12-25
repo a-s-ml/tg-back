@@ -33,6 +33,13 @@ let ChatService = class ChatService {
             }
         });
     }
+    async findByReferal(chat) {
+        return await this.dbService.chat.findMany({
+            where: {
+                referral: chat
+            }
+        });
+    }
     async update(chat, updateChatDto) {
         await this.dbService.chat.update({
             where: {

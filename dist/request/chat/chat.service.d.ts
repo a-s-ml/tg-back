@@ -39,6 +39,16 @@ export declare class ChatService {
         question_type: number;
         time: number;
     }>;
+    findByReferal(chat: bigint): Promise<{
+        id: number;
+        chat: bigint;
+        type: string;
+        bot: number;
+        date: Date;
+        referral: bigint;
+        question_type: number;
+        time: number;
+    }[]>;
     update(chat: bigint, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
     verificationExistence(from: UserInterface): Promise<void>;
     verificationExistenceChat(chat: ChatInterface, from: UserInterface): Promise<void>;

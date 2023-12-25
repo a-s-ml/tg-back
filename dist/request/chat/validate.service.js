@@ -11,9 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ValidateService = void 0;
 const common_1 = require("@nestjs/common");
+const chat_service_1 = require("./chat.service");
 const crypto_1 = require("crypto");
 require("dotenv/config");
-const chat_service_1 = require("./chat.service");
 let ValidateService = class ValidateService {
     constructor(chatService) {
         this.chatService = chatService;
@@ -28,6 +28,7 @@ let ValidateService = class ValidateService {
             user: JSON.parse(urlParams.get("user")),
             auth_date: urlParams.get("auth_date")
         };
+        const group = await this.chatService.findByReferal(UserData.user.id);
         let dataCheckString = "";
         for (const [key, value] of urlParams.entries()) {
             dataCheckString += `${key}=${value}\n`;
@@ -38,7 +39,8 @@ let ValidateService = class ValidateService {
             .update(dataCheckString)
             .digest("hex");
         const validate = calculatedHash === hash;
-        return { validate, UserData };
+        let response;
+        return response = { validate, UserData, group };
     }
 };
 exports.ValidateService = ValidateService;

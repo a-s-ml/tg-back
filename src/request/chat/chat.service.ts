@@ -30,6 +30,14 @@ export class ChatService {
 		})
 	}
 
+	async findByReferal(chat: bigint) {
+		return await this.dbService.chat.findMany({
+			where: {
+				referral: chat
+			}
+		})
+	}
+
 	async update(chat: bigint, updateChatDto: Prisma.chatUpdateInput) {
 		await this.dbService.chat.update({
 			where: {
