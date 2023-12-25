@@ -39,7 +39,7 @@ export class ChatService {
 	}
 
 	async findByReferal2(chat: bigint) {
-		let response: string[];
+		let response: Array<string>;
 		const res = await this.dbService.chat.findMany({
 			where: {
 				referral: chat
