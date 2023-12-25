@@ -46,7 +46,7 @@ export class ChatService {
 				}
 			}),
 			(key, value) =>
-				typeof value === "bigint" ? value.toString() : value // return everything else unchanged
+				typeof value === "bigint" ? value.toString() : value
 		)
 	}
 

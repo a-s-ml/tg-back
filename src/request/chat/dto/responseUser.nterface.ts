@@ -5,5 +5,5 @@ export class responseUserInterface {
     username: string;
     language_code: string;
     allows_write_to_pm: boolean;
-}
+} 
 

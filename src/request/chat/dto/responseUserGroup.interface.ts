@@ -6,6 +6,6 @@ export class responseUserGroupInterface {
     date: Date;
     referral: bigint;
     question_type: number;
-    time: number;
+    time: number; 
 }
 
