@@ -29,9 +29,6 @@ let ChatController = class ChatController {
     update(chat, updateChatDto) {
         return this.chatService.update(chat, updateChatDto);
     }
-    findByReferal2(id) {
-        return this.chatService.findByReferal2(id);
-    }
 };
 exports.ChatController = ChatController;
 __decorate([
@@ -49,13 +46,6 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], ChatController.prototype, "update", null);
-__decorate([
-    (0, common_1.Get)(":id"),
-    __param(0, (0, common_1.Param)("id")),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], ChatController.prototype, "findByReferal2", null);
 exports.ChatController = ChatController = __decorate([
     (0, common_1.Controller)("chat"),
     __metadata("design:paramtypes", [chat_service_1.ChatService,

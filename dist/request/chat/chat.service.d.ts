@@ -49,7 +49,6 @@ export declare class ChatService {
         question_type: number;
         time: number;
     }[]>;
-    findByReferal2(chat: bigint): Promise<string>;
     update(chat: bigint, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
     verificationExistence(from: UserInterface): Promise<void>;
     verificationExistenceChat(chat: ChatInterface, from: UserInterface): Promise<void>;

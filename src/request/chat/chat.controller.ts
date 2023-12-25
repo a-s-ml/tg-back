@@ -23,9 +23,4 @@ export class ChatController {
 	) {
 		return this.chatService.update(chat as unknown as bigint, updateChatDto)
 	}
-
-	@Get(":id")
-	findByReferal2(@Param("id") id: string) {
-		return this.chatService.findByReferal2(id as unknown as bigint)
-	}
 }

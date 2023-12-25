@@ -8,5 +8,4 @@ export declare class ChatController {
     constructor(chatService: ChatService, validateService: ValidateService);
     validate(initData: ValidateDto): object;
     update(chat: string, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
-    findByReferal2(id: string): Promise<string>;
 }
