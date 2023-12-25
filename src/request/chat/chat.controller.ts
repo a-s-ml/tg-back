@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Patch, Param } from "@nestjs/common"
+import { Controller, Post, Body, Patch, Param, Get } from "@nestjs/common"
 import { ChatService } from "./chat.service"
 import { Prisma } from "@prisma/client"
 import { ValidateService } from "./validate.service"
@@ -22,5 +22,10 @@ export class ChatController {
 		@Body() updateChatDto: Prisma.chatUpdateInput
 	) {
 		return this.chatService.update(chat as unknown as bigint, updateChatDto)
+	}
+
+	@Get(":id")
+	findByReferal2(@Param("id") id: string) {
+		return this.chatService.findByReferal2(id as unknown as bigint)
 	}
 }

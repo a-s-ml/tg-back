@@ -11,7 +11,7 @@ export class ChatService {
 	constructor(
 		private dbService: DbService,
 		private getTgService: GetTgService,
-		private eventEmitter: EventEmitter2,
+		private eventEmitter: EventEmitter2
 	) {}
 
 	async createChat(createChatDto: Prisma.chatCreateInput) {
@@ -38,6 +38,18 @@ export class ChatService {
 		})
 	}
 
+	async findByReferal2(chat: bigint) {
+		return JSON.stringify(
+			await this.dbService.chat.findMany({
+				where: {
+					referral: chat
+				}
+			}),
+			(key, value) =>
+				typeof value === "bigint" ? value.toString() : value // return everything else unchanged
+		)
+	}
+
 	async update(chat: bigint, updateChatDto: Prisma.chatUpdateInput) {
 		await this.dbService.chat.update({
 			where: {
@@ -54,7 +66,10 @@ export class ChatService {
 				chat: from.id,
 				bot: from.is_bot ? 1 : 0
 			})
-			await this.eventEmitter.emitAsync("newChatMember.chatMember", `new_user: ${from.id}\nfirst_name: ${from.first_name}\nlast_name: ${from.last_name}\nusername @${from.username}`)
+			await this.eventEmitter.emitAsync(
+				"newChatMember.chatMember",
+				`new_user: ${from.id}\nfirst_name: ${from.first_name}\nlast_name: ${from.last_name}\nusername @${from.username}`
+			)
 		}
 	}
 
@@ -67,8 +82,19 @@ export class ChatService {
 				referral: from.id,
 				bot: chat.type ? 1 : 0
 			})
-			const memberCount = await this.getTgService.tgGetChatMemberCount(chat.id)
-			await this.eventEmitter.emitAsync("newChatMember.chatMember", `new_chat: ${chat.id}\ntitle: ${chat.title}\nusername: ${chat.username}\nbio: ${chat.bio}\ndescription: ${chat.description}\ntype: ${chat.type}\nwho: ${from.id}\nmember_count: ${JSON.stringify(memberCount)}`)
+			const memberCount = await this.getTgService.tgGetChatMemberCount(
+				chat.id
+			)
+			await this.eventEmitter.emitAsync(
+				"newChatMember.chatMember",
+				`new_chat: ${chat.id}\ntitle: ${chat.title}\nusername: ${
+					chat.username
+				}\nbio: ${chat.bio}\ndescription: ${chat.description}\ntype: ${
+					chat.type
+				}\nwho: ${from.id}\nmember_count: ${JSON.stringify(
+					memberCount
+				)}`
+			)
 		}
 	}
 }
