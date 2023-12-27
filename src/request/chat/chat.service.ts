@@ -48,10 +48,10 @@ export class ChatService {
 				referral: chat
 			}
 		})
-		let rt = []
-		groups.map(group => {
+		const rt = []
+		const returns = groups.map(group => {
 			for (var key in group) {
-				rt[key] = group[key].toString()
+				rt.push(group[key].toString())
 			}
 		})
 		return rt
