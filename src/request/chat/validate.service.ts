@@ -1,5 +1,4 @@
 import { Injectable } from "@nestjs/common"
-import { ValidateDto } from "./dto/validate.dto"
 import { ChatService } from "./chat.service"
 import { createHmac } from "crypto"
 import { responseUserDataInterface } from "./dto/responseUserData.interface"
@@ -25,7 +24,7 @@ export class ValidateService {
 			auth_date: urlParams.get("auth_date")
 		}
 
-		const group = await this.chatService.findByReferal(UserData.user.id)
+		const group = await this.chatService.findByReferal2(UserData.user.id)
 
 		let dataCheckString = ""
 		for (const [key, value] of urlParams.entries()) {

@@ -1,8 +1,7 @@
-import { Controller, Post, Body, Patch, Param, Get } from "@nestjs/common"
+import { Controller, Body, Patch, Param, Get } from "@nestjs/common"
 import { ChatService } from "./chat.service"
 import { Prisma } from "@prisma/client"
 import { ValidateService } from "./validate.service"
-import { ValidateDto } from "./dto/validate.dto"
 
 @Controller("chat")
 export class ChatController {

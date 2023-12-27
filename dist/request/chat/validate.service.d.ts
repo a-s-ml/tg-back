@@ -7,6 +7,15 @@ export declare class ValidateService {
     validateUser(initData: string): Promise<{
         validate: boolean;
         UserData: responseUserDataInterface;
-        group: string;
+        group: {
+            id: number;
+            chat: bigint;
+            type: string;
+            bot: number;
+            date: Date;
+            referral: bigint;
+            question_type: number;
+            time: number;
+        }[];
     }>;
 }

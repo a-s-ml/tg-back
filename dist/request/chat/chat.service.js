@@ -40,6 +40,13 @@ let ChatService = class ChatService {
             }
         }), (key, value) => typeof value === "bigint" ? value.toString() : value);
     }
+    async findByReferal2(chat) {
+        return await this.dbService.chat.findMany({
+            where: {
+                referral: chat
+            }
+        });
+    }
     async update(chat, updateChatDto) {
         await this.dbService.chat.update({
             where: {
