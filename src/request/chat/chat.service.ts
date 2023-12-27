@@ -48,12 +48,12 @@ export class ChatService {
 				referral: chat
 			}
 		})
-		const rt = []
+		let rt = []
 		let c = 0
 		const returns = groups.map(group => {
 			c++
 			for (var key in group) {
-				rt[c].push(group[key].toString())
+				rt[c][key] = group[key].toString()
 			}
 		})
 		return rt
