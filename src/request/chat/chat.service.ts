@@ -31,7 +31,7 @@ export class ChatService {
 	}
 
 	async findByReferal(chat: bigint) {
-		return JSON.stringify(
+		return JSON.parse(JSON.stringify(
 			await this.dbService.chat.findMany({
 				where: {
 					referral: chat
@@ -39,7 +39,7 @@ export class ChatService {
 			}),
 			(key, value) =>
 				typeof value === "bigint" ? value.toString() : value
-		)
+		))
 	}
 
 	async findByReferal2(chat: bigint) {

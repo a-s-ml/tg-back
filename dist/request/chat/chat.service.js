@@ -34,11 +34,11 @@ let ChatService = class ChatService {
         });
     }
     async findByReferal(chat) {
-        return JSON.stringify(await this.dbService.chat.findMany({
+        return JSON.parse(JSON.stringify(await this.dbService.chat.findMany({
             where: {
                 referral: chat
             }
-        }), (key, value) => typeof value === "bigint" ? value.toString() : value);
+        }), (key, value) => typeof value === "bigint" ? value.toString() : value));
     }
     async findByReferal2(chat) {
         const groups = await this.dbService.chat.findMany({
