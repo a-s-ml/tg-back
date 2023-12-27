@@ -49,9 +49,8 @@ let ChatService = class ChatService {
         const rt = [];
         const returns = groups.map(group => {
             for (var key in group) {
-                return group[key].toString();
+                rt[key].push(group[key].toString());
             }
-            rt.push(group);
         });
         return rt;
     }
