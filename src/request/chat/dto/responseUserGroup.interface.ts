@@ -1,10 +1,10 @@
 export class responseUserGroupInterface {
     id: number;
-    chat: string;
+    chat: bigint;
     type: string;
     bot: number;
     date: Date;
-    referral: string;
+    referral: bigint;
     question_type: number;
     time: number; 
 }

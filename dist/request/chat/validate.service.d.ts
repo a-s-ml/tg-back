@@ -7,6 +7,6 @@ export declare class ValidateService {
     validateUser(initData: string): Promise<{
         validate: boolean;
         UserData: responseUserDataInterface;
-        group: void[];
+        group: any[];
     }>;
 }

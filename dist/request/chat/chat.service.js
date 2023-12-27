@@ -47,8 +47,12 @@ let ChatService = class ChatService {
             }
         });
         return groups.map(group => {
-            group.chat.toString();
-            group.referral.toString();
+            for (var key in group) {
+                if (typeof group[key] === "bigint") {
+                    return group[key].toString();
+                }
+                return group[key];
+            }
         });
     }
     async update(chat, updateChatDto) {

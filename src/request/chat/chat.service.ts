@@ -49,11 +49,15 @@ export class ChatService {
 			}
 		})
 		return groups.map(group => {
-			JSON.stringify(
-				group,
-				(key, value) =>
-				typeof value === "bigint" ? value.toString() : value
-			)
+			// JSON.stringify(group, (key, value) =>
+			// 	typeof value === "bigint" ? value.toString() : value
+			// )
+			for (var key in group) {
+				if (typeof group[key] === "bigint") {
+					return group[key].toString()
+				}
+				return group[key]
+			}
 		})
 	}
 
