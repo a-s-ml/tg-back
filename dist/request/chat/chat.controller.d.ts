@@ -7,7 +7,7 @@ export declare class ChatController {
     private readonly validateService;
     constructor(chatService: ChatService, validateService: ValidateService);
     validate(initData: ValidateDto): object;
-    findLastByChat(initData: string): Promise<{
+    validateUserGet(initData: string): Promise<{
         validate: boolean;
         UserData: import("./dto/responseUserData.interface").responseUserDataInterface;
         group: string;

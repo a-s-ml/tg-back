@@ -16,8 +16,8 @@ export class ChatController {
 		return this.validateService.validateUser(initData)
 	}
 
-	@Get(":validateUser")
-	findLastByChat(@Param("initData") initData: string) {
+	@Get(":validateUserGet")
+	validateUserGet(@Param("initData") initData: string) {
 		return this.validateService.validateUserGet(initData)
 	}
 
