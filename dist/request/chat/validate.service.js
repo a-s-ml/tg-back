@@ -43,6 +43,7 @@ let ValidateService = class ValidateService {
         return response = { validate, UserData, group };
     }
     async validateUserGet(initData) {
+        console.log(initData);
         const urlParams = new URLSearchParams(initData);
         const hash = urlParams.get("hash");
         urlParams.delete("hash");

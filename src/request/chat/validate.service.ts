@@ -47,6 +47,7 @@ export class ValidateService {
 	}
 
 	async validateUserGet(initData: string) {
+		console.log(initData)
 		const urlParams = new URLSearchParams(initData)
 		const hash = urlParams.get("hash")
 		urlParams.delete("hash")
