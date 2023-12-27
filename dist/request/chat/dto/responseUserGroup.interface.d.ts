@@ -1,10 +1,10 @@
 export declare class responseUserGroupInterface {
     id: number;
-    chat: bigint;
+    chat: string;
     type: string;
     bot: number;
     date: Date;
-    referral: bigint;
+    referral: string;
     question_type: number;
     time: number;
 }
