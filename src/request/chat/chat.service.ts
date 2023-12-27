@@ -49,11 +49,9 @@ export class ChatService {
 			}
 		})
 		let rt = []
-		let c = 0
-		const returns = groups.map(group => {
-			c++
+		groups.map(group => {
 			for (var key in group) {
-				rt[c][key] = group[key].toString()
+				rt[key] = group[key].toString()
 			}
 		})
 		return rt
