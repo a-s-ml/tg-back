@@ -3,9 +3,11 @@ import { ChatService } from "./chat.service"
 import { ChatController } from "./chat.controller"
 import { ResponsesModule } from "src/responses/responses.module"
 import { ValidateService } from "./validate.service"
+import { AnswerModule } from "../answer/answer.module"
+import { QuestionModule } from "../question/question.module"
 
 @Module({
-	imports: [ResponsesModule],
+	imports: [ResponsesModule, AnswerModule, QuestionModule],
 	controllers: [ChatController],
 	providers: [ChatService, ValidateService],
 	exports: [ChatService]

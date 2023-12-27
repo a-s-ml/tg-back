@@ -13,9 +13,9 @@ exports.ValidateService = void 0;
 const common_1 = require("@nestjs/common");
 const chat_service_1 = require("./chat.service");
 const crypto_1 = require("crypto");
-require("dotenv/config");
 const question_service_1 = require("../question/question.service");
 const answer_service_1 = require("../answer/answer.service");
+require("dotenv/config");
 let ValidateService = class ValidateService {
     constructor(chatService, questionService, answerService) {
         this.chatService = chatService;

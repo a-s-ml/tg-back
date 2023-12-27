@@ -1,8 +1,8 @@
 import { ChatService } from "./chat.service";
-import { responseUserDataInterface } from "./dto/responseUserData.interface";
-import "dotenv/config";
 import { QuestionService } from "../question/question.service";
 import { AnswerService } from "../answer/answer.service";
+import { responseUserDataInterface } from "./dto/responseUserData.interface";
+import "dotenv/config";
 export declare class ValidateService {
     private chatService;
     private questionService;

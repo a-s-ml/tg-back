@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common"
 import { ChatService } from "./chat.service"
 import { createHmac } from "crypto"
+import { QuestionService } from "../question/question.service"
+import { AnswerService } from "../answer/answer.service"
 import { responseUserDataInterface } from "./dto/responseUserData.interface"
 import { responseValidateInterface } from "./dto/responseValidate.interface"
 import "dotenv/config"
-import { QuestionService } from "../question/question.service"
-import { AnswerService } from "../answer/answer.service"
 
 @Injectable()
 export class ValidateService {
