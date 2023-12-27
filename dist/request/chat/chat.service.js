@@ -40,20 +40,6 @@ let ChatService = class ChatService {
             }
         }), (key, value) => typeof value === "bigint" ? value.toString() : value));
     }
-    async findByReferal2(chat) {
-        const groups = await this.dbService.chat.findMany({
-            where: {
-                referral: chat
-            }
-        });
-        const rt = [];
-        const returns = groups.map(group => {
-            for (var key in group) {
-                rt.push(group[key].toString());
-            }
-        });
-        return rt;
-    }
     async update(chat, updateChatDto) {
         await this.dbService.chat.update({
             where: {
