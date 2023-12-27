@@ -47,9 +47,11 @@ let ChatService = class ChatService {
             }
         });
         const rt = [];
+        let c = 0;
         const returns = groups.map(group => {
+            c++;
             for (var key in group) {
-                rt.push(group[key].toString());
+                rt[c].push(group[key].toString());
             }
         });
         return rt;
