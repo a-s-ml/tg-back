@@ -53,6 +53,7 @@ let ChatService = class ChatService {
                 }
                 return group[key];
             }
+            return group;
         });
     }
     async update(chat, updateChatDto) {

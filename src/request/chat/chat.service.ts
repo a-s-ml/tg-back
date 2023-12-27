@@ -58,6 +58,7 @@ export class ChatService {
 				}
 				return group[key]
 			}
+			return group
 		})
 	}
 
