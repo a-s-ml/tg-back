@@ -12,5 +12,6 @@ export declare class ChatController {
         questions: number;
         answers: number;
     }>;
+    findByReferal(chat: bigint): Promise<any>;
     update(chat: string, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
 }

@@ -15,6 +15,11 @@ export class ChatController {
 		return this.validateService.validateUser(initData)
 	}
 
+	@Get("findByReferal/:chat")
+	findByReferal(@Param("chat") chat: bigint) {
+		return this.chatService.findByReferal(chat)
+	}
+
 	@Patch(":chat")
 	update(
 		@Param("chat") chat: string,
