@@ -16,6 +16,11 @@ export class ChatController {
 		return this.validateService.validateUser(initData)
 	}
 
+	@Get(":validateUser")
+	findLastByChat(@Param("initData") initData: string) {
+		return this.validateService.validateUserGet(initData)
+	}
+
 	@Patch(":chat")
 	update(
 		@Param("chat") chat: string,

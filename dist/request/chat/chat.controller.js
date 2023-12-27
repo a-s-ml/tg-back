@@ -26,6 +26,9 @@ let ChatController = class ChatController {
     validate(initData) {
         return this.validateService.validateUser(initData);
     }
+    findLastByChat(initData) {
+        return this.validateService.validateUserGet(initData);
+    }
     update(chat, updateChatDto) {
         return this.chatService.update(chat, updateChatDto);
     }
@@ -38,6 +41,13 @@ __decorate([
     __metadata("design:paramtypes", [validate_dto_1.ValidateDto]),
     __metadata("design:returntype", Object)
 ], ChatController.prototype, "validate", null);
+__decorate([
+    (0, common_1.Get)(":validateUser"),
+    __param(0, (0, common_1.Param)("initData")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ChatController.prototype, "findLastByChat", null);
 __decorate([
     (0, common_1.Patch)(":chat"),
     __param(0, (0, common_1.Param)("chat")),
