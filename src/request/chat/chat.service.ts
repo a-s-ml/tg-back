@@ -49,8 +49,11 @@ export class ChatService {
 			}
 		})
 		return groups.map(group => {
-			group.chat.toString()
-			group.referral.toString()
+			JSON.stringify(
+				group,
+				(key, value) =>
+				typeof value === "bigint" ? value.toString() : value
+			)
 		})
 	}
 

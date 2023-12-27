@@ -4,5 +4,5 @@ import { responseUserGroupInterface } from "./responseUserGroup.interface";
 export class responseValidateInterface {
     validate: boolean;
     UserData: responseUserDataInterface;
-    group: void[];
+    group: responseUserGroupInterface[];
 }
