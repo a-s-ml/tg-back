@@ -11,14 +11,9 @@ export class ChatController {
 		private readonly validateService: ValidateService
 	) {}
 
-	@Post("validateUser")
-	validate(@Body() initData: ValidateDto): object {
-		return this.validateService.validateUser(initData)
-	}
-
-	@Get(":initData")
+	@Get("validateUser/:initData")
 	initData(@Param("initData") initData: string) {
-		return this.validateService.validateUserGet(initData)
+		return this.validateService.validateUser(initData)
 	}
 
 	@Patch(":chat")

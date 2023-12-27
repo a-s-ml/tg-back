@@ -17,17 +17,13 @@ const common_1 = require("@nestjs/common");
 const chat_service_1 = require("./chat.service");
 const client_1 = require("@prisma/client");
 const validate_service_1 = require("./validate.service");
-const validate_dto_1 = require("./dto/validate.dto");
 let ChatController = class ChatController {
     constructor(chatService, validateService) {
         this.chatService = chatService;
         this.validateService = validateService;
     }
-    validate(initData) {
-        return this.validateService.validateUser(initData);
-    }
     initData(initData) {
-        return this.validateService.validateUserGet(initData);
+        return this.validateService.validateUser(initData);
     }
     update(chat, updateChatDto) {
         return this.chatService.update(chat, updateChatDto);
@@ -35,14 +31,7 @@ let ChatController = class ChatController {
 };
 exports.ChatController = ChatController;
 __decorate([
-    (0, common_1.Post)("validateUser"),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [validate_dto_1.ValidateDto]),
-    __metadata("design:returntype", Object)
-], ChatController.prototype, "validate", null);
-__decorate([
-    (0, common_1.Get)(":initData"),
+    (0, common_1.Get)("validateUser/:initData"),
     __param(0, (0, common_1.Param)("initData")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
