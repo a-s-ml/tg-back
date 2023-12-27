@@ -57,6 +57,13 @@ let QuestionService = class QuestionService {
             }
         });
     }
+    async countByChatId(chat) {
+        return await this.dbService.question.count({
+            where: {
+                chat: chat
+            }
+        });
+    }
     async countReward(question) {
         const count = await this.dbService.answer.count({
             where: {

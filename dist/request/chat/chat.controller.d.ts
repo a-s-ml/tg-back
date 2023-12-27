@@ -8,7 +8,9 @@ export declare class ChatController {
     initData(initData: string): Promise<{
         validate: boolean;
         UserData: import("./dto/responseUserData.interface").responseUserDataInterface;
-        group: any;
+        groups: number;
+        questions: number;
+        answers: number;
     }>;
     update(chat: string, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
 }

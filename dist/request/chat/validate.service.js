@@ -14,9 +14,13 @@ const common_1 = require("@nestjs/common");
 const chat_service_1 = require("./chat.service");
 const crypto_1 = require("crypto");
 require("dotenv/config");
+const question_service_1 = require("../question/question.service");
+const answer_service_1 = require("../answer/answer.service");
 let ValidateService = class ValidateService {
-    constructor(chatService) {
+    constructor(chatService, questionService, answerService) {
         this.chatService = chatService;
+        this.questionService = questionService;
+        this.answerService = answerService;
     }
     async validateUser(initData) {
         console.log(initData);
@@ -29,7 +33,9 @@ let ValidateService = class ValidateService {
             user: JSON.parse(urlParams.get("user")),
             auth_date: urlParams.get("auth_date")
         };
-        const group = await this.chatService.findByReferal(UserData.user.id);
+        const groups = await this.chatService.countByReferal(UserData.user.id);
+        const questions = await this.questionService.countByChatId(UserData.user.id);
+        const answers = await this.answerService.countByChatId(UserData.user.id);
         let dataCheckString = "";
         for (const [key, value] of urlParams.entries()) {
             dataCheckString += `${key}=${value}\n`;
@@ -41,12 +47,14 @@ let ValidateService = class ValidateService {
             .digest("hex");
         const validate = calculatedHash === hash;
         let response;
-        return response = { validate, UserData, group };
+        return response = { validate, UserData, groups, questions, answers };
     }
 };
 exports.ValidateService = ValidateService;
 exports.ValidateService = ValidateService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [chat_service_1.ChatService])
+    __metadata("design:paramtypes", [chat_service_1.ChatService,
+        question_service_1.QuestionService,
+        answer_service_1.AnswerService])
 ], ValidateService);
 //# sourceMappingURL=validate.service.js.map

@@ -89,6 +89,7 @@ export declare class QuestionService {
         img: string;
         reward: number;
     }>;
+    countByChatId(chat: bigint): Promise<number>;
     countReward(question: number): Promise<number>;
     count(question: number): Promise<number>;
 }

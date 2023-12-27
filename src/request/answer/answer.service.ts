@@ -14,6 +14,14 @@ export class AnswerService {
 		return await this.dbService.answer.findMany({})
 	}
 
+	async countByChatId(chat: bigint) {
+		return await this.dbService.answer.count({
+			where: {
+				chat: chat
+			}
+		})
+	}
+
 	async findByChat(chat: bigint, question: number, group: bigint) {
 		return await this.dbService.answer.findMany({
 			where: {

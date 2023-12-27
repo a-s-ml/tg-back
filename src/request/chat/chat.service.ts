@@ -31,15 +31,25 @@ export class ChatService {
 	}
 
 	async findByReferal(chat: bigint) {
-		return JSON.parse(JSON.stringify(
-			await this.dbService.chat.findMany({
-				where: {
-					referral: chat
-				}
-			}),
-			(key, value) =>
-				typeof value === "bigint" ? value.toString() : value
-		))
+		return JSON.parse(
+			JSON.stringify(
+				await this.dbService.chat.findMany({
+					where: {
+						referral: chat
+					}
+				}),
+				(key, value) =>
+					typeof value === "bigint" ? value.toString() : value
+			)
+		)
+	}
+
+	async countByReferal(chat: bigint) {
+		return await this.dbService.chat.count({
+			where: {
+				referral: chat
+			}
+		})
 	}
 
 	async update(chat: bigint, updateChatDto: Prisma.chatUpdateInput) {

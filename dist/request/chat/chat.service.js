@@ -40,6 +40,13 @@ let ChatService = class ChatService {
             }
         }), (key, value) => typeof value === "bigint" ? value.toString() : value));
     }
+    async countByReferal(chat) {
+        return await this.dbService.chat.count({
+            where: {
+                referral: chat
+            }
+        });
+    }
     async update(chat, updateChatDto) {
         await this.dbService.chat.update({
             where: {

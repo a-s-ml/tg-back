@@ -40,6 +40,7 @@ export declare class ChatService {
         time: number;
     }>;
     findByReferal(chat: bigint): Promise<any>;
+    countByReferal(chat: bigint): Promise<number>;
     update(chat: bigint, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
     verificationExistence(from: UserInterface): Promise<void>;
     verificationExistenceChat(chat: ChatInterface, from: UserInterface): Promise<void>;

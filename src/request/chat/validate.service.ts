@@ -4,11 +4,15 @@ import { createHmac } from "crypto"
 import { responseUserDataInterface } from "./dto/responseUserData.interface"
 import { responseValidateInterface } from "./dto/responseValidate.interface"
 import "dotenv/config"
+import { QuestionService } from "../question/question.service"
+import { AnswerService } from "../answer/answer.service"
 
 @Injectable()
 export class ValidateService {
 	constructor(
 		private chatService: ChatService,
+		private questionService: QuestionService,
+		private answerService: AnswerService,
 	) {}
 
 	async validateUser(initData: string) {
@@ -24,7 +28,9 @@ export class ValidateService {
 			auth_date: urlParams.get("auth_date")
 		}
 
-		const group = await this.chatService.findByReferal(UserData.user.id)
+		const groups = await this.chatService.countByReferal(UserData.user.id)
+		const questions = await this.questionService.countByChatId(UserData.user.id)
+		const answers = await this.answerService.countByChatId(UserData.user.id)
 
 		let dataCheckString = ""
 		for (const [key, value] of urlParams.entries()) {
@@ -43,6 +49,6 @@ export class ValidateService {
 
 		let response: responseValidateInterface;
 
-		return response = { validate, UserData, group }
+		return response = { validate, UserData, groups, questions, answers }
 	}
 }

@@ -22,6 +22,13 @@ let AnswerService = class AnswerService {
     async findAll() {
         return await this.dbService.answer.findMany({});
     }
+    async countByChatId(chat) {
+        return await this.dbService.answer.count({
+            where: {
+                chat: chat
+            }
+        });
+    }
     async findByChat(chat, question, group) {
         return await this.dbService.answer.findMany({
             where: {

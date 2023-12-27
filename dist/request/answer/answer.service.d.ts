@@ -21,6 +21,7 @@ export declare class AnswerService {
         reward: number;
         date: Date;
     }[]>;
+    countByChatId(chat: bigint): Promise<number>;
     findByChat(chat: bigint, question: number, group: bigint): Promise<{
         id: number;
         chat: bigint;
