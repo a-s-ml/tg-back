@@ -46,15 +46,14 @@ let ChatService = class ChatService {
                 referral: chat
             }
         });
-        return groups.map(group => {
+        const rt = [];
+        const returns = groups.map(group => {
             for (var key in group) {
-                if (typeof group[key] === "bigint") {
-                    return group[key].toString();
-                }
-                return group[key];
+                return group[key].toString();
             }
-            return group;
+            rt.push(group);
         });
+        return rt;
     }
     async update(chat, updateChatDto) {
         await this.dbService.chat.update({
