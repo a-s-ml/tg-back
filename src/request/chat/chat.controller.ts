@@ -26,6 +26,11 @@ export class ChatController {
 		return this.chatService.groupInfoById(chat)
 	}
 
+	@Get("groupMemberCountById/:chat")
+	groupMemberCountById(@Param("chat") chat: bigint) {
+		return this.chatService.groupMemberCountById(chat)
+	}
+
 	@Patch(":chat")
 	update(
 		@Param("chat") chat: string,

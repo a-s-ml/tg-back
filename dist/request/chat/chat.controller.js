@@ -31,6 +31,9 @@ let ChatController = class ChatController {
     groupInfoById(chat) {
         return this.chatService.groupInfoById(chat);
     }
+    groupMemberCountById(chat) {
+        return this.chatService.groupMemberCountById(chat);
+    }
     update(chat, updateChatDto) {
         return this.chatService.update(chat, updateChatDto);
     }
@@ -57,6 +60,13 @@ __decorate([
     __metadata("design:paramtypes", [BigInt]),
     __metadata("design:returntype", void 0)
 ], ChatController.prototype, "groupInfoById", null);
+__decorate([
+    (0, common_1.Get)("groupMemberCountById/:chat"),
+    __param(0, (0, common_1.Param)("chat")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [BigInt]),
+    __metadata("design:returntype", void 0)
+], ChatController.prototype, "groupMemberCountById", null);
 __decorate([
     (0, common_1.Patch)(":chat"),
     __param(0, (0, common_1.Param)("chat")),
