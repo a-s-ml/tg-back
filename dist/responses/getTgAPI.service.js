@@ -60,10 +60,11 @@ let GetTgService = class GetTgService {
             console.log(error.response.data);
             throw "error";
         })));
-        return await axios_1.default
+        const response = await axios_1.default
             .get(`${process.env.FILE_URL}/${data.result.file_path}`, {
             responseType: "blob"
         });
+        return response.data;
     }
     async tgGetUserProfilePhotos(id) {
         try {
