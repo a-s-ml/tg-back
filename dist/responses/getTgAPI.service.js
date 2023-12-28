@@ -55,7 +55,6 @@ let GetTgService = class GetTgService {
     async tgGetFilePhoto(unic_id) {
         const filePath = await this.httpService.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`);
         console.log(filePath);
-        return await this.httpService.get(`${process.env.FILE_URL}/${filePath}`, { responseType: 'arraybuffer' });
     }
     async tgGetUserProfilePhotos(id) {
         try {

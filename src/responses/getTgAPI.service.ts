@@ -59,12 +59,10 @@ export class GetTgService {
 	async tgGetFilePhoto(unic_id: string) {
 		const filePath = await this.httpService.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`)
 		console.log(filePath)
-		return await this.httpService.get(`${process.env.FILE_URL}/${filePath}`, {responseType: 'arraybuffer'})
+		// return await this.httpService.get(`${process.env.FILE_URL}/${filePath}`, {responseType: 'arraybuffer'})
 	}
 
-	async tgGetUserProfilePhotos(
-		id: bigint
-	): Promise<UserProfilePhotosInterface> {
+	async tgGetUserProfilePhotos(id: bigint): Promise<UserProfilePhotosInterface> {
 		try {
 			return await axios.get(
 				`${process.env.BASE_URL}getUserProfilePhotos?user_id=${id}&offset=0&limit=1`

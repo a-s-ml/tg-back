@@ -15,6 +15,6 @@ export declare class ChatController {
     findByReferal(chat: bigint): Promise<any>;
     groupInfoById(chat: bigint): Promise<import("../../interfaces/types/Chat.interface").ChatInterface>;
     groupMemberCountById(chat: bigint): Promise<number>;
-    tgGetFilePhoto(unic_id: string): Promise<import("rxjs").Observable<import("axios").AxiosResponse<any, any>>>;
+    tgGetFilePhoto(unic_id: string): Promise<void>;
     update(chat: string, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
 }
