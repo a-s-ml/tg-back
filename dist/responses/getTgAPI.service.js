@@ -49,7 +49,7 @@ let GetTgService = class GetTgService {
         axios_1.default.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`)
             .then(function (res1) {
             console.log(res1.data);
-            axios_1.default.get(`${process.env.FILE_URL}/${res1.data}`)
+            axios_1.default.get(`${process.env.FILE_URL}/${res1.data.result.file_path}`)
                 .then(function (res2) {
                 return res2.data;
             })
