@@ -56,9 +56,9 @@ let GetTgService = class GetTgService {
     async tgGetFilePhoto(unic_id) {
         const { data } = await (0, rxjs_1.firstValueFrom)(this.httpService.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`).pipe((0, rxjs_1.catchError)((error) => {
             console.log(error.response.data);
-            throw "An error happened!";
+            throw "error";
         })));
-        return data;
+        return data.result.file_path;
     }
     async tgGetUserProfilePhotos(id) {
         try {

@@ -62,11 +62,11 @@ export class GetTgService {
 			this.httpService.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`).pipe(
 				catchError((error: AxiosError) => {
 					console.log(error.response.data)
-					throw "An error happened!"
+					throw "error"
 				})
 			)
 		)
-		return data
+		return data.result.file_path
 	}
 
 	async tgGetUserProfilePhotos(
