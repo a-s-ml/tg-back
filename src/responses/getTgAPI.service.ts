@@ -70,13 +70,25 @@ export class GetTgService {
 				)
 		)
 
-		const response = await axios.get(
-			`${process.env.FILE_URL}/${data.result.file_path}`,
-			{
-				responseType: "blob" 
-			}
-		)
-		return Buffer.from(response.data, 'binary').toString('base64')
+		// const response = await axios.get(
+		// 	`${process.env.FILE_URL}/${data.result.file_path}`,
+		// 	{
+		// 		responseType: "blob" 
+		// 	}
+		// )
+		// return response.data
+
+
+		return await axios({
+			method:'get',
+			url:'https://bit.ly/2mTM3nY',
+			responseType:'stream'
+		  })
+			.then(function (response) {
+			  response.data.pipe(createWriteStream('file_name.jpg'))
+			})
+
+
 
 
 		// return axios({
