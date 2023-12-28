@@ -65,7 +65,7 @@ let GetTgService = class GetTgService {
             url: 'https://bit.ly/2mTM3nY',
             responseType: 'arraybuffer'
         })
-            .then(response => Buffer.from(response.data, 'binary').toString('base64'));
+            .then(response => { return Buffer.from(response.data, 'binary').toString('base64'); });
     }
     async tgGetUserProfilePhotos(id) {
         try {
