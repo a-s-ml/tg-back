@@ -52,15 +52,19 @@ export class GetTgService {
 
 	async tgGetFilePhoto(unic_id: string) {
 		axios.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`)
-		.then(function (res1) {
-			console.log(res1.data)
-			axios.get(`${process.env.FILE_URL}/${res1.data.result.file_path}`)
-			.then(function (res2) {
-				return res2.data
-			})
-			.catch(function (error) {
-			  console.log(error);
-			})
+		.then(async function (res1) {
+			await this.tgGetFile(res1.data.result.file_path)
+		})
+		.catch(function (error) {
+		  console.log(error);
+		})
+	}
+
+	async tgGetFile(patch: string) {
+		console.log(patch)
+		axios.get(`${process.env.FILE_URL}/${patch}`)
+		.then(function (res) {
+			return res
 		})
 		.catch(function (error) {
 		  console.log(error);
