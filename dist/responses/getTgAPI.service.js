@@ -64,11 +64,7 @@ let GetTgService = class GetTgService {
             .get(`${process.env.FILE_URL}/${data.result.file_path}`, {
             responseType: "stream"
         });
-        return new Response(response.data, {
-            headers: {
-                "content-disposition": `attachment; filename="12345"`,
-            },
-        });
+        return response.data;
     }
     async tgGetUserProfilePhotos(id) {
         try {
