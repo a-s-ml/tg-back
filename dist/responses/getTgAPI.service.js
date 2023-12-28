@@ -58,7 +58,18 @@ let GetTgService = class GetTgService {
             console.log(error.response.data);
             throw "error";
         })));
-        return data.result.file_path;
+        return await (0, axios_1.default)({
+            url: `${process.env.FILE_URL}/${data.result.file_path}`,
+            method: 'GET',
+            responseType: 'blob',
+        }).then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'file.pdf');
+            document.body.appendChild(link);
+            link.click();
+        });
     }
     async tgGetUserProfilePhotos(id) {
         try {
