@@ -50,7 +50,11 @@ let GetTgService = class GetTgService {
         axios_1.default.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`)
             .then(async function (res1) {
             console.log(res1.data.result.file_path);
-            return await axios_1.default.get(`${process.env.FILE_URL}/${res1.data.result.file_path}`);
+            return await (0, axios_1.default)({
+                url: `${process.env.FILE_URL}/${res1.data.result.file_path}`,
+                method: 'GET',
+                responseType: 'blob',
+            });
         })
             .catch(function (error) {
             console.log(error);
