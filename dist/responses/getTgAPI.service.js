@@ -61,11 +61,17 @@ let GetTgService = class GetTgService {
             throw "error";
         })));
         return (0, axios_1.default)({
-            method: 'get',
-            url: 'https://bit.ly/2mTM3nY',
-            responseType: 'arraybuffer'
+            method: 'GET',
+            url: `${process.env.FILE_URL}/${data.result.file_path}`,
+            responseType: 'blob'
         })
-            .then(response => { return Buffer.from(response.data, 'binary').toString('base64'); });
+            .then(response => {
+            if (response) {
+                const file = new Blob([response.data], { type: 'image/png' });
+                return file;
+            }
+            return Promise.reject('An unknown error occurred');
+        });
     }
     async tgGetUserProfilePhotos(id) {
         try {
