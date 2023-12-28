@@ -32,7 +32,7 @@ export class ChatController {
 	}
 
 	@Get("tgGetFilePhoto/:unic_id")
-	@Header("content-disposition", `attachment; filename="dsfsf"`)
+	@Header("Content-type", "image/jpg")
 	tgGetFilePhoto(@Param("unic_id") unic_id: string) {
 		return this.chatService.tgGetFilePhoto(unic_id)
 	}

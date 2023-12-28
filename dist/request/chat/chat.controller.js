@@ -72,7 +72,7 @@ __decorate([
 ], ChatController.prototype, "groupMemberCountById", null);
 __decorate([
     (0, common_1.Get)("tgGetFilePhoto/:unic_id"),
-    (0, common_1.Header)("content-disposition", `attachment; filename="dsfsf"`),
+    (0, common_1.Header)("Content-type", "image/jpg"),
     __param(0, (0, common_1.Param)("unic_id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
