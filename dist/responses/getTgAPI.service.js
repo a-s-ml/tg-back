@@ -14,6 +14,7 @@ require("dotenv/config");
 const axios_1 = require("axios");
 const common_1 = require("@nestjs/common");
 const axios_2 = require("@nestjs/axios");
+const rxjs_1 = require("rxjs");
 let GetTgService = class GetTgService {
     constructor(httpService) {
         this.httpService = httpService;
@@ -53,19 +54,11 @@ let GetTgService = class GetTgService {
         }
     }
     async tgGetFilePhoto(unic_id) {
-        const filePath = await axios_1.default.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`);
-        console.log(filePath);
-        const response = this.httpService.get(`${process.env.FILE_URL}/${filePath}`, {
-            responseType: 'arraybuffer',
-        });
-        console.log(response);
-        return new Promise((resolve, reject) => {
-            response.subscribe({
-                next(response) {
-                    resolve(response.data);
-                }
-            });
-        });
+        const { data } = await (0, rxjs_1.firstValueFrom)(this.httpService.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`).pipe((0, rxjs_1.catchError)((error) => {
+            console.log(error.response.data);
+            throw "An error happened!";
+        })));
+        return data;
     }
     async tgGetUserProfilePhotos(id) {
         try {
