@@ -60,18 +60,10 @@ let GetTgService = class GetTgService {
             console.log(error.response.data);
             throw "error";
         })));
-        return (0, axios_1.default)({
-            method: 'GET',
-            url: `${process.env.FILE_URL}/${data.result.file_path}`,
-            responseType: 'blob'
-        })
-            .then(response => {
-            if (response) {
-                const file = new Blob([response.data], { type: 'image/png' });
-                return file;
-            }
-            return Promise.reject('An unknown error occurred');
+        const response = await axios_1.default.get(`${process.env.FILE_URL}/${data.result.file_path}`, {
+            responseType: "blob"
         });
+        return response.data;
     }
     async tgGetUserProfilePhotos(id) {
         try {
