@@ -5,6 +5,7 @@ import { ResponsesModule } from "src/responses/responses.module"
 import { ValidateService } from "./validate.service"
 import { AnswerModule } from "../answer/answer.module"
 import { QuestionModule } from "../question/question.module"
+import { HttpModule } from "@nestjs/axios"
 
 @Module({
 	imports: [ResponsesModule, AnswerModule, QuestionModule],

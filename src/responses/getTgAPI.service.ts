@@ -5,9 +5,12 @@ import { ChatMemberInterface } from "src/interfaces/types/ChatMember.interface"
 import { UserInterface } from "src/interfaces/types/User.interface"
 import { UserProfilePhotosInterface } from "src/interfaces/types/UserProfilePhotos.interface"
 import { ChatInterface } from "src/interfaces/types/Chat.interface"
+import { HttpService } from "@nestjs/axios"
 
 @Injectable()
 export class GetTgService {
+	constructor(private httpService: HttpService) {}
+
 	async tgGetChat(id: bigint): Promise<ChatInterface> {
 		try {
 			const getchat = await axios.get(
@@ -30,7 +33,10 @@ export class GetTgService {
 		}
 	}
 
-	async tgGetChatMember(chat_id: bigint, user_id: bigint): Promise<ChatMemberInterface> {
+	async tgGetChatMember(
+		chat_id: bigint,
+		user_id: bigint
+	): Promise<ChatMemberInterface> {
 		try {
 			return await axios.get(
 				`${process.env.BASE_URL}getChatMember?chat_id=${chat_id}&user_id=${user_id}`
@@ -51,22 +57,14 @@ export class GetTgService {
 	}
 
 	async tgGetFilePhoto(unic_id: string) {
-		console.log(unic_id)
-		axios.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`)
-		.then(async function (res1) {
-			console.log(res1.data.result.file_path)
-			return await axios({
-				url: `${process.env.FILE_URL}/${res1.data.result.file_path}`,
-				method: 'GET',
-				responseType: 'blob',
-			  })
-		})
-		.catch(function (error) {
-		  console.log(error);
-		})
+		const filePath = await this.httpService.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`)
+		console.log(filePath)
+		return await this.httpService.get(`${process.env.FILE_URL}/${filePath}`, {responseType: 'arraybuffer'})
 	}
 
-	async tgGetUserProfilePhotos(id: bigint): Promise<UserProfilePhotosInterface> {
+	async tgGetUserProfilePhotos(
+		id: bigint
+	): Promise<UserProfilePhotosInterface> {
 		try {
 			return await axios.get(
 				`${process.env.BASE_URL}getUserProfilePhotos?user_id=${id}&offset=0&limit=1`

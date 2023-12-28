@@ -11,12 +11,14 @@ const common_1 = require("@nestjs/common");
 const responses_service_1 = require("./responses.service");
 const responses_controller_1 = require("./responses.controller");
 const getTgAPI_service_1 = require("./getTgAPI.service");
+const axios_1 = require("@nestjs/axios");
 let ResponsesModule = class ResponsesModule {
 };
 exports.ResponsesModule = ResponsesModule;
 exports.ResponsesModule = ResponsesModule = __decorate([
     (0, common_1.Global)(),
     (0, common_1.Module)({
+        imports: [axios_1.HttpModule],
         controllers: [responses_controller_1.ResponsesController],
         providers: [responses_service_1.ResponsesService, getTgAPI_service_1.GetTgService],
         exports: [responses_service_1.ResponsesService, getTgAPI_service_1.GetTgService]
