@@ -1,4 +1,4 @@
-import { Controller, Body, Patch, Param, Get } from "@nestjs/common"
+import { Controller, Body, Patch, Param, Get, Header } from "@nestjs/common"
 import { ChatService } from "./chat.service"
 import { Prisma } from "@prisma/client"
 import { ValidateService } from "./validate.service"
@@ -32,6 +32,7 @@ export class ChatController {
 	}
 
 	@Get("tgGetFilePhoto/:unic_id")
+	@Header("content-disposition", `attachment; filename="dsfsf"`)
 	tgGetFilePhoto(@Param("unic_id") unic_id: string) {
 		return this.chatService.tgGetFilePhoto(unic_id)
 	}
