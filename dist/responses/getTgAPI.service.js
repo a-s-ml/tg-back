@@ -15,7 +15,6 @@ const axios_1 = require("axios");
 const common_1 = require("@nestjs/common");
 const axios_2 = require("@nestjs/axios");
 const rxjs_1 = require("rxjs");
-const fs_1 = require("fs");
 let GetTgService = class GetTgService {
     constructor(httpService) {
         this.httpService = httpService;
@@ -64,11 +63,9 @@ let GetTgService = class GetTgService {
         return (0, axios_1.default)({
             method: 'get',
             url: 'https://bit.ly/2mTM3nY',
-            responseType: 'stream'
+            responseType: 'arraybuffer'
         })
-            .then(function (response) {
-            response.data.pipe((0, fs_1.createWriteStream)('ada_lovelace.jpg'));
-        });
+            .then(response => Buffer.from(response.data, 'binary').toString('base64'));
     }
     async tgGetUserProfilePhotos(id) {
         try {

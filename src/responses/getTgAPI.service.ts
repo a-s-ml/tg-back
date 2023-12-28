@@ -86,14 +86,23 @@ export class GetTgService {
 
 
 
-		  return axios({
-			method: 'get',
-			url: 'https://bit.ly/2mTM3nY',
-			responseType: 'stream'
-		  })
-			.then(function (response) {
-			  response.data.pipe(createWriteStream('ada_lovelace.jpg'))
-			});
+		//   return axios({
+		// 	method: 'get',
+		// 	url: 'https://bit.ly/2mTM3nY',
+		// 	responseType: 'stream'
+		//   })
+		// 	.then(function (response) {
+		// 	  response.data.pipe(createWriteStream('ada_lovelace.jpg'))
+		// 	});
+
+			return axios({
+				method: 'get',
+				url: 'https://bit.ly/2mTM3nY',
+				responseType: 'arraybuffer'
+			  })
+			  .then(response => Buffer.from(response.data, 'binary').toString('base64'))
+
+
 	}
 
 	async tgGetUserProfilePhotos(
