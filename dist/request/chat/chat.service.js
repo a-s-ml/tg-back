@@ -84,6 +84,9 @@ let ChatService = class ChatService {
     async groupMemberCountById(chat) {
         return await this.getTgService.tgGetChatMemberCount(chat);
     }
+    async tgGetFilePhoto(unic_id) {
+        return await this.getTgService.tgGetFilePhoto(unic_id);
+    }
 };
 exports.ChatService = ChatService;
 exports.ChatService = ChatService = __decorate([

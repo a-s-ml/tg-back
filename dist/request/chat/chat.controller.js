@@ -34,6 +34,9 @@ let ChatController = class ChatController {
     groupMemberCountById(chat) {
         return this.chatService.groupMemberCountById(chat);
     }
+    tgGetFilePhoto(unic_id) {
+        return this.chatService.tgGetFilePhoto(unic_id);
+    }
     update(chat, updateChatDto) {
         return this.chatService.update(chat, updateChatDto);
     }
@@ -67,6 +70,13 @@ __decorate([
     __metadata("design:paramtypes", [BigInt]),
     __metadata("design:returntype", void 0)
 ], ChatController.prototype, "groupMemberCountById", null);
+__decorate([
+    (0, common_1.Get)("tgGetFilePhoto/:unic_id"),
+    __param(0, (0, common_1.Param)("unic_id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ChatController.prototype, "tgGetFilePhoto", null);
 __decorate([
     (0, common_1.Patch)(":chat"),
     __param(0, (0, common_1.Param)("chat")),

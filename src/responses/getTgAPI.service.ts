@@ -50,6 +50,23 @@ export class GetTgService {
 		}
 	}
 
+	async tgGetFilePhoto(unic_id: string) {
+		axios.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`)
+		.then(function (res1) {
+			console.log(res1.data)
+			axios.get(`${process.env.FILE_URL}/${res1.data}`)
+			.then(function (res2) {
+				return res2.data
+			})
+			.catch(function (error) {
+			  console.log(error);
+			})
+		})
+		.catch(function (error) {
+		  console.log(error);
+		})
+	}
+
 	async tgGetUserProfilePhotos(id: bigint): Promise<UserProfilePhotosInterface> {
 		try {
 			return await axios.get(

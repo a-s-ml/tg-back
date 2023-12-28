@@ -46,4 +46,5 @@ export declare class ChatService {
     verificationExistenceChat(chat: ChatInterface, from: UserInterface): Promise<void>;
     groupInfoById(chat: bigint): Promise<ChatInterface>;
     groupMemberCountById(chat: bigint): Promise<number>;
+    tgGetFilePhoto(unic_id: string): Promise<void>;
 }

@@ -45,6 +45,22 @@ let GetTgService = class GetTgService {
             console.log(error);
         }
     }
+    async tgGetFilePhoto(unic_id) {
+        axios_1.default.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`)
+            .then(function (res1) {
+            console.log(res1.data);
+            axios_1.default.get(`${process.env.FILE_URL}/${res1.data}`)
+                .then(function (res2) {
+                return res2.data;
+            })
+                .catch(function (error) {
+                console.log(error);
+            });
+        })
+            .catch(function (error) {
+            console.log(error);
+        });
+    }
     async tgGetUserProfilePhotos(id) {
         try {
             return await axios_1.default.get(`${process.env.BASE_URL}getUserProfilePhotos?user_id=${id}&offset=0&limit=1`);

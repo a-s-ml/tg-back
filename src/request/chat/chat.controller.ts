@@ -31,6 +31,11 @@ export class ChatController {
 		return this.chatService.groupMemberCountById(chat)
 	}
 
+	@Get("tgGetFilePhoto/:unic_id")
+	tgGetFilePhoto(@Param("unic_id") unic_id: string) {
+		return this.chatService.tgGetFilePhoto(unic_id)
+	}
+
 	@Patch(":chat")
 	update(
 		@Param("chat") chat: string,

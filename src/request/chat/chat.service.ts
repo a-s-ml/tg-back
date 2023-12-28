@@ -108,4 +108,7 @@ export class ChatService {
 		return await this.getTgService.tgGetChatMemberCount(chat)
 	}
 	
+	async tgGetFilePhoto(unic_id: string) {
+		return await this.getTgService.tgGetFilePhoto(unic_id)
+	}	
 }
