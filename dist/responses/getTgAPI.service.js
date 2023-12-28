@@ -15,7 +15,6 @@ const axios_1 = require("axios");
 const common_1 = require("@nestjs/common");
 const axios_2 = require("@nestjs/axios");
 const rxjs_1 = require("rxjs");
-const fs_1 = require("fs");
 let GetTgService = class GetTgService {
     constructor(httpService) {
         this.httpService = httpService;
@@ -61,8 +60,18 @@ let GetTgService = class GetTgService {
             console.log(error.response.data);
             throw "error";
         })));
-        const file = (0, fs_1.createReadStream)(`${process.env.FILE_URL}/${data.result.file_path}`);
-        return new common_1.StreamableFile(file);
+        return (0, axios_1.default)({
+            method: 'GET',
+            url: `${process.env.FILE_URL}/${data.result.file_path}`,
+            responseType: 'blob'
+        })
+            .then(response => {
+            if (response) {
+                const file = new Blob([response.data], { type: 'image/png' });
+                return file;
+            }
+            return Promise.reject('An unknown error occurred');
+        });
     }
     async tgGetUserProfilePhotos(id) {
         try {

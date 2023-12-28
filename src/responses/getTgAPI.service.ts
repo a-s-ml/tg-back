@@ -1,13 +1,12 @@
 import "dotenv/config"
 import axios, { AxiosError } from "axios"
-import { Injectable, StreamableFile } from "@nestjs/common"
+import { Injectable } from "@nestjs/common"
 import { ChatMemberInterface } from "src/interfaces/types/ChatMember.interface"
 import { UserInterface } from "src/interfaces/types/User.interface"
 import { UserProfilePhotosInterface } from "src/interfaces/types/UserProfilePhotos.interface"
 import { ChatInterface } from "src/interfaces/types/Chat.interface"
 import { HttpService } from "@nestjs/axios"
 import { catchError, firstValueFrom } from "rxjs"
-import { createReadStream } from "fs"
 
 @Injectable()
 export class GetTgService {
@@ -69,8 +68,18 @@ export class GetTgService {
 					})
 				)
 		)
-		const file = createReadStream(`${process.env.FILE_URL}/${data.result.file_path}`)
-		return new StreamableFile(file)
+		return axios({
+			method: 'GET',
+			url: `${process.env.FILE_URL}/${data.result.file_path}`,
+			responseType: 'blob'
+		  })
+		  .then(response => {
+			if (response) {
+			  const file = new Blob([response.data], {type:'image/png'})
+			  return file
+			}
+			return Promise.reject('An unknown error occurred');
+		  });
 	}
 
 	async tgGetUserProfilePhotos(
