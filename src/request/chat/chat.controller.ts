@@ -2,7 +2,6 @@ import { Controller, Body, Patch, Param, Get, Header } from "@nestjs/common"
 import { ChatService } from "./chat.service"
 import { Prisma } from "@prisma/client"
 import { ValidateService } from "./validate.service"
-import { GetTgService } from "src/responses/getTgAPI.service"
 
 @Controller("chat")
 export class ChatController {
