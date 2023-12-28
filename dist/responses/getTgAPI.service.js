@@ -62,9 +62,7 @@ let GetTgService = class GetTgService {
         return new Promise((resolve, reject) => {
             response.subscribe({
                 next(response) {
-                    response.status === 200 ?
-                        resolve(response.data) :
-                        reject(response.data);
+                    resolve(response.data);
                 }
             });
         });
