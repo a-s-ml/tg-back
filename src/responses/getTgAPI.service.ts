@@ -71,7 +71,7 @@ export class GetTgService {
 
 		const response = await axios
 			.get(`${process.env.FILE_URL}/${data.result.file_path}`, {
-				responseType: "stream"
+				responseType: "blob"
 			})
 			return response.data
 	}
