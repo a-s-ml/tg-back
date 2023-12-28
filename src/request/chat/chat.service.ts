@@ -101,9 +101,7 @@ export class ChatService {
 	}
 
 	async groupInfoById(chat: bigint) {
-		const getChat = await this.getTgService.tgGetChat(chat)
 		const getChatMemberCount = await this.getTgService.tgGetChatMemberCount(chat)
-		return { getChat, getChatMemberCount}
+		return { getChatMemberCount}
 	}
-	
 }

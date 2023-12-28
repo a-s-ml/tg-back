@@ -45,7 +45,6 @@ export declare class ChatService {
     verificationExistence(from: UserInterface): Promise<void>;
     verificationExistenceChat(chat: ChatInterface, from: UserInterface): Promise<void>;
     groupInfoById(chat: bigint): Promise<{
-        getChat: ChatInterface;
         getChatMemberCount: number;
     }>;
 }

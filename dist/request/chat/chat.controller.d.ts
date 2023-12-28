@@ -14,7 +14,6 @@ export declare class ChatController {
     }>;
     findByReferal(chat: bigint): Promise<any>;
     groupInfoById(chat: bigint): Promise<{
-        getChat: import("../../interfaces/types/Chat.interface").ChatInterface;
         getChatMemberCount: number;
     }>;
     update(chat: string, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
