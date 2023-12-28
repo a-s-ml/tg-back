@@ -11,7 +11,7 @@ export declare class GetTgService {
     tgGetChatAdministrators(id: bigint): Promise<ChatMemberInterface>;
     tgGetChatMember(chat_id: bigint, user_id: bigint): Promise<ChatMemberInterface>;
     tgGetChatMemberCount(id: bigint): Promise<number>;
-    tgGetFilePhoto(unic_id: string): Promise<void>;
+    tgGetFilePhoto(unic_id: string): Promise<any>;
     tgGetUserProfilePhotos(id: bigint): Promise<UserProfilePhotosInterface>;
     tgGetMe(): Promise<UserInterface>;
 }

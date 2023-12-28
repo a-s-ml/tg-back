@@ -56,9 +56,23 @@ export class GetTgService {
 		}
 	}
 
-	async tgGetFilePhoto(unic_id: string) {
-		const filePath = await this.httpService.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`)
+	async tgGetFilePhoto(unic_id: string): Promise<any> {
+		const filePath = await axios.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`)
 		console.log(filePath)
+		const response = this.httpService.get(`${process.env.FILE_URL}/${filePath}`, {
+			responseType: 'arraybuffer', // <= THIS
+		  });
+		  console.log(response)
+		return new Promise((resolve, reject) => {
+			response.subscribe({
+			  next(response) {
+				response.status === 200 ?
+				  resolve(response.data) :
+				  reject(response.data);
+				}
+			  }
+			);
+		  });
 		// return await this.httpService.get(`${process.env.FILE_URL}/${filePath}`, {responseType: 'arraybuffer'})
 	}
 

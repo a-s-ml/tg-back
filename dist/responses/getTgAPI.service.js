@@ -53,8 +53,21 @@ let GetTgService = class GetTgService {
         }
     }
     async tgGetFilePhoto(unic_id) {
-        const filePath = await this.httpService.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`);
+        const filePath = await axios_1.default.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`);
         console.log(filePath);
+        const response = this.httpService.get(`${process.env.FILE_URL}/${filePath}`, {
+            responseType: 'arraybuffer',
+        });
+        console.log(response);
+        return new Promise((resolve, reject) => {
+            response.subscribe({
+                next(response) {
+                    response.status === 200 ?
+                        resolve(response.data) :
+                        reject(response.data);
+                }
+            });
+        });
     }
     async tgGetUserProfilePhotos(id) {
         try {
