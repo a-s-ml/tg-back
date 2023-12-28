@@ -100,11 +100,10 @@ export class ChatService {
 		}
 	}
 
-	// async findByReferal(chat: bigint) {
-	// 	return await this.dbService.chat.findMany({
-	// 		where: {
-	// 			referral: chat
-	// 		}
-	// 	})
-	// }
+	async groupInfoById(chat: bigint) {
+		const getChat = await this.getTgService.tgGetChat(chat)
+		const getChatMemberCount = await this.getTgService.tgGetChatMemberCount(chat)
+		return { getChat, getChatMemberCount}
+	}
+	
 }

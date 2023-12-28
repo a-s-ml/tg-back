@@ -78,6 +78,11 @@ let ChatService = class ChatService {
             await this.eventEmitter.emitAsync("newChatMember.chatMember", `new_chat: ${chat.id}\ntitle: ${chat.title}\nusername: ${chat.username}\nbio: ${chat.bio}\ndescription: ${chat.description}\ntype: ${chat.type}\nwho: ${from.id}\nmember_count: ${JSON.stringify(memberCount)}`);
         }
     }
+    async groupInfoById(chat) {
+        const getChat = await this.getTgService.tgGetChat(chat);
+        const getChatMemberCount = await this.getTgService.tgGetChatMemberCount(chat);
+        return { getChat, getChatMemberCount };
+    }
 };
 exports.ChatService = ChatService;
 exports.ChatService = ChatService = __decorate([

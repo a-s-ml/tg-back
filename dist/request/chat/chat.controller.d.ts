@@ -2,8 +2,8 @@ import { ChatService } from "./chat.service";
 import { Prisma } from "@prisma/client";
 import { ValidateService } from "./validate.service";
 export declare class ChatController {
-    private readonly chatService;
-    private readonly validateService;
+    private chatService;
+    private validateService;
     constructor(chatService: ChatService, validateService: ValidateService);
     initData(initData: string): Promise<{
         validate: boolean;
@@ -13,5 +13,9 @@ export declare class ChatController {
         answers: number;
     }>;
     findByReferal(chat: bigint): Promise<any>;
+    groupInfoById(chat: bigint): Promise<{
+        getChat: import("../../interfaces/types/Chat.interface").ChatInterface;
+        getChatMemberCount: number;
+    }>;
     update(chat: string, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
 }

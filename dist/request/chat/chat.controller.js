@@ -28,6 +28,9 @@ let ChatController = class ChatController {
     findByReferal(chat) {
         return this.chatService.findByReferal(chat);
     }
+    groupInfoById(chat) {
+        return this.chatService.groupInfoById(chat);
+    }
     update(chat, updateChatDto) {
         return this.chatService.update(chat, updateChatDto);
     }
@@ -47,6 +50,13 @@ __decorate([
     __metadata("design:paramtypes", [BigInt]),
     __metadata("design:returntype", void 0)
 ], ChatController.prototype, "findByReferal", null);
+__decorate([
+    (0, common_1.Get)("groupInfoById/:chat"),
+    __param(0, (0, common_1.Param)("chat")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [BigInt]),
+    __metadata("design:returntype", void 0)
+], ChatController.prototype, "groupInfoById", null);
 __decorate([
     (0, common_1.Patch)(":chat"),
     __param(0, (0, common_1.Param)("chat")),

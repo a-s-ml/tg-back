@@ -2,12 +2,13 @@ import { Controller, Body, Patch, Param, Get } from "@nestjs/common"
 import { ChatService } from "./chat.service"
 import { Prisma } from "@prisma/client"
 import { ValidateService } from "./validate.service"
+import { GetTgService } from "src/responses/getTgAPI.service"
 
 @Controller("chat")
 export class ChatController {
 	constructor(
-		private readonly chatService: ChatService,
-		private readonly validateService: ValidateService
+		private chatService: ChatService,
+		private validateService: ValidateService
 	) {}
 
 	@Get("validateUser/:initData")
@@ -18,6 +19,11 @@ export class ChatController {
 	@Get("findByReferal/:chat")
 	findByReferal(@Param("chat") chat: bigint) {
 		return this.chatService.findByReferal(chat)
+	}
+
+	@Get("groupInfoById/:chat")
+	groupInfoById(@Param("chat") chat: bigint) {
+		return this.chatService.groupInfoById(chat)
 	}
 
 	@Patch(":chat")

@@ -44,4 +44,8 @@ export declare class ChatService {
     update(chat: bigint, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
     verificationExistence(from: UserInterface): Promise<void>;
     verificationExistenceChat(chat: ChatInterface, from: UserInterface): Promise<void>;
+    groupInfoById(chat: bigint): Promise<{
+        getChat: ChatInterface;
+        getChatMemberCount: number;
+    }>;
 }
