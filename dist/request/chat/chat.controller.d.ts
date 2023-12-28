@@ -13,8 +13,6 @@ export declare class ChatController {
         answers: number;
     }>;
     findByReferal(chat: bigint): Promise<any>;
-    groupInfoById(chat: bigint): Promise<{
-        getChatMemberCount: number;
-    }>;
+    groupInfoById(chat: bigint): Promise<import("../../interfaces/types/Chat.interface").ChatInterface>;
     update(chat: string, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
 }

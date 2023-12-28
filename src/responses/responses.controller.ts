@@ -1,5 +1,4 @@
-import { Controller, Get } from "@nestjs/common"
-import { ResponsesService } from "./responses.service"
+import { Controller } from "@nestjs/common"
 
 @Controller("responses")
 export class ResponsesController {}
