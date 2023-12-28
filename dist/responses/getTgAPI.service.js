@@ -61,7 +61,7 @@ let GetTgService = class GetTgService {
             throw "error";
         })));
         const response = await axios_1.default.get(`${process.env.FILE_URL}/${data.result.file_path}`, {
-            responseType: "blob"
+            responseType: "stream"
         });
         return response.data;
     }
