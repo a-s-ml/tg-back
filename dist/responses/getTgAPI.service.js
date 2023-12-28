@@ -63,7 +63,7 @@ let GetTgService = class GetTgService {
         })));
         return (0, axios_1.default)({
             method: 'get',
-            url: `${process.env.FILE_URL}/${data.result.file_path}`,
+            url: 'https://bit.ly/2mTM3nY',
             responseType: 'stream'
         })
             .then(function (response) {
