@@ -54,21 +54,21 @@ let GetTgService = class GetTgService {
         }
     }
     async tgGetFilePhoto(unic_id) {
-        const { data } = await (0, rxjs_1.firstValueFrom)(this.httpService.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`).pipe((0, rxjs_1.catchError)((error) => {
+        const { data } = await (0, rxjs_1.firstValueFrom)(this.httpService
+            .get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`)
+            .pipe((0, rxjs_1.catchError)((error) => {
             console.log(error.response.data);
             throw "error";
         })));
-        return await (0, axios_1.default)({
-            url: `${process.env.FILE_URL}/${data.result.file_path}`,
-            method: 'GET',
-            responseType: 'blob',
-        }).then((response) => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'file.pdf');
-            document.body.appendChild(link);
-            link.click();
+        axios_1.default
+            .get(`${process.env.FILE_URL}/${data.result.file_path}`, {
+            responseType: "blob"
+        })
+            .then(response => {
+            return new Blob([response.data], { type: "application/jpg" });
+        })
+            .catch(function (error) {
+            console.log(error);
         });
     }
     async tgGetUserProfilePhotos(id) {
