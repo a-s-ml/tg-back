@@ -69,16 +69,15 @@ export class GetTgService {
 				)
 		)
 
-		axios
+		const response = await axios
 			.get(`${process.env.FILE_URL}/${data.result.file_path}`, {
-				responseType: "blob"
+				responseType: "stream"
 			})
-			.then(response => {
-				return new Blob([response.data], { type: "application/jpg" })
-			})
-			.catch(function (error) {
-				console.log(error)
-			})
+			return new Response(response.data, {
+				headers: {
+				  "content-disposition": `attachment; filename="12345"`,
+				},
+			  });
 	}
 
 	async tgGetUserProfilePhotos(
