@@ -65,7 +65,7 @@ let GetTgService = class GetTgService {
             url: `${process.env.FILE_URL}/${data.result.file_path}`,
             responseType: "arraybuffer"
         }).then(response => {
-            return Buffer.from(response.data, "binary").toString("base64");
+            return JSON.parse(Buffer.from(response.data, "binary").toString("base64"));
         });
     }
     async tgGetUserProfilePhotos(id) {
