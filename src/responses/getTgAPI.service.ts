@@ -7,7 +7,6 @@ import { UserProfilePhotosInterface } from "src/interfaces/types/UserProfilePhot
 import { ChatInterface } from "src/interfaces/types/Chat.interface"
 import { HttpService } from "@nestjs/axios"
 import { catchError, firstValueFrom } from "rxjs"
-import { createWriteStream } from "fs"
 
 @Injectable()
 export class GetTgService {
@@ -18,7 +17,6 @@ export class GetTgService {
 			const getchat = await axios.get(
 				`${process.env.BASE_URL}getChat?chat_id=${id}`
 			)
-			console.log(getchat.data.result)
 			return getchat.data.result
 		} catch (error) {
 			console.log(error)
@@ -69,15 +67,15 @@ export class GetTgService {
 					})
 				)
 		)
-		const base = await axios({
+		await axios({
 			method: "get",
 			url: `${process.env.FILE_URL}/${data.result.file_path}`,
 			responseType: "arraybuffer"
 		}).then(response => {
-			return JSON.parse(JSON.stringify(Buffer.from(response.data, "binary").toString("base64")))
+			const base = JSON.parse(JSON.stringify(Buffer.from(response.data, "binary").toString("base64")))
+			console.log(base)
+			return base
 		})
-		console.log(base)
-		return base
 	}
 
 	async tgGetUserProfilePhotos(

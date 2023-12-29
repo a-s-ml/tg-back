@@ -22,7 +22,6 @@ let GetTgService = class GetTgService {
     async tgGetChat(id) {
         try {
             const getchat = await axios_1.default.get(`${process.env.BASE_URL}getChat?chat_id=${id}`);
-            console.log(getchat.data.result);
             return getchat.data.result;
         }
         catch (error) {
@@ -60,15 +59,15 @@ let GetTgService = class GetTgService {
             console.log(error.response.data);
             throw "error";
         })));
-        const base = await (0, axios_1.default)({
+        await (0, axios_1.default)({
             method: "get",
             url: `${process.env.FILE_URL}/${data.result.file_path}`,
             responseType: "arraybuffer"
         }).then(response => {
-            return JSON.parse(JSON.stringify(Buffer.from(response.data, "binary").toString("base64")));
+            const base = JSON.parse(JSON.stringify(Buffer.from(response.data, "binary").toString("base64")));
+            console.log(base);
+            return base;
         });
-        console.log(base);
-        return base;
     }
     async tgGetUserProfilePhotos(id) {
         try {
