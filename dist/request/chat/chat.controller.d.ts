@@ -7,10 +7,8 @@ export declare class ChatController {
     constructor(chatService: ChatService, validateService: ValidateService);
     initData(initData: string): Promise<{
         validate: boolean;
-        UserData: import("./dto/responseUserData.interface").responseUserDataInterface;
-        groups: number;
-        questions: number;
-        answers: number;
+        UserData: import("./models/responseUserData.interface").responseUserDataInterface;
+        ProgressData: import("./models/responseProgressData.interface").responseProgressDataInterface;
     }>;
     findByReferal(chat: bigint): Promise<any>;
     groupInfoById(chat: bigint): Promise<import("../../interfaces/types/Chat.interface").ChatInterface>;

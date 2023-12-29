@@ -72,6 +72,16 @@ let AnswerService = class AnswerService {
             data: updateAnswerDto
         });
     }
+    async countRiightByChatId(chat) {
+        return await this.dbService.answer.count({
+            where: {
+                chat: chat,
+                reward: {
+                    gt: 0
+                }
+            }
+        });
+    }
     async remove(id) {
         return await this.dbService.answer.delete({
             where: {

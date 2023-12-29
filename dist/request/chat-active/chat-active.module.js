@@ -10,13 +10,15 @@ exports.ChatActiveModule = void 0;
 const common_1 = require("@nestjs/common");
 const chat_active_service_1 = require("./chat-active.service");
 const chat_active_controller_1 = require("./chat-active.controller");
+const chat_service_1 = require("../chat/chat.service");
 let ChatActiveModule = class ChatActiveModule {
 };
 exports.ChatActiveModule = ChatActiveModule;
 exports.ChatActiveModule = ChatActiveModule = __decorate([
     (0, common_1.Module)({
+        imports: [],
         controllers: [chat_active_controller_1.ChatActiveController],
-        providers: [chat_active_service_1.ChatActiveService],
+        providers: [chat_active_service_1.ChatActiveService, chat_service_1.ChatService],
         exports: [chat_active_service_1.ChatActiveService]
     })
 ], ChatActiveModule);

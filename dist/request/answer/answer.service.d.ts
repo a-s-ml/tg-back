@@ -48,6 +48,7 @@ export declare class AnswerService {
         reward: number;
         date: Date;
     }>;
+    countRiightByChatId(chat: bigint): Promise<number>;
     remove(id: number): Promise<{
         id: number;
         chat: bigint;

@@ -16,11 +16,13 @@ const crypto_1 = require("crypto");
 const question_service_1 = require("../question/question.service");
 const answer_service_1 = require("../answer/answer.service");
 require("dotenv/config");
+const chat_active_service_1 = require("../chat-active/chat-active.service");
 let ValidateService = class ValidateService {
-    constructor(chatService, questionService, answerService) {
+    constructor(chatService, questionService, answerService, chatActiveService) {
         this.chatService = chatService;
         this.questionService = questionService;
         this.answerService = answerService;
+        this.chatActiveService = chatActiveService;
     }
     async validateUser(initData) {
         console.log(initData);
@@ -33,9 +35,15 @@ let ValidateService = class ValidateService {
             user: JSON.parse(urlParams.get("user")),
             auth_date: urlParams.get("auth_date")
         };
-        const groups = await this.chatService.countByReferal(UserData.user.id);
-        const questions = await this.questionService.countByChatId(UserData.user.id);
-        const answers = await this.answerService.countByChatId(UserData.user.id);
+        const groupsAll = await this.chatService.countByReferal(UserData.user.id);
+        const groupsActive = await this.chatActiveService.countActiveByReferal(UserData.user.id);
+        const groupsProgress = { groupsAll, groupsActive };
+        const questionsAll = await this.questionService.countByChatId(UserData.user.id);
+        const questionsModerate = await this.questionService.countModerateByChatId(UserData.user.id);
+        const questionsProgress = { questionsAll, questionsModerate };
+        const answersAll = await this.answerService.countByChatId(UserData.user.id);
+        const answersRight = await this.answerService.countRiightByChatId(UserData.user.id);
+        const answersProgress = { answersAll, answersRight };
         let dataCheckString = "";
         for (const [key, value] of urlParams.entries()) {
             dataCheckString += `${key}=${value}\n`;
@@ -47,7 +55,9 @@ let ValidateService = class ValidateService {
             .digest("hex");
         const validate = calculatedHash === hash;
         let response;
-        return response = { validate, UserData, groups, questions, answers };
+        let ProgressData;
+        ProgressData = { groupsProgress, questionsProgress, answersProgress };
+        return response = { validate, UserData, ProgressData };
     }
 };
 exports.ValidateService = ValidateService;
@@ -55,6 +65,7 @@ exports.ValidateService = ValidateService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [chat_service_1.ChatService,
         question_service_1.QuestionService,
-        answer_service_1.AnswerService])
+        answer_service_1.AnswerService,
+        chat_active_service_1.ChatActiveService])
 ], ValidateService);
 //# sourceMappingURL=validate.service.js.map

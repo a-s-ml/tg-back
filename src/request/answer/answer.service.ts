@@ -73,6 +73,18 @@ export class AnswerService {
 		})
 	}
 
+	
+	async countRiightByChatId(chat: bigint) {
+		return await this.dbService.answer.count({
+			where: {
+				chat: chat,
+				reward: {
+					gt: 0
+				}
+			}
+		})
+	}
+
 	async remove(id: number) {
 		return await this.dbService.answer.delete({
 			where: {

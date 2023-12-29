@@ -12,9 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChatActiveService = void 0;
 const common_1 = require("@nestjs/common");
 const db_service_1 = require("../../db/db.service");
+const chat_service_1 = require("../chat/chat.service");
 let ChatActiveService = class ChatActiveService {
-    constructor(dbService) {
+    constructor(dbService, chatService) {
         this.dbService = dbService;
+        this.chatService = chatService;
     }
     async create(chatActiveCreateInput) {
         return await this.dbService.chatActive.create({
@@ -31,6 +33,16 @@ let ChatActiveService = class ChatActiveService {
             }
         });
     }
+    async countActiveByReferal(chat) {
+        const all = await this.chatService.findByReferal(chat);
+        return await this.dbService.chatActive.count({
+            where: {
+                chat: {
+                    in: all.map((item) => item.id)
+                }
+            }
+        });
+    }
     async remove(chat) {
         return await this.dbService.chatActive.delete({
             where: {
@@ -42,6 +54,7 @@ let ChatActiveService = class ChatActiveService {
 exports.ChatActiveService = ChatActiveService;
 exports.ChatActiveService = ChatActiveService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [db_service_1.DbService])
+    __metadata("design:paramtypes", [db_service_1.DbService,
+        chat_service_1.ChatService])
 ], ChatActiveService);
 //# sourceMappingURL=chat-active.service.js.map

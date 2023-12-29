@@ -3,9 +3,14 @@ import { ChatService } from "./chat.service"
 import { createHmac } from "crypto"
 import { QuestionService } from "../question/question.service"
 import { AnswerService } from "../answer/answer.service"
-import { responseUserDataInterface } from "./dto/responseUserData.interface"
-import { responseValidateInterface } from "./dto/responseValidate.interface"
+import { responseUserDataInterface } from "./models/responseUserData.interface"
+import { responseValidateInterface } from "./models/responseValidate.interface"
 import "dotenv/config"
+import { ChatActiveService } from "../chat-active/chat-active.service"
+import { responseProgressDataInterface } from "./models/responseProgressData.interface"
+import { responseGroupsProgressInterface } from "./models/responseGroupsProgress.interface"
+import { responseAnswersProgressInterface } from "./models/responseAnswersProgress,interface"
+import { responseQuestionsProgressInterface } from "./models/responseQuestionsProgress.interface"
 
 @Injectable()
 export class ValidateService {
@@ -13,6 +18,7 @@ export class ValidateService {
 		private chatService: ChatService,
 		private questionService: QuestionService,
 		private answerService: AnswerService,
+		private chatActiveService: ChatActiveService
 	) {}
 
 	async validateUser(initData: string) {
@@ -27,10 +33,19 @@ export class ValidateService {
 			user: JSON.parse(urlParams.get("user")),
 			auth_date: urlParams.get("auth_date")
 		}
+		
+		const groupsAll = await this.chatService.countByReferal(UserData.user.id)
+		const groupsActive = await this.chatActiveService.countActiveByReferal(UserData.user.id)
+		const groupsProgress: responseGroupsProgressInterface = { groupsAll, groupsActive }
 
-		const groups = await this.chatService.countByReferal(UserData.user.id)
-		const questions = await this.questionService.countByChatId(UserData.user.id)
-		const answers = await this.answerService.countByChatId(UserData.user.id)
+		const questionsAll = await this.questionService.countByChatId(UserData.user.id)
+		const questionsModerate = await this.questionService.countModerateByChatId(UserData.user.id)
+		const questionsProgress: responseQuestionsProgressInterface = { questionsAll, questionsModerate }
+
+
+		const answersAll = await this.answerService.countByChatId(UserData.user.id)
+		const answersRight = await this.answerService.countRiightByChatId(UserData.user.id)
+		const answersProgress: responseAnswersProgressInterface = { answersAll, answersRight }
 
 		let dataCheckString = ""
 		for (const [key, value] of urlParams.entries()) {
@@ -48,7 +63,9 @@ export class ValidateService {
 		const validate = calculatedHash === hash
 
 		let response: responseValidateInterface;
+		let ProgressData: responseProgressDataInterface
+		ProgressData = {groupsProgress, questionsProgress, answersProgress}
 
-		return response = { validate, UserData, groups, questions, answers }
+		return response = { validate, UserData, ProgressData }
 	}
 }

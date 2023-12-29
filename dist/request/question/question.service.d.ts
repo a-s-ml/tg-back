@@ -90,6 +90,7 @@ export declare class QuestionService {
         reward: number;
     }>;
     countByChatId(chat: bigint): Promise<number>;
+    countModerateByChatId(chat: bigint): Promise<number>;
     countReward(question: number): Promise<number>;
     count(question: number): Promise<number>;
 }

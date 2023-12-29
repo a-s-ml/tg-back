@@ -61,6 +61,17 @@ export class QuestionService {
 		})
 	}
 
+	async countModerateByChatId(chat: bigint) {
+		return await this.dbService.question.count({
+			where: {
+				chat: chat,
+				mod: {
+					gt: 0
+				}
+			}
+		})
+	}
+
 	async countReward(question: number) {
 		const count = await this.dbService.answer.count({
 			where: {
