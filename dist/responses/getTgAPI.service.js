@@ -60,7 +60,7 @@ let GetTgService = class GetTgService {
             console.log(error.response.data);
             throw "error";
         })));
-        return (0, axios_1.default)({
+        (0, axios_1.default)({
             method: "get",
             url: `${process.env.FILE_URL}/${data.result.file_path}`,
             responseType: "arraybuffer"

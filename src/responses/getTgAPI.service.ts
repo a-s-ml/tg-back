@@ -69,7 +69,7 @@ export class GetTgService {
 					})
 				)
 		)
-		return axios({
+		axios({
 			method: "get",
 			url: `${process.env.FILE_URL}/${data.result.file_path}`,
 			responseType: "arraybuffer"
