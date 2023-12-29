@@ -69,13 +69,15 @@ export class GetTgService {
 					})
 				)
 		)
-		axios({
+		const base = await axios({
 			method: "get",
 			url: `${process.env.FILE_URL}/${data.result.file_path}`,
 			responseType: "arraybuffer"
 		}).then(response => {
 			return JSON.parse(JSON.stringify(Buffer.from(response.data, "binary").toString("base64")))
 		})
+		console.log(base)
+		return base
 	}
 
 	async tgGetUserProfilePhotos(
