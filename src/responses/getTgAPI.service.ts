@@ -79,14 +79,14 @@ export class GetTgService {
 		// return response.data
 
 
-		return await axios({
-			method:'get',
-			url:'https://bit.ly/2mTM3nY',
-			responseType:'stream'
-		  })
-			.then(function (response) {
-			  response.data.pipe(createWriteStream('file_name.jpg'))
-			})
+		// return await axios({
+		// 	method:'get',
+		// 	url:'https://bit.ly/2mTM3nY',
+		// 	responseType:'stream'
+		//   })
+		// 	.then(function (response) {
+		// 	  response.data.pipe(createWriteStream('file_name.jpg'))
+		// 	})
 
 
 
@@ -115,12 +115,12 @@ export class GetTgService {
 		// 	  response.data.pipe(createWriteStream('ada_lovelace.jpg'))
 		// 	});
 
-			// return axios({
-			// 	method: 'get',
-			// 	url: 'https://bit.ly/2mTM3nY',
-			// 	responseType: 'arraybuffer'
-			//   })
-			//   .then(response => { return Buffer.from(response.data, 'binary').toString('base64')})
+			return axios({
+				method: 'get',
+				url: 'https://bit.ly/2mTM3nY',
+				responseType: 'arraybuffer'
+			  })
+			  .then(response => { return Buffer.from(response.data, 'binary').toString('base64')})
 
 
 	}
