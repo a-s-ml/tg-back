@@ -32,8 +32,10 @@ export class ChatController {
 
 	@Get("tgGetFilePhoto/:unic_id")
 	// @Header("Content-type", "image/jpeg;base64") 
-	tgGetFilePhoto(@Param("unic_id") unic_id: string) {
-		return this.chatService.tgGetFilePhoto(unic_id)
+	async tgGetFilePhoto(@Param("unic_id") unic_id: string) {
+		const response = await this.chatService.tgGetFilePhoto(unic_id)
+		console.log(response)
+		return response
 	}
 
 	@Patch(":chat")

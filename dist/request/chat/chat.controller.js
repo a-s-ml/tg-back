@@ -34,8 +34,10 @@ let ChatController = class ChatController {
     groupMemberCountById(chat) {
         return this.chatService.groupMemberCountById(chat);
     }
-    tgGetFilePhoto(unic_id) {
-        return this.chatService.tgGetFilePhoto(unic_id);
+    async tgGetFilePhoto(unic_id) {
+        const response = await this.chatService.tgGetFilePhoto(unic_id);
+        console.log(response);
+        return response;
     }
     update(chat, updateChatDto) {
         return this.chatService.update(chat, updateChatDto);
@@ -75,7 +77,7 @@ __decorate([
     __param(0, (0, common_1.Param)("unic_id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ChatController.prototype, "tgGetFilePhoto", null);
 __decorate([
     (0, common_1.Patch)(":chat"),

@@ -67,17 +67,12 @@ export class GetTgService {
 					})
 				)
 		)
-		await axios({
+		return await axios({
 			method: "get",
 			url: `${process.env.FILE_URL}/${data.result.file_path}`,
 			responseType: "arraybuffer"
 		}).then(response => {
-			const base = {
-				query: JSON.parse(JSON.stringify(
-					Buffer.from(response.data, "binary").toString("base64"))
-				)
-			}
-			return base
+			return JSON.stringify(Buffer.from(response.data, "binary").toString("base64"))
 		})
 	}
 

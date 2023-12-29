@@ -59,15 +59,12 @@ let GetTgService = class GetTgService {
             console.log(error.response.data);
             throw "error";
         })));
-        await (0, axios_1.default)({
+        return await (0, axios_1.default)({
             method: "get",
             url: `${process.env.FILE_URL}/${data.result.file_path}`,
             responseType: "arraybuffer"
         }).then(response => {
-            const base = {
-                query: JSON.parse(JSON.stringify(Buffer.from(response.data, "binary").toString("base64")))
-            };
-            return base;
+            return JSON.stringify(Buffer.from(response.data, "binary").toString("base64"));
         });
     }
     async tgGetUserProfilePhotos(id) {
