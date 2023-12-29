@@ -69,60 +69,13 @@ export class GetTgService {
 					})
 				)
 		)
-
-		// const response = await axios.get(
-		// 	`${process.env.FILE_URL}/${data.result.file_path}`,
-		// 	{
-		// 		responseType: "blob" 
-		// 	}
-		// )
-		// return response.data
-
-
-		// return await axios({
-		// 	method:'get',
-		// 	url:'https://bit.ly/2mTM3nY',
-		// 	responseType:'stream'
-		//   })
-		// 	.then(function (response) {
-		// 	  response.data.pipe(createWriteStream('file_name.jpg'))
-		// 	})
-
-
-
-
-		// return axios({
-		// 	method: 'GET',
-		// 	url: `${process.env.FILE_URL}/${data.result.file_path}`,
-		// 	responseType: 'blob'
-		//   })
-		//   .then(response => {
-		// 	if (response) {
-		// 	  const file = new Blob([response.data], {type:'image/png'})
-		// 	  return file
-		// 	}
-		// 	return Promise.reject('An unknown error occurred');
-		//   });
-
-
-
-		//   return axios({
-		// 	method: 'get',
-		// 	url: 'https://bit.ly/2mTM3nY',
-		// 	responseType: 'stream'
-		//   })
-		// 	.then(function (response) {
-		// 	  response.data.pipe(createWriteStream('ada_lovelace.jpg'))
-		// 	});
-
-			return axios({
-				method: 'get',
-				url: 'https://bit.ly/2mTM3nY',
-				responseType: 'arraybuffer'
-			  })
-			  .then(response => { return Buffer.from(response.data, 'binary').toString('base64')})
-
-
+		return axios({
+			method: "get",
+			url: `${process.env.FILE_URL}/${data.result.file_path}`,
+			responseType: "arraybuffer"
+		}).then(response => {
+			return Buffer.from(response.data, "binary").toString("base64")
+		})
 	}
 
 	async tgGetUserProfilePhotos(
