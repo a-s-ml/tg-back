@@ -65,7 +65,7 @@ let GetTgService = class GetTgService {
             responseType: "arraybuffer"
         }).then(response => {
             const base = {
-                query: JSON.stringify(Buffer.from(response.data, "binary").toString("base64"))
+                query: JSON.parse(JSON.stringify(Buffer.from(response.data, "binary").toString("base64")))
             };
             return base;
         });
