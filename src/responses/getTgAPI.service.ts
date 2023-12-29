@@ -72,7 +72,11 @@ export class GetTgService {
 			url: `${process.env.FILE_URL}/${data.result.file_path}`,
 			responseType: "arraybuffer"
 		}).then(response => {
-			const base = JSON.stringify(Buffer.from(response.data, "binary").toString("base64"))
+			const base = {
+				query: JSON.stringify(
+					Buffer.from(response.data, "binary").toString("base64")
+				)
+			}
 			return base
 		})
 	}
