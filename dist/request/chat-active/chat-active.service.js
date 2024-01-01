@@ -27,11 +27,17 @@ let ChatActiveService = class ChatActiveService {
         return await this.dbService.chatActive.findMany();
     }
     async findOne(chat) {
-        return await this.dbService.chatActive.findUnique({
+        const isActive = await this.dbService.chatActive.findUnique({
             where: {
                 chat
             }
         });
+        if (!isActive) {
+            return false;
+        }
+        if (isActive) {
+            return true;
+        }
     }
     async countActiveByReferal(chat) {
         const all = await this.chatService.findByReferal(chat);
