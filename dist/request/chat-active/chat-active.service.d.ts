@@ -13,7 +13,10 @@ export declare class ChatActiveService {
         id: number;
         chat: bigint;
     }[]>;
-    findOne(chat: bigint): Promise<boolean>;
+    findOne(chat: bigint): Promise<{
+        id: number;
+        chat: bigint;
+    }>;
     countActiveByReferal(chat: bigint): Promise<number>;
     remove(chat: bigint): Promise<{
         id: number;

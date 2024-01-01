@@ -21,17 +21,17 @@ export class ChatActiveService {
 	}
 
 	async findOne(chat: bigint) {
-		const isActive = await this.dbService.chatActive.findUnique({
+		return await this.dbService.chatActive.findUnique({
 			where: {
 				chat
 			}
 		})
-		if (!isActive) {
-			return false
-		}
-		if (!isActive) {
-			return true
-		}
+		// if (!isActive) {
+		// 	return false
+		// }
+		// if (!isActive) {
+		// 	return true
+		// }
 	}
 
 	async countActiveByReferal(chat: bigint) {
