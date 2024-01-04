@@ -39,7 +39,9 @@ let SelectQuestionService = class SelectQuestionService {
                 },
                 id: {
                     notIn: publishedQuestion.map(item => item.question_id)
-                }
+                },
+                mod: 2,
+                isactual: 2
             }
         });
         const randomIndex = Math.floor(Math.random() * (questions.length - 1));

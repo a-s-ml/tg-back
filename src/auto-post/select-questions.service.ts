@@ -32,7 +32,9 @@ export class SelectQuestionService {
 				},
 				id: {
 					notIn: publishedQuestion.map(item => item.question_id)
-				}
+				},
+				mod: 2,
+				isactual: 2
 			}
 		})
 

@@ -66,6 +66,7 @@ export class ChatDataService {
 			},
 			take: 3
 		})
+		console.log(lastPost)
 		typeLastPost.push(lastPost[0].question_type)
 		typeLastPost.push(lastPost[1].question_type)
 		typeLastPost.push(lastPost[2].question_type)
