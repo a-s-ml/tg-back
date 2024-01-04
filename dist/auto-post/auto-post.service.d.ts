@@ -19,5 +19,6 @@ export declare class AutoPostService {
     questionTypePoll(question: number, chat: IChat): Promise<void>;
     questionTypeImg(question: number, chat: IChat): Promise<void>;
     questionTypeText(question: number, chat: IChat): Promise<void>;
+    questionTypeMixed(question: number, chat: IChat): Promise<void>;
     publicationInActiveGroupStat(): Promise<void>;
 }

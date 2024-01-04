@@ -54,4 +54,21 @@ export class ChatDataService {
 			take: 2
 		})
 	}
+
+	async findTypeLastThreeByChat(group: bigint): Promise<string[]> {
+		let typeLastPost = []
+		const lastPost = await this.dbService.chatData.findMany({
+			where: {
+				group
+			},
+			orderBy: {
+				id: "desc"
+			},
+			take: 3
+		})
+		typeLastPost.push(lastPost[0].question_type)
+		typeLastPost.push(lastPost[1].question_type)
+		typeLastPost.push(lastPost[2].question_type)
+		return typeLastPost
+	}
 }

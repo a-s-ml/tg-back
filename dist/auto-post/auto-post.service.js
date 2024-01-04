@@ -43,6 +43,9 @@ let AutoPostService = class AutoPostService {
                 if (chat.question_type === 3) {
                     await this.questionTypeText(question.id, chat);
                 }
+                if (chat.question_type === 4) {
+                    await this.questionTypeMixed(question.id, chat);
+                }
             }
         }
     }
@@ -87,6 +90,18 @@ let AutoPostService = class AutoPostService {
                 question_id: question,
                 question_type: "text"
             });
+        }
+    }
+    async questionTypeMixed(question, chat) {
+        const lastPost = await this.chatDataService.findTypeLastThreeByChat(chat.chat);
+        if (!lastPost.includes('photo')) {
+            await this.questionTypeImg(question, chat);
+        }
+        if (!lastPost.includes('poll')) {
+            await this.questionTypePoll(question, chat);
+        }
+        if (!lastPost.includes('text')) {
+            await this.questionTypeText(question, chat);
         }
     }
     async publicationInActiveGroupStat() {
