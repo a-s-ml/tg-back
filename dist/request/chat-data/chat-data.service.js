@@ -60,7 +60,7 @@ let ChatDataService = class ChatDataService {
             take: 2
         });
     }
-    async findTypeLastThreeByChat(group) {
+    async findTypeLastTwoByChat(group) {
         let typeLastPost = [];
         const lastPost = await this.dbService.chatData.findMany({
             where: {
@@ -69,12 +69,11 @@ let ChatDataService = class ChatDataService {
             orderBy: {
                 id: "desc"
             },
-            take: 3
+            take: 2
         });
         console.log(lastPost);
         typeLastPost.push(lastPost[0].question_type);
         typeLastPost.push(lastPost[1].question_type);
-        typeLastPost.push(lastPost[2].question_type);
         return typeLastPost;
     }
 };

@@ -29,8 +29,8 @@ let ChatDataController = class ChatDataController {
     findAllByChat(group) {
         return this.chatDataService.findAllByChat(group);
     }
-    findTypeLastThreeByChat(group) {
-        return this.chatDataService.findTypeLastThreeByChat(group);
+    findTypeLastTwoByChat(group) {
+        return this.chatDataService.findTypeLastTwoByChat(group);
     }
 };
 exports.ChatDataController = ChatDataController;
@@ -56,12 +56,12 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ChatDataController.prototype, "findAllByChat", null);
 __decorate([
-    (0, common_1.Get)("findTypeLastThreeByChat/:group"),
+    (0, common_1.Get)("findTypeLastTwoByChat/:group"),
     __param(0, (0, common_1.Param)("group")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], ChatDataController.prototype, "findTypeLastThreeByChat", null);
+], ChatDataController.prototype, "findTypeLastTwoByChat", null);
 exports.ChatDataController = ChatDataController = __decorate([
     (0, common_1.Controller)("chat-data"),
     __metadata("design:paramtypes", [chat_data_service_1.ChatDataService])

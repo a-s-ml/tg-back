@@ -27,8 +27,8 @@ export class ChatDataController {
 		return this.chatDataService.findAllByChat(group as unknown as bigint)
 	}
 
-	@Get("findTypeLastThreeByChat/:group")
-	findTypeLastThreeByChat(@Param("group") group: string) {
-		return this.chatDataService.findTypeLastThreeByChat(group as unknown as bigint)
+	@Get("findTypeLastTwoByChat/:group")
+	findTypeLastTwoByChat(@Param("group") group: string) {
+		return this.chatDataService.findTypeLastTwoByChat(group as unknown as bigint)
 	}
 }

@@ -50,5 +50,5 @@ export declare class ChatDataService {
         question_type: string;
         poll_id: string;
     }[]>;
-    findTypeLastThreeByChat(group: bigint): Promise<string[]>;
+    findTypeLastTwoByChat(group: bigint): Promise<string[]>;
 }

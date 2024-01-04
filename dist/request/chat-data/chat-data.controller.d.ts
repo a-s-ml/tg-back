@@ -28,5 +28,5 @@ export declare class ChatDataController {
     findAllByChat(group: string): Promise<{
         question_id: number;
     }[]>;
-    findTypeLastThreeByChat(group: string): Promise<string[]>;
+    findTypeLastTwoByChat(group: string): Promise<string[]>;
 }

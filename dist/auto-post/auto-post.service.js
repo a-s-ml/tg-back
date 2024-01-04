@@ -93,7 +93,7 @@ let AutoPostService = class AutoPostService {
         }
     }
     async questionTypeMixed(question, chat) {
-        const lastPost = await this.chatDataService.findTypeLastThreeByChat(chat.chat);
+        const lastPost = await this.chatDataService.findTypeLastTwoByChat(chat.chat);
         if (!lastPost.includes('photo')) {
             return await this.questionTypeImg(question, chat);
         }
