@@ -95,13 +95,13 @@ let AutoPostService = class AutoPostService {
     async questionTypeMixed(question, chat) {
         const lastPost = await this.chatDataService.findTypeLastThreeByChat(chat.chat);
         if (!lastPost.includes('photo')) {
-            await this.questionTypeImg(question, chat);
+            return await this.questionTypeImg(question, chat);
         }
         if (!lastPost.includes('poll')) {
-            await this.questionTypePoll(question, chat);
+            return await this.questionTypePoll(question, chat);
         }
         if (!lastPost.includes('text')) {
-            await this.questionTypeText(question, chat);
+            return await this.questionTypeText(question, chat);
         }
     }
     async publicationInActiveGroupStat() {
