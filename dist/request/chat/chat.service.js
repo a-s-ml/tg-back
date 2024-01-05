@@ -14,10 +14,12 @@ const common_1 = require("@nestjs/common");
 const event_emitter_1 = require("@nestjs/event-emitter");
 const db_service_1 = require("../../db/db.service");
 const getTgAPI_service_1 = require("../../responses/getTgAPI.service");
+const responses_service_1 = require("../../responses/responses.service");
 let ChatService = class ChatService {
-    constructor(dbService, getTgService, eventEmitter) {
+    constructor(dbService, getTgService, responsesService, eventEmitter) {
         this.dbService = dbService;
         this.getTgService = getTgService;
+        this.responsesService = responsesService;
         this.eventEmitter = eventEmitter;
     }
     async createChat(createChatDto) {
@@ -25,6 +27,20 @@ let ChatService = class ChatService {
     }
     async createGroup(createChatDto) {
         return await this.dbService.chat.create({ data: createChatDto });
+    }
+    async findById(id) {
+        return await this.dbService.chat.findUnique({
+            where: {
+                id
+            }
+        });
+    }
+    async clean() {
+        const max = await this.dbService.chat.findMany();
+        for (var key in max) {
+            const res = this.responsesService.sendChatAction(max[key].chat, "typing");
+            console.log(res);
+        }
     }
     async findByChatId(chat) {
         return await this.dbService.chat.findUnique({
@@ -100,6 +116,7 @@ exports.ChatService = ChatService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [db_service_1.DbService,
         getTgAPI_service_1.GetTgService,
+        responses_service_1.ResponsesService,
         event_emitter_1.EventEmitter2])
 ], ChatService);
 //# sourceMappingURL=chat.service.js.map
