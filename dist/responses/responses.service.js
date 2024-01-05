@@ -180,6 +180,7 @@ let ResponsesService = class ResponsesService {
 			error: ${JSON.stringify(error.response.data)}
 			`;
             await this.eventEmitter.emitAsync("errorResponse.sendMessage", eventText);
+            return error.response.data;
         }
     }
 };
