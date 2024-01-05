@@ -37,6 +37,9 @@ export class ChatService {
 		for (var key in max) {
 			const res = await this.responsesService.sendChatAction(max[key].chat, "typing") 
 			console.log(res)
+			if(res === "undefined") {
+				console.log('un')
+			} 
 		}
 	}
 
