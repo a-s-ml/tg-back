@@ -33,8 +33,8 @@ let CallbackQueryService = class CallbackQueryService {
         return await this.callbackAnswers.pollAnswer(pollAnswer);
     }
     async message(message) {
-        await this.chatService.verificationExistence(message.from);
         if (message.text === "/account" || message.text === "/start") {
+            await this.chatService.verificationExistence(message.from);
             const text = `
 			<b>Здравствуйте!</b>
 			Сейчас проходит оптимизация и глобальное обновление бота.

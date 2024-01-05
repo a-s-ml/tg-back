@@ -30,8 +30,8 @@ export class CallbackQueryService {
 	}
 
 	async message(message: MessageInterface) {
-		await this.chatService.verificationExistence(message.from)
 		if (message.text === "/account" || message.text === "/start") {
+			await this.chatService.verificationExistence(message.from)
 			const text = `
 			<b>Здравствуйте!</b>
 			Сейчас проходит оптимизация и глобальное обновление бота.

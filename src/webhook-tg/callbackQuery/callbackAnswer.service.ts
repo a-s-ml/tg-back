@@ -55,7 +55,6 @@ export class CallbackAnswerService {
 
 	async answer(callbackQuery: CallbackQueryInterface) {
 		const data = callbackQuery.data.split("_")
-		// await this.chatService.verificationExistence(callbackQuery.from)
 		const text = await this.answerCheck(
 			callbackQuery.from,
 			callbackQuery.message.chat.id,
@@ -71,7 +70,6 @@ export class CallbackAnswerService {
 
 	async pollAnswer(pollAnswer: PollAnswerInterface) {
 		if (pollAnswer.user) {
-			// await this.chatService.verificationExistence(pollAnswer.user)
 			const question = await this.chatDataService.findByPollId(
 				pollAnswer.poll_id
 			)
