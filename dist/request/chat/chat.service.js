@@ -87,6 +87,13 @@ let ChatService = class ChatService {
     async tgGetFilePhoto(unic_id) {
         return await this.getTgService.tgGetFilePhoto(unic_id);
     }
+    async remove(chat_id) {
+        return await this.dbService.chat.delete({
+            where: {
+                chat: chat_id
+            }
+        });
+    }
 };
 exports.ChatService = ChatService;
 exports.ChatService = ChatService = __decorate([

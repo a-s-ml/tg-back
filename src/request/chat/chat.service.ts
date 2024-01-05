@@ -111,4 +111,12 @@ export class ChatService {
 	async tgGetFilePhoto(unic_id: string) {
 		return await this.getTgService.tgGetFilePhoto(unic_id)
 	}	
+
+	async remove(chat_id: bigint) {
+		return await this.dbService.chat.delete({
+			where: {
+				chat: chat_id
+			}
+		})
+	}
 }

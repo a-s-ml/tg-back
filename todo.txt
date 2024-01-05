@@ -4,3 +4,4 @@
 4. httpService вместо axios
 5. Emitter!!!
 6. Заменить fetch на httpService в callbackQuery.service 42 строка
+7. Какая лишняяя findTypeLastTwoByChat или findLastTwoByChat в chat-data.sercive

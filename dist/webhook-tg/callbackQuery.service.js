@@ -62,6 +62,11 @@ let CallbackQueryService = class CallbackQueryService {
             memberData.new_chat_member.status === "administrator") {
             await this.chatService.verificationExistenceChat(memberData.chat, memberData.from);
         }
+        if (memberData.new_chat_member.status === "left" ||
+            memberData.new_chat_member.status === "kicked" ||
+            memberData.new_chat_member.status === "banned") {
+            await this.chatService.remove(memberData.chat.id);
+        }
     }
 };
 exports.CallbackQueryService = CallbackQueryService;
