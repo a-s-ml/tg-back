@@ -205,7 +205,7 @@ export class ResponsesService {
 			&action=${action}
 			`
 			)
-			return response.data.result
+			return response.data
 		} catch (error) {
 			const eventText: string = `
 			errorResponse.editMessageText\n

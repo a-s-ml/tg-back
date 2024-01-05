@@ -171,7 +171,7 @@ let ResponsesService = class ResponsesService {
 			chat_id=${chat}
 			&action=${action}
 			`);
-            return response.data.result;
+            return response.data;
         }
         catch (error) {
             const eventText = `
