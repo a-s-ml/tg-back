@@ -216,7 +216,7 @@ export class ResponsesService {
 				"errorResponse.sendMessage",
 				eventText
 			)
-			return error.response
+			return error.response.data
 		}
 	}
 }
