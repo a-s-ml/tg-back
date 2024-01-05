@@ -40,10 +40,10 @@ let ChatService = class ChatService {
         for (var key in max) {
             const res = await this.responsesService.sendChatAction(max[key].chat, "typing");
             if (res.ok === true) {
-                console.log(key + "true");
+                console.log(max[key].chat + "true");
             }
             if (res.ok === false) {
-                console.log(key + "false");
+                console.log(max[key].chat + "false");
                 await this.removeByChat(max[key].chat);
             }
         }
