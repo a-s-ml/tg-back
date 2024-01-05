@@ -37,7 +37,7 @@ export class ChatService {
 		for (var key in max) {
 			const res = await this.responsesService.sendChatAction(max[key].chat, "typing")
 			if(res.ok === false) {
-				return await this.removeByChat(max[key].chat)
+				await this.removeByChat(max[key].chat)
 			} 
 		}
 	}

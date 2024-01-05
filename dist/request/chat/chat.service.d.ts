@@ -41,16 +41,7 @@ export declare class ChatService {
         question_type: number;
         time: number;
     }>;
-    clean(): Promise<{
-        id: number;
-        chat: bigint;
-        type: string;
-        bot: number;
-        date: Date;
-        referral: bigint;
-        question_type: number;
-        time: number;
-    }>;
+    clean(): Promise<void>;
     findByChatId(chat: bigint): Promise<{
         id: number;
         chat: bigint;
