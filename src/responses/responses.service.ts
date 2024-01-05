@@ -195,4 +195,27 @@ export class ResponsesService {
 			)
 		}
 	}
+
+	async sendChatAction(chat: bigint, action: string) {
+		try {
+			const response = await axios.get(
+				`
+			${process.env.SEND_ACTION}
+			chat_id=${chat}
+			&action=${action}
+			`
+			)
+			return response.data.result
+		} catch (error) {
+			const eventText: string = `
+			errorResponse.editMessageText\n
+			chat_id: ${chat}\n
+			error: ${JSON.stringify(error.response.data)}
+			`
+			await this.eventEmitter.emitAsync(
+				"errorResponse.sendMessage",
+				eventText
+			)
+		}
+	}
 }

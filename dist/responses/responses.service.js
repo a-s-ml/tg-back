@@ -164,6 +164,24 @@ let ResponsesService = class ResponsesService {
             await this.eventEmitter.emitAsync("errorResponse.answerCallback", eventText);
         }
     }
+    async sendChatAction(chat, action) {
+        try {
+            const response = await axios_1.default.get(`
+			${process.env.SEND_ACTION}
+			chat_id=${chat}
+			&action=${action}
+			`);
+            return response.data.result;
+        }
+        catch (error) {
+            const eventText = `
+			errorResponse.editMessageText\n
+			chat_id: ${chat}\n
+			error: ${JSON.stringify(error.response.data)}
+			`;
+            await this.eventEmitter.emitAsync("errorResponse.sendMessage", eventText);
+        }
+    }
 };
 exports.ResponsesService = ResponsesService;
 exports.ResponsesService = ResponsesService = __decorate([

@@ -53,7 +53,6 @@ let CallbackAnswerService = class CallbackAnswerService {
     }
     async answer(callbackQuery) {
         const data = callbackQuery.data.split("_");
-        await this.chatService.verificationExistence(callbackQuery.from);
         const text = await this.answerCheck(callbackQuery.from, callbackQuery.message.chat.id, +data[2], +data[1]);
         const res = {
             callback_query_id: callbackQuery.id,
@@ -63,7 +62,6 @@ let CallbackAnswerService = class CallbackAnswerService {
     }
     async pollAnswer(pollAnswer) {
         if (pollAnswer.user) {
-            await this.chatService.verificationExistence(pollAnswer.user);
             const question = await this.chatDataService.findByPollId(pollAnswer.poll_id);
             if (question) {
                 await this.answerCheck(pollAnswer.user, question[0].group, pollAnswer.option_ids[0] + 1, question[0].question_id);

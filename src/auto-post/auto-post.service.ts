@@ -33,16 +33,16 @@ export class AutoPostService {
 						chatact[key].chat
 					)
 				if (chat.question_type === 1) {
-					await this.questionTypeImg(question.id, chat)
+					return await this.questionTypeImg(question.id, chat)
 				}
 				if (chat.question_type === 2) {
-					await this.questionTypePoll(question.id, chat)
+					return await this.questionTypePoll(question.id, chat)
 				}
 				if (chat.question_type === 3) {
-					await this.questionTypeText(question.id, chat)
+					return await this.questionTypeText(question.id, chat)
 				}
 				if (chat.question_type === 4) {
-					await this.questionTypeMixed(question.id, chat)
+					return await this.questionTypeMixed(question.id, chat)
 				}
 			}
 		}

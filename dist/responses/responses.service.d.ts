@@ -17,4 +17,5 @@ export declare class ResponsesService {
     sendPhoto(message: SendPhotoMethod): Promise<any>;
     editMessageReplyMarkup(message: editMessageReplyMarkupMethod): Promise<any>;
     answerCallbackQuery(answerCallbackQuery: AnswerCallbackQueryMethod): Promise<any>;
+    sendChatAction(chat: bigint, action: string): Promise<any>;
 }
