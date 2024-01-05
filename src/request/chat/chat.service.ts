@@ -35,7 +35,7 @@ export class ChatService {
 	async clean() {
 		const max = await this.dbService.chat.findMany()
 		for (var key in max) {
-			const res = this.responsesService.sendChatAction(max[key].chat, "typing") 
+			const res = await this.responsesService.sendChatAction(max[key].chat, "typing") 
 			console.log(res)
 		}
 	}
