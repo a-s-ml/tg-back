@@ -39,8 +39,11 @@ let ChatService = class ChatService {
         const max = await this.dbService.chat.findMany();
         for (var key in max) {
             const res = await this.responsesService.sendChatAction(max[key].chat, "typing");
+            if (res.ok === true) {
+                console.log(key + 'true');
+            }
             if (res.ok === false) {
-                console.log(key);
+                console.log(key + 'false');
                 await this.removeByChat(max[key].chat);
             }
         }
