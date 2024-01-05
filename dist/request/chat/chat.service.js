@@ -40,7 +40,7 @@ let ChatService = class ChatService {
         for (var key in max) {
             const res = await this.responsesService.sendChatAction(max[key].chat, "typing");
             if (res.ok === false) {
-                console.log('un');
+                return await this.removeByChat(max[key].chat);
             }
         }
     }
@@ -105,10 +105,17 @@ let ChatService = class ChatService {
     async tgGetFilePhoto(unic_id) {
         return await this.getTgService.tgGetFilePhoto(unic_id);
     }
-    async remove(chat_id) {
+    async removeByChat(chat_id) {
         return await this.dbService.chat.delete({
             where: {
                 chat: chat_id
+            }
+        });
+    }
+    async removeById(id) {
+        return await this.dbService.chat.delete({
+            where: {
+                id
             }
         });
     }

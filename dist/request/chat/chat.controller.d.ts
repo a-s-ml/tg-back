@@ -12,7 +12,16 @@ export declare class ChatController {
     }>;
     findByReferal(chat: bigint): Promise<any>;
     groupInfoById(chat: bigint): Promise<import("../../interfaces/types/Chat.interface").ChatInterface>;
-    clean(): Promise<void>;
+    clean(): Promise<{
+        id: number;
+        chat: bigint;
+        type: string;
+        bot: number;
+        date: Date;
+        referral: bigint;
+        question_type: number;
+        time: number;
+    }>;
     groupMemberCountById(chat: bigint): Promise<number>;
     tgGetFilePhoto(unic_id: string): Promise<any>;
     update(chat: string, updateChatDto: Prisma.chatUpdateInput): Promise<void>;

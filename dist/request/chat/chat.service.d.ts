@@ -41,7 +41,16 @@ export declare class ChatService {
         question_type: number;
         time: number;
     }>;
-    clean(): Promise<void>;
+    clean(): Promise<{
+        id: number;
+        chat: bigint;
+        type: string;
+        bot: number;
+        date: Date;
+        referral: bigint;
+        question_type: number;
+        time: number;
+    }>;
     findByChatId(chat: bigint): Promise<{
         id: number;
         chat: bigint;
@@ -60,7 +69,17 @@ export declare class ChatService {
     groupInfoById(chat: bigint): Promise<ChatInterface>;
     groupMemberCountById(chat: bigint): Promise<number>;
     tgGetFilePhoto(unic_id: string): Promise<any>;
-    remove(chat_id: bigint): Promise<{
+    removeByChat(chat_id: bigint): Promise<{
+        id: number;
+        chat: bigint;
+        type: string;
+        bot: number;
+        date: Date;
+        referral: bigint;
+        question_type: number;
+        time: number;
+    }>;
+    removeById(id: number): Promise<{
         id: number;
         chat: bigint;
         type: string;

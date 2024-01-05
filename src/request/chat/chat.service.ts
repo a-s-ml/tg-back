@@ -37,7 +37,7 @@ export class ChatService {
 		for (var key in max) {
 			const res = await this.responsesService.sendChatAction(max[key].chat, "typing")
 			if(res.ok === false) {
-				console.log('un')
+				return await this.removeByChat(max[key].chat)
 			} 
 		}
 	}
@@ -132,10 +132,18 @@ export class ChatService {
 		return await this.getTgService.tgGetFilePhoto(unic_id)
 	}	
 
-	async remove(chat_id: bigint) {
+	async removeByChat(chat_id: bigint) {
 		return await this.dbService.chat.delete({
 			where: {
 				chat: chat_id
+			}
+		})
+	}
+
+	async removeById(id: number) {
+		return await this.dbService.chat.delete({
+			where: {
+				id
 			}
 		})
 	}

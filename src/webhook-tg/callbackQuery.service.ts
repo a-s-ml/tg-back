@@ -72,7 +72,7 @@ export class CallbackQueryService {
 			memberData.new_chat_member.status === "kicked" ||
 			memberData.new_chat_member.status === "banned"
 		) {
-			await this.chatService.remove(memberData.chat.id)
+			await this.chatService.removeByChat(memberData.chat.id)
 		}
 	}
 }
