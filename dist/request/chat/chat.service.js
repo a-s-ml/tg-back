@@ -40,20 +40,20 @@ let ChatService = class ChatService {
         for (var key in max) {
             const res = await this.responsesService.sendChatAction(max[key].chat, "typing");
             if (res.ok === true) {
-                console.log(key + 'true');
+                console.log(key + "true");
             }
             if (res.ok === false) {
-                console.log(key + 'false');
+                console.log(key + "false");
                 await this.removeByChat(max[key].chat);
             }
         }
     }
     async findByChatId(chat) {
-        return await this.dbService.chat.findUnique({
+        return JSON.parse(JSON.stringify(await this.dbService.chat.findUnique({
             where: {
                 chat
             }
-        });
+        }), (key, value) => typeof value === "bigint" ? value.toString() : value));
     }
     async findByReferal(chat) {
         return JSON.parse(JSON.stringify(await this.dbService.chat.findMany({

@@ -35,6 +35,11 @@ export class ChatController {
 		return this.chatService.groupMemberCountById(chat)
 	}
 
+	@Get("findByChatId/:chat")
+	findByChatId(@Param("chat") chat: bigint) {
+		return this.chatService.findByChatId(chat)
+	}
+
 	@Get("tgGetFilePhoto/:unic_id")
 	// @Header("Content-type", "image/jpeg;base64") 
 	async tgGetFilePhoto(@Param("unic_id") unic_id: string) {

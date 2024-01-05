@@ -42,16 +42,7 @@ export declare class ChatService {
         time: number;
     }>;
     clean(): Promise<void>;
-    findByChatId(chat: bigint): Promise<{
-        id: number;
-        chat: bigint;
-        type: string;
-        bot: number;
-        date: Date;
-        referral: bigint;
-        question_type: number;
-        time: number;
-    }>;
+    findByChatId(chat: bigint): Promise<any>;
     findByReferal(chat: bigint): Promise<any>;
     countByReferal(chat: bigint): Promise<number>;
     update(chat: bigint, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
