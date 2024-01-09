@@ -12,8 +12,5 @@ export declare class ChatActiveService {
     }[]>;
     findOne(chat: bigint): Promise<boolean>;
     countActiveByReferal(chat: bigint): Promise<number>;
-    remove(chat: bigint): Promise<{
-        id: number;
-        chat: bigint;
-    }>;
+    remove(chat: bigint): Promise<any>;
 }

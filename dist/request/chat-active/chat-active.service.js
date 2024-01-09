@@ -50,11 +50,11 @@ let ChatActiveService = class ChatActiveService {
         });
     }
     async remove(chat) {
-        return await this.dbService.chatActive.delete({
+        return JSON.parse(JSON.stringify(await this.dbService.chatActive.delete({
             where: {
                 chat
             }
-        });
+        }), (key, value) => typeof value === "bigint" ? value.toString() : value));
     }
 };
 exports.ChatActiveService = ChatActiveService;

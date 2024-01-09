@@ -52,10 +52,16 @@ export class ChatActiveService {
 	}
 
 	async remove(chat: bigint) {
-		return await this.dbService.chatActive.delete({
-			where: {
-				chat
-			}
-		})
+		return JSON.parse(
+			JSON.stringify(
+				await this.dbService.chatActive.delete({
+					where: {
+						chat
+					}
+				}),
+				(key, value) =>
+					typeof value === "bigint" ? value.toString() : value
+			)
+		)
 	}
 }

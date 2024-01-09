@@ -9,8 +9,5 @@ export declare class ChatActiveController {
         chat: bigint;
     }[]>;
     findOne(chat: string): Promise<boolean>;
-    remove(chat: string): Promise<{
-        id: number;
-        chat: bigint;
-    }>;
+    remove(chat: string): Promise<any>;
 }
