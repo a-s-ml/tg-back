@@ -8,12 +8,18 @@ export class ChatActiveService {
 	constructor(
 		private dbService: DbService,
 		private chatService: ChatService
-		) {}
+	) {}
 
 	async create(chatActiveCreateInput: Prisma.chatActiveCreateInput) {
-		return await this.dbService.chatActive.create({
-			data: chatActiveCreateInput
-		})
+		return JSON.parse(
+			JSON.stringify(
+				await this.dbService.chatActive.create({
+					data: chatActiveCreateInput
+				}),
+				(key, value) =>
+					typeof value === "bigint" ? value.toString() : value
+			)
+		)
 	}
 
 	async findAll() {

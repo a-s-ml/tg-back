@@ -5,10 +5,7 @@ export declare class ChatActiveService {
     private dbService;
     private chatService;
     constructor(dbService: DbService, chatService: ChatService);
-    create(chatActiveCreateInput: Prisma.chatActiveCreateInput): Promise<{
-        id: number;
-        chat: bigint;
-    }>;
+    create(chatActiveCreateInput: Prisma.chatActiveCreateInput): Promise<any>;
     findAll(): Promise<{
         id: number;
         chat: bigint;

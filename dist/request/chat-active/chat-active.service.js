@@ -19,9 +19,9 @@ let ChatActiveService = class ChatActiveService {
         this.chatService = chatService;
     }
     async create(chatActiveCreateInput) {
-        return await this.dbService.chatActive.create({
+        return JSON.parse(JSON.stringify(await this.dbService.chatActive.create({
             data: chatActiveCreateInput
-        });
+        }), (key, value) => typeof value === "bigint" ? value.toString() : value));
     }
     async findAll() {
         return await this.dbService.chatActive.findMany();

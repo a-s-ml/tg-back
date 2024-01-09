@@ -3,10 +3,7 @@ import { Prisma } from "@prisma/client";
 export declare class ChatActiveController {
     private readonly chatActiveService;
     constructor(chatActiveService: ChatActiveService);
-    create(createChatActiveDto: Prisma.chatActiveCreateInput): Promise<{
-        id: number;
-        chat: bigint;
-    }>;
+    create(createChatActiveDto: Prisma.chatActiveCreateInput): Promise<any>;
     findAll(): Promise<{
         id: number;
         chat: bigint;
