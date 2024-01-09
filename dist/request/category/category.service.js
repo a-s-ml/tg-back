@@ -22,6 +22,9 @@ let CategoryService = class CategoryService {
     async findAll() {
         return await this.dbService.category.findMany({});
     }
+    async countAll() {
+        return await this.dbService.category.count({});
+    }
     async findOne(id) {
         return await this.dbService.category.findUnique({
             where: {

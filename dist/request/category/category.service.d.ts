@@ -11,6 +11,7 @@ export declare class CategoryService {
         id: number;
         name: string;
     }[]>;
+    countAll(): Promise<number>;
     findOne(id: number): Promise<{
         id: number;
         name: string;

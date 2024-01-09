@@ -11,6 +11,7 @@ export declare class CategoryController {
         id: number;
         name: string;
     }[]>;
+    countAll(): Promise<number>;
     findOne(id: string): Promise<{
         id: number;
         name: string;

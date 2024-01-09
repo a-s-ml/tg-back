@@ -14,6 +14,10 @@ export class CategoryService {
 		return await this.dbService.category.findMany({})
 	}
 
+	async countAll() {
+		return await this.dbService.category.count({})
+	}
+
 	async findOne(id: number) {
 		return await this.dbService.category.findUnique({
 			where: {

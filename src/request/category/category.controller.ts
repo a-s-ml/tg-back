@@ -24,6 +24,11 @@ export class CategoryController {
 		return this.categoryService.findAll()
 	}
 
+	@Get("count")
+	countAll() {
+		return this.categoryService.countAll()
+	}
+
 	@Get(":id")
 	findOne(@Param("id") id: string) {
 		return this.categoryService.findOne(+id)
