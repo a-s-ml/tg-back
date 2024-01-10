@@ -20,7 +20,11 @@ let CategoryService = class CategoryService {
         return await this.dbService.category.create({ data: createCategoryDto });
     }
     async findAll() {
-        return await this.dbService.category.findMany({});
+        return await this.dbService.category.findMany({
+            orderBy: {
+                name: "asc"
+            }
+        });
     }
     async countAll() {
         return await this.dbService.category.count({});

@@ -6,7 +6,11 @@ export class TimeService {
 	constructor(private dbService: DbService) {}
 
 	async findAll() {
-		return await this.dbService.time.findMany()
+		return await this.dbService.time.findMany({
+			orderBy: {
+				id: "asc"
+			}
+		})
 	}
 
 	async findOne(id: number) {

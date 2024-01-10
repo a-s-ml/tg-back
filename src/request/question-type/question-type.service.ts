@@ -6,7 +6,11 @@ export class QuestionTypeService {
 	constructor(private dbService: DbService) {}
 
 	async findAll() {
-		return await this.dbService.questionType.findMany()
+		return await this.dbService.questionType.findMany({
+			orderBy: {
+				id: "asc"
+			}
+		})
 	}
 
 	async findOne(id: number) {

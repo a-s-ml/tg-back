@@ -17,7 +17,11 @@ let TimeService = class TimeService {
         this.dbService = dbService;
     }
     async findAll() {
-        return await this.dbService.time.findMany();
+        return await this.dbService.time.findMany({
+            orderBy: {
+                id: "asc"
+            }
+        });
     }
     async findOne(id) {
         return await this.dbService.time.findUnique({

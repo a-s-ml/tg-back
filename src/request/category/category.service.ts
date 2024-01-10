@@ -11,7 +11,11 @@ export class CategoryService {
 	}
 
 	async findAll() {
-		return await this.dbService.category.findMany({})
+		return await this.dbService.category.findMany({
+			orderBy: {
+				name: "asc"
+			}
+		})
 	}
 
 	async countAll() {
