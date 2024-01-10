@@ -105,6 +105,8 @@ model chatType {
 }
 
 model questionType {
-  id   Int    @id @unique(map: "id_UNIQUE") @default(autoincrement())
-  name String @unique(map: "name_UNIQUE") @db.VarChar(45)
+  id          Int    @id @unique(map: "id_UNIQUE") @default(autoincrement())
+  name        String @unique(map: "name_UNIQUE") @db.VarChar(45)
+  description String @db.VarChar(255)
+  active      Int
 }
