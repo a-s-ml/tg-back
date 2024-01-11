@@ -12,13 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChatCategoryService = void 0;
 const common_1 = require("@nestjs/common");
 const db_service_1 = require("../../db/db.service");
-const chat_service_1 = require("../chat/chat.service");
-const category_service_1 = require("../category/category.service");
 let ChatCategoryService = class ChatCategoryService {
-    constructor(dbService, chatService, categoryService) {
+    constructor(dbService) {
         this.dbService = dbService;
-        this.chatService = chatService;
-        this.categoryService = categoryService;
     }
     async create(chatCategoryCreateInput) {
         return await this.dbService.chatCategory.create({
@@ -35,18 +31,6 @@ let ChatCategoryService = class ChatCategoryService {
             }
         });
     }
-    async clean() {
-        const max = await this.dbService.chatCategory.findMany();
-        for (var key in max) {
-            const res = await this.categoryService.findOne(max[key].category);
-            if (res) {
-                console.log(max[key].category + "true");
-            }
-            if (!res) {
-                console.log(max[key].category + "false");
-            }
-        }
-    }
     async remove(id) {
         return await this.dbService.chatCategory.delete({
             where: {
@@ -58,8 +42,6 @@ let ChatCategoryService = class ChatCategoryService {
 exports.ChatCategoryService = ChatCategoryService;
 exports.ChatCategoryService = ChatCategoryService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [db_service_1.DbService,
-        chat_service_1.ChatService,
-        category_service_1.CategoryService])
+    __metadata("design:paramtypes", [db_service_1.DbService])
 ], ChatCategoryService);
 //# sourceMappingURL=chat-category.service.js.map

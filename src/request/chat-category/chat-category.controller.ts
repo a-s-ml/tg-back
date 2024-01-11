@@ -11,11 +11,6 @@ export class ChatCategoryController {
 		return this.chatCategoryService.create(createChatCategoryDto)
 	}
 
-	@Get("clean/")
-	clean() {
-		return this.chatCategoryService.clean()
-	}
-	
 	@Get(":chat")
 	findOne(@Param("chat") chat: string) {
 		return this.chatCategoryService.findChat(chat as unknown as bigint)
