@@ -23,6 +23,9 @@ let ChatCategoryController = class ChatCategoryController {
     create(createChatCategoryDto) {
         return this.chatCategoryService.create(createChatCategoryDto);
     }
+    clean() {
+        return this.chatCategoryService.clean();
+    }
     findOne(chat) {
         return this.chatCategoryService.findChat(chat);
     }
@@ -38,6 +41,12 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], ChatCategoryController.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)("clean/"),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], ChatCategoryController.prototype, "clean", null);
 __decorate([
     (0, common_1.Get)(":chat"),
     __param(0, (0, common_1.Param)("chat")),
