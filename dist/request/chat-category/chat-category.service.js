@@ -50,6 +50,7 @@ let ChatCategoryService = class ChatCategoryService {
             }
             if (res.ok === false) {
                 console.log(max[key].chat + "false");
+                await this.remove(max[key].id);
             }
         }
     }
