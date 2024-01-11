@@ -13,6 +13,14 @@ export class QuestionTypeService {
 		})
 	}
 
+	async findByName(name: string) {
+		return await this.dbService.questionType.findUnique({
+			where: {
+				name
+			}
+		})
+	}
+
 	async findOne(id: number) {
 		return await this.dbService.questionType.findUnique({
 			where: {

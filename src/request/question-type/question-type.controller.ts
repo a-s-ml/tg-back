@@ -14,4 +14,9 @@ export class QuestionTypeController {
 	findOne(@Param("id") id: string) {
 		return this.questionTypeService.findOne(+id)
 	}
+
+	@Get("findByName/:name")
+	findByName(@Param("name") name: string) {
+		return this.questionTypeService.findByName(name)
+	}
 }

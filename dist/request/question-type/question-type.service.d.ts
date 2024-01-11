@@ -8,6 +8,12 @@ export declare class QuestionTypeService {
         description: string;
         active: number;
     }[]>;
+    findByName(name: string): Promise<{
+        id: number;
+        name: string;
+        description: string;
+        active: number;
+    }>;
     findOne(id: number): Promise<{
         id: number;
         name: string;

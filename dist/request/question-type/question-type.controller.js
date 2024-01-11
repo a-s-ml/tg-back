@@ -25,6 +25,9 @@ let QuestionTypeController = class QuestionTypeController {
     findOne(id) {
         return this.questionTypeService.findOne(+id);
     }
+    findByName(name) {
+        return this.questionTypeService.findByName(name);
+    }
 };
 exports.QuestionTypeController = QuestionTypeController;
 __decorate([
@@ -40,6 +43,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], QuestionTypeController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Get)("findByName/:name"),
+    __param(0, (0, common_1.Param)("name")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], QuestionTypeController.prototype, "findByName", null);
 exports.QuestionTypeController = QuestionTypeController = __decorate([
     (0, common_1.Controller)("question-type"),
     __metadata("design:paramtypes", [question_type_service_1.QuestionTypeService])

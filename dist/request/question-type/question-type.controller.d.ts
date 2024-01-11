@@ -14,4 +14,10 @@ export declare class QuestionTypeController {
         description: string;
         active: number;
     }>;
+    findByName(name: string): Promise<{
+        id: number;
+        name: string;
+        description: string;
+        active: number;
+    }>;
 }
