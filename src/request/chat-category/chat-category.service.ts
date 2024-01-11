@@ -2,12 +2,14 @@ import { Injectable } from "@nestjs/common"
 import { Prisma } from "@prisma/client"
 import { DbService } from "src/db/db.service"
 import { ChatService } from "../chat/chat.service"
+import { CategoryService } from "../category/category.service"
 
 @Injectable()
 export class ChatCategoryService {
 	constructor(
 		private dbService: DbService,
-		private chatService: ChatService
+		private chatService: ChatService,
+		private categoryService: CategoryService
 	) {}
 
 	async create(chatCategoryCreateInput: Prisma.chatCategoryCreateInput) {
@@ -30,14 +32,14 @@ export class ChatCategoryService {
 	async clean() {
 		const max = await this.dbService.chatCategory.findMany()
 		for (var key in max) {
-			const res = await this.chatService.findByChatId(
-				max[key].chat
+			const res = await this.categoryService.findOne(
+				max[key].category
 			)
 			if (res) {
-				console.log(max[key].chat + "true")
+				console.log(max[key].category + "true")
 			}
 			if (!res) {
-				console.log(max[key].chat + "false")
+				console.log(max[key].category + "false")
 				// await this.removeByChat(max[key].chat)
 			}
 		}

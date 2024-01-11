@@ -11,13 +11,14 @@ const common_1 = require("@nestjs/common");
 const chat_category_service_1 = require("./chat-category.service");
 const chat_category_controller_1 = require("./chat-category.controller");
 const chat_service_1 = require("../chat/chat.service");
+const category_service_1 = require("../category/category.service");
 let ChatCategoryModule = class ChatCategoryModule {
 };
 exports.ChatCategoryModule = ChatCategoryModule;
 exports.ChatCategoryModule = ChatCategoryModule = __decorate([
     (0, common_1.Module)({
         controllers: [chat_category_controller_1.ChatCategoryController],
-        providers: [chat_category_service_1.ChatCategoryService, chat_service_1.ChatService],
+        providers: [chat_category_service_1.ChatCategoryService, chat_service_1.ChatService, category_service_1.CategoryService],
         exports: [chat_category_service_1.ChatCategoryService]
     })
 ], ChatCategoryModule);
