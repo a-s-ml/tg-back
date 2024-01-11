@@ -5,10 +5,7 @@ import { ResponsesService } from "src/responses/responses.service"
 
 @Injectable()
 export class ChatCategoryService {
-	constructor(
-		private dbService: DbService,
-		private responsesService: ResponsesService
-	) {}
+	constructor(private dbService: DbService) {}
 
 	async create(chatCategoryCreateInput: Prisma.chatCategoryCreateInput) {
 		return await this.dbService.chatCategory.create({
@@ -33,22 +30,5 @@ export class ChatCategoryService {
 				id
 			}
 		})
-	}
-
-	async clean() {
-		const max = await this.dbService.chatCategory.findMany()
-		for (var key in max) {
-			const res = await this.responsesService.sendChatAction(
-				max[key].chat,
-				"typing"
-			)
-			if (res.ok === true) {
-				console.log(max[key].chat + "true")
-			}
-			if (res.ok === false) {
-				console.log(max[key].chat + "false")
-				await this.remove(max[key].id)
-			}
-		}
 	}
 }
