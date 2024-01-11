@@ -18,6 +18,7 @@ export class SelectActivChatService {
 		const chatact = await this.chatActiveService.findAll()
 		let actiality: Array<IChatActive> = []
 		for (var key in chatact) {
+			console.log(chatact[key].chat)
 			let lastPost = await this.chatDataService.findLastByChat(
 				chatact[key].chat
 			)

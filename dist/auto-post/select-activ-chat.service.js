@@ -26,6 +26,7 @@ let SelectActivChatService = class SelectActivChatService {
         const chatact = await this.chatActiveService.findAll();
         let actiality = [];
         for (var key in chatact) {
+            console.log(chatact[key].chat);
             let lastPost = await this.chatDataService.findLastByChat(chatact[key].chat);
             if (!lastPost?.length) {
                 actiality.push(chatact[key]);
