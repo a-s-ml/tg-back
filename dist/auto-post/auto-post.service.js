@@ -43,7 +43,7 @@ let AutoPostService = class AutoPostService {
                 if (chat.question_type === 3) {
                     return await this.questionTypeText(question.id, chat);
                 }
-                if (chat.question_type === 4) {
+                if (chat.question_type === 6) {
                     return await this.questionTypeMixed(question.id, chat);
                 }
             }

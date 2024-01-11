@@ -5,9 +5,13 @@ export declare class QuestionTypeService {
     findAll(): Promise<{
         id: number;
         name: string;
+        description: string;
+        active: number;
     }[]>;
     findOne(id: number): Promise<{
         id: number;
         name: string;
+        description: string;
+        active: number;
     }>;
 }

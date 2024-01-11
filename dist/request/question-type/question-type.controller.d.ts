@@ -5,9 +5,13 @@ export declare class QuestionTypeController {
     findAll(): Promise<{
         id: number;
         name: string;
+        description: string;
+        active: number;
     }[]>;
     findOne(id: string): Promise<{
         id: number;
         name: string;
+        description: string;
+        active: number;
     }>;
 }
