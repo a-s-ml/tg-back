@@ -1,11 +1,4 @@
-import {
-	Controller,
-	Get,
-	Post,
-	Body,
-	Param,
-	Delete
-} from "@nestjs/common"
+import { Controller, Get, Post, Body, Param, Delete } from "@nestjs/common"
 import { ChatCategoryService } from "./chat-category.service"
 import { Prisma } from "@prisma/client"
 
@@ -16,6 +9,11 @@ export class ChatCategoryController {
 	@Post()
 	create(@Body() createChatCategoryDto: Prisma.chatCategoryCreateInput) {
 		return this.chatCategoryService.create(createChatCategoryDto)
+	}
+
+	@Get("clean/")
+	clean() {
+		return this.chatCategoryService.clean()
 	}
 
 	@Get(":chat")

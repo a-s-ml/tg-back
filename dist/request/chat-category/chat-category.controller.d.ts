@@ -8,6 +8,7 @@ export declare class ChatCategoryController {
         chat: bigint;
         category: number;
     }>;
+    clean(): Promise<void>;
     findOne(chat: string): Promise<{
         category: number;
     }[]>;
