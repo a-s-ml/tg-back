@@ -43,6 +43,7 @@ let ChatCategoryService = class ChatCategoryService {
     async clean() {
         const max = await this.dbService.chatCategory.findMany();
         for (var key in max) {
+            console.log(max[key]);
             const res = await this.responsesService.sendChatAction(max[key].chat, "typing");
             if (res.ok === true) {
                 console.log(max[key].chat + "true");
