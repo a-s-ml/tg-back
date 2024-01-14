@@ -16,5 +16,5 @@ export declare class ChatController {
     groupMemberCountById(chat: bigint): Promise<number>;
     findByChatId(chat: bigint): Promise<any>;
     tgGetFilePhoto(unic_id: string): Promise<any>;
-    update(chat: string, updateChatDto: Prisma.chatUpdateInput): Promise<void>;
+    update(chat: string, updateChatDto: Prisma.chatUpdateInput): Promise<any>;
 }

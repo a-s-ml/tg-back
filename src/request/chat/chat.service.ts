@@ -86,12 +86,18 @@ export class ChatService {
 	}
 
 	async update(chat: bigint, updateChatDto: Prisma.chatUpdateInput) {
-		await this.dbService.chat.update({
-			where: {
-				chat
-			},
-			data: updateChatDto
-		})
+		return JSON.parse(
+			JSON.stringify(
+				await this.dbService.chat.update({
+					where: {
+						chat
+					},
+					data: updateChatDto
+				}),
+				(key, value) =>
+					typeof value === "bigint" ? value.toString() : value
+			)
+		)
 	}
 
 	async verificationExistence(from: UserInterface) {

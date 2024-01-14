@@ -70,12 +70,12 @@ let ChatService = class ChatService {
         });
     }
     async update(chat, updateChatDto) {
-        await this.dbService.chat.update({
+        return JSON.parse(JSON.stringify(await this.dbService.chat.update({
             where: {
                 chat
             },
             data: updateChatDto
-        });
+        }), (key, value) => typeof value === "bigint" ? value.toString() : value));
     }
     async verificationExistence(from) {
         const checkUser = await this.findByChatId(from.id);
