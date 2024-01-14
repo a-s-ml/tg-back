@@ -21,7 +21,6 @@ export class ChatCategoryService {
 	async findChat(chat: bigint) {
 		return await this.dbService.chatCategory.findMany({
 			select: {
-				id: true,
 				category: true
 			},
 			where: {
@@ -30,12 +29,25 @@ export class ChatCategoryService {
 		})
 	}
 
-	async remove(id: number) {
+	async findIdByChat(chat: bigint, category: number) {
+		return await this.dbService.chatCategory.findFirst({
+			select: {
+				id: true,
+			},
+			where: {
+				chat,
+				category
+			}
+		})
+	}
+
+	async remove(deleteChatCategoryDto: Prisma.chatCategoryCreateInput) {
+		const row = await this.findIdByChat(deleteChatCategoryDto.chat as bigint, deleteChatCategoryDto.category)
 		return JSON.parse(
 			JSON.stringify(
 				await this.dbService.chatCategory.delete({
 					where: {
-						id
+						id: row.id
 					}
 				}),
 				(key, value) =>

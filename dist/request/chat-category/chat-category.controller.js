@@ -26,8 +26,8 @@ let ChatCategoryController = class ChatCategoryController {
     findOne(chat) {
         return this.chatCategoryService.findChat(chat);
     }
-    remove(id) {
-        return this.chatCategoryService.remove(+id);
+    remove(deleteChatCategoryDto) {
+        return this.chatCategoryService.remove(deleteChatCategoryDto);
     }
 };
 exports.ChatCategoryController = ChatCategoryController;
@@ -46,10 +46,10 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ChatCategoryController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Delete)(":id"),
-    __param(0, (0, common_1.Param)("id")),
+    (0, common_1.Delete)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], ChatCategoryController.prototype, "remove", null);
 exports.ChatCategoryController = ChatCategoryController = __decorate([

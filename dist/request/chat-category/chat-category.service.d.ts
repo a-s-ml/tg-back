@@ -6,7 +6,9 @@ export declare class ChatCategoryService {
     create(chatCategoryCreateInput: Prisma.chatCategoryCreateInput): Promise<any>;
     findChat(chat: bigint): Promise<{
         category: number;
-        id: number;
     }[]>;
-    remove(id: number): Promise<any>;
+    findIdByChat(chat: bigint, category: number): Promise<{
+        id: number;
+    }>;
+    remove(deleteChatCategoryDto: Prisma.chatCategoryCreateInput): Promise<any>;
 }

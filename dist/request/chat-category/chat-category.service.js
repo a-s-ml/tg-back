@@ -24,7 +24,6 @@ let ChatCategoryService = class ChatCategoryService {
     async findChat(chat) {
         return await this.dbService.chatCategory.findMany({
             select: {
-                id: true,
                 category: true
             },
             where: {
@@ -32,10 +31,22 @@ let ChatCategoryService = class ChatCategoryService {
             }
         });
     }
-    async remove(id) {
+    async findIdByChat(chat, category) {
+        return await this.dbService.chatCategory.findFirst({
+            select: {
+                id: true,
+            },
+            where: {
+                chat,
+                category
+            }
+        });
+    }
+    async remove(deleteChatCategoryDto) {
+        const row = await this.findIdByChat(deleteChatCategoryDto.chat, deleteChatCategoryDto.category);
         return JSON.parse(JSON.stringify(await this.dbService.chatCategory.delete({
             where: {
-                id
+                id: row.id
             }
         }), (key, value) => typeof value === "bigint" ? value.toString() : value));
     }

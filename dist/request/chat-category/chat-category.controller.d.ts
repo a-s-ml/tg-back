@@ -6,7 +6,6 @@ export declare class ChatCategoryController {
     create(createChatCategoryDto: Prisma.chatCategoryCreateInput): Promise<any>;
     findOne(chat: string): Promise<{
         category: number;
-        id: number;
     }[]>;
-    remove(id: string): Promise<any>;
+    remove(deleteChatCategoryDto: Prisma.chatCategoryCreateInput): Promise<any>;
 }

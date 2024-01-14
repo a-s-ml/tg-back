@@ -16,8 +16,8 @@ export class ChatCategoryController {
 		return this.chatCategoryService.findChat(chat as unknown as bigint)
 	}
 
-	@Delete(":id")
-	remove(@Param("id") id: string) {
-		return this.chatCategoryService.remove(+id)
+	@Delete()
+	remove(@Body() deleteChatCategoryDto: Prisma.chatCategoryCreateInput) {
+		return this.chatCategoryService.remove(deleteChatCategoryDto)
 	}
 }
