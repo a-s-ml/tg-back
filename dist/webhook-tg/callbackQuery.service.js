@@ -35,17 +35,27 @@ let CallbackQueryService = class CallbackQueryService {
     async message(message) {
         if (message.text === "/account" || message.text === "/start") {
             await this.chatService.verificationExistence(message.from);
+            const replyMarkup = {
+                inline_keyboard: [
+                    [
+                        {
+                            text: "Настройки ViktorinaOnlineBot",
+                            web_app: {
+                                url: `https://t.me/ViktorinaOnlineBot/app`
+                            }
+                        }
+                    ]
+                ]
+            };
             const text = `
-			<b>Здравствуйте!</b>
-			Сейчас проходит оптимизация и глобальное обновление бота.
-			Приносим свои извинения. \nПолный текущий функционал, а так же дополнительные функции станут доступны 08.01.2024.
-			На данный момент вы можете обратиться к @a_s_ml и вам сделают настройки удалённо по вашему желанию.
-			Бот всё ещё отправляет вопросы в активные группы и вы можете на них отвечать
+			<b>Здравствуйте!</b>\nСейчас проходит оптимизация и глобальное обновление бота.\nПриносим свои извинения...
 			`;
             await fetch(`
 				${process.env.SEND_MESSAGE}
 				chat_id=${message.from.id}
 				&text=${encodeURI(text)}
+				&reply_markup=${JSON.stringify(replyMarkup)}
+				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`);
         }
