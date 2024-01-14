@@ -41,14 +41,14 @@ let CallbackQueryService = class CallbackQueryService {
                         {
                             text: "Настройки ViktorinaOnlineBot",
                             web_app: {
-                                url: `https://t.me/ViktorinaOnlineBot/app`
+                                url: `https://80q.ru/`
                             }
                         }
                     ]
                 ]
             };
             const text = `
-			<b>Здравствуйте!</b>\nСейчас проходит оптимизация и глобальное обновление бота.\nПриносим свои извинения...
+			<b>Здравствуйте!</b>\n\nСейчас проходит оптимизация и глобальное обновление бота.\nСвои пожелания по функционалу бота Вы можете отправить разработчику через приложение...
 			`;
             await fetch(`
 				${process.env.SEND_MESSAGE}
