@@ -21,6 +21,7 @@ export class ChatCategoryService {
 	async findChat(chat: bigint) {
 		return await this.dbService.chatCategory.findMany({
 			select: {
+				id: true,
 				category: true
 			},
 			where: {
