@@ -7,9 +7,15 @@ export class ChatCategoryService {
 	constructor(private dbService: DbService) {}
 
 	async create(chatCategoryCreateInput: Prisma.chatCategoryCreateInput) {
-		return await this.dbService.chatCategory.create({
-			data: chatCategoryCreateInput
-		})
+		return JSON.parse(
+			JSON.stringify(
+				await this.dbService.chatCategory.create({
+					data: chatCategoryCreateInput
+				}),
+				(key, value) =>
+					typeof value === "bigint" ? value.toString() : value
+			)
+		)
 	}
 
 	async findChat(chat: bigint) {
@@ -24,10 +30,16 @@ export class ChatCategoryService {
 	}
 
 	async remove(id: number) {
-		return await this.dbService.chatCategory.delete({
-			where: {
-				id
-			}
-		})
+		return JSON.parse(
+			JSON.stringify(
+				await this.dbService.chatCategory.delete({
+					where: {
+						id
+					}
+				}),
+				(key, value) =>
+					typeof value === "bigint" ? value.toString() : value
+			)
+		)
 	}
 }

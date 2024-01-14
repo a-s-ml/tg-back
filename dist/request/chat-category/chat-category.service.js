@@ -17,9 +17,9 @@ let ChatCategoryService = class ChatCategoryService {
         this.dbService = dbService;
     }
     async create(chatCategoryCreateInput) {
-        return await this.dbService.chatCategory.create({
+        return JSON.parse(JSON.stringify(await this.dbService.chatCategory.create({
             data: chatCategoryCreateInput
-        });
+        }), (key, value) => typeof value === "bigint" ? value.toString() : value));
     }
     async findChat(chat) {
         return await this.dbService.chatCategory.findMany({
@@ -32,11 +32,11 @@ let ChatCategoryService = class ChatCategoryService {
         });
     }
     async remove(id) {
-        return await this.dbService.chatCategory.delete({
+        return JSON.parse(JSON.stringify(await this.dbService.chatCategory.delete({
             where: {
                 id
             }
-        });
+        }), (key, value) => typeof value === "bigint" ? value.toString() : value));
     }
 };
 exports.ChatCategoryService = ChatCategoryService;

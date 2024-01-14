@@ -3,17 +3,9 @@ import { Prisma } from "@prisma/client";
 export declare class ChatCategoryController {
     private readonly chatCategoryService;
     constructor(chatCategoryService: ChatCategoryService);
-    create(createChatCategoryDto: Prisma.chatCategoryCreateInput): Promise<{
-        id: number;
-        chat: bigint;
-        category: number;
-    }>;
+    create(createChatCategoryDto: Prisma.chatCategoryCreateInput): Promise<any>;
     findOne(chat: string): Promise<{
         category: number;
     }[]>;
-    remove(id: string): Promise<{
-        id: number;
-        chat: bigint;
-        category: number;
-    }>;
+    remove(id: string): Promise<any>;
 }
