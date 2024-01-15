@@ -110,7 +110,7 @@ export class ChatService {
 				chat
 			},
 			data: {
-				time,
+				time: time,
 			}
 		})
 		return await this.timeService.findOne(req.time)
@@ -122,7 +122,7 @@ export class ChatService {
 				chat
 			},
 			data: {
-				question_type,
+				question_type: question_type,
 			}
 		})
 		return await this.questionTypeService.findOne(req.question_type)
