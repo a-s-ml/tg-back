@@ -12,7 +12,6 @@ import { ChatCategoryModule } from "src/request/chat-category/chat-category.modu
 import { ResponsesModule } from "src/responses/responses.module"
 import { AutoPostController } from "./auto-post.controller"
 import { ChatActiveModule } from "src/request/chat-active/chat-active.module"
-import { TimeModule } from "src/request/time/time.module"
 
 @Module({
 	imports: [
@@ -22,7 +21,6 @@ import { TimeModule } from "src/request/time/time.module"
 		ConstructorsModule,
 		ChatActiveModule,
 		ChatModule,
-		TimeModule,
 		ResponsesModule
 	],
 	providers: [AutoPostService, SelectActivChatService, SelectQuestionService],

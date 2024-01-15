@@ -5,12 +5,16 @@ import { ChatInterface } from "src/interfaces/types/Chat.interface";
 import { UserInterface } from "src/interfaces/types/User.interface";
 import { GetTgService } from "src/responses/getTgAPI.service";
 import { ResponsesService } from "src/responses/responses.service";
+import { QuestionTypeService } from "../question-type/question-type.service";
+import { TimeService } from "../time/time.service";
 export declare class ChatService {
     private dbService;
+    private questionTypeService;
+    private timeService;
     private getTgService;
     private responsesService;
     private eventEmitter;
-    constructor(dbService: DbService, getTgService: GetTgService, responsesService: ResponsesService, eventEmitter: EventEmitter2);
+    constructor(dbService: DbService, questionTypeService: QuestionTypeService, timeService: TimeService, getTgService: GetTgService, responsesService: ResponsesService, eventEmitter: EventEmitter2);
     createChat(createChatDto: Prisma.chatCreateInput): Promise<{
         id: number;
         chat: bigint;
@@ -46,6 +50,17 @@ export declare class ChatService {
     findByReferal(chat: bigint): Promise<any>;
     countByReferal(chat: bigint): Promise<number>;
     update(chat: bigint, updateChatDto: Prisma.chatUpdateInput): Promise<any>;
+    updateTimeChat(chat: bigint, time: number): Promise<{
+        id: number;
+        name: string;
+        period: number;
+    }>;
+    updateTypeChat(chat: bigint, question_type: number): Promise<{
+        id: number;
+        name: string;
+        description: string;
+        active: number;
+    }>;
     verificationExistence(from: UserInterface): Promise<void>;
     verificationExistenceChat(chat: ChatInterface, from: UserInterface): Promise<void>;
     groupInfoById(chat: bigint): Promise<ChatInterface>;

@@ -15,9 +15,13 @@ const event_emitter_1 = require("@nestjs/event-emitter");
 const db_service_1 = require("../../db/db.service");
 const getTgAPI_service_1 = require("../../responses/getTgAPI.service");
 const responses_service_1 = require("../../responses/responses.service");
+const question_type_service_1 = require("../question-type/question-type.service");
+const time_service_1 = require("../time/time.service");
 let ChatService = class ChatService {
-    constructor(dbService, getTgService, responsesService, eventEmitter) {
+    constructor(dbService, questionTypeService, timeService, getTgService, responsesService, eventEmitter) {
         this.dbService = dbService;
+        this.questionTypeService = questionTypeService;
+        this.timeService = timeService;
         this.getTgService = getTgService;
         this.responsesService = responsesService;
         this.eventEmitter = eventEmitter;
@@ -77,6 +81,28 @@ let ChatService = class ChatService {
             data: updateChatDto
         }), (key, value) => typeof value === "bigint" ? value.toString() : value));
     }
+    async updateTimeChat(chat, time) {
+        const req = await this.dbService.chat.update({
+            where: {
+                chat
+            },
+            data: {
+                time
+            }
+        });
+        return await this.timeService.findOne(req.time);
+    }
+    async updateTypeChat(chat, question_type) {
+        const req = await this.dbService.chat.update({
+            where: {
+                chat
+            },
+            data: {
+                question_type
+            }
+        });
+        return await this.questionTypeService.findOne(req.question_type);
+    }
     async verificationExistence(from) {
         const checkUser = await this.findByChatId(from.id);
         if (!checkUser) {
@@ -128,6 +154,8 @@ exports.ChatService = ChatService;
 exports.ChatService = ChatService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [db_service_1.DbService,
+        question_type_service_1.QuestionTypeService,
+        time_service_1.TimeService,
         getTgAPI_service_1.GetTgService,
         responses_service_1.ResponsesService,
         event_emitter_1.EventEmitter2])

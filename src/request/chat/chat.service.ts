@@ -6,11 +6,15 @@ import { ChatInterface } from "src/interfaces/types/Chat.interface"
 import { UserInterface } from "src/interfaces/types/User.interface"
 import { GetTgService } from "src/responses/getTgAPI.service"
 import { ResponsesService } from "src/responses/responses.service"
+import { QuestionTypeService } from "../question-type/question-type.service"
+import { TimeService } from "../time/time.service"
 
 @Injectable()
 export class ChatService {
 	constructor(
 		private dbService: DbService,
+		private questionTypeService: QuestionTypeService,
+		private timeService: TimeService,
 		private getTgService: GetTgService,
 		private responsesService: ResponsesService,
 		private eventEmitter: EventEmitter2
@@ -98,6 +102,30 @@ export class ChatService {
 					typeof value === "bigint" ? value.toString() : value
 			)
 		)
+	}
+
+	async updateTimeChat(chat: bigint, time: number) {
+		const req = await this.dbService.chat.update({
+			where: {
+				chat
+			},
+			data: {
+				time
+			}
+		})
+		return await this.timeService.findOne(req.time)
+	}
+
+	async updateTypeChat(chat: bigint, question_type: number) {
+		const req = await this.dbService.chat.update({
+			where: {
+				chat
+			},
+			data: {
+				question_type
+			}
+		})
+		return await this.questionTypeService.findOne(req.question_type)
 	}
 
 	async verificationExistence(from: UserInterface) {

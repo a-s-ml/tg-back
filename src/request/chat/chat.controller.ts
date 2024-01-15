@@ -55,4 +55,20 @@ export class ChatController {
 	) {
 		return this.chatService.update(chat as unknown as bigint, updateChatDto)
 	}
+
+	@Patch("updateTimeChat/:chat")
+	updateTimeChat(
+		@Param("chat") chat: string,
+		@Body() time: number
+	) {
+		return this.chatService.updateTimeChat(chat as unknown as bigint, time)
+	}
+
+	@Patch("updateTypeChat/:chat")
+	updateTypeChat(
+		@Param("chat") chat: string,
+		@Body() type: number
+	) {
+		return this.chatService.updateTypeChat(chat as unknown as bigint, type)
+	}
 }

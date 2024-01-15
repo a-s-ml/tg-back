@@ -9,7 +9,7 @@ import { BuildStatListService } from "./statList/build-statList.service"
 
 import { AnswerModule } from "src/request/answer/answer.module"
 @Module({
-	imports: [QuestionModule, CategoryModule, AnswerModule],
+	imports: [QuestionModule, AnswerModule],
 	providers: [
 		BuildQuestionService,
 		BuildKeyboardService,

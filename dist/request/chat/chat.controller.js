@@ -48,6 +48,12 @@ let ChatController = class ChatController {
     update(chat, updateChatDto) {
         return this.chatService.update(chat, updateChatDto);
     }
+    updateTimeChat(chat, time) {
+        return this.chatService.updateTimeChat(chat, time);
+    }
+    updateTypeChat(chat, type) {
+        return this.chatService.updateTypeChat(chat, type);
+    }
 };
 exports.ChatController = ChatController;
 __decorate([
@@ -106,6 +112,22 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], ChatController.prototype, "update", null);
+__decorate([
+    (0, common_1.Patch)("updateTimeChat/:chat"),
+    __param(0, (0, common_1.Param)("chat")),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Number]),
+    __metadata("design:returntype", void 0)
+], ChatController.prototype, "updateTimeChat", null);
+__decorate([
+    (0, common_1.Patch)("updateTypeChat/:chat"),
+    __param(0, (0, common_1.Param)("chat")),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Number]),
+    __metadata("design:returntype", void 0)
+], ChatController.prototype, "updateTypeChat", null);
 exports.ChatController = ChatController = __decorate([
     (0, common_1.Controller)("chat"),
     __metadata("design:paramtypes", [chat_service_1.ChatService,

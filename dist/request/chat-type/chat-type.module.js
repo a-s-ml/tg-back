@@ -14,9 +14,11 @@ let ChatTypeModule = class ChatTypeModule {
 };
 exports.ChatTypeModule = ChatTypeModule;
 exports.ChatTypeModule = ChatTypeModule = __decorate([
+    (0, common_1.Global)(),
     (0, common_1.Module)({
         controllers: [chat_type_controller_1.ChatTypeController],
-        providers: [chat_type_service_1.ChatTypeService]
+        providers: [chat_type_service_1.ChatTypeService],
+        exports: [chat_type_service_1.ChatTypeService]
     })
 ], ChatTypeModule);
 //# sourceMappingURL=chat-type.module.js.map
