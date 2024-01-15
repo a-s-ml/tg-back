@@ -86,9 +86,7 @@ let ChatService = class ChatService {
             where: {
                 chat
             },
-            data: {
-                time: time,
-            }
+            data: time
         });
         return await this.timeService.findOne(req.time);
     }
@@ -97,9 +95,7 @@ let ChatService = class ChatService {
             where: {
                 chat
             },
-            data: {
-                question_type: question_type,
-            }
+            data: question_type,
         });
         return await this.questionTypeService.findOne(req.question_type);
     }

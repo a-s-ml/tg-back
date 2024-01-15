@@ -104,26 +104,23 @@ export class ChatService {
 		)
 	}
 
-	async updateTimeChat(chat: bigint, time: number) {
+	async updateTimeChat(chat: bigint, time: Prisma.chatUpdateInput) {
 		const req = await this.dbService.chat.update({
 			where: {
 				chat
 			},
-			data: {
-				time: time,
-			}
+			data: time
 		})
 		return await this.timeService.findOne(req.time)
 	}
 
-	async updateTypeChat(chat: bigint, question_type: number) {
+	async updateTypeChat(chat: bigint, question_type: Prisma.chatUpdateInput) {
 		const req = await this.dbService.chat.update({
 			where: {
 				chat
 			},
-			data: {
-				question_type: question_type,
-			}
+			data: question_type,
+			
 		})
 		return await this.questionTypeService.findOne(req.question_type)
 	}

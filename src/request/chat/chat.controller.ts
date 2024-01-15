@@ -59,7 +59,7 @@ export class ChatController {
 	@Patch("updateTimeChat/:chat")
 	updateTimeChat(
 		@Param("chat") chat: string,
-		@Body() time: number
+		@Body() time: Prisma.chatUpdateInput
 	) {
 		return this.chatService.updateTimeChat(chat as unknown as bigint, time)
 	}
@@ -67,7 +67,7 @@ export class ChatController {
 	@Patch("updateTypeChat/:chat")
 	updateTypeChat(
 		@Param("chat") chat: string,
-		@Body() type: number
+		@Body() type: Prisma.chatUpdateInput
 	) {
 		return this.chatService.updateTypeChat(chat as unknown as bigint, type)
 	}

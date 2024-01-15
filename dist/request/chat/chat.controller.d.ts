@@ -17,12 +17,12 @@ export declare class ChatController {
     findByChatId(chat: bigint): Promise<any>;
     tgGetFilePhoto(unic_id: string): Promise<any>;
     update(chat: string, updateChatDto: Prisma.chatUpdateInput): Promise<any>;
-    updateTimeChat(chat: string, time: number): Promise<{
+    updateTimeChat(chat: string, time: Prisma.chatUpdateInput): Promise<{
         id: number;
         name: string;
         period: number;
     }>;
-    updateTypeChat(chat: string, type: number): Promise<{
+    updateTypeChat(chat: string, type: Prisma.chatUpdateInput): Promise<{
         id: number;
         name: string;
         description: string;

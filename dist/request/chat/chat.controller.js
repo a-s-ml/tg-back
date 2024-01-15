@@ -117,7 +117,7 @@ __decorate([
     __param(0, (0, common_1.Param)("chat")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Number]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], ChatController.prototype, "updateTimeChat", null);
 __decorate([
@@ -125,7 +125,7 @@ __decorate([
     __param(0, (0, common_1.Param)("chat")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Number]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], ChatController.prototype, "updateTypeChat", null);
 exports.ChatController = ChatController = __decorate([

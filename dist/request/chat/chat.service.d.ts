@@ -50,12 +50,12 @@ export declare class ChatService {
     findByReferal(chat: bigint): Promise<any>;
     countByReferal(chat: bigint): Promise<number>;
     update(chat: bigint, updateChatDto: Prisma.chatUpdateInput): Promise<any>;
-    updateTimeChat(chat: bigint, time: number): Promise<{
+    updateTimeChat(chat: bigint, time: Prisma.chatUpdateInput): Promise<{
         id: number;
         name: string;
         period: number;
     }>;
-    updateTypeChat(chat: bigint, question_type: number): Promise<{
+    updateTypeChat(chat: bigint, question_type: Prisma.chatUpdateInput): Promise<{
         id: number;
         name: string;
         description: string;
