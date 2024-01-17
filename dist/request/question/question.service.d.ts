@@ -51,6 +51,7 @@ export declare class QuestionService {
         img: string;
         reward: number;
     }>;
+    findByChatId(chat: bigint): Promise<any>;
     findOneAnswers(id: number): Promise<{
         answer1: string;
         answer2: string;

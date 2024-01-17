@@ -35,6 +35,7 @@ export declare class QuestionController {
         img: string;
         reward: number;
     }[]>;
+    findByChatId(chat: bigint): Promise<any>;
     findOne(id: string): Promise<{
         id: number;
         text: string;

@@ -26,6 +26,9 @@ let QuestionController = class QuestionController {
     findAll() {
         return this.questionService.findAll();
     }
+    findByChatId(chat) {
+        return this.questionService.findByChatId(chat);
+    }
     findOne(id) {
         return this.questionService.findOne(+id);
     }
@@ -56,6 +59,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], QuestionController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)("findByChatId/:chat"),
+    __param(0, (0, common_1.Param)("chat")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [BigInt]),
+    __metadata("design:returntype", void 0)
+], QuestionController.prototype, "findByChatId", null);
 __decorate([
     (0, common_1.Get)(":id"),
     __param(0, (0, common_1.Param)("id")),

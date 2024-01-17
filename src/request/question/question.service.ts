@@ -22,6 +22,20 @@ export class QuestionService {
 		})
 	}
 
+	async findByChatId(chat: bigint) {
+		return JSON.parse(
+			JSON.stringify(
+				await this.dbService.question.findMany({
+					where: {
+						chat
+					}
+				}),
+				(key, value) =>
+					typeof value === "bigint" ? value.toString() : value
+			)
+		)
+	}
+
 	async findOneAnswers(id: number) {
 		return await this.dbService.question.findUnique({
 			select: {

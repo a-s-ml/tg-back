@@ -24,6 +24,11 @@ export class QuestionController {
 		return this.questionService.findAll()
 	}
 
+	@Get("findByChatId/:chat")
+	findByChatId(@Param("chat") chat: bigint) {
+		return this.questionService.findByChatId(chat)
+	}
+
 	@Get(":id")
 	findOne(@Param("id") id: string) {
 		return this.questionService.findOne(+id)
