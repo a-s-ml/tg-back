@@ -35,22 +35,7 @@ export declare class QuestionService {
         img: string;
         reward: number;
     }[]>;
-    findOne(id: number): Promise<{
-        id: number;
-        text: string;
-        date: Date;
-        chat: bigint;
-        category: number;
-        answer1: string;
-        answer2: string;
-        answer3: string;
-        answer4: string;
-        answerright: number;
-        isactual: number;
-        mod: number;
-        img: string;
-        reward: number;
-    }>;
+    findOne(id: number): Promise<any>;
     findByChatId(chat: bigint): Promise<any>;
     findOneAnswers(id: number): Promise<{
         answer1: string;

@@ -23,11 +23,11 @@ let QuestionService = class QuestionService {
         return await this.dbService.question.findMany({});
     }
     async findOne(id) {
-        return await this.dbService.question.findUnique({
+        return JSON.parse(JSON.stringify(await this.dbService.question.findUnique({
             where: {
                 id
             }
-        });
+        }), (key, value) => typeof value === "bigint" ? value.toString() : value));
     }
     async findByChatId(chat) {
         return JSON.parse(JSON.stringify(await this.dbService.question.findMany({

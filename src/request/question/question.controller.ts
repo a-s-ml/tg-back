@@ -29,7 +29,7 @@ export class QuestionController {
 		return this.questionService.findByChatId(chat)
 	}
 
-	@Get(":id")
+	@Get("findById/:id")
 	findOne(@Param("id") id: string) {
 		return this.questionService.findOne(+id)
 	}
@@ -56,10 +56,4 @@ export class QuestionController {
 	remove(@Param("id") id: string) {
 		return this.questionService.remove(+id)
 	}
-
-	// @Get("generate/:id")
-	// generate(@Param("id") id: string) {
-	// 	console.log("generate " + id)
-	// 	return this.questionService.generate(+id)
-	// }
 }

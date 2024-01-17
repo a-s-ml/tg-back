@@ -15,11 +15,17 @@ export class QuestionService {
 	}
 
 	async findOne(id: number) {
-		return await this.dbService.question.findUnique({
-			where: {
-				id
-			}
-		})
+		return JSON.parse(
+			JSON.stringify(
+				await this.dbService.question.findUnique({
+					where: {
+						id
+					}
+				}),
+				(key, value) =>
+					typeof value === "bigint" ? value.toString() : value
+			)
+		)
 	}
 
 	async findByChatId(chat: bigint) {
