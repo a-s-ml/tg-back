@@ -15,5 +15,5 @@ export declare class CallbackQueryService {
     update(callbackQuery: CallbackQueryInterface): Promise<void>;
     pollAnswer(pollAnswer: PollAnswerInterface): Promise<void>;
     message(message: MessageInterface): Promise<void>;
-    member(memberData: ChatMemberUpdatedInterface): Promise<void>;
+    member(memberData: ChatMemberUpdatedInterface): Promise<any>;
 }
