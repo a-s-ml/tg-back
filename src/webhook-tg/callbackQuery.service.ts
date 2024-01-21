@@ -79,7 +79,7 @@ export class CallbackQueryService {
 				`
 				${process.env.SEND_MESSAGE}
 				chat_id=${memberData.chat.id}
-				&text=${encodeURI("<b>Здравствуйте!</b>\n\nНастроить бота можно по ссылке https://t.me/ViktorinaOnlineBot/app \nили в боте @ViktorinaOnlineBot")}
+				&text=${encodeURI("<b>Здравствуйте!</b>\n\nНастроить бота можно по ссылке https://t.me/ViktorinaOnlineBot/app \nили @ViktorinaOnlineBot")}
 				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`
