@@ -74,23 +74,10 @@ export class CallbackQueryService {
 				memberData.chat,
 				memberData.from
 			)
-			const replyMarkup: InlineKeyboardMarkupInterface = {
-				inline_keyboard: [
-					[
-						{
-							text: "Настройки ViktorinaOnlineBot",
-							web_app: {
-								url: `https://80q.ru/`
-							}
-						}
-					]
-				]
-			}
 			console.log(memberData.chat.id)
 			return await this.responsesService.sendMessage({
 				chat_id: memberData.chat.id,
-				text: encodeURI("<b>Здравствуйте!</b>\n\nСейчас проходит оптимизация и глобальное обновление бота.\nСвои пожелания по функционалу бота Вы можете отправить разработчику через приложение..."),
-				reply_markup: replyMarkup
+				text: encodeURI("<b>Здравствуйте!</b>\n\nНастроить бота можно по ссылке https://t.me/ViktorinaOnlineBot/app"),
 			})
 		}
 		if (
