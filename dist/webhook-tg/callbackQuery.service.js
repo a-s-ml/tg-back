@@ -84,9 +84,9 @@ let CallbackQueryService = class CallbackQueryService {
                 ]
             };
             const text = `
-			<b>Здравствуйте!</b>\n\nСпасибо, что установили меня, давайте поиграем...
+			<b>Здравствуйте!</b>\n\nСейчас проходит оптимизация и глобальное обновление бота.\nСвои пожелания по функционалу бота Вы можете отправить разработчику через приложение...
 			`;
-            await fetch(`
+            const resadd = await fetch(`
 				${process.env.SEND_MESSAGE}
 				chat_id=${memberData.chat.id}
 				&text=${encodeURI(text)}
@@ -94,6 +94,7 @@ let CallbackQueryService = class CallbackQueryService {
 				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`);
+            console.log(resadd);
         }
         if (memberData.new_chat_member.status === "left" ||
             memberData.new_chat_member.status === "kicked" ||
