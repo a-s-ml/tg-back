@@ -82,6 +82,7 @@ let CallbackQueryService = class CallbackQueryService {
                     ]
                 ]
             };
+            console.log(memberData.chat.id);
             return await this.responsesService.sendMessage({
                 chat_id: memberData.chat.id,
                 text: encodeURI("<b>Здравствуйте!</b>\n\nСейчас проходит оптимизация и глобальное обновление бота.\nСвои пожелания по функционалу бота Вы можете отправить разработчику через приложение..."),
