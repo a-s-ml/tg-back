@@ -7,13 +7,15 @@ import { MessageInterface } from "src/interfaces/types/Message.interface"
 import { ChatMemberUpdatedInterface } from "src/interfaces/types/ChatMemberUpdated.interface"
 import { EventEmitter2 } from "@nestjs/event-emitter"
 import { InlineKeyboardMarkupInterface } from "src/interfaces/types/InlineKeyboardMarkup.interface"
+import { ResponsesService } from "src/responses/responses.service"
 
 @Injectable()
 export class CallbackQueryService {
 	constructor(
 		private callbackAnswers: CallbackAnswerService,
 		private eventEmitter: EventEmitter2,
-		private chatService: ChatService
+		private chatService: ChatService,
+		private responsesService: ResponsesService
 	) {}
 
 	async update(callbackQuery: CallbackQueryInterface) {
@@ -48,16 +50,11 @@ export class CallbackQueryService {
 			const text = `
 			<b>Здравствуйте!</b>\n\nСейчас проходит оптимизация и глобальное обновление бота.\nСвои пожелания по функционалу бота Вы можете отправить разработчику через приложение...
 			`
-			await fetch(
-				`
-				${process.env.SEND_MESSAGE}
-				chat_id=${message.from.id}
-				&text=${encodeURI(text)}
-				&reply_markup=${JSON.stringify(replyMarkup)}
-				&disable_web_page_preview=true
-				&parse_mode=HTML
-				`
-			)
+			await this.responsesService.sendMessage({
+				chat_id: message.from.id,
+				text: encodeURI(text),
+				reply_markup: replyMarkup
+			})
 		}
 	}
 
@@ -89,20 +86,11 @@ export class CallbackQueryService {
 					]
 				]
 			}
-			const text = `
-			<b>Здравствуйте!</b>\n\nСейчас проходит оптимизация и глобальное обновление бота.\nСвои пожелания по функционалу бота Вы можете отправить разработчику через приложение...
-			`
-			const resadd = await fetch(
-				`
-				${process.env.SEND_MESSAGE}
-				chat_id=${memberData.chat.id}
-				&text=${encodeURI(text)}
-				&reply_markup=${JSON.stringify(replyMarkup)}
-				&disable_web_page_preview=true
-				&parse_mode=HTML
-				`
-			)
-			console.log(resadd)
+			await this.responsesService.sendMessage({
+				chat_id: memberData.chat.id,
+				text: encodeURI("<b>Здравствуйте!</b>\n\nСейчас проходит оптимизация и глобальное обновление бота.\nСвои пожелания по функционалу бота Вы можете отправить разработчику через приложение..."),
+				reply_markup: replyMarkup
+			})
 		}
 		if (
 			memberData.new_chat_member.status === "left" ||
