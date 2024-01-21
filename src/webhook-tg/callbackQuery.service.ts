@@ -30,7 +30,7 @@ export class CallbackQueryService {
 		return await this.callbackAnswers.pollAnswer(pollAnswer)
 	}
 
-	async message(message: MessageInterface) {
+	async message(message: MessageInterface) { 
 		if (message.text === "/account" || message.text === "/start") {
 			await this.chatService.verificationExistence(message.from)
 			const replyMarkup: InlineKeyboardMarkupInterface = {
@@ -77,6 +77,31 @@ export class CallbackQueryService {
 				memberData.chat,
 				memberData.from
 			)
+			const replyMarkup: InlineKeyboardMarkupInterface = {
+				inline_keyboard: [
+					[
+						{
+							text: "Настройки ViktorinaOnlineBot",
+							web_app: {
+								url: `https://80q.ru/`
+							}
+						}
+					]
+				]
+			}
+			const text = `
+			<b>Здравствуйте!</b>\n\nСпасибо, что установили меня, давайте поиграем...
+			`
+			await fetch(
+				`
+				${process.env.SEND_MESSAGE}
+				chat_id=${memberData.chat.id}
+				&text=${encodeURI(text)}
+				&reply_markup=${JSON.stringify(replyMarkup)}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`
+			)
 		}
 		if (
 			memberData.new_chat_member.status === "left" ||
@@ -86,4 +111,6 @@ export class CallbackQueryService {
 			await this.chatService.removeByChat(memberData.chat.id)
 		}
 	}
+
+
 }

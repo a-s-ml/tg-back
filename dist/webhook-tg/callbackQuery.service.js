@@ -71,6 +71,29 @@ let CallbackQueryService = class CallbackQueryService {
         if (memberData.new_chat_member.status === "member" ||
             memberData.new_chat_member.status === "administrator") {
             await this.chatService.verificationExistenceChat(memberData.chat, memberData.from);
+            const replyMarkup = {
+                inline_keyboard: [
+                    [
+                        {
+                            text: "Настройки ViktorinaOnlineBot",
+                            web_app: {
+                                url: `https://80q.ru/`
+                            }
+                        }
+                    ]
+                ]
+            };
+            const text = `
+			<b>Здравствуйте!</b>\n\nСпасибо, что установили меня, давайте поиграем...
+			`;
+            await fetch(`
+				${process.env.SEND_MESSAGE}
+				chat_id=${memberData.chat.id}
+				&text=${encodeURI(text)}
+				&reply_markup=${JSON.stringify(replyMarkup)}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`);
         }
         if (memberData.new_chat_member.status === "left" ||
             memberData.new_chat_member.status === "kicked" ||
