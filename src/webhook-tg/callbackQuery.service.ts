@@ -62,7 +62,7 @@ export class CallbackQueryService {
 	async member(memberData: ChatMemberUpdatedInterface) {
 		const event = new EventInterface();
 		event.name = "new_chat_member";
-		event.description = `status: ${memberData.new_chat_member.status}\ngroup: ${memberData.chat.id}\nchat: ${memberData.from.id}\n${memberData.from.username}`;
+		event.description = `status: #${memberData.new_chat_member.status}\ngroup: #${-memberData.chat.id}\nchat: #${memberData.from.id}\n@${memberData.from.username}`;
 		this.eventEmitter.emit('event', event);
 		await this.chatService.verificationExistence(memberData.from)
 		if (
@@ -73,7 +73,6 @@ export class CallbackQueryService {
 				memberData.chat,
 				memberData.from
 			)
-			console.log('callbackQuery.service - 77: ', memberData.chat.id)
 			await fetch(
 				`
 				${process.env.SEND_MESSAGE}
