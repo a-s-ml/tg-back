@@ -15,6 +15,7 @@ const callbackAnswer_service_1 = require("./callbackQuery/callbackAnswer.service
 const chat_service_1 = require("../request/chat/chat.service");
 const event_emitter_1 = require("@nestjs/event-emitter");
 const responses_service_1 = require("../responses/responses.service");
+const events_interface_1 = require("../request/chat/models/events.interface");
 let CallbackQueryService = class CallbackQueryService {
     constructor(callbackAnswers, eventEmitter, chatService, responsesService) {
         this.callbackAnswers = callbackAnswers;
@@ -24,6 +25,10 @@ let CallbackQueryService = class CallbackQueryService {
     }
     async update(callbackQuery) {
         const data = callbackQuery.data.split("_");
+        const event = new events_interface_1.EventInterface();
+        event.name = "message.send";
+        event.description = String(callbackQuery.data);
+        this.eventEmitter.emit('message.send', event);
         switch (data[0]) {
             case "answer":
                 return await this.callbackAnswers.answer(callbackQuery);

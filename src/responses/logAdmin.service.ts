@@ -47,6 +47,7 @@ export class LogAdminService {
 
 	@OnEvent('message.send')
 	async handleOrderCreatedEvent(event: EventInterface) {
+		console.log('event: ', event)
 		const adm: number = -1001524297397
 		try {
 			const res = await axios.get(
@@ -58,9 +59,14 @@ export class LogAdminService {
 				&parse_mode=HTML
 				`
 			)
-			console.log('logAdmin.service - 41: ', res)
+			console.log('event: ', res)
 		} catch (error) {
-			console.log('logAdmin.service - 43: ', error)
+			console.log('event: ', error)
 		}
+	}
+
+	@OnEvent('message.send')
+	handleOrderCreatedEvent2(event: EventInterface) {
+	  console.log(event);
 	}
 }

@@ -8,6 +8,7 @@ import { ChatMemberUpdatedInterface } from "src/interfaces/types/ChatMemberUpdat
 import { EventEmitter2 } from "@nestjs/event-emitter"
 import { InlineKeyboardMarkupInterface } from "src/interfaces/types/InlineKeyboardMarkup.interface"
 import { ResponsesService } from "src/responses/responses.service"
+import { EventInterface } from "src/request/chat/models/events.interface"
 
 @Injectable()
 export class CallbackQueryService {
@@ -20,6 +21,10 @@ export class CallbackQueryService {
 
 	async update(callbackQuery: CallbackQueryInterface) {
 		const data = callbackQuery.data.split("_")
+		const event = new EventInterface();
+		event.name = "message.send";
+		event.description = String(callbackQuery.data);
+		this.eventEmitter.emit('message.send', event);
 		switch (data[0]) {
 			case "answer":
 				return await this.callbackAnswers.answer(callbackQuery)

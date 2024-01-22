@@ -49,6 +49,7 @@ let LogAdminService = class LogAdminService {
         }
     }
     async handleOrderCreatedEvent(event) {
+        console.log('event: ', event);
         const adm = -1001524297397;
         try {
             const res = await axios_1.default.get(`
@@ -58,11 +59,14 @@ let LogAdminService = class LogAdminService {
 				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`);
-            console.log('logAdmin.service - 41: ', res);
+            console.log('event: ', res);
         }
         catch (error) {
-            console.log('logAdmin.service - 43: ', error);
+            console.log('event: ', error);
         }
+    }
+    handleOrderCreatedEvent2(event) {
+        console.log(event);
     }
 };
 exports.LogAdminService = LogAdminService;
@@ -84,6 +88,12 @@ __decorate([
     __metadata("design:paramtypes", [events_interface_1.EventInterface]),
     __metadata("design:returntype", Promise)
 ], LogAdminService.prototype, "handleOrderCreatedEvent", null);
+__decorate([
+    (0, event_emitter_1.OnEvent)('message.send'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [events_interface_1.EventInterface]),
+    __metadata("design:returntype", void 0)
+], LogAdminService.prototype, "handleOrderCreatedEvent2", null);
 exports.LogAdminService = LogAdminService = __decorate([
     (0, common_1.Injectable)()
 ], LogAdminService);
