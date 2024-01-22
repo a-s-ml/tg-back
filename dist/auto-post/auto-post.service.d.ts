@@ -6,6 +6,7 @@ import { BuildStatListService } from "src/constructors/statList/build-statList.s
 import { ChatService } from "src/request/chat/chat.service";
 import { ChatDataService } from "src/request/chat-data/chat-data.service";
 import { IChat } from "src/interfaces/types/db/IChat.interface";
+import { EventEmitter2 } from "@nestjs/event-emitter";
 export declare class AutoPostService {
     private selectQuestionService;
     private selectActivChatService;
@@ -14,7 +15,8 @@ export declare class AutoPostService {
     private responsesService;
     private chatDataService;
     private chatService;
-    constructor(selectQuestionService: SelectQuestionService, selectActivChatService: SelectActivChatService, buildQuestionService: BuildQuestionService, buildStatListService: BuildStatListService, responsesService: ResponsesService, chatDataService: ChatDataService, chatService: ChatService);
+    private eventEmitter;
+    constructor(selectQuestionService: SelectQuestionService, selectActivChatService: SelectActivChatService, buildQuestionService: BuildQuestionService, buildStatListService: BuildStatListService, responsesService: ResponsesService, chatDataService: ChatDataService, chatService: ChatService, eventEmitter: EventEmitter2);
     publicationInActiveGroup(): Promise<void>;
     questionTypePoll(question: number, chat: IChat): Promise<void>;
     questionTypeImg(question: number, chat: IChat): Promise<void>;

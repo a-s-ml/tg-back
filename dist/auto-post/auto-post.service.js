@@ -18,8 +18,10 @@ const responses_service_1 = require("../responses/responses.service");
 const build_statList_service_1 = require("../constructors/statList/build-statList.service");
 const chat_service_1 = require("../request/chat/chat.service");
 const chat_data_service_1 = require("../request/chat-data/chat-data.service");
+const events_interface_1 = require("../request/chat/models/events.interface");
+const event_emitter_1 = require("@nestjs/event-emitter");
 let AutoPostService = class AutoPostService {
-    constructor(selectQuestionService, selectActivChatService, buildQuestionService, buildStatListService, responsesService, chatDataService, chatService) {
+    constructor(selectQuestionService, selectActivChatService, buildQuestionService, buildStatListService, responsesService, chatDataService, chatService, eventEmitter) {
         this.selectQuestionService = selectQuestionService;
         this.selectActivChatService = selectActivChatService;
         this.buildQuestionService = buildQuestionService;
@@ -27,6 +29,7 @@ let AutoPostService = class AutoPostService {
         this.responsesService = responsesService;
         this.chatDataService = chatDataService;
         this.chatService = chatService;
+        this.eventEmitter = eventEmitter;
     }
     async publicationInActiveGroup() {
         const chatact = await this.selectActivChatService.activChat();
@@ -64,6 +67,10 @@ let AutoPostService = class AutoPostService {
                 poll_id: response.poll.id,
                 question_type: "poll"
             });
+            const event = new events_interface_1.EventInterface();
+            event.name = "question Poll";
+            event.description = `question Poll\nchat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}question_id: ${question}`;
+            this.eventEmitter.emit("event", event);
         }
     }
     async questionTypeImg(question, chat) {
@@ -78,6 +85,10 @@ let AutoPostService = class AutoPostService {
                 question_id: question,
                 question_type: "photo"
             });
+            const event = new events_interface_1.EventInterface();
+            event.name = "question Photo";
+            event.description = `question Photo\nchat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}question_id: ${question}`;
+            this.eventEmitter.emit("event", event);
         }
     }
     async questionTypeText(question, chat) {
@@ -92,6 +103,10 @@ let AutoPostService = class AutoPostService {
                 question_id: question,
                 question_type: "text"
             });
+            const event = new events_interface_1.EventInterface();
+            event.name = "question Text";
+            event.description = `question Text\nchat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}question_id: ${question}`;
+            this.eventEmitter.emit("event", event);
         }
     }
     async questionTypeMixed(question, chat) {
@@ -112,6 +127,10 @@ let AutoPostService = class AutoPostService {
             const stat = await this.buildStatListService.statStandart(chatact[key].chat);
             await this.responsesService.sendMessage(stat);
         }
+        const event = new events_interface_1.EventInterface();
+        event.name = "active group";
+        event.description = `count: ${chatact.length}`;
+        this.eventEmitter.emit("event", event);
     }
 };
 exports.AutoPostService = AutoPostService;
@@ -123,6 +142,7 @@ exports.AutoPostService = AutoPostService = __decorate([
         build_statList_service_1.BuildStatListService,
         responses_service_1.ResponsesService,
         chat_data_service_1.ChatDataService,
-        chat_service_1.ChatService])
+        chat_service_1.ChatService,
+        event_emitter_1.EventEmitter2])
 ], AutoPostService);
 //# sourceMappingURL=auto-post.service.js.map

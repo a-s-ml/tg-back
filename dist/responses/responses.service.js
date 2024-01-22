@@ -5,20 +5,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResponsesService = void 0;
 require("dotenv/config");
 const axios_1 = require("axios");
 const common_1 = require("@nestjs/common");
-const event_emitter_1 = require("@nestjs/event-emitter");
-const events_interface_1 = require("../request/chat/models/events.interface");
 let ResponsesService = class ResponsesService {
-    constructor(eventEmitter) {
-        this.eventEmitter = eventEmitter;
-    }
     async sendMessage(message) {
         try {
             const response = await axios_1.default.get(`
@@ -29,11 +21,6 @@ let ResponsesService = class ResponsesService {
 			&disable_web_page_preview=true
 			&parse_mode=HTML
 			`);
-            console.log("responses.service - 30: ", response.data.result);
-            const event = new events_interface_1.EventInterface();
-            event.name = "Message.send";
-            event.description = String(response.data.result);
-            this.eventEmitter.emit("event", event);
             return response.data.result;
         }
         catch (error) { }
@@ -48,10 +35,6 @@ let ResponsesService = class ResponsesService {
 			&disable_web_page_preview=true
 			&parse_mode=HTML
 			`);
-            const event = new events_interface_1.EventInterface();
-            event.name = "editMessageText.send";
-            event.description = String(response.data.result);
-            this.eventEmitter.emit("event", event);
             return response.data.result;
         }
         catch (error) { }
@@ -67,10 +50,6 @@ let ResponsesService = class ResponsesService {
 			&type=quiz
 			&is_anonymous=${message.is_anonymous}
 			`);
-            const event = new events_interface_1.EventInterface();
-            event.name = "Poll.send";
-            event.description = String(response.data.result);
-            this.eventEmitter.emit("event", event);
             return response.data.result;
         }
         catch (error) { }
@@ -100,10 +79,6 @@ let ResponsesService = class ResponsesService {
 			&disable_web_page_preview=true
 			&parse_mode=HTML
 			`);
-            const event = new events_interface_1.EventInterface();
-            event.name = "Photo.send";
-            event.description = String(response.data.result);
-            this.eventEmitter.emit("event", event);
             return response.data.result;
         }
         catch (error) { }
@@ -129,10 +104,6 @@ let ResponsesService = class ResponsesService {
 			&text=${answerCallbackQuery.text}
 			&show_alert=true
 			`);
-            const event = new events_interface_1.EventInterface();
-            event.name = "answerCallbackQuery.send";
-            event.description = String(response.data.result);
-            this.eventEmitter.emit("event", event);
             return response.data.result;
         }
         catch (error) { }
@@ -151,7 +122,6 @@ let ResponsesService = class ResponsesService {
 };
 exports.ResponsesService = ResponsesService;
 exports.ResponsesService = ResponsesService = __decorate([
-    (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [event_emitter_1.EventEmitter2])
+    (0, common_1.Injectable)()
 ], ResponsesService);
 //# sourceMappingURL=responses.service.js.map

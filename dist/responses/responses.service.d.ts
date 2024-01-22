@@ -1,5 +1,4 @@
 import "dotenv/config";
-import { EventEmitter2 } from "@nestjs/event-emitter";
 import { SendPollMethod } from "src/interfaces/metods/sendPoll.method";
 import { SendPhotoMethod } from "src/interfaces/metods/sendPhoto.method";
 import { SendMessageMethod } from "src/interfaces/metods/sendMessage.method";
@@ -8,8 +7,6 @@ import { EditMessageCaptionMethod } from "src/interfaces/metods/editMessageCapti
 import { AnswerCallbackQueryMethod } from "src/interfaces/metods/answerCallbackQuery.method";
 import { editMessageReplyMarkupMethod } from "src/interfaces/metods/editMessageReplyMarkup.method";
 export declare class ResponsesService {
-    private eventEmitter;
-    constructor(eventEmitter: EventEmitter2);
     sendMessage(message: SendMessageMethod): Promise<any>;
     editMessageText(message: EditMessageTextMethod): Promise<any>;
     sendPoll(message: SendPollMethod): Promise<any>;

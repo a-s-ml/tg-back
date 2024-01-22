@@ -8,6 +8,8 @@ import { ChatService } from "src/request/chat/chat.service"
 import { ChatDataService } from "src/request/chat-data/chat-data.service"
 import { IChat } from "src/interfaces/types/db/IChat.interface"
 import { MessageInterface } from "src/interfaces/types/Message.interface"
+import { EventInterface } from "src/request/chat/models/events.interface"
+import { EventEmitter2 } from "@nestjs/event-emitter"
 
 @Injectable()
 export class AutoPostService {
@@ -18,7 +20,8 @@ export class AutoPostService {
 		private buildStatListService: BuildStatListService,
 		private responsesService: ResponsesService,
 		private chatDataService: ChatDataService,
-		private chatService: ChatService
+		private chatService: ChatService,
+		private eventEmitter: EventEmitter2
 	) {}
 
 	async publicationInActiveGroup() {
@@ -74,6 +77,10 @@ export class AutoPostService {
 				poll_id: response.poll.id,
 				question_type: "poll"
 			})
+			const event = new EventInterface()
+			event.name = "question Poll"
+			event.description = `question Poll\nchat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}question_id: ${question}`
+			this.eventEmitter.emit("event", event)
 		}
 	}
 
@@ -93,6 +100,10 @@ export class AutoPostService {
 				question_id: question,
 				question_type: "photo"
 			})
+			const event = new EventInterface()
+			event.name = "question Photo"
+			event.description = `question Photo\nchat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}question_id: ${question}`
+			this.eventEmitter.emit("event", event)
 		}
 	}
 
@@ -112,6 +123,10 @@ export class AutoPostService {
 				question_id: question,
 				question_type: "text"
 			})
+			const event = new EventInterface()
+			event.name = "question Text"
+			event.description = `question Text\nchat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}question_id: ${question}`
+			this.eventEmitter.emit("event", event)
 		}
 	}
 
@@ -138,5 +153,9 @@ export class AutoPostService {
 			)
 			await this.responsesService.sendMessage(stat)
 		}
+		const event = new EventInterface()
+		event.name = "active group"
+		event.description = `count: ${chatact.length}`
+		this.eventEmitter.emit("event", event)
 	}
 }

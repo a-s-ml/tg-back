@@ -1,7 +1,6 @@
 import "dotenv/config"
 import axios from "axios"
 import { Injectable } from "@nestjs/common"
-import { EventEmitter2 } from "@nestjs/event-emitter"
 
 import { SendPollMethod } from "src/interfaces/metods/sendPoll.method"
 import { SendPhotoMethod } from "src/interfaces/metods/sendPhoto.method"
@@ -10,12 +9,9 @@ import { EditMessageTextMethod } from "src/interfaces/metods/editMessageText.met
 import { EditMessageCaptionMethod } from "src/interfaces/metods/editMessageCaption.method"
 import { AnswerCallbackQueryMethod } from "src/interfaces/metods/answerCallbackQuery.method"
 import { editMessageReplyMarkupMethod } from "src/interfaces/metods/editMessageReplyMarkup.method"
-import { EventInterface } from "src/request/chat/models/events.interface"
 
 @Injectable()
 export class ResponsesService {
-	constructor(private eventEmitter: EventEmitter2) {}
-
 	async sendMessage(message: SendMessageMethod) {
 		try {
 			const response = await axios.get(
@@ -28,11 +24,6 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			)
-			console.log("responses.service - 30: ", response.data.result)
-			const event = new EventInterface()
-			event.name = "Message.send"
-			event.description = String(response.data.result)
-			this.eventEmitter.emit("event", event)
 			return response.data.result
 		} catch (error) {}
 	}
@@ -49,10 +40,6 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			)
-			const event = new EventInterface()
-			event.name = "editMessageText.send"
-			event.description = String(response.data.result)
-			this.eventEmitter.emit("event", event)
 			return response.data.result
 		} catch (error) {}
 	}
@@ -70,10 +57,6 @@ export class ResponsesService {
 			&is_anonymous=${message.is_anonymous}
 			`
 			)
-			const event = new EventInterface()
-			event.name = "Poll.send"
-			event.description = String(response.data.result)
-			this.eventEmitter.emit("event", event)
 			return response.data.result
 		} catch (error) {}
 	}
@@ -107,10 +90,6 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			)
-			const event = new EventInterface()
-			event.name = "Photo.send"
-			event.description = String(response.data.result)
-			this.eventEmitter.emit("event", event)
 			return response.data.result
 		} catch (error) {}
 	}
@@ -140,10 +119,6 @@ export class ResponsesService {
 			&show_alert=true
 			`
 			)
-			const event = new EventInterface()
-			event.name = "answerCallbackQuery.send"
-			event.description = String(response.data.result)
-			this.eventEmitter.emit("event", event)
 			return response.data.result
 		} catch (error) {}
 	}
