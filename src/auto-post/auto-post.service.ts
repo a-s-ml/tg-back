@@ -27,6 +27,10 @@ export class AutoPostService {
 	async publicationInActiveGroup() {
 		const chatact = await this.selectActivChatService.activChat()
 		if (chatact?.length) {
+			const event = new EventInterface()
+			event.name = "active_group"
+			event.description = `count: ${chatact.length}`
+			this.eventEmitter.emit("event", event)
 			for (var key in chatact) {
 				const chat = await this.chatService.findByChatId(
 					chatact[key].chat
@@ -154,7 +158,7 @@ export class AutoPostService {
 			await this.responsesService.sendMessage(stat)
 		}
 		const event = new EventInterface()
-		event.name = "active_group"
+		event.name = "active_group_stat"
 		event.description = `count: ${chatact.length}`
 		this.eventEmitter.emit("event", event)
 	}
