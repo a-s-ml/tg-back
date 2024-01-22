@@ -39,7 +39,7 @@ let CallbackQueryService = class CallbackQueryService {
         if (message.text === "/account" || message.text === "/start") {
             const event = new events_interface_1.EventInterface();
             event.name = "messageToBot";
-            event.description = `chat: #id${message.from.id}\n@${message.from.username}\ntext: #${message.text}`;
+            event.description = `chat: #id${message.from.id}\n@${message.from.username}\ntext: #${String(message.text).slice(1)}`;
             this.eventEmitter.emit('event', event);
             await this.chatService.verificationExistence(message.from);
             const replyMarkup = {
