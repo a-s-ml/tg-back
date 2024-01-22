@@ -35,6 +35,10 @@ export class CallbackQueryService {
 
 	async message(message: MessageInterface) { 
 		if (message.text === "/account" || message.text === "/start") {
+			const event = new EventInterface();
+			event.name = "messageToBot";
+			event.description = `chat: #id${message.from.id}\n@${message.from.username}\ntext: #${message.text}`;
+			this.eventEmitter.emit('event', event);
 			await this.chatService.verificationExistence(message.from)
 			const replyMarkup: InlineKeyboardMarkupInterface = {
 				inline_keyboard: [
@@ -61,8 +65,8 @@ export class CallbackQueryService {
 
 	async member(memberData: ChatMemberUpdatedInterface) {
 		const event = new EventInterface();
-		event.name = "new_chat_member";
-		event.description = `status: #${memberData.new_chat_member.status}\ngroup: #id${-memberData.chat.id}\nchat: #id${memberData.from.id}\n@${memberData.from.username}`;
+		event.name = "newChatMember";
+		event.description = `status: #${memberData.new_chat_member.status}\ngroup: #id${-memberData.from.id}\nchat: #id${memberData.from.id}\n@${memberData.from.username}`;
 		this.eventEmitter.emit('event', event);
 		await this.chatService.verificationExistence(memberData.from)
 		if (

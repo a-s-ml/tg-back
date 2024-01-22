@@ -57,7 +57,7 @@ export class AutoPostService {
 				} else {
 					const event = new EventInterface()
 					event.name = "publicationInActiveGroup_38"
-					event.description = `#no_question`
+					event.description = `#noQuestion`
 					this.eventEmitter.emit("event", event)
 				}
 			}
@@ -83,7 +83,7 @@ export class AutoPostService {
 				question_type: "poll"
 			})
 			const event = new EventInterface()
-			event.name = "question_poll"
+			event.name = "questionPoll"
 			event.description = `group: #id${-response.chat.id}\ngroup_type: #${
 				response.chat.type
 			}\nmessage_id: <a href='https://t.me/${response.chat.username}/${
@@ -110,7 +110,7 @@ export class AutoPostService {
 				question_type: "photo"
 			})
 			const event = new EventInterface()
-			event.name = "question_photo"
+			event.name = "questionPhoto"
 			event.description = `group: #id${-response.chat.id}\ngroup_type: #${
 				response.chat.type
 			}\nmessage_id: <a href='https://t.me/${response.chat.username}/${
@@ -137,7 +137,7 @@ export class AutoPostService {
 				question_type: "text"
 			})
 			const event = new EventInterface()
-			event.name = "question_text"
+			event.name = "questionText"
 			event.description = `group: #id${-response.chat.id}\ngroup_type: #${
 				response.chat.type
 			}\nmessage_id: <a href='https://t.me/${response.chat.username}/${
@@ -171,7 +171,7 @@ export class AutoPostService {
 			await this.responsesService.sendMessage(stat)
 		}
 		const event = new EventInterface()
-		event.name = "active_group_stat"
+		event.name = "activeGroupStat"
 		event.description = `count: ${chatact.length}`
 		this.eventEmitter.emit("event", event)
 	}

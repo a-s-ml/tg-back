@@ -134,8 +134,8 @@ export class ChatService {
 				bot: from.is_bot ? 1 : 0
 			})
 			const event = new EventInterface()
-			event.name = "new_user"
-			event.description = `chat: #${from.id}\nusername: @${from.username}`;
+			event.name = "newUser"
+			event.description = `chat: #id${from.id}\nusername: @${from.username}`;
 			this.eventEmitter.emit("event", event)
 		}
 	}
@@ -153,8 +153,8 @@ export class ChatService {
 				chat.id
 			)
 			const event = new EventInterface()
-			event.name = "new_group"
-			event.description = `group: #${-chat.id}\nmemberCount: ${JSON.stringify(memberCount)}\nchat: #${from.id}\nusername: @${from.username}`;
+			event.name = "newGroup"
+			event.description = `group: #id${-chat.id}\nmemberCount: ${JSON.stringify(memberCount)}\nchat: #id${from.id}\nusername: @${from.username}`;
 			this.eventEmitter.emit("event", event)
 		}
 	}
