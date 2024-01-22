@@ -78,8 +78,8 @@ export class AutoPostService {
 				question_type: "poll"
 			})
 			const event = new EventInterface()
-			event.name = "question Poll"
-			event.description = `question Poll\nchat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}question_id: ${question}`
+			event.name = "question_poll"
+			event.description = `chat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}\nquestion_id: ${question}`
 			this.eventEmitter.emit("event", event)
 		}
 	}
@@ -101,8 +101,8 @@ export class AutoPostService {
 				question_type: "photo"
 			})
 			const event = new EventInterface()
-			event.name = "question Photo"
-			event.description = `question Photo\nchat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}question_id: ${question}`
+			event.name = "question_photo"
+			event.description = `chat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}\nquestion_id: ${question}`
 			this.eventEmitter.emit("event", event)
 		}
 	}
@@ -124,8 +124,8 @@ export class AutoPostService {
 				question_type: "text"
 			})
 			const event = new EventInterface()
-			event.name = "question Text"
-			event.description = `question Text\nchat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}question_id: ${question}`
+			event.name = "question_text"
+			event.description = `chat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}\nquestion_id: ${question}`
 			this.eventEmitter.emit("event", event)
 		}
 	}

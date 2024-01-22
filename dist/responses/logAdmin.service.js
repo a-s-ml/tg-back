@@ -17,11 +17,12 @@ const axios_1 = require("axios");
 const events_interface_1 = require("../request/chat/models/events.interface");
 let LogAdminService = class LogAdminService {
     async handleOrderCreatedEvent(event) {
+        const gitter = encodeURIComponent('#');
         try {
             await axios_1.default.get(`
 				${process.env.SEND_MESSAGE}
 				chat_id=-1001524297397
-				&text=${encodeURI(event.description)}
+				&text=${encodeURI(`${gitter}${event.name}+'\n'+${event.description}`)}
 				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`);

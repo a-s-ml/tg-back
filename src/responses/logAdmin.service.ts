@@ -8,12 +8,13 @@ import { EventInterface } from "src/request/chat/models/events.interface"
 export class LogAdminService {
 	@OnEvent("event")
 	async handleOrderCreatedEvent(event: EventInterface) {
+		const gitter:string = encodeURIComponent('#')
 		try {
 			await axios.get(
 				`
 				${process.env.SEND_MESSAGE}
 				chat_id=-1001524297397
-				&text=${encodeURI(event.description)}
+				&text=${encodeURI(`${gitter}${event.name}+'\n'+${event.description}`)}
 				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`
