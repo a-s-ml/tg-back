@@ -16,84 +16,26 @@ const event_emitter_1 = require("@nestjs/event-emitter");
 const axios_1 = require("axios");
 const events_interface_1 = require("../request/chat/models/events.interface");
 let LogAdminService = class LogAdminService {
-    async sendLogToAdminGroupErrorResponse(text) {
-        const adm = -1001524297397;
-        try {
-            const res = await axios_1.default.get(`
-				${process.env.SEND_MESSAGE}
-				chat_id=${adm}
-				&text=${encodeURI(text)}
-				&disable_web_page_preview=true
-				&parse_mode=HTML 
-				`);
-            console.log(res);
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
-    async sendLogToAdminGroupErrorResponse2(text) {
-        const adm = -1001524297397;
-        try {
-            const res = await axios_1.default.get(`
-				${process.env.SEND_MESSAGE}
-				chat_id=${adm}
-				&text=${encodeURI(text)}
-				&disable_web_page_preview=true
-				&parse_mode=HTML
-				`);
-            console.log('logAdmin.service - 41: ', res);
-        }
-        catch (error) {
-            console.log('logAdmin.service - 43: ', error);
-        }
-    }
     async handleOrderCreatedEvent(event) {
-        console.log('event: ', event);
-        const adm = -1001524297397;
         try {
-            const res = await axios_1.default.get(`
+            await axios_1.default.get(`
 				${process.env.SEND_MESSAGE}
-				chat_id=${adm}
+				chat_id=-1001524297397
 				&text=${encodeURI(JSON.stringify(event))}
 				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`);
-            console.log('event: ', res);
         }
-        catch (error) {
-            console.log('event: ', error);
-        }
-    }
-    handleOrderCreatedEvent2(event) {
-        console.log(event);
+        catch (error) { }
     }
 };
 exports.LogAdminService = LogAdminService;
 __decorate([
-    (0, event_emitter_1.OnEvent)("**"),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], LogAdminService.prototype, "sendLogToAdminGroupErrorResponse", null);
-__decorate([
-    (0, event_emitter_1.OnEvent)("errorResponse.*"),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], LogAdminService.prototype, "sendLogToAdminGroupErrorResponse2", null);
-__decorate([
-    (0, event_emitter_1.OnEvent)('message.send'),
+    (0, event_emitter_1.OnEvent)("message.send"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [events_interface_1.EventInterface]),
     __metadata("design:returntype", Promise)
 ], LogAdminService.prototype, "handleOrderCreatedEvent", null);
-__decorate([
-    (0, event_emitter_1.OnEvent)('message.send'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [events_interface_1.EventInterface]),
-    __metadata("design:returntype", void 0)
-], LogAdminService.prototype, "handleOrderCreatedEvent2", null);
 exports.LogAdminService = LogAdminService = __decorate([
     (0, common_1.Injectable)()
 ], LogAdminService);
