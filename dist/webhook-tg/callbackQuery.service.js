@@ -25,10 +25,6 @@ let CallbackQueryService = class CallbackQueryService {
     }
     async update(callbackQuery) {
         const data = callbackQuery.data.split("_");
-        const event = new events_interface_1.EventInterface();
-        event.name = "update";
-        event.description = String(callbackQuery.data);
-        this.eventEmitter.emit('event', event);
         switch (data[0]) {
             case "answer":
                 return await this.callbackAnswers.answer(callbackQuery);
@@ -65,14 +61,9 @@ let CallbackQueryService = class CallbackQueryService {
         }
     }
     async member(memberData) {
-        const emitText = `
-		new_chat_member: ${memberData.new_chat_member.status}\n
-		${memberData.chat.id}\n
-		@${memberData.chat.username}
-		`;
         const event = new events_interface_1.EventInterface();
-        event.name = "member";
-        event.description = String(memberData.from);
+        event.name = "new_chat_member";
+        event.description = `status: ${memberData.new_chat_member.status}\ngroup: ${memberData.chat.id}\nchat: ${memberData.from.id}\n${memberData.from.username}`;
         this.eventEmitter.emit('event', event);
         await this.chatService.verificationExistence(memberData.from);
         if (memberData.new_chat_member.status === "member" ||
