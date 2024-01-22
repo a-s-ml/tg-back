@@ -10,4 +10,4 @@ var ChatMemberTypesInterface;
     ChatMemberTypesInterface[ChatMemberTypesInterface["left"] = 4] = "left";
     ChatMemberTypesInterface[ChatMemberTypesInterface["banned"] = 5] = "banned";
 })(ChatMemberTypesInterface || (exports.ChatMemberTypesInterface = ChatMemberTypesInterface = {}));
-//# sourceMappingURL=ChatMemberTypes.interface.js.map
+//# sourceMappingURL=c.js.map
