@@ -66,7 +66,7 @@ export class CallbackQueryService {
 	async member(memberData: ChatMemberUpdatedInterface) {
 		const event = new EventInterface();
 		event.name = "newChatMember";
-		event.description = `status: #${memberData.new_chat_member.status}\ngroup: #id${-memberData.from.id}\nchat: #id${memberData.from.id}\n@${memberData.from.username}`;
+		event.description = `status: #${memberData.new_chat_member.status}\ngroup: #id${-memberData.chat.id}\nchat: #id${memberData.from.id}\n@${memberData.from.username}`;
 		this.eventEmitter.emit('event', event);
 		await this.chatService.verificationExistence(memberData.from)
 		if (

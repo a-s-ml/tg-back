@@ -89,7 +89,7 @@ export class AutoPostService {
 			}\nmessage_id: <a href='https://t.me/${response.chat.username}/${
 				response.message_id
 			}'>${response.message_id}</a>\nquestion_id: #qid${question}`
-			this.eventEmitter.emit("event", event)
+			this.eventEmitter.emit("eventPost", event)
 		}
 	}
 
@@ -116,7 +116,7 @@ export class AutoPostService {
 			}\nmessage_id: <a href='https://t.me/${response.chat.username}/${
 				response.message_id
 			}'>${response.message_id}</a>\nquestion_id: #qid${question}`
-			this.eventEmitter.emit("event", event)
+			this.eventEmitter.emit("eventPost", event)
 		}
 	}
 
@@ -143,7 +143,7 @@ export class AutoPostService {
 			}\nmessage_id: <a href='https://t.me/${response.chat.username}/${
 				response.message_id
 			}'>${response.message_id}</a>\nquestion_id: #qid${question}`
-			this.eventEmitter.emit("event", event)
+			this.eventEmitter.emit("eventPost", event)
 		}
 	}
 

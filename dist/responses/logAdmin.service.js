@@ -28,6 +28,18 @@ let LogAdminService = class LogAdminService {
         }
         catch (error) { }
     }
+    async eventPost(event) {
+        try {
+            await axios_1.default.get(`
+				${process.env.SEND_MESSAGE}
+				chat_id=-4142771123
+				&text=${encodeURIComponent(`#${event.name}\n${event.description}`)}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`);
+        }
+        catch (error) { }
+    }
 };
 exports.LogAdminService = LogAdminService;
 __decorate([
@@ -36,6 +48,12 @@ __decorate([
     __metadata("design:paramtypes", [events_interface_1.EventInterface]),
     __metadata("design:returntype", Promise)
 ], LogAdminService.prototype, "handleOrderCreatedEvent", null);
+__decorate([
+    (0, event_emitter_1.OnEvent)("event"),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [events_interface_1.EventInterface]),
+    __metadata("design:returntype", Promise)
+], LogAdminService.prototype, "eventPost", null);
 exports.LogAdminService = LogAdminService = __decorate([
     (0, common_1.Injectable)()
 ], LogAdminService);

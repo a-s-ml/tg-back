@@ -76,7 +76,7 @@ let AutoPostService = class AutoPostService {
             const event = new events_interface_1.EventInterface();
             event.name = "questionPoll";
             event.description = `group: #id${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: <a href='https://t.me/${response.chat.username}/${response.message_id}'>${response.message_id}</a>\nquestion_id: #qid${question}`;
-            this.eventEmitter.emit("event", event);
+            this.eventEmitter.emit("eventPost", event);
         }
     }
     async questionTypeImg(question, chat) {
@@ -94,7 +94,7 @@ let AutoPostService = class AutoPostService {
             const event = new events_interface_1.EventInterface();
             event.name = "questionPhoto";
             event.description = `group: #id${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: <a href='https://t.me/${response.chat.username}/${response.message_id}'>${response.message_id}</a>\nquestion_id: #qid${question}`;
-            this.eventEmitter.emit("event", event);
+            this.eventEmitter.emit("eventPost", event);
         }
     }
     async questionTypeText(question, chat) {
@@ -112,7 +112,7 @@ let AutoPostService = class AutoPostService {
             const event = new events_interface_1.EventInterface();
             event.name = "questionText";
             event.description = `group: #id${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: <a href='https://t.me/${response.chat.username}/${response.message_id}'>${response.message_id}</a>\nquestion_id: #qid${question}`;
-            this.eventEmitter.emit("event", event);
+            this.eventEmitter.emit("eventPost", event);
         }
     }
     async questionTypeMixed(question, chat) {

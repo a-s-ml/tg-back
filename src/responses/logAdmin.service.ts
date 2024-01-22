@@ -20,4 +20,19 @@ export class LogAdminService {
 			)
 		} catch (error) {}
 	}
+
+	@OnEvent("event")
+	async eventPost(event: EventInterface) {
+		try {
+			await axios.get(
+				`
+				${process.env.SEND_MESSAGE}
+				chat_id=-4142771123
+				&text=${encodeURIComponent(`#${event.name}\n${event.description}`)}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`
+			)
+		} catch (error) {}
+	}
 }
