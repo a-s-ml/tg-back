@@ -14,6 +14,7 @@ require("dotenv/config");
 const common_1 = require("@nestjs/common");
 const event_emitter_1 = require("@nestjs/event-emitter");
 const axios_1 = require("axios");
+const events_interface_1 = require("../request/chat/models/events.interface");
 let LogAdminService = class LogAdminService {
     async sendLogToAdminGroupErrorResponse(text) {
         const adm = -1001524297397;
@@ -47,6 +48,22 @@ let LogAdminService = class LogAdminService {
             console.log('logAdmin.service - 43: ', error);
         }
     }
+    async handleOrderCreatedEvent(event) {
+        const adm = -1001524297397;
+        try {
+            const res = await axios_1.default.get(`
+				${process.env.SEND_MESSAGE}
+				chat_id=${adm}
+				&text=${encodeURI(JSON.stringify(event))}
+				&disable_web_page_preview=true
+				&parse_mode=HTML
+				`);
+            console.log('logAdmin.service - 41: ', res);
+        }
+        catch (error) {
+            console.log('logAdmin.service - 43: ', error);
+        }
+    }
 };
 exports.LogAdminService = LogAdminService;
 __decorate([
@@ -61,6 +78,12 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], LogAdminService.prototype, "sendLogToAdminGroupErrorResponse2", null);
+__decorate([
+    (0, event_emitter_1.OnEvent)('message.send'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [events_interface_1.EventInterface]),
+    __metadata("design:returntype", Promise)
+], LogAdminService.prototype, "handleOrderCreatedEvent", null);
 exports.LogAdminService = LogAdminService = __decorate([
     (0, common_1.Injectable)()
 ], LogAdminService);

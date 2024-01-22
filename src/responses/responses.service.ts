@@ -10,6 +10,7 @@ import { EditMessageTextMethod } from "src/interfaces/metods/editMessageText.met
 import { EditMessageCaptionMethod } from "src/interfaces/metods/editMessageCaption.method"
 import { AnswerCallbackQueryMethod } from "src/interfaces/metods/answerCallbackQuery.method"
 import { editMessageReplyMarkupMethod } from "src/interfaces/metods/editMessageReplyMarkup.method"
+import { EventInterface } from "src/request/chat/models/events.interface"
 
 @Injectable()
 export class ResponsesService {
@@ -28,6 +29,10 @@ export class ResponsesService {
 			`
 			)
 			console.log('responses.service - 30: ', response.data.result)
+			const event = new EventInterface();
+			event.name = "message.send";
+			event.description = String(response.data.result);
+			this.eventEmitter.emit('message.send', event);
 			return response.data.result
 		} catch (error) {
 			console.log('responses.service - 33: ', error.response.data)
@@ -55,6 +60,10 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			)
+			const event = new EventInterface();
+			event.name = "message.send";
+			event.description = String(response.data.result);
+			this.eventEmitter.emit('message.send', event);
 			return response.data.result
 		} catch (error) {
 			const eventText: string = `
@@ -82,6 +91,10 @@ export class ResponsesService {
 			&is_anonymous=${message.is_anonymous}
 			`
 			)
+			const event = new EventInterface();
+			event.name = "message.send";
+			event.description = String(response.data.result);
+			this.eventEmitter.emit('message.send', event);
 			return response.data.result
 		} catch (error) {
 			const eventText: string = `
@@ -135,6 +148,10 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			)
+			const event = new EventInterface();
+			event.name = "message.send";
+			event.description = String(response.data.result);
+			this.eventEmitter.emit('message.send', event);
 			return response.data.result
 		} catch (error) {
 			const eventText: string = `
@@ -184,6 +201,10 @@ export class ResponsesService {
 			&show_alert=true
 			`
 			)
+			const event = new EventInterface();
+			event.name = "message.send";
+			event.description = String(response.data.result);
+			this.eventEmitter.emit('message.send', event);
 			return response.data.result
 		} catch (error) {
 			const eventText: string = `

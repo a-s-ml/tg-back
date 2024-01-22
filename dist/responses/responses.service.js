@@ -14,6 +14,7 @@ require("dotenv/config");
 const axios_1 = require("axios");
 const common_1 = require("@nestjs/common");
 const event_emitter_1 = require("@nestjs/event-emitter");
+const events_interface_1 = require("../request/chat/models/events.interface");
 let ResponsesService = class ResponsesService {
     constructor(eventEmitter) {
         this.eventEmitter = eventEmitter;
@@ -29,6 +30,10 @@ let ResponsesService = class ResponsesService {
 			&parse_mode=HTML
 			`);
             console.log('responses.service - 30: ', response.data.result);
+            const event = new events_interface_1.EventInterface();
+            event.name = "message.send";
+            event.description = String(response.data.result);
+            this.eventEmitter.emit('message.send', event);
             return response.data.result;
         }
         catch (error) {
@@ -51,6 +56,10 @@ let ResponsesService = class ResponsesService {
 			&disable_web_page_preview=true
 			&parse_mode=HTML
 			`);
+            const event = new events_interface_1.EventInterface();
+            event.name = "message.send";
+            event.description = String(response.data.result);
+            this.eventEmitter.emit('message.send', event);
             return response.data.result;
         }
         catch (error) {
@@ -73,6 +82,10 @@ let ResponsesService = class ResponsesService {
 			&type=quiz
 			&is_anonymous=${message.is_anonymous}
 			`);
+            const event = new events_interface_1.EventInterface();
+            event.name = "message.send";
+            event.description = String(response.data.result);
+            this.eventEmitter.emit('message.send', event);
             return response.data.result;
         }
         catch (error) {
@@ -116,6 +129,10 @@ let ResponsesService = class ResponsesService {
 			&disable_web_page_preview=true
 			&parse_mode=HTML
 			`);
+            const event = new events_interface_1.EventInterface();
+            event.name = "message.send";
+            event.description = String(response.data.result);
+            this.eventEmitter.emit('message.send', event);
             return response.data.result;
         }
         catch (error) {
@@ -155,6 +172,10 @@ let ResponsesService = class ResponsesService {
 			&text=${answerCallbackQuery.text}
 			&show_alert=true
 			`);
+            const event = new events_interface_1.EventInterface();
+            event.name = "message.send";
+            event.description = String(response.data.result);
+            this.eventEmitter.emit('message.send', event);
             return response.data.result;
         }
         catch (error) {
