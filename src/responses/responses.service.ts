@@ -30,7 +30,7 @@ export class ResponsesService {
 			)
 			console.log('responses.service - 30: ', response.data.result)
 			const event = new EventInterface();
-			event.name = "message.send";
+			event.name = "Message.send";
 			event.description = String(response.data.result);
 			this.eventEmitter.emit('message.send', event);
 			return response.data.result
@@ -61,7 +61,7 @@ export class ResponsesService {
 			`
 			)
 			const event = new EventInterface();
-			event.name = "message.send";
+			event.name = "editMessageText.send";
 			event.description = String(response.data.result);
 			this.eventEmitter.emit('message.send', event);
 			return response.data.result
@@ -92,7 +92,7 @@ export class ResponsesService {
 			`
 			)
 			const event = new EventInterface();
-			event.name = "message.send";
+			event.name = "Poll.send";
 			event.description = String(response.data.result);
 			this.eventEmitter.emit('message.send', event);
 			return response.data.result
@@ -149,7 +149,7 @@ export class ResponsesService {
 			`
 			)
 			const event = new EventInterface();
-			event.name = "message.send";
+			event.name = "Photo.send";
 			event.description = String(response.data.result);
 			this.eventEmitter.emit('message.send', event);
 			return response.data.result
@@ -202,7 +202,7 @@ export class ResponsesService {
 			`
 			)
 			const event = new EventInterface();
-			event.name = "message.send";
+			event.name = "answerCallbackQuery.send";
 			event.description = String(response.data.result);
 			this.eventEmitter.emit('message.send', event);
 			return response.data.result

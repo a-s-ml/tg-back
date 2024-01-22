@@ -31,7 +31,7 @@ let ResponsesService = class ResponsesService {
 			`);
             console.log('responses.service - 30: ', response.data.result);
             const event = new events_interface_1.EventInterface();
-            event.name = "message.send";
+            event.name = "Message.send";
             event.description = String(response.data.result);
             this.eventEmitter.emit('message.send', event);
             return response.data.result;
@@ -57,7 +57,7 @@ let ResponsesService = class ResponsesService {
 			&parse_mode=HTML
 			`);
             const event = new events_interface_1.EventInterface();
-            event.name = "message.send";
+            event.name = "editMessageText.send";
             event.description = String(response.data.result);
             this.eventEmitter.emit('message.send', event);
             return response.data.result;
@@ -83,7 +83,7 @@ let ResponsesService = class ResponsesService {
 			&is_anonymous=${message.is_anonymous}
 			`);
             const event = new events_interface_1.EventInterface();
-            event.name = "message.send";
+            event.name = "Poll.send";
             event.description = String(response.data.result);
             this.eventEmitter.emit('message.send', event);
             return response.data.result;
@@ -130,7 +130,7 @@ let ResponsesService = class ResponsesService {
 			&parse_mode=HTML
 			`);
             const event = new events_interface_1.EventInterface();
-            event.name = "message.send";
+            event.name = "Photo.send";
             event.description = String(response.data.result);
             this.eventEmitter.emit('message.send', event);
             return response.data.result;
@@ -173,7 +173,7 @@ let ResponsesService = class ResponsesService {
 			&show_alert=true
 			`);
             const event = new events_interface_1.EventInterface();
-            event.name = "message.send";
+            event.name = "answerCallbackQuery.send";
             event.description = String(response.data.result);
             this.eventEmitter.emit('message.send', event);
             return response.data.result;

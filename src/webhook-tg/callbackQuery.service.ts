@@ -22,7 +22,7 @@ export class CallbackQueryService {
 	async update(callbackQuery: CallbackQueryInterface) {
 		const data = callbackQuery.data.split("_")
 		const event = new EventInterface();
-		event.name = "message.send";
+		event.name = "update";
 		event.description = String(callbackQuery.data);
 		this.eventEmitter.emit('message.send', event);
 		switch (data[0]) {
