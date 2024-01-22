@@ -21,7 +21,7 @@ let LogAdminService = class LogAdminService {
             await axios_1.default.get(`
 				${process.env.SEND_MESSAGE}
 				chat_id=-1001524297397
-				&text=${encodeURIComponent(`#${event.name}+\n+${event.description}`)}
+				&text=${encodeURIComponent(`#${event.name}\n${event.description}`)}
 				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`);

@@ -109,7 +109,7 @@ let ChatService = class ChatService {
             });
             const event = new events_interface_1.EventInterface();
             event.name = "new_user";
-            event.description = `chat: ${from.id}\nusername: ${from.username}`;
+            event.description = `chat: #${from.id}\nusername: @${from.username}`;
             this.eventEmitter.emit("event", event);
         }
     }
@@ -125,7 +125,7 @@ let ChatService = class ChatService {
             const memberCount = await this.getTgService.tgGetChatMemberCount(chat.id);
             const event = new events_interface_1.EventInterface();
             event.name = "new_group";
-            event.description = `group: ${chat.id}\nmemberCount: ${memberCount}\nchat: ${from.id}\nusername: ${from.username}`;
+            event.description = `group: #${-chat.id}\nmemberCount: ${memberCount}\nchat: #${from.id}\nusername: @${from.username}`;
             this.eventEmitter.emit("event", event);
         }
     }

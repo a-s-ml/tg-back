@@ -69,7 +69,7 @@ let AutoPostService = class AutoPostService {
             });
             const event = new events_interface_1.EventInterface();
             event.name = "question_poll";
-            event.description = `chat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}\nquestion_id: ${question}`;
+            event.description = `group: #${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: ${response.message_id}\nquestion_id: #${question}`;
             this.eventEmitter.emit("event", event);
         }
     }
@@ -87,7 +87,7 @@ let AutoPostService = class AutoPostService {
             });
             const event = new events_interface_1.EventInterface();
             event.name = "question_photo";
-            event.description = `chat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}\nquestion_id: ${question}`;
+            event.description = `group: #${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: ${response.message_id}\nquestion_id: #${question}`;
             this.eventEmitter.emit("event", event);
         }
     }
@@ -105,7 +105,7 @@ let AutoPostService = class AutoPostService {
             });
             const event = new events_interface_1.EventInterface();
             event.name = "question_text";
-            event.description = `chat: ${response.chat.id}\ngroup_type: ${response.chat.type}\nmessage_id: ${response.message_id}\nquestion_id: ${question}`;
+            event.description = `group: #${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: ${response.message_id}\nquestion_id: #${question}`;
             this.eventEmitter.emit("event", event);
         }
     }
@@ -128,7 +128,7 @@ let AutoPostService = class AutoPostService {
             await this.responsesService.sendMessage(stat);
         }
         const event = new events_interface_1.EventInterface();
-        event.name = "active group";
+        event.name = "active_group";
         event.description = `count: ${chatact.length}`;
         this.eventEmitter.emit("event", event);
     }

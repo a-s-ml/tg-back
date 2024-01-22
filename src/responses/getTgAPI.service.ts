@@ -62,7 +62,6 @@ export class GetTgService {
 				.get(`${process.env.BASE_URL}getFile?file_id=${unic_id}`)
 				.pipe(
 					catchError((error: AxiosError) => {
-						// console.log(error.response.data)
 						throw "error"
 					})
 				)
