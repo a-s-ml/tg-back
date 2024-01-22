@@ -27,10 +27,6 @@ export class AutoPostService {
 	async publicationInActiveGroup() {
 		const chatact = await this.selectActivChatService.activChat()
 		if (chatact?.length) {
-			const event = new EventInterface()
-			event.name = "active_group"
-			event.description = `count: ${chatact.length}`
-			this.eventEmitter.emit("event", event)
 			for (var key in chatact) {
 				const chat = await this.chatService.findByChatId(
 					chatact[key].chat
