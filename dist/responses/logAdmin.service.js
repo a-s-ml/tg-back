@@ -16,30 +16,32 @@ const event_emitter_1 = require("@nestjs/event-emitter");
 const axios_1 = require("axios");
 let LogAdminService = class LogAdminService {
     async sendLogToAdminGroupErrorResponse(text) {
-        const adm = -1001524297397n;
+        const adm = -1001524297397;
         try {
-            await axios_1.default.get(`
+            const res = await axios_1.default.get(`
 				${process.env.SEND_MESSAGE}
 				chat_id=${adm}
 				&text=${encodeURI(text)}
 				&disable_web_page_preview=true
 				&parse_mode=HTML 
 				`);
+            console.log(res);
         }
         catch (error) {
             console.log(error);
         }
     }
     async sendLogToAdminGroupErrorResponse2(text) {
-        const adm = -1001524297397n;
+        const adm = -1001524297397;
         try {
-            await axios_1.default.get(`
+            const res = await axios_1.default.get(`
 				${process.env.SEND_MESSAGE}
 				chat_id=${adm}
 				&text=${encodeURI(text)}
 				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`);
+            console.log(res);
         }
         catch (error) {
             console.log(error);
@@ -48,13 +50,13 @@ let LogAdminService = class LogAdminService {
 };
 exports.LogAdminService = LogAdminService;
 __decorate([
-    (0, event_emitter_1.OnEvent)("**", { async: true }),
+    (0, event_emitter_1.OnEvent)("**"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], LogAdminService.prototype, "sendLogToAdminGroupErrorResponse", null);
 __decorate([
-    (0, event_emitter_1.OnEvent)("errorResponse.*", { async: true }),
+    (0, event_emitter_1.OnEvent)("errorResponse.*"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)

@@ -12,16 +12,18 @@ export class SelectQuestionService {
 	) {}
 
 	async availableQuestion(chatid: bigint) {
-		const forbiddenCategory = await this.chatCategoryService.findChat(chatid)
-		const publishedQuestion = await this.chatDataService.findAllByChat(chatid)
-// КОСТЫЛЬ
+		const forbiddenCategory =
+			await this.chatCategoryService.findChat(chatid)
+		const publishedQuestion =
+			await this.chatDataService.findAllByChat(chatid)
+		// КОСТЫЛЬ
 		if (!forbiddenCategory?.length) {
 			forbiddenCategory.push({ category: 1001 })
 		}
 		if (!publishedQuestion?.length) {
 			publishedQuestion.push({ question_id: 1 })
 		}
-// КОСТЫЛЬ
+		// КОСТЫЛЬ
 		const questions = await this.dbService.question.findMany({
 			select: {
 				id: true
@@ -37,8 +39,11 @@ export class SelectQuestionService {
 				isactual: 2
 			}
 		})
-
-		const randomIndex = Math.floor(Math.random() * (questions.length - 1))
-		return questions[randomIndex]
+		if (questions?.length) {
+			const randomIndex = Math.floor(
+				Math.random() * (questions.length - 1)
+			)
+			return questions[randomIndex]
+		}
 	}
 }

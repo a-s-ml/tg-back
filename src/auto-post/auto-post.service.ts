@@ -32,23 +32,25 @@ export class AutoPostService {
 					await this.selectQuestionService.availableQuestion(
 						chatact[key].chat
 					)
-				if (chat.question_type === 1) {
-					return await this.questionTypeImg(question.id, chat)
-				}
-				if (chat.question_type === 2) {
-					return await this.questionTypePoll(question.id, chat)
-				}
-				if (chat.question_type === 3) {
-					return await this.questionTypeText(question.id, chat)
-				}
-				// if (chat.question_type === 4) {
-				// 	return await this.questionTypeText(question.id, chat)
-				// }
-				// if (chat.question_type === 5) {
-				// 	return await this.questionTypeText(question.id, chat)
-				// }
-				if (chat.question_type === 6) {
-					return await this.questionTypeMixed(question.id, chat)
+				if (question) {
+					if (chat.question_type === 1) {
+						return await this.questionTypeImg(question.id, chat)
+					}
+					if (chat.question_type === 2) {
+						return await this.questionTypePoll(question.id, chat)
+					}
+					if (chat.question_type === 3) {
+						return await this.questionTypeText(question.id, chat)
+					}
+					// if (chat.question_type === 4) {
+					// 	return await this.questionTypeText(question.id, chat)
+					// }
+					// if (chat.question_type === 5) {
+					// 	return await this.questionTypeText(question.id, chat)
+					// }
+					if (chat.question_type === 6) {
+						return await this.questionTypeMixed(question.id, chat)
+					}
 				}
 			}
 		}
@@ -112,16 +114,18 @@ export class AutoPostService {
 			})
 		}
 	}
-	
+
 	async questionTypeMixed(question: number, chat: IChat) {
-		const lastPost = await this.chatDataService.findTypeLastTwoByChat(chat.chat)
-		if (!lastPost.includes('photo')) {
+		const lastPost = await this.chatDataService.findTypeLastTwoByChat(
+			chat.chat
+		)
+		if (!lastPost.includes("photo")) {
 			return await this.questionTypeImg(question, chat)
 		}
-		if (!lastPost.includes('poll')) {
+		if (!lastPost.includes("poll")) {
 			return await this.questionTypePoll(question, chat)
 		}
-		if (!lastPost.includes('text')) {
+		if (!lastPost.includes("text")) {
 			return await this.questionTypeText(question, chat)
 		}
 	}

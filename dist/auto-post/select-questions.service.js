@@ -44,8 +44,10 @@ let SelectQuestionService = class SelectQuestionService {
                 isactual: 2
             }
         });
-        const randomIndex = Math.floor(Math.random() * (questions.length - 1));
-        return questions[randomIndex];
+        if (questions?.length) {
+            const randomIndex = Math.floor(Math.random() * (questions.length - 1));
+            return questions[randomIndex];
+        }
     }
 };
 exports.SelectQuestionService = SelectQuestionService;

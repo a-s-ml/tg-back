@@ -64,7 +64,7 @@ export class CallbackQueryService {
 		${memberData.chat.id}\n
 		@${memberData.chat.username}
 		`
-		await this.eventEmitter.emitAsync("newChatMember.chatMember", emitText)
+		await this.eventEmitter.emit("newChatMember.chatMember", emitText)
 		await this.chatService.verificationExistence(memberData.from)
 		if (
 			memberData.new_chat_member.status === "member" ||

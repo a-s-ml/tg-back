@@ -6,11 +6,11 @@ import axios from "axios"
 @Injectable()
 export class LogAdminService {
 
-	@OnEvent("**", { async: true })
+	@OnEvent("**")
     async sendLogToAdminGroupErrorResponse(text: string) {
-		const adm: bigint = -1001524297397n
+		const adm: number = -1001524297397
 		try {
-			await axios.get(
+			const res = await axios.get(
 				`
 				${process.env.SEND_MESSAGE}
 				chat_id=${adm}
@@ -19,16 +19,17 @@ export class LogAdminService {
 				&parse_mode=HTML 
 				`
 			)
+			console.log(res)
 		} catch (error) {
 			console.log(error)
 		}
     }
 
-	@OnEvent("errorResponse.*", { async: true })
+	@OnEvent("errorResponse.*")
     async sendLogToAdminGroupErrorResponse2(text: string) {
-		const adm: bigint = -1001524297397n
+		const adm: number = -1001524297397
 		try {
-			await axios.get(
+			const res = await axios.get(
 				`
 				${process.env.SEND_MESSAGE}
 				chat_id=${adm}
@@ -37,6 +38,7 @@ export class LogAdminService {
 				&parse_mode=HTML
 				`
 			)
+			console.log(res)
 		} catch (error) {
 			console.log(error)
 		}
