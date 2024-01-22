@@ -20,10 +20,6 @@ export class CallbackQueryService {
 	) {}
 
 	async update(callbackQuery: CallbackQueryInterface) {
-		const event = new EventInterface();
-		event.name = "update";
-		event.description = `id: #${callbackQuery.id}\nfrom: #${callbackQuery.from.id}\nchat_instance: #${callbackQuery.chat_instance}\ngroup: #${callbackQuery.message.chat.id}`;
-		this.eventEmitter.emit('event', event);
 		const data = callbackQuery.data.split("_")
 		switch (data[0]) {
 			case "answer":

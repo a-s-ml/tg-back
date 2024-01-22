@@ -83,7 +83,7 @@ export class AutoPostService {
 			})
 			const event = new EventInterface()
 			event.name = "question_poll"
-			event.description = `group: #${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: ${response.message_id}\nquestion_id: #${question}`
+			event.description = `group: #id${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: <a href='https://t.me/${response.chat.username}/${response.message_id}'>${response.message_id}</a>\nquestion_id: #qid${question}`
 			this.eventEmitter.emit("event", event)
 		}
 	}
@@ -106,7 +106,7 @@ export class AutoPostService {
 			})
 			const event = new EventInterface()
 			event.name = "question_photo"
-			event.description = `group: #${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: ${response.message_id}\nquestion_id: #${question}`
+			event.description = `group: #id${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: <a href='https://t.me/${response.chat.username}/${response.message_id}'>${response.message_id}</a>\nquestion_id: #qid${question}`
 			this.eventEmitter.emit("event", event)
 		}
 	}
@@ -129,7 +129,7 @@ export class AutoPostService {
 			})
 			const event = new EventInterface()
 			event.name = "question_text"
-			event.description = `group: #${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: ${response.message_id}\nquestion_id: #${question}`
+			event.description = `group: #id${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: <a href='https://t.me/${response.chat.username}/${response.message_id}'>${response.message_id}</a>\nquestion_id: #qid${question}`
 			this.eventEmitter.emit("event", event)
 		}
 	}
