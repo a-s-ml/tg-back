@@ -61,11 +61,6 @@ export class AutoPostService {
 					this.eventEmitter.emit("event", event)
 				}
 			}
-		} else {
-			const event = new EventInterface()
-			event.name = "publicationInActiveGroup_29"
-			event.description = `#no_chatact`
-			this.eventEmitter.emit("event", event)
 		}
 	}
 

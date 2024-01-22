@@ -59,12 +59,6 @@ let AutoPostService = class AutoPostService {
                 }
             }
         }
-        else {
-            const event = new events_interface_1.EventInterface();
-            event.name = "publicationInActiveGroup_29";
-            event.description = `#no_chatact`;
-            this.eventEmitter.emit("event", event);
-        }
     }
     async questionTypePoll(question, chat) {
         const questionPoll = await this.buildQuestionService.questionPoll(question, chat.chat, chat.type);
