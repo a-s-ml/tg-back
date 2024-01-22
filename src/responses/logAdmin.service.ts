@@ -21,7 +21,7 @@ export class LogAdminService {
 		} catch (error) {}
 	}
 
-	@OnEvent("event")
+	@OnEvent("eventPost")
 	async eventPost(event: EventInterface) {
 		try {
 			await axios.get(

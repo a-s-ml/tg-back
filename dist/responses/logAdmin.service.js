@@ -49,7 +49,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], LogAdminService.prototype, "handleOrderCreatedEvent", null);
 __decorate([
-    (0, event_emitter_1.OnEvent)("event"),
+    (0, event_emitter_1.OnEvent)("eventPost"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [events_interface_1.EventInterface]),
     __metadata("design:returntype", Promise)
