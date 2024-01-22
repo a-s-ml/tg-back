@@ -31,7 +31,7 @@ let LogAdminService = class LogAdminService {
 };
 exports.LogAdminService = LogAdminService;
 __decorate([
-    (0, event_emitter_1.OnEvent)("message.send"),
+    (0, event_emitter_1.OnEvent)("event"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [events_interface_1.EventInterface]),
     __metadata("design:returntype", Promise)

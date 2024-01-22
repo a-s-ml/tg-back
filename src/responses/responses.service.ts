@@ -28,24 +28,13 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			)
-			console.log('responses.service - 30: ', response.data.result)
-			const event = new EventInterface();
-			event.name = "Message.send";
-			event.description = String(response.data.result);
-			this.eventEmitter.emit('message.send', event);
+			console.log("responses.service - 30: ", response.data.result)
+			const event = new EventInterface()
+			event.name = "Message.send"
+			event.description = String(response.data.result)
+			this.eventEmitter.emit("event", event)
 			return response.data.result
-		} catch (error) {
-			console.log('responses.service - 33: ', error.response.data)
-			const eventText: string = `
-			errorResponse.editMessageText\n
-			chat_id: ${message.chat_id}\n
-			error: ${JSON.stringify(error.response.data)}
-			`
-			await this.eventEmitter.emitAsync(
-				"errorResponse.sendMessage",
-				eventText
-			)
-		}
+		} catch (error) {}
 	}
 
 	async editMessageText(message: EditMessageTextMethod) {
@@ -60,22 +49,12 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			)
-			const event = new EventInterface();
-			event.name = "editMessageText.send";
-			event.description = String(response.data.result);
-			this.eventEmitter.emit('message.send', event);
+			const event = new EventInterface()
+			event.name = "editMessageText.send"
+			event.description = String(response.data.result)
+			this.eventEmitter.emit("event", event)
 			return response.data.result
-		} catch (error) {
-			const eventText: string = `
-			errorResponse.editMessageText\n
-			chat_id: ${message.chat_id}\n
-			error: ${JSON.stringify(error.response.data)}
-			`
-			await this.eventEmitter.emitAsync(
-				"errorResponse.editMessageText",
-				eventText
-			)
-		}
+		} catch (error) {}
 	}
 
 	async sendPoll(message: SendPollMethod) {
@@ -91,22 +70,12 @@ export class ResponsesService {
 			&is_anonymous=${message.is_anonymous}
 			`
 			)
-			const event = new EventInterface();
-			event.name = "Poll.send";
-			event.description = String(response.data.result);
-			this.eventEmitter.emit('message.send', event);
+			const event = new EventInterface()
+			event.name = "Poll.send"
+			event.description = String(response.data.result)
+			this.eventEmitter.emit("event", event)
 			return response.data.result
-		} catch (error) {
-			const eventText: string = `
-			errorResponse.sendPoll\n
-			chat_id: ${message.chat_id}\n
-			error: ${JSON.stringify(error.response.data)}
-			`
-			await this.eventEmitter.emitAsync(
-				"errorResponse.sendPoll",
-				eventText
-			)
-		}
+		} catch (error) {}
 	}
 
 	async editMessageCaption(message: EditMessageCaptionMethod) {
@@ -122,17 +91,7 @@ export class ResponsesService {
 			`
 			)
 			return response.data.result
-		} catch (error) {
-			const eventText: string = `
-			errorResponse.editMessageCaption\n
-			chat_id: ${message.chat_id}\n
-			error: ${JSON.stringify(error.response.data)}
-			`
-			await this.eventEmitter.emitAsync(
-				"errorResponse.editMessageCaption",
-				eventText
-			)
-		}
+		} catch (error) {}
 	}
 
 	async sendPhoto(message: SendPhotoMethod) {
@@ -148,22 +107,12 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			)
-			const event = new EventInterface();
-			event.name = "Photo.send";
-			event.description = String(response.data.result);
-			this.eventEmitter.emit('message.send', event);
+			const event = new EventInterface()
+			event.name = "Photo.send"
+			event.description = String(response.data.result)
+			this.eventEmitter.emit("event", event)
 			return response.data.result
-		} catch (error) {
-			const eventText: string = `
-			errorResponse.sendPhoto\n
-			chat_id: ${message.chat_id}\n
-			error: ${JSON.stringify(error.response.data)}
-			`
-			await this.eventEmitter.emitAsync(
-				"errorResponse.sendPhoto",
-				eventText
-			)
-		}
+		} catch (error) {}
 	}
 
 	async editMessageReplyMarkup(message: editMessageReplyMarkupMethod) {
@@ -178,17 +127,7 @@ export class ResponsesService {
 			`
 			)
 			return response.data.result
-		} catch (error) {
-			const eventText: string = `
-			errorResponse.editMessageReplyMarkup\n
-			chat_id: ${message.chat_id}\n
-			error: ${JSON.stringify(error.response.data)}
-			`
-			await this.eventEmitter.emitAsync(
-				"errorResponse.editMessageReplyMarkup",
-				eventText
-			)
-		}
+		} catch (error) {}
 	}
 
 	async answerCallbackQuery(answerCallbackQuery: AnswerCallbackQueryMethod) {
@@ -201,22 +140,12 @@ export class ResponsesService {
 			&show_alert=true
 			`
 			)
-			const event = new EventInterface();
-			event.name = "answerCallbackQuery.send";
-			event.description = String(response.data.result);
-			this.eventEmitter.emit('message.send', event);
+			const event = new EventInterface()
+			event.name = "answerCallbackQuery.send"
+			event.description = String(response.data.result)
+			this.eventEmitter.emit("event", event)
 			return response.data.result
-		} catch (error) {
-			const eventText: string = `
-			errorResponse.answerCallback\n
-			callback_query_id: ${answerCallbackQuery.callback_query_id}\n
-			error: ${JSON.stringify(error.response.data)}
-			`
-			await this.eventEmitter.emitAsync(
-				"errorResponse.answerCallback",
-				eventText
-			)
-		}
+		} catch (error) {}
 	}
 
 	async sendChatAction(chat: bigint, action: string) {
@@ -229,17 +158,6 @@ export class ResponsesService {
 			`
 			)
 			return response.data
-		} catch (error) {
-			const eventText: string = `
-			errorResponse.editMessageText\n
-			chat_id: ${chat}\n
-			error: ${JSON.stringify(error.response.data)}
-			`
-			await this.eventEmitter.emitAsync(
-				"errorResponse.sendMessage",
-				eventText
-			)
-			return error.response.data
-		}
+		} catch (error) {}
 	}
 }

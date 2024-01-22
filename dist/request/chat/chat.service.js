@@ -17,6 +17,7 @@ const getTgAPI_service_1 = require("../../responses/getTgAPI.service");
 const responses_service_1 = require("../../responses/responses.service");
 const question_type_service_1 = require("../question-type/question-type.service");
 const time_service_1 = require("../time/time.service");
+const events_interface_1 = require("./models/events.interface");
 let ChatService = class ChatService {
     constructor(dbService, questionTypeService, timeService, getTgService, responsesService, eventEmitter) {
         this.dbService = dbService;
@@ -106,7 +107,10 @@ let ChatService = class ChatService {
                 chat: from.id,
                 bot: from.is_bot ? 1 : 0
             });
-            await this.eventEmitter.emitAsync("newChatMember.chatMember", `new_user: ${from.id}\nfirst_name: ${from.first_name}\nlast_name: ${from.last_name}\nusername @${from.username}`);
+            const event = new events_interface_1.EventInterface();
+            event.name = "new user";
+            event.description = String(from.id);
+            this.eventEmitter.emit("event", event);
         }
     }
     async verificationExistenceChat(chat, from) {
@@ -119,7 +123,10 @@ let ChatService = class ChatService {
                 bot: chat.type ? 1 : 0
             });
             const memberCount = await this.getTgService.tgGetChatMemberCount(chat.id);
-            await this.eventEmitter.emitAsync("newChatMember.chatMember", `new_chat: ${chat.id}\ntitle: ${chat.title}\nusername: ${chat.username}\nbio: ${chat.bio}\ndescription: ${chat.description}\ntype: ${chat.type}\nwho: ${from.id}\nmember_count: ${JSON.stringify(memberCount)}`);
+            const event = new events_interface_1.EventInterface();
+            event.name = "new group";
+            event.description = String(chat.id);
+            this.eventEmitter.emit("event", event);
         }
     }
     async groupInfoById(chat) {

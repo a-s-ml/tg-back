@@ -24,7 +24,7 @@ export class CallbackQueryService {
 		const event = new EventInterface();
 		event.name = "update";
 		event.description = String(callbackQuery.data);
-		this.eventEmitter.emit('message.send', event);
+		this.eventEmitter.emit('event', event);
 		switch (data[0]) {
 			case "answer":
 				return await this.callbackAnswers.answer(callbackQuery)
@@ -69,7 +69,10 @@ export class CallbackQueryService {
 		${memberData.chat.id}\n
 		@${memberData.chat.username}
 		`
-		await this.eventEmitter.emit("newChatMember.chatMember", emitText)
+		const event = new EventInterface();
+		event.name = "member";
+		event.description = String(memberData.from);
+		this.eventEmitter.emit('event', event);
 		await this.chatService.verificationExistence(memberData.from)
 		if (
 			memberData.new_chat_member.status === "member" ||

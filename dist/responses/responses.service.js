@@ -29,22 +29,14 @@ let ResponsesService = class ResponsesService {
 			&disable_web_page_preview=true
 			&parse_mode=HTML
 			`);
-            console.log('responses.service - 30: ', response.data.result);
+            console.log("responses.service - 30: ", response.data.result);
             const event = new events_interface_1.EventInterface();
             event.name = "Message.send";
             event.description = String(response.data.result);
-            this.eventEmitter.emit('message.send', event);
+            this.eventEmitter.emit("event", event);
             return response.data.result;
         }
-        catch (error) {
-            console.log('responses.service - 33: ', error.response.data);
-            const eventText = `
-			errorResponse.editMessageText\n
-			chat_id: ${message.chat_id}\n
-			error: ${JSON.stringify(error.response.data)}
-			`;
-            await this.eventEmitter.emitAsync("errorResponse.sendMessage", eventText);
-        }
+        catch (error) { }
     }
     async editMessageText(message) {
         try {
@@ -59,17 +51,10 @@ let ResponsesService = class ResponsesService {
             const event = new events_interface_1.EventInterface();
             event.name = "editMessageText.send";
             event.description = String(response.data.result);
-            this.eventEmitter.emit('message.send', event);
+            this.eventEmitter.emit("event", event);
             return response.data.result;
         }
-        catch (error) {
-            const eventText = `
-			errorResponse.editMessageText\n
-			chat_id: ${message.chat_id}\n
-			error: ${JSON.stringify(error.response.data)}
-			`;
-            await this.eventEmitter.emitAsync("errorResponse.editMessageText", eventText);
-        }
+        catch (error) { }
     }
     async sendPoll(message) {
         try {
@@ -85,17 +70,10 @@ let ResponsesService = class ResponsesService {
             const event = new events_interface_1.EventInterface();
             event.name = "Poll.send";
             event.description = String(response.data.result);
-            this.eventEmitter.emit('message.send', event);
+            this.eventEmitter.emit("event", event);
             return response.data.result;
         }
-        catch (error) {
-            const eventText = `
-			errorResponse.sendPoll\n
-			chat_id: ${message.chat_id}\n
-			error: ${JSON.stringify(error.response.data)}
-			`;
-            await this.eventEmitter.emitAsync("errorResponse.sendPoll", eventText);
-        }
+        catch (error) { }
     }
     async editMessageCaption(message) {
         try {
@@ -109,14 +87,7 @@ let ResponsesService = class ResponsesService {
 			`);
             return response.data.result;
         }
-        catch (error) {
-            const eventText = `
-			errorResponse.editMessageCaption\n
-			chat_id: ${message.chat_id}\n
-			error: ${JSON.stringify(error.response.data)}
-			`;
-            await this.eventEmitter.emitAsync("errorResponse.editMessageCaption", eventText);
-        }
+        catch (error) { }
     }
     async sendPhoto(message) {
         try {
@@ -132,17 +103,10 @@ let ResponsesService = class ResponsesService {
             const event = new events_interface_1.EventInterface();
             event.name = "Photo.send";
             event.description = String(response.data.result);
-            this.eventEmitter.emit('message.send', event);
+            this.eventEmitter.emit("event", event);
             return response.data.result;
         }
-        catch (error) {
-            const eventText = `
-			errorResponse.sendPhoto\n
-			chat_id: ${message.chat_id}\n
-			error: ${JSON.stringify(error.response.data)}
-			`;
-            await this.eventEmitter.emitAsync("errorResponse.sendPhoto", eventText);
-        }
+        catch (error) { }
     }
     async editMessageReplyMarkup(message) {
         try {
@@ -155,14 +119,7 @@ let ResponsesService = class ResponsesService {
 			`);
             return response.data.result;
         }
-        catch (error) {
-            const eventText = `
-			errorResponse.editMessageReplyMarkup\n
-			chat_id: ${message.chat_id}\n
-			error: ${JSON.stringify(error.response.data)}
-			`;
-            await this.eventEmitter.emitAsync("errorResponse.editMessageReplyMarkup", eventText);
-        }
+        catch (error) { }
     }
     async answerCallbackQuery(answerCallbackQuery) {
         try {
@@ -175,17 +132,10 @@ let ResponsesService = class ResponsesService {
             const event = new events_interface_1.EventInterface();
             event.name = "answerCallbackQuery.send";
             event.description = String(response.data.result);
-            this.eventEmitter.emit('message.send', event);
+            this.eventEmitter.emit("event", event);
             return response.data.result;
         }
-        catch (error) {
-            const eventText = `
-			errorResponse.answerCallback\n
-			callback_query_id: ${answerCallbackQuery.callback_query_id}\n
-			error: ${JSON.stringify(error.response.data)}
-			`;
-            await this.eventEmitter.emitAsync("errorResponse.answerCallback", eventText);
-        }
+        catch (error) { }
     }
     async sendChatAction(chat, action) {
         try {
@@ -196,15 +146,7 @@ let ResponsesService = class ResponsesService {
 			`);
             return response.data;
         }
-        catch (error) {
-            const eventText = `
-			errorResponse.editMessageText\n
-			chat_id: ${chat}\n
-			error: ${JSON.stringify(error.response.data)}
-			`;
-            await this.eventEmitter.emitAsync("errorResponse.sendMessage", eventText);
-            return error.response.data;
-        }
+        catch (error) { }
     }
 };
 exports.ResponsesService = ResponsesService;

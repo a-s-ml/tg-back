@@ -8,6 +8,7 @@ import { GetTgService } from "src/responses/getTgAPI.service"
 import { ResponsesService } from "src/responses/responses.service"
 import { QuestionTypeService } from "../question-type/question-type.service"
 import { TimeService } from "../time/time.service"
+import { EventInterface } from "./models/events.interface"
 
 @Injectable()
 export class ChatService {
@@ -132,10 +133,10 @@ export class ChatService {
 				chat: from.id,
 				bot: from.is_bot ? 1 : 0
 			})
-			await this.eventEmitter.emitAsync(
-				"newChatMember.chatMember",
-				`new_user: ${from.id}\nfirst_name: ${from.first_name}\nlast_name: ${from.last_name}\nusername @${from.username}`
-			)
+			const event = new EventInterface()
+			event.name = "new user"
+			event.description = String(from.id)
+			this.eventEmitter.emit("event", event)
 		}
 	}
 
@@ -151,16 +152,10 @@ export class ChatService {
 			const memberCount = await this.getTgService.tgGetChatMemberCount(
 				chat.id
 			)
-			await this.eventEmitter.emitAsync(
-				"newChatMember.chatMember",
-				`new_chat: ${chat.id}\ntitle: ${chat.title}\nusername: ${
-					chat.username
-				}\nbio: ${chat.bio}\ndescription: ${chat.description}\ntype: ${
-					chat.type
-				}\nwho: ${from.id}\nmember_count: ${JSON.stringify(
-					memberCount
-				)}`
-			)
+			const event = new EventInterface()
+			event.name = "new group"
+			event.description = String(chat.id)
+			this.eventEmitter.emit("event", event)
 		}
 	}
 
