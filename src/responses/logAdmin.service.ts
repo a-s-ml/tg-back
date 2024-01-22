@@ -38,9 +38,9 @@ export class LogAdminService {
 				&parse_mode=HTML
 				`
 			)
-			console.log(res)
+			console.log('logAdmin.service - 41: ', res)
 		} catch (error) {
-			console.log(error)
+			console.log('logAdmin.service - 43: ', error)
 		}
     }
 }

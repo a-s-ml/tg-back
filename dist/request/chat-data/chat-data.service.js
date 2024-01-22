@@ -71,7 +71,7 @@ let ChatDataService = class ChatDataService {
             },
             take: 2
         });
-        console.log(lastPost);
+        console.log('chat-data.service - 69: ', lastPost);
         typeLastPost.push(lastPost[0].question_type);
         typeLastPost.push(lastPost[1].question_type);
         return typeLastPost;

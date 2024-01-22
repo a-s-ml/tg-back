@@ -42,7 +42,7 @@ let BuildQuestionService = class BuildQuestionService {
             disable_web_page_preview: true,
             parse_mode: "HTML"
         };
-        console.log(url);
+        console.log('build-question.service - 44: ', url);
         return url;
     }
     async questionPoll(id, chat, type) {
@@ -64,7 +64,7 @@ let BuildQuestionService = class BuildQuestionService {
             correct_option_id: question.answerright,
             is_anonymous: is_anonymous
         };
-        console.log(url);
+        console.log('build-question.service - 66: ', url);
         return url;
     }
     async questionImg(id, chat) {
@@ -77,7 +77,7 @@ let BuildQuestionService = class BuildQuestionService {
             photo: question.img,
             reply_markup: reply_markup
         };
-        console.log(url);
+        console.log('build-question.service - 80: ', url);
         return url;
     }
 };

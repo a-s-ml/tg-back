@@ -27,10 +27,10 @@ export class ResponsesService {
 			&parse_mode=HTML
 			`
 			)
-			console.log(response.data.result)
+			console.log('responses.service - 30: ', response.data.result)
 			return response.data.result
 		} catch (error) {
-			console.log(error.response.data)
+			console.log('responses.service - 33: ', error.response.data)
 			const eventText: string = `
 			errorResponse.editMessageText\n
 			chat_id: ${message.chat_id}\n

@@ -74,7 +74,7 @@ export class CallbackQueryService {
 				memberData.chat,
 				memberData.from
 			)
-			console.log(memberData.chat.id)
+			console.log('callbackQuery.service - 77: ', memberData.chat.id)
 			await fetch(
 				`
 				${process.env.SEND_MESSAGE}

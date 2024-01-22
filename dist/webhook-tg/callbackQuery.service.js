@@ -70,7 +70,7 @@ let CallbackQueryService = class CallbackQueryService {
         if (memberData.new_chat_member.status === "member" ||
             memberData.new_chat_member.status === "administrator") {
             await this.chatService.verificationExistenceChat(memberData.chat, memberData.from);
-            console.log(memberData.chat.id);
+            console.log('callbackQuery.service - 77: ', memberData.chat.id);
             await fetch(`
 				${process.env.SEND_MESSAGE}
 				chat_id=${memberData.chat.id}
