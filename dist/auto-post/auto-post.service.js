@@ -51,7 +51,19 @@ let AutoPostService = class AutoPostService {
                         return await this.questionTypeMixed(question.id, chat);
                     }
                 }
+                else {
+                    const event = new events_interface_1.EventInterface();
+                    event.name = "publicationInActiveGroup_38";
+                    event.description = `#no_question`;
+                    this.eventEmitter.emit("event", event);
+                }
             }
+        }
+        else {
+            const event = new events_interface_1.EventInterface();
+            event.name = "publicationInActiveGroup_29";
+            event.description = `#no_chatact`;
+            this.eventEmitter.emit("event", event);
         }
     }
     async questionTypePoll(question, chat) {

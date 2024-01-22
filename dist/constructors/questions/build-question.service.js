@@ -14,22 +14,33 @@ const common_1 = require("@nestjs/common");
 const question_service_1 = require("../../request/question/question.service");
 const build_keyboard_service_1 = require("../keyboard/build-keyboard.service");
 const category_service_1 = require("../../request/category/category.service");
+const event_emitter_1 = require("@nestjs/event-emitter");
+const events_interface_1 = require("../../request/chat/models/events.interface");
 let BuildQuestionService = class BuildQuestionService {
-    constructor(questionService, buildKeyboardService, categoryService) {
+    constructor(questionService, buildKeyboardService, categoryService, eventEmitter) {
         this.questionService = questionService;
         this.buildKeyboardService = buildKeyboardService;
         this.categoryService = categoryService;
+        this.eventEmitter = eventEmitter;
     }
     async questionBody(question) {
         const category = await this.categoryService.findOne(question.category);
-        const header = `<b>Вопрос:</b> №${question.id}\n<b>Категория</b>: ${category.name}\n<b>Сложность:</b> ${question.reward}\n\n`;
-        const footer = '| <b><a href="">Статистика</a></b> | <b><a href="">Ошибка</a></b> |';
-        let body;
-        return (body = {
-            header: encodeURI(header),
-            text: encodeURI(question.text + "\n\n"),
-            footer: encodeURI(footer)
-        });
+        if (category.name) {
+            const header = `<b>Вопрос:</b> №${question.id}\n<b>Категория</b>: ${category.name}\n<b>Сложность:</b> ${question.reward}\n\n`;
+            const footer = '| <b><a href="">Статистика</a></b> | <b><a href="">Ошибка</a></b> |';
+            let body;
+            return (body = {
+                header: encodeURI(header),
+                text: encodeURI(question.text + "\n\n"),
+                footer: encodeURI(footer)
+            });
+        }
+        else {
+            const event = new events_interface_1.EventInterface();
+            event.name = "questionBody";
+            event.description = `#no_category_name`;
+            this.eventEmitter.emit('event', event);
+        }
     }
     async questionText(id, chat) {
         const question = await this.questionService.findOne(id);
@@ -42,13 +53,12 @@ let BuildQuestionService = class BuildQuestionService {
             disable_web_page_preview: true,
             parse_mode: "HTML"
         };
-        console.log('build-question.service - 44: ', url);
         return url;
     }
     async questionPoll(id, chat, type) {
         let is_anonymous;
         is_anonymous = false;
-        if (type === 'channel') {
+        if (type === "channel") {
             is_anonymous = true;
         }
         const question = await this.questionService.findOne(id);
@@ -64,7 +74,6 @@ let BuildQuestionService = class BuildQuestionService {
             correct_option_id: question.answerright,
             is_anonymous: is_anonymous
         };
-        console.log('build-question.service - 66: ', url);
         return url;
     }
     async questionImg(id, chat) {
@@ -77,7 +86,6 @@ let BuildQuestionService = class BuildQuestionService {
             photo: question.img,
             reply_markup: reply_markup
         };
-        console.log('build-question.service - 80: ', url);
         return url;
     }
 };
@@ -86,6 +94,7 @@ exports.BuildQuestionService = BuildQuestionService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [question_service_1.QuestionService,
         build_keyboard_service_1.BuildKeyboardService,
-        category_service_1.CategoryService])
+        category_service_1.CategoryService,
+        event_emitter_1.EventEmitter2])
 ], BuildQuestionService);
 //# sourceMappingURL=build-question.service.js.map

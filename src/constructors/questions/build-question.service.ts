@@ -7,26 +7,37 @@ import { IQuestionTextBodyInteface } from "src/interfaces/types/others/IQuestion
 import { SendMessageMethod } from "src/interfaces/metods/sendMessage.method"
 import { SendPhotoMethod } from "src/interfaces/metods/sendPhoto.method"
 import { SendPollMethod } from "src/interfaces/metods/sendPoll.method"
+import { EventEmitter2 } from "@nestjs/event-emitter"
+import { EventInterface } from "src/request/chat/models/events.interface"
 
 @Injectable()
 export class BuildQuestionService {
 	constructor(
 		private questionService: QuestionService,
 		private buildKeyboardService: BuildKeyboardService,
-		private categoryService: CategoryService
+		private categoryService: CategoryService,
+		private eventEmitter: EventEmitter2
+
 	) {}
 
 	async questionBody(question: IQuestion) {
 		const category = await this.categoryService.findOne(question.category)
-		const header = `<b>Вопрос:</b> №${question.id}\n<b>Категория</b>: ${category.name}\n<b>Сложность:</b> ${question.reward}\n\n`
-		const footer =
-			'| <b><a href="">Статистика</a></b> | <b><a href="">Ошибка</a></b> |'
-		let body: IQuestionTextBodyInteface
-		return (body = {
-			header: encodeURI(header),
-			text: encodeURI(question.text + "\n\n"),
-			footer: encodeURI(footer)
-		})
+		if (category.name) {
+			const header = `<b>Вопрос:</b> №${question.id}\n<b>Категория</b>: ${category.name}\n<b>Сложность:</b> ${question.reward}\n\n`
+			const footer =
+				'| <b><a href="">Статистика</a></b> | <b><a href="">Ошибка</a></b> |'
+			let body: IQuestionTextBodyInteface
+			return (body = {
+				header: encodeURI(header),
+				text: encodeURI(question.text + "\n\n"),
+				footer: encodeURI(footer)
+			})
+		} else {
+			const event = new EventInterface();
+			event.name = "questionBody";
+			event.description = `#no_category_name`;
+			this.eventEmitter.emit('event', event);
+		}
 	}
 
 	async questionText(id: number, chat: bigint) {
@@ -41,13 +52,12 @@ export class BuildQuestionService {
 			disable_web_page_preview: true,
 			parse_mode: "HTML"
 		}
-		console.log('build-question.service - 44: ', url)
 		return url
 	}
 	async questionPoll(id: number, chat: bigint, type: string) {
-		let is_anonymous: boolean;
+		let is_anonymous: boolean
 		is_anonymous = false
-		if(type === 'channel') {
+		if (type === "channel") {
 			is_anonymous = true
 		}
 		const question = await this.questionService.findOne(id)
@@ -63,7 +73,6 @@ export class BuildQuestionService {
 			correct_option_id: question.answerright,
 			is_anonymous: is_anonymous
 		}
-		console.log('build-question.service - 66: ', url)
 		return url
 	}
 	async questionImg(id: number, chat: bigint) {
@@ -77,7 +86,6 @@ export class BuildQuestionService {
 			photo: question.img,
 			reply_markup: reply_markup
 		}
-		console.log('build-question.service - 80: ', url)
 		return url
 	}
 }

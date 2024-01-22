@@ -19,7 +19,6 @@ export class GetTgService {
 			)
 			return getchat.data.result
 		} catch (error) {
-			console.log('getTgAPI.service - 22: ', error)
 		}
 	}
 
@@ -29,7 +28,6 @@ export class GetTgService {
 				`${process.env.BASE_URL}getChatAdministrators?chat_id=${id}`
 			)
 		} catch (error) {
-			console.log('getTgAPI.service - 32: ', error)
 		}
 	}
 
@@ -42,7 +40,6 @@ export class GetTgService {
 				`${process.env.BASE_URL}getChatMember?chat_id=${chat_id}&user_id=${user_id}`
 			)
 		} catch (error) {
-			console.log('getTgAPI.service - 45: ', error)
 		}
 	}
 
@@ -52,7 +49,6 @@ export class GetTgService {
 				`${process.env.BASE_URL}getChatMemberCount?chat_id=${id}`
 			)
 		} catch (error) {
-			console.log('getTgAPI.service - 55: ', error)
 		}
 	}
 
@@ -83,7 +79,6 @@ export class GetTgService {
 				`${process.env.BASE_URL}getUserProfilePhotos?user_id=${id}&offset=0&limit=1`
 			)
 		} catch (error) {
-			console.log('getTgAPI.service - 87: ', error)
 		}
 	}
 
@@ -91,7 +86,6 @@ export class GetTgService {
 		try {
 			return await axios.get(`${process.env.BASE_URL}Getme`)
 		} catch (error) {
-			console.log('getTgAPI.service - 95: ', error)
 		}
 	}
 }

@@ -54,8 +54,18 @@ export class AutoPostService {
 					if (chat.question_type === 6) {
 						return await this.questionTypeMixed(question.id, chat)
 					}
+				} else {
+					const event = new EventInterface()
+					event.name = "publicationInActiveGroup_38"
+					event.description = `#no_question`
+					this.eventEmitter.emit("event", event)
 				}
 			}
+		} else {
+			const event = new EventInterface()
+			event.name = "publicationInActiveGroup_29"
+			event.description = `#no_chatact`
+			this.eventEmitter.emit("event", event)
 		}
 	}
 
@@ -79,7 +89,11 @@ export class AutoPostService {
 			})
 			const event = new EventInterface()
 			event.name = "question_poll"
-			event.description = `group: #id${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: <a href='https://t.me/${response.chat.username}/${response.message_id}'>${response.message_id}</a>\nquestion_id: #qid${question}`
+			event.description = `group: #id${-response.chat.id}\ngroup_type: #${
+				response.chat.type
+			}\nmessage_id: <a href='https://t.me/${response.chat.username}/${
+				response.message_id
+			}'>${response.message_id}</a>\nquestion_id: #qid${question}`
 			this.eventEmitter.emit("event", event)
 		}
 	}
@@ -102,7 +116,11 @@ export class AutoPostService {
 			})
 			const event = new EventInterface()
 			event.name = "question_photo"
-			event.description = `group: #id${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: <a href='https://t.me/${response.chat.username}/${response.message_id}'>${response.message_id}</a>\nquestion_id: #qid${question}`
+			event.description = `group: #id${-response.chat.id}\ngroup_type: #${
+				response.chat.type
+			}\nmessage_id: <a href='https://t.me/${response.chat.username}/${
+				response.message_id
+			}'>${response.message_id}</a>\nquestion_id: #qid${question}`
 			this.eventEmitter.emit("event", event)
 		}
 	}
@@ -125,7 +143,11 @@ export class AutoPostService {
 			})
 			const event = new EventInterface()
 			event.name = "question_text"
-			event.description = `group: #id${-response.chat.id}\ngroup_type: #${response.chat.type}\nmessage_id: <a href='https://t.me/${response.chat.username}/${response.message_id}'>${response.message_id}</a>\nquestion_id: #qid${question}`
+			event.description = `group: #id${-response.chat.id}\ngroup_type: #${
+				response.chat.type
+			}\nmessage_id: <a href='https://t.me/${response.chat.username}/${
+				response.message_id
+			}'>${response.message_id}</a>\nquestion_id: #qid${question}`
 			this.eventEmitter.emit("event", event)
 		}
 	}
