@@ -71,7 +71,7 @@ let BuildQuestionService = class BuildQuestionService {
                 question.answer3,
                 question.answer4
             ],
-            correct_option_id: question.answerright,
+            correct_option_id: question.answerright - 1,
             is_anonymous: is_anonymous
         };
         return url;
