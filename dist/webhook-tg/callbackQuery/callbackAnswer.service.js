@@ -64,7 +64,7 @@ let CallbackAnswerService = class CallbackAnswerService {
         if (pollAnswer.user) {
             const question = await this.chatDataService.findByPollId(pollAnswer.poll_id);
             if (question) {
-                await this.answerCheck(pollAnswer.user, question[0].group, pollAnswer.option_ids[0] + 1, question[0].question_id);
+                await this.answerCheck(pollAnswer.user, question[0].group, pollAnswer.option_ids[0], question[0].question_id);
             }
         }
     }
