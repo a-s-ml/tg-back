@@ -73,7 +73,7 @@ export class CallbackAnswerService {
 			const question = await this.chatDataService.findByPollId(
 				pollAnswer.poll_id
 			)
-			if (question) {
+			if (question) { 
 				await this.answerCheck(
 					pollAnswer.user,
 					question[0].group,

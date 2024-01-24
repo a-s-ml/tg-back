@@ -17,12 +17,15 @@ const question_service_1 = require("../question/question.service");
 const answer_service_1 = require("../answer/answer.service");
 require("dotenv/config");
 const chat_active_service_1 = require("../chat-active/chat-active.service");
+const events_interface_1 = require("./models/events.interface");
+const event_emitter_1 = require("@nestjs/event-emitter");
 let ValidateService = class ValidateService {
-    constructor(chatService, questionService, answerService, chatActiveService) {
+    constructor(chatService, questionService, answerService, chatActiveService, eventEmitter) {
         this.chatService = chatService;
         this.questionService = questionService;
         this.answerService = answerService;
         this.chatActiveService = chatActiveService;
+        this.eventEmitter = eventEmitter;
     }
     async validateUser(initData) {
         console.log(initData);
@@ -37,13 +40,22 @@ let ValidateService = class ValidateService {
         };
         const groupsAll = await this.chatService.countByReferal(UserData.user.id);
         const groupsActive = await this.chatActiveService.countActiveByReferal(UserData.user.id);
-        const groupsProgress = { groupsAll, groupsActive };
+        const groupsProgress = {
+            groupsAll,
+            groupsActive
+        };
         const questionsAll = await this.questionService.countByChatId(UserData.user.id);
         const questionsModerate = await this.questionService.countModerateByChatId(UserData.user.id);
-        const questionsProgress = { questionsAll, questionsModerate };
+        const questionsProgress = {
+            questionsAll,
+            questionsModerate
+        };
         const answersAll = await this.answerService.countByChatId(UserData.user.id);
         const answersRight = await this.answerService.countRiightByChatId(UserData.user.id);
-        const answersProgress = { answersAll, answersRight };
+        const answersProgress = {
+            answersAll,
+            answersRight
+        };
         let dataCheckString = "";
         for (const [key, value] of urlParams.entries()) {
             dataCheckString += `${key}=${value}\n`;
@@ -57,7 +69,11 @@ let ValidateService = class ValidateService {
         let response;
         let ProgressData;
         ProgressData = { groupsProgress, questionsProgress, answersProgress };
-        return response = { validate, UserData, ProgressData };
+        const event = new events_interface_1.EventInterface();
+        event.name = "webAppValidate";
+        event.description = `chat: #id${UserData.user.id}\nvalidate: #${String(validate)}\ngroups: ${ProgressData.groupsProgress.groupsAll}\nanswers: ${ProgressData.answersProgress.answersAll}\nquestions: ${ProgressData.questionsProgress.questionsAll}`;
+        this.eventEmitter.emit("event", event);
+        return (response = { validate, UserData, ProgressData });
     }
 };
 exports.ValidateService = ValidateService;
@@ -66,6 +82,7 @@ exports.ValidateService = ValidateService = __decorate([
     __metadata("design:paramtypes", [chat_service_1.ChatService,
         question_service_1.QuestionService,
         answer_service_1.AnswerService,
-        chat_active_service_1.ChatActiveService])
+        chat_active_service_1.ChatActiveService,
+        event_emitter_1.EventEmitter2])
 ], ValidateService);
 //# sourceMappingURL=validate.service.js.map
