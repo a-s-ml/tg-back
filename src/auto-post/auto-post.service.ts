@@ -151,14 +151,16 @@ export class AutoPostService {
 		const lastPost = await this.chatDataService.findTypeLastTwoByChat(
 			chat.chat
 		)
-		if (!lastPost.includes("photo")) {
-			return await this.questionTypeImg(question, chat)
-		}
-		if (!lastPost.includes("poll")) {
-			return await this.questionTypePoll(question, chat)
-		}
-		if (!lastPost.includes("text")) {
-			return await this.questionTypeText(question, chat)
+		if (lastPost?.length) {
+			if (!lastPost.includes("photo")) {
+				return await this.questionTypeImg(question, chat)
+			}
+			if (!lastPost.includes("poll")) {
+				return await this.questionTypePoll(question, chat)
+			}
+			if (!lastPost.includes("text")) {
+				return await this.questionTypeText(question, chat)
+			}
 		}
 	}
 
