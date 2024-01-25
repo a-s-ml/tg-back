@@ -36,26 +36,28 @@ let AutoPostService = class AutoPostService {
         if (chatact?.length) {
             for (var key in chatact) {
                 const chat = await this.chatService.findByChatId(chatact[key].chat);
-                const question = await this.selectQuestionService.availableQuestion(chatact[key].chat);
-                if (question) {
-                    if (chat.question_type === 1) {
-                        return await this.questionTypeImg(question.id, chat);
+                if (chat) {
+                    const question = await this.selectQuestionService.availableQuestion(chatact[key].chat);
+                    if (question) {
+                        if (chat.question_type === 1) {
+                            return await this.questionTypeImg(question.id, chat);
+                        }
+                        if (chat.question_type === 2) {
+                            return await this.questionTypePoll(question.id, chat);
+                        }
+                        if (chat.question_type === 3) {
+                            return await this.questionTypeText(question.id, chat);
+                        }
+                        if (chat.question_type === 6) {
+                            return await this.questionTypeMixed(question.id, chat);
+                        }
                     }
-                    if (chat.question_type === 2) {
-                        return await this.questionTypePoll(question.id, chat);
+                    else {
+                        const event = new events_interface_1.EventInterface();
+                        event.name = "publicationInActiveGroup_38";
+                        event.description = `#noQuestion`;
+                        this.eventEmitter.emit("event", event);
                     }
-                    if (chat.question_type === 3) {
-                        return await this.questionTypeText(question.id, chat);
-                    }
-                    if (chat.question_type === 6) {
-                        return await this.questionTypeMixed(question.id, chat);
-                    }
-                }
-                else {
-                    const event = new events_interface_1.EventInterface();
-                    event.name = "publicationInActiveGroup_38";
-                    event.description = `#noQuestion`;
-                    this.eventEmitter.emit("event", event);
                 }
             }
         }
