@@ -7,7 +7,15 @@ export class QuestionService {
 	constructor(private dbService: DbService) {}
 
 	async create(createQuestionDto: Prisma.questionCreateInput) {
-		return await this.dbService.question.create({ data: createQuestionDto })
+		return JSON.parse(
+			JSON.stringify(
+				await this.dbService.question.create({
+					data: createQuestionDto
+				}),
+				(key, value) =>
+					typeof value === "bigint" ? value.toString() : value
+			)
+		)
 	}
 
 	async findAll() {

@@ -17,7 +17,9 @@ let QuestionService = class QuestionService {
         this.dbService = dbService;
     }
     async create(createQuestionDto) {
-        return await this.dbService.question.create({ data: createQuestionDto });
+        return JSON.parse(JSON.stringify(await this.dbService.question.create({
+            data: createQuestionDto
+        }), (key, value) => typeof value === "bigint" ? value.toString() : value));
     }
     async findAll() {
         return await this.dbService.question.findMany({});

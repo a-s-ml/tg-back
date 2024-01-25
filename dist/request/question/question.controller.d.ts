@@ -3,22 +3,7 @@ import { Prisma } from "@prisma/client";
 export declare class QuestionController {
     private questionService;
     constructor(questionService: QuestionService);
-    create(createQuestionDto: Prisma.questionCreateInput): Promise<{
-        id: number;
-        text: string;
-        date: Date;
-        chat: bigint;
-        category: number;
-        answer1: string;
-        answer2: string;
-        answer3: string;
-        answer4: string;
-        answerright: number;
-        isactual: number;
-        mod: number;
-        img: string;
-        reward: number;
-    }>;
+    create(createQuestionDto: Prisma.questionCreateInput): Promise<any>;
     findAll(): Promise<{
         id: number;
         text: string;
