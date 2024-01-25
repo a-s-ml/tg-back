@@ -65,10 +65,6 @@ let CallbackQueryService = class CallbackQueryService {
         }
     }
     async member(memberData) {
-        const event = new events_interface_1.EventInterface();
-        event.name = "newChatMember";
-        event.description = `status: #${memberData.new_chat_member.status}\ngroup: #id${-memberData.chat.id}\nchat: #id${memberData.from.id}\n@${memberData.from.username}`;
-        this.eventEmitter.emit('event', event);
         await this.chatService.verificationExistence(memberData.from);
         if (memberData.new_chat_member.status === "member" ||
             memberData.new_chat_member.status === "administrator") {
@@ -80,6 +76,10 @@ let CallbackQueryService = class CallbackQueryService {
 				&disable_web_page_preview=true
 				&parse_mode=HTML
 				`);
+            const event = new events_interface_1.EventInterface();
+            event.name = "newChatMember";
+            event.description = `status: #${memberData.new_chat_member.status}\ngroup: #id${-memberData.chat.id}\nchat: #id${memberData.from.id}\n@${memberData.from.username}`;
+            this.eventEmitter.emit('event', event);
         }
         if (memberData.new_chat_member.status === "left" ||
             memberData.new_chat_member.status === "kicked" ||
