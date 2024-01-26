@@ -49,6 +49,24 @@ let SelectQuestionService = class SelectQuestionService {
             return questions[randomIndex];
         }
     }
+    async countAvailableQuestionByChatId(chatid) {
+        const forbiddenCategory = await this.chatCategoryService.findChat(chatid);
+        const publishedQuestion = await this.chatDataService.findAllByChat(chatid);
+        forbiddenCategory.push({ category: 1001 });
+        const countQuestions = await this.dbService.question.count({
+            where: {
+                category: {
+                    notIn: forbiddenCategory.map(item => item.category)
+                },
+                id: {
+                    notIn: publishedQuestion.map(item => item.question_id)
+                },
+                mod: 2,
+                isactual: 2
+            }
+        });
+        return countQuestions;
+    }
 };
 exports.SelectQuestionService = SelectQuestionService;
 exports.SelectQuestionService = SelectQuestionService = __decorate([
