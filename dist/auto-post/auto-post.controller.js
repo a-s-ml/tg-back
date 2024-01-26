@@ -19,8 +19,11 @@ let AutoPostController = class AutoPostController {
     constructor(selectQuestionService) {
         this.selectQuestionService = selectQuestionService;
     }
-    getStatChat(id) {
+    countAvailableQuestionByChatId(id) {
         return this.selectQuestionService.countAvailableQuestionByChatId(id);
+    }
+    countPublishedQuestion(id) {
+        return this.selectQuestionService.countPublishedQuestion(id);
     }
 };
 exports.AutoPostController = AutoPostController;
@@ -30,7 +33,14 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [BigInt]),
     __metadata("design:returntype", void 0)
-], AutoPostController.prototype, "getStatChat", null);
+], AutoPostController.prototype, "countAvailableQuestionByChatId", null);
+__decorate([
+    (0, common_1.Get)("countPublishedQuestion/:id"),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [BigInt]),
+    __metadata("design:returntype", void 0)
+], AutoPostController.prototype, "countPublishedQuestion", null);
 exports.AutoPostController = AutoPostController = __decorate([
     (0, common_1.Controller)("auto-post"),
     __metadata("design:paramtypes", [select_questions_service_1.SelectQuestionService])

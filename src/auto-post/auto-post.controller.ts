@@ -6,7 +6,12 @@ export class AutoPostController {
 	constructor(private selectQuestionService: SelectQuestionService) {}
     
 	@Get("countAvailableQuestionByChatId/:id")
-	getStatChat(@Param("id") id: bigint) {
+	countAvailableQuestionByChatId(@Param("id") id: bigint) {
 		return this.selectQuestionService.countAvailableQuestionByChatId(id)
+	}
+
+	@Get("countPublishedQuestion/:id")
+	countPublishedQuestion(@Param("id") id: bigint) {
+		return this.selectQuestionService.countPublishedQuestion(id)
 	}
 }
