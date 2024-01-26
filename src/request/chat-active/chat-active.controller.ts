@@ -33,7 +33,7 @@ export class ChatActiveController {
 		return this.chatActiveService.remove(chat as unknown as bigint)
 	}
 
-	@Get("clean/")
+	@Get("/clean/all")
 	clean() {
 		return this.chatActiveService.clean()
 	}
