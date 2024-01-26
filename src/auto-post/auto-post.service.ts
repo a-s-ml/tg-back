@@ -10,6 +10,7 @@ import { IChat } from "src/interfaces/types/db/IChat.interface"
 import { MessageInterface } from "src/interfaces/types/Message.interface"
 import { EventInterface } from "src/request/chat/models/events.interface"
 import { EventEmitter2 } from "@nestjs/event-emitter"
+import { ChatActiveService } from "src/request/chat-active/chat-active.service"
 
 @Injectable()
 export class AutoPostService {
@@ -21,7 +22,8 @@ export class AutoPostService {
 		private responsesService: ResponsesService,
 		private chatDataService: ChatDataService,
 		private chatService: ChatService,
-		private eventEmitter: EventEmitter2
+		private eventEmitter: EventEmitter2,
+		private chatActiveService: ChatActiveService
 	) {}
 
 	async publicationInActiveGroup() {
@@ -70,6 +72,12 @@ export class AutoPostService {
 						event.description = `#noQuestion`
 						this.eventEmitter.emit("event", event)
 					}
+				} else {
+					await this.chatActiveService.remove(chat)
+					const event = new EventInterface()
+					event.name = "publicationInActiveGroup_36"
+					event.description = `#noChat\n${chat}`
+					this.eventEmitter.emit("event", event)
 				}
 			}
 		}

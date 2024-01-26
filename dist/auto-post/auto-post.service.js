@@ -20,8 +20,9 @@ const chat_service_1 = require("../request/chat/chat.service");
 const chat_data_service_1 = require("../request/chat-data/chat-data.service");
 const events_interface_1 = require("../request/chat/models/events.interface");
 const event_emitter_1 = require("@nestjs/event-emitter");
+const chat_active_service_1 = require("../request/chat-active/chat-active.service");
 let AutoPostService = class AutoPostService {
-    constructor(selectQuestionService, selectActivChatService, buildQuestionService, buildStatListService, responsesService, chatDataService, chatService, eventEmitter) {
+    constructor(selectQuestionService, selectActivChatService, buildQuestionService, buildStatListService, responsesService, chatDataService, chatService, eventEmitter, chatActiveService) {
         this.selectQuestionService = selectQuestionService;
         this.selectActivChatService = selectActivChatService;
         this.buildQuestionService = buildQuestionService;
@@ -30,6 +31,7 @@ let AutoPostService = class AutoPostService {
         this.chatDataService = chatDataService;
         this.chatService = chatService;
         this.eventEmitter = eventEmitter;
+        this.chatActiveService = chatActiveService;
     }
     async publicationInActiveGroup() {
         const chatact = await this.selectActivChatService.activChat();
@@ -58,6 +60,13 @@ let AutoPostService = class AutoPostService {
                         event.description = `#noQuestion`;
                         this.eventEmitter.emit("event", event);
                     }
+                }
+                else {
+                    await this.chatActiveService.remove(chat);
+                    const event = new events_interface_1.EventInterface();
+                    event.name = "publicationInActiveGroup_36";
+                    event.description = `#noChat\n${chat}`;
+                    this.eventEmitter.emit("event", event);
                 }
             }
         }
@@ -153,6 +162,7 @@ exports.AutoPostService = AutoPostService = __decorate([
         responses_service_1.ResponsesService,
         chat_data_service_1.ChatDataService,
         chat_service_1.ChatService,
-        event_emitter_1.EventEmitter2])
+        event_emitter_1.EventEmitter2,
+        chat_active_service_1.ChatActiveService])
 ], AutoPostService);
 //# sourceMappingURL=auto-post.service.js.map
