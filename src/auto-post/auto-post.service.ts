@@ -174,6 +174,7 @@ export class AutoPostService {
 		const lastPost = await this.chatDataService.findTypeLastTwoByChat(
 			chat.chat
 		)
+		console.log('5', lastPost)
 		if (lastPost?.length) {
 			if (!lastPost.includes("photo")) {
 				return await this.questionTypeImg(question, chat)
