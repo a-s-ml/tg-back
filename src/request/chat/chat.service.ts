@@ -55,11 +55,17 @@ export class ChatService {
 	}
 
 	async findByChatId(chat: bigint) {
-		return await this.dbService.chat.findUnique({
-			where: {
-				chat
-			}
-		})
+		return JSON.parse(
+			JSON.stringify(
+				await this.dbService.chat.findUnique({
+					where: {
+						chat
+					}
+				}),
+				(key, value) =>
+					typeof value === "bigint" ? value.toString() : value
+			)
+		)
 	}
 
 	async findByReferal(chat: bigint) {
