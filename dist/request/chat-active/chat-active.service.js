@@ -49,6 +49,18 @@ let ChatActiveService = class ChatActiveService {
             }
         });
     }
+    async clean() {
+        const all = await this.dbService.chatActive.findMany();
+        for (var key in all) {
+            const res = await this.chatService.findByChatId(all[key].chat);
+            if (res) {
+                console.log("true");
+            }
+            if (!res) {
+                console.log("false");
+            }
+        }
+    }
     async remove(chat) {
         return JSON.parse(JSON.stringify(await this.dbService.chatActive.delete({
             where: {
