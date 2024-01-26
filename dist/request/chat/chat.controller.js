@@ -78,7 +78,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ChatController.prototype, "groupInfoById", null);
 __decorate([
-    (0, common_1.Get)("clean/"),
+    (0, common_1.Get)("/clean/all"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)

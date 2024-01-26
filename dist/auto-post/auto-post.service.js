@@ -40,7 +40,7 @@ let AutoPostService = class AutoPostService {
                 const chat = await this.chatService.findByChatId(chatact[key].chat);
                 if (chat) {
                     const question = await this.selectQuestionService.availableQuestion(chatact[key].chat);
-                    if (question) {
+                    if (question && chat.question_type) {
                         if (chat.question_type === 1) {
                             return await this.questionTypeImg(question.id, chat);
                         }
@@ -62,7 +62,7 @@ let AutoPostService = class AutoPostService {
                     }
                 }
                 else {
-                    await this.chatActiveService.remove(chat);
+                    await this.chatActiveService.remove(chat.chat);
                     const event = new events_interface_1.EventInterface();
                     event.name = "publicationInActiveGroup_36";
                     event.description = `#noChat\n${chat}`;

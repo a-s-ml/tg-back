@@ -38,7 +38,7 @@ export class AutoPostService {
 						await this.selectQuestionService.availableQuestion(
 							chatact[key].chat
 						)
-					if (question) {
+					if (question && chat.question_type) {
 						if (chat.question_type === 1) {
 							return await this.questionTypeImg(question.id, chat)
 						}
@@ -73,7 +73,7 @@ export class AutoPostService {
 						this.eventEmitter.emit("event", event)
 					}
 				} else {
-					await this.chatActiveService.remove(chat)
+					await this.chatActiveService.remove(chat.chat)
 					const event = new EventInterface()
 					event.name = "publicationInActiveGroup_36"
 					event.description = `#noChat\n${chat}`

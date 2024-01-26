@@ -55,17 +55,11 @@ export class ChatService {
 	}
 
 	async findByChatId(chat: bigint) {
-		return JSON.parse(
-			JSON.stringify(
-				await this.dbService.chat.findUnique({
-					where: {
-						chat
-					}
-				}),
-				(key, value) =>
-					typeof value === "bigint" ? value.toString() : value
-			)
-		)
+		return await this.dbService.chat.findUnique({
+			where: {
+				chat
+			}
+		})
 	}
 
 	async findByReferal(chat: bigint) {
@@ -120,8 +114,7 @@ export class ChatService {
 			where: {
 				chat
 			},
-			data: question_type,
-			
+			data: question_type
 		})
 		return await this.questionTypeService.findOne(req.question_type)
 	}
@@ -135,7 +128,7 @@ export class ChatService {
 			})
 			const event = new EventInterface()
 			event.name = "newUser"
-			event.description = `chat: #id${from.id}\nusername: @${from.username}`;
+			event.description = `chat: #id${from.id}\nusername: @${from.username}`
 			this.eventEmitter.emit("event", event)
 		}
 	}
@@ -154,7 +147,9 @@ export class ChatService {
 			)
 			const event = new EventInterface()
 			event.name = "newGroup"
-			event.description = `group: #id${-chat.id}\nmemberCount: ${JSON.stringify(memberCount)}\nchat: #id${from.id}\nusername: @${from.username}`;
+			event.description = `group: #id${-chat.id}\nmemberCount: ${JSON.stringify(
+				memberCount
+			)}\nchat: #id${from.id}\nusername: @${from.username}`
 			this.eventEmitter.emit("event", event)
 		}
 	}

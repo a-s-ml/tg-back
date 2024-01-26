@@ -25,7 +25,7 @@ export class ChatController {
 		return this.chatService.groupInfoById(chat)
 	}
 
-	@Get("clean/")
+	@Get("/clean/all")
 	clean() {
 		return this.chatService.clean()
 	}
