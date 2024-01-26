@@ -66,10 +66,14 @@ export class ChatDataService {
 			},
 			take: 2
 		})
-		console.log('chat-data.service - 69: ', lastPost)
-		console.log('chat-data.service - 70: ', lastPost.length)
+		console.log("chat-data.service - 69: ", lastPost)
+		console.log("chat-data.service - 70: ", lastPost.length)
 		typeLastPost.push(lastPost[0].question_type)
-		typeLastPost.push(lastPost[1].question_type)
+		if (lastPost.length > 1) {
+			typeLastPost.push(lastPost[1].question_type)
+		} else {
+			typeLastPost.push(lastPost[0].question_type)
+		}
 		return typeLastPost
 	}
 }
