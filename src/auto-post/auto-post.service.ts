@@ -186,6 +186,9 @@ export class AutoPostService {
 				return await this.questionTypeText(question, chat)
 			}
 		}
+		if(!lastPost) {
+			return await this.questionTypeImg(question, chat)
+		}
 	}
 
 	async publicationInActiveGroupStat() {
