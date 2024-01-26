@@ -10,4 +10,5 @@ export declare class ChatActiveController {
     }[]>;
     findOne(chat: string): Promise<boolean>;
     remove(chat: string): Promise<any>;
+    clean(): Promise<void>;
 }

@@ -32,6 +32,9 @@ let ChatActiveController = class ChatActiveController {
     remove(chat) {
         return this.chatActiveService.remove(chat);
     }
+    clean() {
+        return this.chatActiveService.clean();
+    }
 };
 exports.ChatActiveController = ChatActiveController;
 __decorate([
@@ -61,6 +64,12 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ChatActiveController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Get)("clean/"),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], ChatActiveController.prototype, "clean", null);
 exports.ChatActiveController = ChatActiveController = __decorate([
     (0, common_1.Controller)("chat-active"),
     __metadata("design:paramtypes", [chat_active_service_1.ChatActiveService])
