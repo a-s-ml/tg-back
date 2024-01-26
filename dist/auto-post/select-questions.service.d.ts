@@ -10,4 +10,5 @@ export declare class SelectQuestionService {
         id: number;
     }>;
     countAvailableQuestionByChatId(chatid: bigint): Promise<number>;
+    countPublishedQuestion(chatid: bigint): Promise<number>;
 }

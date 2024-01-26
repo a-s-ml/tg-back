@@ -39,6 +39,7 @@ export declare class ChatDataService {
     findAllByChat(group: bigint): Promise<{
         question_id: number;
     }[]>;
+    countAllByChat(group: bigint): Promise<number>;
     findLastTwoByChat(group: bigint): Promise<{
         id: number;
         group: bigint;

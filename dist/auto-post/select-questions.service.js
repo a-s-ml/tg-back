@@ -67,6 +67,9 @@ let SelectQuestionService = class SelectQuestionService {
         });
         return countQuestions;
     }
+    async countPublishedQuestion(chatid) {
+        return this.chatDataService.countAllByChat(chatid);
+    }
 };
 exports.SelectQuestionService = SelectQuestionService;
 exports.SelectQuestionService = SelectQuestionService = __decorate([

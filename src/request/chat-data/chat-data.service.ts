@@ -43,6 +43,14 @@ export class ChatDataService {
 		})
 	}
 
+	async countAllByChat(group: bigint) {
+		return await this.dbService.chatData.count({
+			where: {
+				group
+			}
+		})
+	}
+
 	async findLastTwoByChat(group: bigint) {
 		return await this.dbService.chatData.findMany({
 			where: {

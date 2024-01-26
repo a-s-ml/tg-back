@@ -67,4 +67,8 @@ export class SelectQuestionService {
 		})
 		return countQuestions
 	}
+
+	async countPublishedQuestion(chatid: bigint) {
+		return this.chatDataService.countAllByChat(chatid)
+	}
 }
