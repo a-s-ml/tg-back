@@ -44,6 +44,7 @@ let AutoPostService = class AutoPostService {
                     const question = await this.selectQuestionService.availableQuestion(chatact[key].chat);
                     console.log('3', question);
                     if (question && chat.question_type) {
+                        console.log('4', chat.question_type);
                         if (chat.question_type === 1) {
                             return await this.questionTypeImg(question.id, chat);
                         }
