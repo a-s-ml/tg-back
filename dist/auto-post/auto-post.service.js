@@ -35,14 +35,14 @@ let AutoPostService = class AutoPostService {
     }
     async publicationInActiveGroup() {
         const chatact = await this.selectActivChatService.activChat();
-        console.log(chatact);
+        console.log('1', chatact);
         if (chatact?.length) {
             for (var key in chatact) {
                 const chat = await this.chatService.findByChatId(chatact[key].chat);
-                console.log(chat);
+                console.log('2', chat);
                 if (chat) {
                     const question = await this.selectQuestionService.availableQuestion(chatact[key].chat);
-                    console.log(question);
+                    console.log('3', question);
                     if (question && chat.question_type) {
                         if (chat.question_type === 1) {
                             return await this.questionTypeImg(question.id, chat);
