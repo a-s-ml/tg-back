@@ -7,6 +7,8 @@ import { ChatDataService } from "src/request/chat-data/chat-data.service"
 import { CallbackQueryInterface } from "src/interfaces/types/CallbackQuery.interface"
 import { PollAnswerInterface } from "src/interfaces/types/pollAnswer.interface"
 import { UserInterface } from "src/interfaces/types/User.interface"
+import { EventEmitter2 } from "@nestjs/event-emitter"
+import { EventInterface } from "src/request/chat/models/events.interface"
 
 @Injectable()
 export class CallbackAnswerService {
@@ -14,6 +16,7 @@ export class CallbackAnswerService {
 		private answerService: AnswerService,
 		private questionService: QuestionService,
 		private responsesService: ResponsesService,
+		private eventEmitter: EventEmitter2,
 		private chatService: ChatService,
 		private chatDataService: ChatDataService
 	) {}
@@ -66,6 +69,10 @@ export class CallbackAnswerService {
 			text: encodeURI(text)
 		}
 		await this.responsesService.answerCallbackQuery(res)
+		const event = new EventInterface()
+		event.name = "newAnswer"
+		event.description = `chat: #id${callbackQuery.from.id}\nusername: @${callbackQuery.from.username}`
+		this.eventEmitter.emit("eventAnswer", event)
 	}
 
 	async pollAnswer(pollAnswer: PollAnswerInterface) {
@@ -81,6 +88,10 @@ export class CallbackAnswerService {
 					question[0].question_id
 				)
 			}
+			const event = new EventInterface()
+			event.name = "newAnswerPoll"
+			event.description = `chat: #id${pollAnswer.user.id}\nusername: @${pollAnswer.user.username}`
+			this.eventEmitter.emit("eventAnswer", event)
 		}
 	}
 }

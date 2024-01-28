@@ -16,11 +16,14 @@ const question_service_1 = require("../../request/question/question.service");
 const responses_service_1 = require("../../responses/responses.service");
 const chat_service_1 = require("../../request/chat/chat.service");
 const chat_data_service_1 = require("../../request/chat-data/chat-data.service");
+const event_emitter_1 = require("@nestjs/event-emitter");
+const events_interface_1 = require("../../request/chat/models/events.interface");
 let CallbackAnswerService = class CallbackAnswerService {
-    constructor(answerService, questionService, responsesService, chatService, chatDataService) {
+    constructor(answerService, questionService, responsesService, eventEmitter, chatService, chatDataService) {
         this.answerService = answerService;
         this.questionService = questionService;
         this.responsesService = responsesService;
+        this.eventEmitter = eventEmitter;
         this.chatService = chatService;
         this.chatDataService = chatDataService;
     }
@@ -59,6 +62,10 @@ let CallbackAnswerService = class CallbackAnswerService {
             text: encodeURI(text)
         };
         await this.responsesService.answerCallbackQuery(res);
+        const event = new events_interface_1.EventInterface();
+        event.name = "newAnswer";
+        event.description = `chat: #id${callbackQuery.from.id}\nusername: @${callbackQuery.from.username}`;
+        this.eventEmitter.emit("eventAnswer", event);
     }
     async pollAnswer(pollAnswer) {
         if (pollAnswer.user) {
@@ -66,6 +73,10 @@ let CallbackAnswerService = class CallbackAnswerService {
             if (question) {
                 await this.answerCheck(pollAnswer.user, question[0].group, pollAnswer.option_ids[0] + 1, question[0].question_id);
             }
+            const event = new events_interface_1.EventInterface();
+            event.name = "newAnswerPoll";
+            event.description = `chat: #id${pollAnswer.user.id}\nusername: @${pollAnswer.user.username}`;
+            this.eventEmitter.emit("eventAnswer", event);
         }
     }
 };
@@ -75,6 +86,7 @@ exports.CallbackAnswerService = CallbackAnswerService = __decorate([
     __metadata("design:paramtypes", [answer_service_1.AnswerService,
         question_service_1.QuestionService,
         responses_service_1.ResponsesService,
+        event_emitter_1.EventEmitter2,
         chat_service_1.ChatService,
         chat_data_service_1.ChatDataService])
 ], CallbackAnswerService);

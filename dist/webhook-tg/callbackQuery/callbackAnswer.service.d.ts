@@ -6,13 +6,15 @@ import { ChatDataService } from "src/request/chat-data/chat-data.service";
 import { CallbackQueryInterface } from "src/interfaces/types/CallbackQuery.interface";
 import { PollAnswerInterface } from "src/interfaces/types/pollAnswer.interface";
 import { UserInterface } from "src/interfaces/types/User.interface";
+import { EventEmitter2 } from "@nestjs/event-emitter";
 export declare class CallbackAnswerService {
     private answerService;
     private questionService;
     private responsesService;
+    private eventEmitter;
     private chatService;
     private chatDataService;
-    constructor(answerService: AnswerService, questionService: QuestionService, responsesService: ResponsesService, chatService: ChatService, chatDataService: ChatDataService);
+    constructor(answerService: AnswerService, questionService: QuestionService, responsesService: ResponsesService, eventEmitter: EventEmitter2, chatService: ChatService, chatDataService: ChatDataService);
     answerCheck(chat: UserInterface, group: bigint, answer: number, question_id: number): Promise<string>;
     answer(callbackQuery: CallbackQueryInterface): Promise<void>;
     pollAnswer(pollAnswer: PollAnswerInterface): Promise<void>;
