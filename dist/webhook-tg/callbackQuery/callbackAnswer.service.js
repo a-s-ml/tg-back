@@ -64,7 +64,7 @@ let CallbackAnswerService = class CallbackAnswerService {
         await this.responsesService.answerCallbackQuery(res);
         const event = new events_interface_1.EventInterface();
         event.name = "newAnswer";
-        event.description = `chat: #id${callbackQuery.from.id}\nusername: @${callbackQuery.from.username}`;
+        event.description = `chat: #id${callbackQuery.from.id}\nusername: @${callbackQuery.from.username}\ngroup: #id${-callbackQuery.message.chat.id}\nquestion_id: #qid${data[1]}`;
         this.eventEmitter.emit("eventAnswer", event);
     }
     async pollAnswer(pollAnswer) {
@@ -72,11 +72,11 @@ let CallbackAnswerService = class CallbackAnswerService {
             const question = await this.chatDataService.findByPollId(pollAnswer.poll_id);
             if (question) {
                 await this.answerCheck(pollAnswer.user, question[0].group, pollAnswer.option_ids[0] + 1, question[0].question_id);
+                const event = new events_interface_1.EventInterface();
+                event.name = "newAnswerPoll";
+                event.description = `chat: #id${pollAnswer.user.id}\nusername: @${pollAnswer.user.username}\ngroup: #id${-question[0].group}\nquestion_id: #qid${question[0].question_id}`;
+                this.eventEmitter.emit("eventAnswer", event);
             }
-            const event = new events_interface_1.EventInterface();
-            event.name = "newAnswerPoll";
-            event.description = `chat: #id${pollAnswer.user.id}\nusername: @${pollAnswer.user.username}`;
-            this.eventEmitter.emit("eventAnswer", event);
         }
     }
 };
