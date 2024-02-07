@@ -48,7 +48,7 @@ let CallbackQueryService = class CallbackQueryService {
                         {
                             text: "Настройки ViktorinaOnlineBot",
                             web_app: {
-                                url: `https://80q.ru/`
+                                url: `https://80q.ru/viktorinaonlinebot`
                             }
                         }
                     ]
